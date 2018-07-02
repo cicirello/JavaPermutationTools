@@ -11,3 +11,5 @@ API is organized into several packages as follows:
 * org.cicirello.math
     + __org.cicirello.math.la__: Linear algebra related classes.
     + __org.cicirello.math.stats__: Statistics related classes.
+
+Javadoc documentation can be found in the /docs folder or at https://cicirello.github.io/JavaPermutationTools/
