@@ -5,7 +5,7 @@ Copyright (C) 2018 Vincent A. Cicirello.
 
 https://www.cicirello.org/
 
-API is organized into several packages as follows:
+JPT is organized into several packages as follows:
 * __org.cicirello.permutations__: Currently just the Permutation class.
     + __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
 * org.cicirello.math
