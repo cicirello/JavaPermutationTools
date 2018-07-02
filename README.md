@@ -1,4 +1,4 @@
-# JavaPermutationTools
+# JavaPermutationTools (JPT)
 A Java API for all things related to permutations.  
 
 Copyright (C) 2018 Vincent A. Cicirello.
@@ -12,4 +12,4 @@ API is organized into several packages as follows:
     + __org.cicirello.math.la__: Linear algebra related classes.
     + __org.cicirello.math.stats__: Statistics related classes.
 
-Javadoc documentation can be found in the /docs folder or at https://cicirello.github.io/JavaPermutationTools/
+Javadoc documentation can be found in the /docs folder or at https://jpt.cicirello.org/
