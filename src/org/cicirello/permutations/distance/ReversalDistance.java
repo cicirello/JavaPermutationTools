@@ -49,7 +49,8 @@ import org.cicirello.permutations.Permutation;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
-* @version 06.06.2018
+* @version 1.18.6.6
+* @since 1.0
 */
 public class ReversalDistance extends PermutationDistanceMeasurerBase {
 

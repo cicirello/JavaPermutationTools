@@ -23,5 +23,6 @@
  
  /**
  * Linear algebra. 
+ * @since 1.0
  */
 package org.cicirello.math.la;

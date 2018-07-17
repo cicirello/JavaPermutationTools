@@ -27,7 +27,8 @@ package org.cicirello.math.la;
  * This class uses Jacobi iteration to compute the eigenvalues and eigenvectors of a symmetric matrix, provided as a 2-D Java array.
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a> 
- * @version 07.01.2018
+ * @version 1.18.7.1
+ * @since 1.0
  */
 public class JacobiDiagonalization {
 	

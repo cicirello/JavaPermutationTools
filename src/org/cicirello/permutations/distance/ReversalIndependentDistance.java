@@ -34,7 +34,8 @@ import org.cicirello.permutations.Permutation;
  * to the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 06.20.2018
+ * @version 1.18.6.20
+ * @since 1.0
  *  
  */
 public final class ReversalIndependentDistance implements PermutationDistanceMeasurer {

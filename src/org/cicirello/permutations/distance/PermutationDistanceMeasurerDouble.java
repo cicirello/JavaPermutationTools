@@ -29,7 +29,8 @@ import org.cicirello.permutations.Permutation;
  * where the distance is a floating-point value.
  * 
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 06.20.2018
+ * @version 1.18.6.20
+ * @since 1.0
  */
 public interface PermutationDistanceMeasurerDouble
 {

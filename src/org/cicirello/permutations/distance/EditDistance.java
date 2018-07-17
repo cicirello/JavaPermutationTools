@@ -54,7 +54,8 @@ import org.cicirello.permutations.Permutation;
  * in Proc. 26th FLAIRS. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 06.20.2018
+ * @version 1.18.6.20
+ * @since 1.0
  */
 public class EditDistance implements PermutationDistanceMeasurerDouble 
 {

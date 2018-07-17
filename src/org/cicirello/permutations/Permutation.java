@@ -35,7 +35,8 @@ import java.io.Serializable;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a> 
- * @version 05.30.2018
+ * @version 1.18.5.30
+ * @since 1.0
  */
 public final class Permutation implements Serializable
 {

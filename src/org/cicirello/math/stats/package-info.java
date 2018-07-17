@@ -23,5 +23,6 @@
  
  /**
  * Collection of classes related to statistics. 
+ * @since 1.0
  */
 package org.cicirello.math.stats;

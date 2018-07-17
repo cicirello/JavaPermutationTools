@@ -45,7 +45,8 @@ import org.cicirello.permutations.Permutation;
  * INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 06.06.2018 
+ * @version 1.18.6.6 
+ * @since 1.0
  */
 public class RTypeDistance extends PermutationDistanceMeasurerBase {
 
