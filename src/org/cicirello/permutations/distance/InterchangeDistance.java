@@ -42,15 +42,10 @@ import org.cicirello.permutations.Permutation;
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 1.18.6.6
+ * @version 2.18.8.2
  * @since 1.0
  */
-public class InterchangeDistance extends PermutationDistanceMeasurerBase
-{
-	
-	
-	
-	
+public class InterchangeDistance extends AbstractPermutationDistanceMeasurer {
     /**
 	 * {@inheritDoc}
 	 */

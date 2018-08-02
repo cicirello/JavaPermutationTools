@@ -29,11 +29,11 @@ import org.cicirello.permutations.Permutation;
  * where distance is an integer value.
  * 
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 1.18.6.20
+ * @version 2.18.8.2
  * @since 1.0
  *
  */
-public abstract class PermutationDistanceMeasurerBase implements PermutationDistanceMeasurer, PermutationDistanceMeasurerDouble {
+public abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, PermutationDistanceMeasurerDouble {
 	
 		
 	/**

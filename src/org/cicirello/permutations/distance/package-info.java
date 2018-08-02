@@ -23,6 +23,7 @@
  
  /**
  * Implementations of a variety of permutation distance measures. 
+ * @version 1.18.7.17
  * @since 1.0
  */
 package org.cicirello.permutations.distance;

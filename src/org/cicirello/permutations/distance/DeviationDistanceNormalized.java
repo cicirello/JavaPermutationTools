@@ -49,7 +49,7 @@ import org.cicirello.permutations.Permutation;
  *  INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
- * @version 1.18.6.26  
+ * @version 2.18.8.2  
  * @since 1.0
  * 
  */
@@ -71,6 +71,7 @@ public class DeviationDistanceNormalized implements PermutationDistanceMeasurerD
 	 */
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
+		if (p1.length() == 1) return 0; 
 		return devDistance.distancef(p1,p2) / (p1.length() - 1);
 	}
 
