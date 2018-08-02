@@ -27,6 +27,7 @@ import java.util.SplittableRandom;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.io.Serializable;
+import java.util.Iterator;
 
 
 /**
@@ -35,10 +36,10 @@ import java.io.Serializable;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a> 
- * @version 1.18.5.30
+ * @version 2.18.8.1
  * @since 1.0
  */
-public final class Permutation implements Serializable
+public final class Permutation implements Serializable, Iterable<Permutation>
 {
 	
 	private static final long serialVersionUID = 1L;
@@ -100,6 +101,20 @@ public final class Permutation implements Serializable
 			permutation[i] = temp;
 			value = value / (n-i);
 		}
+	}
+	
+	/**
+	 * Initializes a permutation of n integers to be identical to the elements of an array.
+     * @param p An array of integers. Each of the integers in the interval [0, p.length) must occur exactly one time each.
+	 */
+	public Permutation(int[] p) {
+		boolean[] inP = new boolean[p.length];
+		for (int e : p) {
+			if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of p must be in interval [0, p.length)");
+			if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
+			inP[e] = true;
+		}
+		permutation = p.clone();
 	}
 	
     /**
@@ -398,6 +413,20 @@ public final class Permutation implements Serializable
     public void set(int i, int value) {
         permutation[i] = value;
     }
+	
+	/**
+	 * Returns an Iterator over all Permutations the length of this Permutation.  Iteration begins at this Permutation.
+	 * This Iterator does not iterate over the integers within the Permutation.
+	 * If you do need to iterate over all permutations of a given length, then this method is much more efficient than
+	 * using the {@link #Permutation(int,int)} constructor repeatedly incrementing the value passed for the second parameter.
+	 * 
+	 * @since 2.0
+	 * @return an Iterator
+	 */
+	@Override
+	public Iterator<Permutation> iterator() {
+		return new PermutationIterator(this);
+	}
     
 	/**
 	* Creates a String representing the permutation.

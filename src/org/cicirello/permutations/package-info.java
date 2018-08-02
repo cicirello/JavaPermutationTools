@@ -23,6 +23,7 @@
  
  /**
  * Collection of classes related to representing and manipulating permutations. 
+ * @version 1.18.5.30
  * @since 1.0
  */
 package org.cicirello.permutations;
