@@ -7,7 +7,7 @@ https://www.cicirello.org/
 
 JPT is organized into the following packages:
 * __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
-    + __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
+* __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
 
 Javadoc documentation is in the /docs folder as well as at https://jpt.cicirello.org/
 
