@@ -32,6 +32,7 @@ import org.cicirello.math.stats.Statistics;
  * and the Calculus of Search Landscapes,"</a> 
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
+ * <p>NOTE: This is not the original code from this paper.  Source code has been heavily refactored since then, but results should correspond.</p>
  *
  * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
  */
