@@ -48,11 +48,11 @@ import org.cicirello.permutations.Permutation;
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
  *
  * <p>Its application as a means of computing Reinsertion Distance is first described in:<br>
- * V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html">"Profiling the distance characteristics 
+ * V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html" target=_top>"Profiling the distance characteristics 
  * of mutation operators for permutation-based genetic algorithms,"</a> 
- * in Proc. 26th FLAIRS. AAAI Press, May 2013, pp. 46–51.</p> 
+ * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 1.18.6.20
  * @since 1.0
  */

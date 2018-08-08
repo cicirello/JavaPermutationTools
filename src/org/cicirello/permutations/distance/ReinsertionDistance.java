@@ -33,18 +33,18 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n^2), where n is the permutation length.</p>
  *
  * <p>Reinsertion distance more generally was described in:<br>
- * V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html">"Profiling the distance characteristics 
+ * V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html" target=_top>"Profiling the distance characteristics 
  * of mutation operators for permutation-based genetic algorithms,"</a> 
- * in Proc. 26th FLAIRS. AAAI Press, May 2013, pp. 46–51.</p> 
+ * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  *
  * <p>However, in that paper, it was computed using an adaptation of string Edit Distance.</p>
  *
  * <p>For description of computing it using the length of the longest common subsequence, see:<br> 
- * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html">"The Permutation in a Haystack Problem 
+ * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem 
  * and the Calculus of Search Landscapes,"</a> 
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.2 
  * @since 1.0
  *

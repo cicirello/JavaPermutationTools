@@ -32,7 +32,7 @@ import org.cicirello.permutations.Permutation;
  * to rotations of p2 and rotations of the reverse of p2, where the underlying distance measure is passed as a parameter to
  * the constructor.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 1.18.6.20
  * @since 1.0
  *  

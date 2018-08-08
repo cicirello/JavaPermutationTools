@@ -35,11 +35,11 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n), where n is the permutation length.</p>
  * 
  * <p>Computing Interchange distance using cycle lengths is described in:<br>
- * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html">"The Permutation in a Haystack Problem 
+ * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem 
  * and the Calculus of Search Landscapes,"</a> 
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.2
  * @since 1.0
  */

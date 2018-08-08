@@ -43,7 +43,7 @@ import org.cicirello.permutations.Permutation;
  * M. Sevaux and K. Sorensen, "Permutation distance measures for memetic algorithms with population management," 
  * The 6th Metaheuristics International Conference, August, 2005.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.2  
  * @since 1.0
  * 

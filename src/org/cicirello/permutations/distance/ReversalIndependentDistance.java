@@ -31,7 +31,7 @@ import org.cicirello.permutations.Permutation;
  * distance(p1,reverse(p2)) for a given distance measure passed as a parameter
  * to the constructor.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 1.18.6.20
  * @since 1.0
  *  

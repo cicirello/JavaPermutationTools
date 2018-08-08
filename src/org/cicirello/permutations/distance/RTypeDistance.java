@@ -43,7 +43,7 @@ import org.cicirello.permutations.Permutation;
  * V. Campos, M. Laguna, and R. Marti, "Context-independent scatter and tabu search for permutation problems," 
  * INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.2 
  * @since 1.0
  */
