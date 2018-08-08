@@ -9,7 +9,7 @@ tags:
 authors:
   - name: Vincent A. Cicirello
     orcid: 0000-0003-1072-8559
-	affiliation: 1
+    affiliation: 1
 affiliations:
   - name: Computer Science, School of Business, Stockton University, Galloway, NJ 08205
     index: 1
