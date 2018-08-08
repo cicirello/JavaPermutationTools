@@ -34,7 +34,7 @@ import java.util.Iterator;
  * This class provides the functionality to generate random permutations, and to
  * manipulate permutations in a variety of ways.
  * 
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  * @version 2.18.8.1
  * @since 1.0
  */

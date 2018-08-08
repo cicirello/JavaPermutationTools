@@ -32,7 +32,7 @@ import java.util.NoSuchElementException;
  * of swaps it returns a copy (an O(n) operation) of the internally maintained Permutation object so the caller can safely
  * modify the returned Permutation without risk of interfering with the operation of the Iterator.
  *
- * @author <a href=https://www.cicirello.org/>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  * @version 2.18.8.1
  * @since 2.0
  */
