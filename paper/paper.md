@@ -75,8 +75,8 @@ problems [@cicirello2016; @cicirello2014; @cicirello2013], we developed a Java l
 distance metrics.  Most of the distance metrics in the literature are described mathematically with 
 no source code available.  Thus, our library offers convenient access to efficient implementations of
 a variety of distance metrics that share a common programmatic interface.  The following table
-summarizes the distances available in this initial release of the library, along with their runtime, 
-whether they satisfy the requirements of a metric, and one or more key citations.
+summarizes the distances available in this initial release of the library, along with their runtime
+($n$ is permutation length), whether they satisfy the requirements of a metric, and one or more key citations.
 
 Distance | Runtime | Metric? | Citations
 -------- | ------- | ------- | ---------
