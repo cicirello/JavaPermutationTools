@@ -243,6 +243,26 @@ public class PermutationDistanceTests {
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(p,copy));
 		}
+		Permutation p = new Permutation(6);
+		for (Permutation q : p) {
+			assertEquals("checking consistence with naive implementation", naiveKendalTau(p,q), d.distance(p,q));
+		}
+	}
+	
+	private int naiveKendalTau(Permutation p1, Permutation p2) {
+		int count = 0;
+		int L1 = p1.length();
+	  
+		int[] invP1 = p1.getInverse();
+		int[] invP2 = p2.getInverse();
+		
+		for (int i = 0; i < L1-1; i++) {
+			for (int j = i+1; j < L1; j++) {
+				if ((invP1[i]-invP1[j])*(invP2[i]-invP2[j]) < 0) count++; 
+			}
+		}
+		
+		return count;
 	}
 	
 	@Test

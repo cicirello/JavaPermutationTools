@@ -21,13 +21,15 @@
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
+import java.util.Arrays;
+
 /**
  * Kendall Tau Distance:
  *
  * <p>Kendall Tau distance is sometimes also known as bubble sort distance, as it is
  * the number of adjacent swaps necessary to transform one permutation into the other.</p>
  *
- * <p>Another way of describing it is the number of pairs of elements whose order is opposite
+ * <p>Another way of describing it is the number of pairs of elements whose order is inverted
  * in one permutation relative to the other.</p>
  * 
  * <p>For example, consider p1 = [0, 1, 2, 3, 4] and p2 = [0, 3, 2, 1, 4].
@@ -39,39 +41,71 @@ import org.cicirello.permutations.Permutation;
  *
  * <p>Kendall originally normalized the distance, but more recently many do not.  Our implementation does not normalize.</p>
  *
- * <p>Runtime: O(n^2), where n is the permutation length.</p>
+ * <p>Runtime: O(n lg n), where n is the permutation length.  This runtime is achieved using a modified version of
+ * mergesort to count the inversions.</p>
  *
  * <p>Kendall Tau distance originally described in:<br>
  * M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2
+ * @version 2.18.8.17
  * @since 1.0
  * 
  */
 public class KendallTauDistance extends AbstractPermutationDistanceMeasurer {
 
-	
-	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		int count = 0;
-		int L1 = p1.length();
-	  
+		
+		int n = p2.length();
+		
+		// use inverse of p1 as a relabeling
 		int[] invP1 = p1.getInverse();
-		int[] invP2 = p2.getInverse();
 		
-		for (int i = 0; i < L1-1; i++) {
-			for (int j = i+1; j < L1; j++) {
-				if ((invP1[i]-invP1[j])*(invP2[i]-invP2[j]) < 0) count++; 
-			}
+		// relabel array copy of p2
+		int[] arrayP2 = new int[n];
+		for (int i = 0; i < n; i++) {
+			arrayP2[i] = invP1[p2.get(i)];
 		}
-		
-		return count;
+		return countInversions(arrayP2);
 	}
 	
+	private int countInversions(int[] array) {
+		if (array.length <= 1) return 0;
+		int m = array.length / 2;
+		int[] left = Arrays.copyOfRange(array, 0, m);
+		int[] right = Arrays.copyOfRange(array, m, array.length);
+		int count = countInversions(left) + countInversions(right);
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		while (i < left.length && j < right.length) {
+			if (left[i] < right[j]) {
+				array[k] = left[i];
+				i++;
+				k++;
+			} else {
+				// inversions
+				count += (left.length - i);
+				array[k] = right[j];
+				j++;
+				k++;
+			}
+		}
+		while (i < left.length) {
+			array[k] = left[i];
+			i++;
+			k++;
+		}
+		while (j < right.length) {
+			array[k] = right[j];
+			j++;
+			k++;
+		}
+		return count;
+	}
 	
 }
