@@ -268,6 +268,14 @@ public class PermutationDistanceTests {
 		assertEquals("all but 2 on longest common subsequence", 2, d.distance(p1,p2));
 		assertEquals("all but 3 on longest common subsequence", 3, d.distance(p1,p3));
 		assertEquals("all but 3 on longest common subsequence", 3, d.distance(p1,p4));
+		
+		Permutation p = new Permutation(6);
+		EditDistance edit = new EditDistance();
+		for (Permutation q : p) {
+			// NOTE: If this assertion fails, problem is either in ReinsertionDistance or EditDistance
+			// Should correspond if they are both correct.
+			assertEquals("equiv of edit with 0.5 cost removes and inserts", edit.distancef(p,q), d.distancef(p,q), EPSILON);
+		}
 	}
 	
 	@Test
