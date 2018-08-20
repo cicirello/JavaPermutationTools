@@ -13,7 +13,7 @@ authors:
 affiliations:
   - name: Computer Science, School of Business, Stockton University, Galloway, NJ 08205
     index: 1
-date: 8 August 2018
+date: 20 August 2018
 bibliography: paper.bib
 ---
 
@@ -88,10 +88,10 @@ deviation distance normalized | $O(n)$ | yes | [@ronald1998; @sorensen07]
 edit distance | $O(n^2)$ | yes | [@wagner74; @sorensen07]
 exact match distance | $O(n)$ | yes | [@ronald1998]
 interchange distance | $O(n)$ | yes | [@cicirello2013]
-Kendall tau distance | $O(n^2)$ | yes | [@kendall1938; @meila2010; @fagin2003]
+Kendall tau distance | $O(n \lg n)$ | yes | [@kendall1938; @meila2010; @fagin2003]
 Lee distance | $O(n)$ | yes | [@lee58]
 r-type distance | $O(n)$ | yes | [@campos2005; @marti2005]
-reinsertion distance | $O(n^2)$ | yes | [@cicirello2016; @cicirello2013]
+reinsertion distance | $O(n \lg n)$ | yes | [@cicirello2016; @cicirello2013]
 reversal distance | Init: $O(n!n^3)$ Compute: $O(n^2)$ | yes | [@cicirello2016; @caprara1997]
 squared deviation distance | $O(n)$ | yes | [@sevaux2005]
 
