@@ -65,8 +65,8 @@ characteristics of a problem make it hard, how different search operators affect
 topology, among others.  There is a wide variety of work on fitness landscape analysis, including 
 for permutation landscapes [@cicirello2016; @hernando2015; @tayarani2014; @cicirello2014; @cicirello2013; @sorensen07; @schiavinotto2007].
 Some fitness landscape analysis techniques use fitness distance correlation (FDC) [@fdc], the Pearson 
-correlation coefficient of the fitness of a solution vs its distance to the nearest optimal solution.  
-The search landscape calculus [@cicirello2016] is a fitness landscape analysis technique that examines 
+correlation coefficient of the fitness of a solution vs its distance to the nearest optimal solution.  The 
+search landscape calculus [@cicirello2016] is a fitness landscape analysis technique that examines 
 local rates of change of fitness.  These as well as others require distance metrics for the type of 
 structure you are optimizing.
 
