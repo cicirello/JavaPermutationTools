@@ -51,8 +51,7 @@ pool is important to evolutionary computation.  In later generations, if variati
 the members of the population declines, then the evolutionary search can stagnate.  Approaches 
 to population management [@sevaux2005], such as in scatter search [@campos2005; @marti2005], 
 attempt to maintain diversity among the population of solutions.  They require a means of 
-measuring distance between population members.  And if the problem is one in which solutions are 
-represented as permutations, then a permutation distance metric is required.
+measuring distance between population members.
 
 The second application of permutation distance for evolutionary computation is that of search 
 landscape analysis.  A fitness (or search) landscape [@mitchell] is the space of possible 
@@ -94,6 +93,17 @@ r-type distance | $O(n)$ | yes | [@campos2005; @marti2005]
 reinsertion distance | $O(n \lg n)$ | yes | [@cicirello2016; @cicirello2013]
 reversal distance | Init: $O(n!n^3)$ Compute: $O(n^2)$ | yes | [@cicirello2016; @caprara1997]
 squared deviation distance | $O(n)$ | yes | [@sevaux2005]
+
+The library also provides distance metrics on sequences (Strings and arrays of various types), where unlike
+a permutation, a sequence may contain multiple copies of the same element.  The following table lists the metrics on
+sequences that are provided ($n \leq m$ are the lengths of the compared sequences).
+
+Distance | Runtime | Metric? | Citations
+-------- | ------- | ------- | ---------
+edit distance | $O(n*m)$ | yes | [@wagner74]
+exact match distance | $O(n)$ | yes | [@ronald1998]
+Kendall tau distance | $O(n \lg n)$ | yes | [@kendall1938]
+longest common subsequence distance | $O(n*m)$ | yes | [@wagner74]
 
 The source repository (https://github.com/cicirello/JavaPermutationTools) 
 contains source code of the library, programs that provide example 
