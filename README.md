@@ -1,4 +1,4 @@
-# JavaPermutationTools (JPT): A Java API for computation on permutations 
+# JavaPermutationTools (JPT): A Java API for computation on permutations and sequences 
 
 Copyright (C) 2018 Vincent A. Cicirello.
 
@@ -9,6 +9,8 @@ https://www.cicirello.org/
 JPT is organized into the following packages:
 * __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
 * __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
+* __org.cicirello.sequences__: Classes and interfaces for representing and manipulating sequences (i.e., Strings, arrays, etc).
+* __org.cicirello.sequences.distance__: Collection of distance metrics on Strings and other sequences.
 * __org.cicirello.math.stats__: Implementations of statistical concepts.
 
 Javadoc documentation is in the /docs folder as well as at https://jpt.cicirello.org/
