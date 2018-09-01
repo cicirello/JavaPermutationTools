@@ -5,13 +5,13 @@
 <link rel="canonical" href="https://jpt.cicirello.org/">
 <link itemprop="url" href="https://jpt.cicirello.org/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="title" content="JavaPermutationTools - A Java API for computation on permutations">
-<meta itemprop="name" content="JavaPermutationTools - A Java API for computation on permutations">
-<meta name="description" content="JavaPermutationTools - A Java API for computation on permutations - The API includes a variety of 
-permutation distance metrics.">
-<meta itemprop="description" content="JavaPermutationTools - A Java API for computation on permutations - The API includes a variety of 
-permutation distance metrics.">
-<title>JavaPermutationTools - A Java API for computation on permutations</title>
+<meta name="title" content="JavaPermutationTools - A Java API for computation on permutations and sequences">
+<meta itemprop="name" content="JavaPermutationTools - A Java API for computation on permutations and sequences">
+<meta name="description" content="JavaPermutationTools - A Java API for computation on permutations and sequences - The API includes a variety of 
+permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
+<meta itemprop="description" content="JavaPermutationTools - A Java API for computation on permutations and sequences - The API includes a variety of 
+permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
+<title>JavaPermutationTools - A Java API for computation on permutations and sequences</title>
 <style>
 article { display: block; }
 body { font-family: Arial, Helvetica, sans-serif; }
@@ -29,7 +29,7 @@ footer { border-top: 2px dotted black; }
 <article itemprop="mainEntity" itemscope itemtype="http://schema.org/SoftwareSourceCode">
 <header>
 <h1 itemprop="name">JavaPermutationTools</h1>
-<h2 itemprop="headline">A Java API for computation on permutations</h2>
+<h2 itemprop="headline">A Java API for computation on permutations and sequences</h2>
 <h3 itemprop="author copyrightHolder" itemscope itemtype="http://schema.org/Person"><a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent A. Cicirello</span></a></h3>
 <nav>
 <ul>
@@ -42,10 +42,11 @@ footer { border-top: 2px dotted black; }
 <section>
 <h3>About the JavaPermutationTools (JPT) API</h3>
 <p itemprop="description">The JavaPermutationTools (JPT) API provides <span itemprop="programmingLanguage">Java</span> classes 
-that enable representing and generating permutations, 
-as well as performing computation on permutations.  This initial release primarily consists
-of implementations of a variety of permutation distance metrics.  More computation on 
-permutations will be added later.</p>
+that enable representing and generating permutations and sequences, 
+as well as performing computation on permutations and sequences.  This initial release primarily consists
+of implementations of a variety of permutation distance metrics as well as distance metrics on sequences (i.e., 
+Strings, arrays, and other ordered data types).  More computation on 
+permutations and sequences will be added later.</p>
 <p>The <a href="https://github.com/cicirello/JavaPermutationTools">JPT source code repository</a> is hosted on GitHub;
 and is licensed under the <a itemprop="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License Version 3 (GPLv3)</a>.
 The <span itemprop="hasPart" itemscope itemtype="http://schema.org/APIReference"><a itemprop="url" href="/api/">API documentation</a> of <span itemprop="name headline">JavaPermutationTools</span></span> can be found on this site.</p>
@@ -53,6 +54,8 @@ The <span itemprop="hasPart" itemscope itemtype="http://schema.org/APIReference"
 <ul>
 <li>org.cicirello.permutations: Permutation class and a Permutation Iterator.</li>
 <li>org.cicirello.permutations.distance: Collection of permutation distance metric implementations.</li>
+<li>org.cicirello.sequences: Classes and interfaces for representing and manipulating sequences (i.e., Strings, arrays, etc).</li>
+<li>org.cicirello.sequences.distance: Collection of distance metrics on Strings and other sequences.</li>
 <li>org.cicirello.math.stats: Implementations of statistical concepts.  This package is not strictly related to permutations, 
 but is included in the JPT as some of the experiment replication programs (programs that reproduce results from published papers) 
 provided in the source code repository rely upon it.</li>
