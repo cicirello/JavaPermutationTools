@@ -3,8 +3,8 @@
 The source for examples is contained in this directory, and
 currently includes the following examples:
 
-org.cicirello.examples.jpt.AverageDistance
-org.cicirello.examples.jpt.TableOfDistances
+* org.cicirello.examples.jpt.AverageDistance
+* org.cicirello.examples.jpt.TableOfDistances
 
 Read the comments in the source code itself for a description of what they
 demonstrate, etc.
