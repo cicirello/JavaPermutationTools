@@ -11,6 +11,9 @@
   <property name="testsrc" location="tests"/>
   <property name="testbin" location="testbin"/>
   <property name="dist" location="lib"/>
+  <property name="examples" location="examples"/>
+  <property name="replication" location="replication"/>
+  <property name="examplebin" location="exbin"/>
   
   <target name="init">
     <!-- Create the time stamp -->
@@ -19,16 +22,14 @@
     <mkdir dir="${bin}"/>
 	<!-- Create the test directory structure-->
 	<mkdir dir="${testbin}"/>
-	<!-- Create the distribution directory -->
-    <mkdir dir="${dist}"/>
   </target>
   
   <target name="compile" depends="init"
         description="compile the source">
     <!-- Compile the Java code from ${src} into ${bin} -->
-    <javac srcdir="${src}" destdir="${bin}"/>
+    <javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
 	<!-- Compile the JUnit tests from ${testsrc} into ${testbin} -->
-	<javac srcdir="${testsrc}" destdir="${testbin}" classpath="${junit};${bin}"/>	
+	<javac srcdir="${testsrc}" destdir="${testbin}" classpath="${junit};${bin}" includeantruntime="false"/>	
   </target>
   
   <target name="test" depends="compile"
@@ -51,8 +52,23 @@
   
   <target name="dist" depends="compile,test"
         description="generate the distribution">
+	<!-- Create the distribution directory -->
+    <mkdir dir="${dist}"/>
     <!-- Put everything in ${bin} into the jpt${VERSION}.jar file -->
     <jar jarfile="${dist}/jpt${VERSION}.jar" basedir="${bin}"/>
+  </target>
+  
+  <target name="examples" depends="dist"
+		description="compiles example programs and experiment replication programs">
+	<!-- Create directory for bin of examples and replication programs -->
+    <mkdir dir="${examplebin}"/>
+	<!-- Compile basic examples -->
+	<javac srcdir="${examples}" destdir="${examplebin}" classpath="${dist}/jpt${VERSION}.jar;${examples}" includeantruntime="false"/>
+	<!-- Compile experiment replication programs -->
+	<javac srcdir="${replication}" destdir="${examplebin}" classpath="${dist}/jpt${VERSION}.jar;${replication}" includeantruntime="false"/>
+  </target>
+  
+  <target name="all" depends="dist,examples" description="compile everything including example programs and generates library jar">
   </target>
   
   <target name="clean"
@@ -61,6 +77,7 @@
     <delete dir="${bin}"/>
 	<delete dir="${testbin}"/>
     <delete dir="${dist}"/>
+	<delete dir="${examplebin}"/>
   </target>
 
 </project>
