@@ -33,7 +33,14 @@ To execute the build process do one of the following.  If your working directory
 `ant` from the command line.  If your working directory is the parent of build, then execute: `ant -f build/build.xml`
 
 The default of the provided ant build file, compiles all source files and all JUnit tests, executes all test cases,
-and generates the jar file of the library. The build process will terminate on any test case failures.
+and generates the jar file of the library. The build process will terminate on any test case failures.  The default 
+does not compile the example programs or the experiment replication programs.  To include those in the build as well
+then execute `ant all` (if your working directory is the build directory) or `ant -f build/build.xml all` (if your 
+working directory is the parent of build).
+
+If you use the ant build file, the build will generate the following directories: bin (for the compiled Java classes),
+testbin (for the compiled JUnit tests), lib (for the jar file of the library), and exbin (for the compiled example
+programs and experiment replication programs).
 
 
 ## Contribute
