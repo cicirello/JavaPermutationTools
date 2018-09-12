@@ -23,7 +23,7 @@ Compiled jar files of the library are in the /lib folder.
 The /examples folder includes source code to illustrate how to use the library.  The /replication
 folder includes source code that recreates results found in publications associated with the library.
 
-## Building the Library
+## Building the Library (with ant)
 
 The /build directory contains an ant build file.  The build file also executes the JUnit tests, and the build directory contains
 the relevant jar files for the JUnit libraries.  If you prefer, you can replace these with the latest versions available
