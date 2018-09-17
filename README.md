@@ -42,6 +42,14 @@ If you use the ant build file, the build will generate the following directories
 testbin (for the compiled JUnit tests), lib (for the jar file of the library), and exbin (for the compiled example
 programs and experiment replication programs).
 
+## Building the Library (Windows batch script)
+
+We strongly recommend using ant (see previous section).  However, the /build directory also contains
+a Windows batch file (build.bat) which can be used to build the library.  It simply relies on javac, jar, and java
+for the build.  At a command prompt simply execute `build` (if your working directory is the build directory) or
+`build\build` (if your working directory is the parent of build).  This script will compile all source code, all JUnit tests,
+all example programs, and will generate the jar of the library, as well as execute all JUnit tests.
+The output of JUnit is a bit less verbose with this approach.
 
 ## Contribute
 
