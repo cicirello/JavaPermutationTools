@@ -51,6 +51,28 @@ for the build.  At a command prompt simply execute `build` (if your working dire
 all example programs, and will generate the jar of the library, as well as execute all JUnit tests.
 The output of JUnit is a bit less verbose with this approach.
 
+## Running the Example Programs
+
+The examples directory contains example usage of several of the classes of the API.
+The replication directory additionally contains more complex examples that replicate the
+experiments from published papers that have used the library.  Those directories contain
+readmes that provide more detail on the examples.
+
+Assuming the build was successful, the compiled examples and replication programs will be
+in the exbin directory.  If your working directory is the root
+of the repository, then you can run these programs from the command line with the following:
+
+```
+java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.AverageDistance
+java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
+java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
+java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+```
+
+In each of the above cases, the source code includes comments explaining the example
+usage of the library.
+
+
 ## Contribute
 
 Report bugs, suggestions, feature requests, etc via the [issues tracker](https://github.com/cicirello/JavaPermutationTools/issues).  If you would like to directly contribute new code, you may also fork the repository, and create pull requests.
