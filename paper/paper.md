@@ -37,7 +37,7 @@ algorithms employed by our library such as mixed radix representation, permutati
 inverse computation, etc.  
 
 The motivation and origin of this library is our research on fitness landscape analysis 
-for permutation optimization problems [@cicirello2016; @cicirello2014; @cicirello2013].  A 
+for permutation optimization problems [@cicirello2018a; @cicirello2016; @cicirello2014; @cicirello2013].  A 
 permutation optimization problem is a problem where solutions are represented by 
 permutations of the elements of some set, and where the objective is to maximize 
 or minimize some function.  For example, a solution 
@@ -55,7 +55,7 @@ contains source code of the library, programs that provide example
 usage of key functionality, as well as programs that reproduce results from papers that 
 have used the library.  API documentation is hosted on the web (https://jpt.cicirello.org/).
  
-# Statement of Need and Target Audience
+# Statement of Need
 
 The target audience of this library are those conducting computational research where
 the similarity of permutations or sequences must be assessed, or for which other computation
@@ -76,12 +76,12 @@ attempt to maintain population diversity, and require a means of measuring dista
 In search landscape analysis, one often requires computation of distance between locations on the
 landscape.  A fitness (or search) landscape [@mitchell] is the space of possible solutions to an 
 optimization problem spatially organized on a landscape with similar solutions as neighbors, and 
-where elevation corresponds to fitness (or solution quality).  Peaks (for a maximization problem) 
-and valleys (for a minimization problem) correspond to locally optimal solutions. The optimization 
+where elevation corresponds to fitness (or solution quality).  Peaks (for maximization problems) 
+and valleys (for minimization problems) correspond to locally optimal solutions. The
 problem is to find an optimal point on that landscape.  Search landscape analysis is the term 
 covering the theoretical and practical techniques for studying what characteristics of a problem 
 make it hard, how different search operators affect fitness landscape topology, among others.  There 
-is a wide variety of work on fitness landscape analysis, including for permutation 
+has been much work on fitness landscape analysis, including for permutation 
 landscapes [@cicirello2016; @hernando2015; @tayarani2014; @cicirello2014; @cicirello2013; @sorensen07; @schiavinotto2007].
 Fitness landscape analysis techniques, such as fitness distance correlation (FDC) [@fdc] and 
 search landscape calculus [@cicirello2016] require distance metrics for the type of structure you are optimizing.
@@ -115,7 +115,7 @@ Distance | Runtime | Metric? | Citations
 -------- | ------- | ------- | ---------
 edit distance | $O(n*m)$ | yes | [@wagner74]
 exact match distance | $O(n)$ | yes | [@ronald1998]
-Kendall tau distance | $O(n \lg n)$ | yes | [@kendall1938]
+Kendall tau sequence distance | $O(n \lg n)$ | yes | [@kendall1938; @cicirello2018b]
 longest common subsequence distance | $O(n*m)$ | yes | [@wagner74]
 
 # References
