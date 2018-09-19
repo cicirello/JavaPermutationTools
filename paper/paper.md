@@ -37,12 +37,12 @@ algorithms more generally such as mixed radix representation, permutation
 inverse computation, etc.  
 
 The motivation and origin of this library is our research on fitness landscape analysis 
-for permutation optimization problems [@cicirello2018a; @cicirello2016; @cicirello2014; @cicirello2013].  In a 
+for permutation optimization [@cicirello2018a; @cicirello2016; @cicirello2014; @cicirello2013].  In a 
 permutation optimization problem, solutions are represented by 
 permutations of some set, and the objective is to maximize 
 or minimize some function.  For example, a solution 
-to a traveling salesperson problem (TSP) is the permutation of the set of cities
-that corresponds to the minimal cost tour of the cities.
+to a traveling salesperson problem is the permutation of the set of cities
+that corresponds to the minimal cost tour.
 During our research, we developed a Java library of permutation distance 
 metrics.  Most of the distance metrics in the literature are described mathematically with 
 no source code available.  Thus, our library offers convenient access to efficient 
@@ -92,7 +92,7 @@ The following table summarizes the permutation distances in the library, their r
 ($n$ is permutation length), and whether they satisfy the metric requirements.
 
 Distance | Runtime | Metric? | Citations
----------- | ------ | ---- | ----------
+---------- | ------ | --- | -----------
 acyclic edge distance | $O(n)$ | pseudo | [@ronald1997; @ronald1995]
 cyclic edge distance | $O(n)$ | pseudo | [@ronald1997; @ronald1995]
 cyclic r-type distance | $O(n)$ | pseudo | [@cicirello2016]
@@ -105,14 +105,14 @@ Kendall tau distance | $O(n \lg n)$ | yes | [@kendall1938; @meila2010; @fagin200
 Lee distance | $O(n)$ | yes | [@lee58]
 r-type distance | $O(n)$ | yes | [@campos2005; @marti2005]
 reinsertion distance | $O(n \lg n)$ | yes | [@cicirello2016; @cicirello2013]
-reversal distance | Init: $O(n!n^3)$ Compute: $O(n^2)$ | yes | [@cicirello2016; @caprara1997]
+reversal distance | Init: $O(n!n^3)$ Calc: $O(n^2)$ | yes | [@cicirello2016; @caprara1997]
 squared deviation distance | $O(n)$ | yes | [@sevaux2005]
 
 The next table summarizes the metrics on
 sequences ($n \leq m$ are the lengths of the compared sequences).
 
 Distance | Runtime | Metric? | Citations
----------- | ------ | ---- | ----------
+---------- | ------ | --- | -----------
 edit distance | $O(n*m)$ | yes | [@wagner74]
 exact match distance | $O(n)$ | yes | [@ronald1998]
 Kendall tau sequence distance | $O(n \lg n)$ | yes | [@kendall1938; @cicirello2018b]
