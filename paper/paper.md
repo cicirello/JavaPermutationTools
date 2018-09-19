@@ -65,9 +65,9 @@ and also important to those applying evolutionary computation to the solution
 of permutation optimization problems.
  
 Evolutionary computation, such as genetic algorithms, solve problems through 
-simulated evolutionary processes [@mitchell].  They maintain a population of solutions 
+simulated evolution [@mitchell].  They maintain a population of solutions 
 to the problem, and this population evolves over many generations using operators 
-such as mutation and crossover.  Just as it is in natural evolution, a diverse gene 
+such as mutation and crossover.  Just as in natural evolution, a diverse gene 
 pool is important.  In later generations, if variation within the population 
 declines, then search can stagnate.  Population 
 management [@sevaux2005], such as in scatter search [@campos2005], 
@@ -88,7 +88,7 @@ search landscape calculus [@cicirello2016] require distance metrics for the type
 
 # The Metrics of the Library
 
-The following table summarizes the distances available in the library, their runtimes
+The following table summarizes the permutation distances in the library, their runtimes
 ($n$ is permutation length), and whether they satisfy the metric requirements.
 
 Distance | Runtime | Metric? | Citations
@@ -108,8 +108,8 @@ reinsertion distance | $O(n \lg n)$ | yes | [@cicirello2016; @cicirello2013]
 reversal distance | Init: $O(n!n^3)$ Compute: $O(n^2)$ | yes | [@cicirello2016; @caprara1997]
 squared deviation distance | $O(n)$ | yes | [@sevaux2005]
 
-The following table summarizes the metrics on
-sequences in the library ($n \leq m$ are the lengths of the compared sequences).
+The next table summarizes the metrics on
+sequences ($n \leq m$ are the lengths of the compared sequences).
 
 Distance | Runtime | Metric? | Citations
 ---------- | ------ | ---- | ----------
