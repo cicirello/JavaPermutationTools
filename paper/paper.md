@@ -92,7 +92,7 @@ The following table summarizes the distances available in the library, their run
 ($n$ is permutation length), and whether they satisfy the metric requirements.
 
 Distance | Runtime | Metric? | Citations
----------- | ----- | ----- | ----------
+---------- | ------ | ---- | ----------
 acyclic edge distance | $O(n)$ | pseudo | [@ronald1997; @ronald1995]
 cyclic edge distance | $O(n)$ | pseudo | [@ronald1997; @ronald1995]
 cyclic r-type distance | $O(n)$ | pseudo | [@cicirello2016]
@@ -112,7 +112,7 @@ The following table summarizes the metrics on
 sequences in the library ($n \leq m$ are the lengths of the compared sequences).
 
 Distance | Runtime | Metric? | Citations
----------- | ----- | ----- | ----------
+---------- | ------ | ---- | ----------
 edit distance | $O(n*m)$ | yes | [@wagner74]
 exact match distance | $O(n)$ | yes | [@ronald1998]
 Kendall tau sequence distance | $O(n \lg n)$ | yes | [@kendall1938; @cicirello2018b]
