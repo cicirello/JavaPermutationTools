@@ -43,7 +43,13 @@ java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 ```
 
-Note that depending on your processor speed, some of these may be slow (certainly slower than
-the examples from the examples folder).  The generated data is simply output to the console.
-Simply redirect to a text file if you'd like to save the experimental data.
+The generated data is simply output to the console.  Simply redirect to a text file if you'd like to save the experimental data.
 
+**Memory Intensive Example**: Note that depending on your processor speed, some of these may be slow (certainly slower than
+the examples from the examples folder).  Additionally, the `org.cicirello.replication.ieeetevc2016.FDC` is memory intensive, 
+and depending upon your system may require increasing the heap allocation to the Java virtual machine.
+If it throws an `OutOfMemoryError`, then execute as follows (note the additional command line argument):
+
+```
+java -Xms1g -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+```
