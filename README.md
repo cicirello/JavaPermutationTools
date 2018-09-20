@@ -76,6 +76,16 @@ java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 In each of the above cases, the source code includes comments explaining the example
 usage of the library.
 
+**Memory Intensive Example**: Note that depending on your processor speed, 
+the experiment replication programs may be slow (certainly slower than
+the examples from the examples folder).  Additionally, the `org.cicirello.replication.ieeetevc2016.FDC` is memory intensive, 
+and depending upon your system may require increasing the heap allocation to the Java virtual machine.
+If it throws an `OutOfMemoryError`, then execute as follows (note the additional command line argument):
+
+```
+java -Xms1g -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+```
+
 
 ## Contribute
 
