@@ -223,6 +223,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * (precondition: 0 &le; i &lt; length())
      * @param j endpoint of the segment
      * (precondition: 0 &le; j &lt; length())
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
      */
     public void scramble(int i, int j) {
 		scramble(i, j, ThreadLocalRandom.current());
@@ -235,6 +237,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * @param j endpoint of the segment
      * (precondition: 0 &le; j &lt; length())
 	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
      */
     public void scramble(int i, int j, Random r) {
 		if (i==j) { return; }
@@ -263,6 +267,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * @param j endpoint of the segment
      * (precondition: 0 &le; j &lt; length())
 	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
      */
     public void scramble(int i, int j, SplittableRandom r) {
 		if (i==j) { return; }
@@ -289,6 +295,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * @param i the index of the integer to retrieve.
      * (precondition: 0 &le; i &lt; length())
      * @return the integer in the i'th position.
+	 * @throws ArrayIndexOutOfBoundsException if i is negative, 
+	 * or if i is greater than or equal to length()
      */
     public int get(int i) {
         return permutation[i];
@@ -308,6 +316,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * (precondition: 0 &le; i &lt; length() &and; i != j)
      * @param j the position of the second to swap
      * (precondition: 0 &le; j &lt; length() &and; i != j)
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
      */
     public void swap(int i, int j) {
         if (i==j) return;
@@ -332,6 +342,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * (precondition: 0 &le; i &lt; length() &and; i != j)
      * @param j the position of the second index
      * (precondition: 0 &le; j &lt; length() &and; i != j)
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
 	 */
 	public void reverse(int i, int j) {
 		if (i > j) {
@@ -351,6 +363,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * (precondition: 0 &le; i &lt; length())
      * @param j the position of the insertion point
      * (precondition: 0 &le; j &lt; length())
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length()
      */
     public void removeAndInsert(int i, int j) {
         if (i < j) {
@@ -386,6 +400,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      * (precondition: size + i &lt; length() and size + j - 1 &lt; length())
      * @param j the position of the insertion point
      * (precondition: 0 &le; j &lt; length())
+	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
+	 * or if either i or j are greater than or equal to length().
      */
     public void removeAndInsert(int i, int size, int j) {
         if ((size == 0) || (i == j)) {
