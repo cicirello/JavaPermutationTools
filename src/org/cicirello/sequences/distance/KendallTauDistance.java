@@ -20,7 +20,7 @@
  */
 package org.cicirello.sequences.distance;
 
-import org.cicirello.sequences.Sequence;
+
 import java.util.Arrays;
 
 
@@ -93,7 +93,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
 	 */
 	@Override
-	public <T> int distance(Sequence<T> s1, Sequence<T> s2) {
+	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
 		if (s1.length() != s2.length()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length() == 0) return 0;
 		

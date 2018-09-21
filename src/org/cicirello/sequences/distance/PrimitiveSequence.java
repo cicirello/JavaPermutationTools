@@ -20,7 +20,7 @@
  *
  */
  
-package org.cicirello.sequences;
+package org.cicirello.sequences.distance;
 
 import java.util.Arrays;
 
@@ -38,7 +38,7 @@ import java.util.Arrays;
  * @version 2.18.8.29
  * @since 1.1 
  */
-public final class PrimitiveSequence implements Sequence<PrimitiveValue> {
+final class PrimitiveSequence implements Sequence<PrimitiveValue> {
 	
 	private final AbstractPrimitiveSequence a;
 	

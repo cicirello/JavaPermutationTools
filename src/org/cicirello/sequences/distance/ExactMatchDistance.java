@@ -20,7 +20,6 @@
  */
 package org.cicirello.sequences.distance;
 
-import org.cicirello.sequences.Sequence;
 
 /**
  * <p>ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
@@ -52,7 +51,7 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public <T> int distance(Sequence<T> s1, Sequence<T> s2) {
+	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
 		int n = s1.length();
 		int m = s2.length();
 		if (m < n) {

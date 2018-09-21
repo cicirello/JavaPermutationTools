@@ -20,7 +20,7 @@
  *
  */
  
-package org.cicirello.sequences;
+package org.cicirello.sequences.distance;
 
 /**
  * The PrimitiveValue class is a wrapper class for all eight of Java's primitive types.
@@ -39,7 +39,7 @@ package org.cicirello.sequences;
  * @version 2.18.8.27
  * @since 1.1
  */
-public final class PrimitiveValue {
+final class PrimitiveValue {
 	
 	private final AbstractPrimitiveValue v;
 	

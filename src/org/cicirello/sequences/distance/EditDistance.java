@@ -21,7 +21,6 @@
 package org.cicirello.sequences.distance;
 
 
-import org.cicirello.sequences.Sequence;
 
 /**
  * <p>EditDistance is an implementation of Wagner and Fischer's dynamic programming algorithm for computing string edit distance.</p>
@@ -110,8 +109,8 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
-	@Override
-	public <T> int distance(Sequence<T> s1, Sequence<T> s2) {
+	 @Override
+	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
 		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
 		int L1 = s1.length();
 		int L2 = s2.length();
@@ -140,7 +139,7 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public <T> double distancef(Sequence<T> s1, Sequence<T> s2) {
+	<T> double distancef(Sequence<T> s1, Sequence<T> s2) {
 		int L1 = s1.length();
 		int L2 = s2.length();
 		double[][] D = new double[L1 + 1][L2 + 1];

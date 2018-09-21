@@ -20,7 +20,7 @@
  */
 package org.cicirello.sequences.distance;
 
-import org.cicirello.sequences.Sequence;
+
 
 /**
  * <p>Implement this interface, SequenceDistanceMeasurerDouble, to define a distance metric for sequences.  A sequence may have duplicate elements, unlike
@@ -111,15 +111,5 @@ public interface SequenceDistanceMeasurerDouble {
 	 * @return distance between s1 and s2
 	 */
 	double distancef(String s1, String s2);
-	
-	/**
-	 * Measures the distance between two Sequences.
-	 * 
-	 * @param s1 First String.
-	 * @param s2 Second String.
-	 * @param <T> Type of element in sequence
-	 * @return distance between s1 and s2
-	 */
-	<T> double distancef(Sequence<T> s1, Sequence<T> s2);
 	
 }

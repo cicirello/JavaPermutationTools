@@ -20,7 +20,7 @@
  *
  */
  
-package org.cicirello.sequences;
+package org.cicirello.sequences.distance;
 
 import java.util.Arrays;
 
@@ -35,7 +35,7 @@ import java.util.Arrays;
  * @version 2.18.8.29
  * @since 1.1 
  */
-public final class ObjectSequence<E extends Comparable<E>> implements Sequence<E> {
+final class ObjectSequence<E extends Comparable<E>> implements Sequence<E> {
 	
 	private final E[] a;
 	

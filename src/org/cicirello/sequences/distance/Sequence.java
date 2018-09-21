@@ -20,7 +20,7 @@
  *
  */
  
-package org.cicirello.sequences;
+package org.cicirello.sequences.distance;
 
 /**
  * A Sequence is an ordered sequence of values, similar to an array or a list, except a Sequence has a more limited, and specific set of 
@@ -34,7 +34,7 @@ package org.cicirello.sequences;
  * @version 2.18.8.29
  * @since 1.1 
  */
-public interface Sequence<E> {
+interface Sequence<E> {
 	
 	/**
 	 * Returns the length of the sequence.

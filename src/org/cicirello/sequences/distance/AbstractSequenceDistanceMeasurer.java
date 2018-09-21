@@ -20,8 +20,7 @@
  */
 package org.cicirello.sequences.distance;
 
-import org.cicirello.sequences.Sequence;
-import org.cicirello.sequences.PrimitiveSequence;
+
 
 /**
  * <p>Extend this abstract class to define a distance metric for permutations where distance is an integer value.  To extend this class,
@@ -38,7 +37,7 @@ import org.cicirello.sequences.PrimitiveSequence;
  * @version 2.18.8.28
  * @since 1.1
  */
-public abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
+abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
 	
 	/**
 	 * {@inheritDoc}
@@ -186,10 +185,26 @@ public abstract class AbstractSequenceDistanceMeasurer implements SequenceDistan
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * Measures the distance between two Sequences.
+	 * 
+	 * @param s1 First String.
+	 * @param s2 Second String.
+	 * @param <T> Type of element in sequence
+	 * @return distance between s1 and s2
 	 */
-	@Override
-	public <T> double distancef(Sequence<T> s1, Sequence<T> s2) {
+	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
+		return distance(s1,s2);
+	}
+	
+	/**
+	 * Measures the distance between two Sequences.
+	 * 
+	 * @param s1 First String.
+	 * @param s2 Second String.
+	 * @param <T> Type of element in sequence
+	 * @return distance between s1 and s2
+	 */
+	<T> double distancef(Sequence<T> s1, Sequence<T> s2) {
 		return distance(s1,s2);
 	}
 	
