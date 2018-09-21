@@ -243,9 +243,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>
     public void scramble(int i, int j, Random r) {
 		if (i==j) { return; }
         if (i > j) {
-            i ^= j;
-            j ^= i;
-            i ^= j;
+			int temp = i;
+			i = j;
+			j = temp;
         }
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
@@ -273,9 +273,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>
     public void scramble(int i, int j, SplittableRandom r) {
 		if (i==j) { return; }
         if (i > j) {
-            i ^= j;
-            j ^= i;
-            i ^= j;
+            int temp = i;
+			i = j;
+			j = temp;
         }
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
@@ -321,10 +321,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>
      */
     public void swap(int i, int j) {
         if (i==j) return;
-        // swapping 2 integers using 3 exclusive-or's
-        permutation[i] ^= permutation[j];
-        permutation[j] ^= permutation[i];
-        permutation[i] ^= permutation[j];
+		int temp = permutation[i];
+		permutation[i] = permutation[j];
+		permutation[j] = temp;
     }
     
     /**
@@ -347,9 +346,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public void reverse(int i, int j) {
 		if (i > j) {
-            i ^= j;
-            j ^= i;
-            i ^= j;
+            int temp = i;
+			i = j;
+			j = temp;
         }
 		for ( ; i < j; i++, j--) {
 			swap(i, j);
