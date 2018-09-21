@@ -46,10 +46,6 @@ public class SequenceDistanceTests {
 		int[] a4 = {0, 3, 2, 1, 4, 5};
 		// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
 		// and all of the individual distance methods delegate computation to a common method.
-		//PrimitiveSequence s1 = new PrimitiveSequence(a1);
-		//PrimitiveSequence s2 = new PrimitiveSequence(a2);
-		//PrimitiveSequence s3 = new PrimitiveSequence(a3);
-		//PrimitiveSequence s4 = new PrimitiveSequence(a4);
 		assertEquals("maximal distance", 6, d.distance(a1,a2));
 		assertEquals("end points differ", 2, d.distance(a1,a3));
 		assertEquals("differ in interior positions", 2, d.distance(a1,a4));
@@ -57,10 +53,6 @@ public class SequenceDistanceTests {
 		int[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
 		int[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
 		int[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
-		//PrimitiveSequence t1 = new PrimitiveSequence(b1);
-		//PrimitiveSequence t2 = new PrimitiveSequence(b2);
-		//PrimitiveSequence t3 = new PrimitiveSequence(b3);
-		//PrimitiveSequence t4 = new PrimitiveSequence(b4);
 		// tests with different length sequences
 		assertEquals("identical except for extras", 3, d.distance(a1,b1));
 		assertEquals("maximal distance", 9, d.distance(a1,b2));
@@ -194,25 +186,21 @@ public class SequenceDistanceTests {
 	
 	
 	private void identicalSequences(SequenceDistanceMeasurer d) {
-		for (int n = 1; n <= 10; n++) {
+		for (int n = 0; n <= 10; n++) {
 			int[] a = new int[n];
 			for (int i = 0; i < n; i++) a[i] = ThreadLocalRandom.current().nextInt(100);
 			// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
 			// and all of the individual distance methods delegate computation to a common method.
-			//PrimitiveSequence s = new PrimitiveSequence(a);
-			//PrimitiveSequence copy = s.copy();
 			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a, a.clone()));
 		}
 	}
 	
 	private void identicalSequencesD(SequenceDistanceMeasurerDouble d) {
-		for (int n = 1; n <= 10; n++) {
+		for (int n = 0; n <= 10; n++) {
 			int[] a = new int[n];
 			for (int i = 0; i < n; i++) a[i] = ThreadLocalRandom.current().nextInt(100);
 			// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
 			// and all of the individual distance methods delegate computation to a common method.
-			//PrimitiveSequence s = new PrimitiveSequence(a);
-			//PrimitiveSequence copy = s.copy();
 			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a, a.clone()), EPSILON);
 		}
 	}

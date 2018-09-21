@@ -95,6 +95,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	@Override
 	public <T> int distance(Sequence<T> s1, Sequence<T> s2) {
 		if (s1.length() != s2.length()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length() == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length()][2];
 		int numLabels = relabelElementsToInts(s1,s2,relabeling);
