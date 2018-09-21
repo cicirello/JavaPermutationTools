@@ -68,7 +68,5 @@ public class AcyclicEdgeDistance extends AbstractPermutationDistanceMeasurer {
 		}
 		return countNonSharedEdges;
 	}
-	
-
-
 }
+
