@@ -19,7 +19,7 @@
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.cicirello.sequences;
+package org.cicirello.sequences.distance;
 
 import org.junit.*;
 import static org.junit.Assert.*;
