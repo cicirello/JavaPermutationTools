@@ -1,4 +1,4 @@
-<project name="JPT" default="dist" basedir="..">
+<project name="JPT" default="all" basedir="..">
   <description>
   Build file for the Java Permutation Tools (JPT) API.
   </description>
@@ -14,6 +14,7 @@
   <property name="examples" location="examples"/>
   <property name="replication" location="replication"/>
   <property name="examplebin" location="exbin"/>
+  <property name="docdir" location="docs/api"/>
   
   <target name="init">
     <!-- Create the time stamp -->
@@ -22,6 +23,8 @@
     <mkdir dir="${bin}"/>
 	<!-- Create the test directory structure-->
 	<mkdir dir="${testbin}"/>
+	<!-- Create the test directory structure-->
+	<mkdir dir="${docdir}"/>
   </target>
   
   <target name="compile" depends="init"
@@ -68,7 +71,20 @@
 	<javac srcdir="${replication}" destdir="${examplebin}" classpath="${dist}/jpt${VERSION}.jar;${replication}" includeantruntime="false"/>
   </target>
   
-  <target name="all" depends="dist,examples" description="compile everything including example programs and generates library jar">
+  <target name="docs" depends="dist" 
+		description="generates documentation via javadoc">
+	<javadoc destdir="${docdir}"
+			sourcepath="${src}"
+			windowtitle="JavaPermutationTools - A Java API for computation on permutations"
+			doctitle="JavaPermutationTools - A Java API for computation on permutations"
+			overview="src/overview.html"
+			author="false"
+			version="false">
+		<bottom><![CDATA[Copyright &copy; 2005-2018 Vincent A. Cicirello. <a href=\"https://www.cicirello.org/\" target=_top>https://www.cicirello.org/</a>]]></bottom>
+	</javadoc>
+  </target>
+  
+  <target name="all" depends="dist,examples,docs" description="compile everything including example programs and generates library jar">
   </target>
   
   <target name="clean"
@@ -78,6 +94,7 @@
 	<delete dir="${testbin}"/>
     <delete dir="${dist}"/>
 	<delete dir="${examplebin}"/>
+	<delete dir="${docdir}"/>
   </target>
 
 </project>

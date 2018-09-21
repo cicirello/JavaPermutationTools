@@ -63,11 +63,13 @@ public class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 	}
 	
 	/**
-	 * Defines a distance measure for permutations of length n.
+	 * Defines a distance measure for permutations of length n.  n must be no greater than 12.
 	 * 
 	 * @param n The length of the permutations supported.
+	 * @throws IllegalArgumentException when n is greater than 12
 	 */
 	public ReversalDistance(int n) {
+		if (n > 12 || n < 0) throw new IllegalArgumentException("Requires 0 <= n <= 12.");
 		PERM_LENGTH = n;
 		int fact = 1;
 		for (int i = 2; i <= n; i++) fact *= i;
@@ -113,12 +115,12 @@ public class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 	public int distance(Permutation p1, Permutation p2) {
 		int n = p1.length();
 		if (p2.length() != n || n != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
-		Permutation r2 = new Permutation(n, 0);
 		int[] inv1 = p1.getInverse();
+		int[] r2 = new int[n];
 		for (int i = 0; i < n; i++) {
-			r2.set(i, inv1[p2.get(i)]);
+			r2[i] = inv1[p2.get(i)];
 		}
-		return dist[r2.toInteger()];
+		return dist[(new Permutation(r2)).toInteger()];
 	}	
 	
 }

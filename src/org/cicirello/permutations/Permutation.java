@@ -142,11 +142,14 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	
 	/**
 	* Generates a unique integer representing the permutation.  Maps the permutations of the integers, 0..(N-1), to 
-	* the integers, 0..(N!-1), using a mixed radix representation.
+	* the integers, 0..(N!-1), using a mixed radix representation.  This method is only supported for permutations
+	* of length 12 or less.
 	* @return a mixed radix representation of the permutation
+	* @throws UnsupportedOperationException when permutation length is greater than 12.
 	*/
 	public int toInteger() {
 		int N = permutation.length;
+		if (N > 12) throw new UnsupportedOperationException("Unsupported for permutations of length greater than 12.");
 		int[] index = new int[N];
 		for (int i = 0; i < N; i++) index[i] = i;
 		int result = 0;
@@ -402,17 +405,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		}
     }
     
-    /**
-     * Sets the integer located in a given position.
-     * Warning: be careful... does not try to enforce unique values.
-     * @param i index of the position
-     * (precondition: 0 &le; i &lt; length())
-     * @param value the integer you want in the given position
-     */
-    public void set(int i, int value) {
-        permutation[i] = value;
-    }
-	
 	/**
 	 * Returns an Iterator over all Permutations the length of this Permutation.  Iteration begins at this Permutation.
 	 * This Iterator does not iterate over the integers within the Permutation.
