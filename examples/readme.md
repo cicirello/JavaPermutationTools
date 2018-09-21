@@ -7,7 +7,6 @@ currently includes the following examples:
 * org.cicirello.examples.jpt.TableOfDistances
 * org.cicirello.examples.jpt.PermutationExamples
 * org.cicirello.examples.jpt.SimpleDistanceExamples
-* org.cicirello.examples.jpt.SequenceExamples
 * org.cicirello.examples.jpt.SequenceDistanceExamples
 
 Read the comments in the source code itself for a description of what they
@@ -34,6 +33,5 @@ java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.AverageDistance
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SequenceExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
 ```
