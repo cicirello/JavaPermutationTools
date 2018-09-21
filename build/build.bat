@@ -36,7 +36,7 @@ cd ..
 move bin\jpt1.jar lib
 
 REM Running JUnit tests
-java -cp "testbin;lib\jpt1.jar;build\junit-4.12.jar;build\hamcrest-core-1.3.jar" org.junit.runner.JUnitCore org.cicirello.sequences.PrimitiveValueTests org.cicirello.sequences.SequenceTests org.cicirello.sequences.distance.SequenceDistanceTests org.cicirello.permutations.PermutationTestCases org.cicirello.permutations.distance.PermutationDistanceTests org.cicirello.math.stats.StatisticsTests
+java -cp "testbin;lib\jpt1.jar;build\junit-4.12.jar;build\hamcrest-core-1.3.jar" org.junit.runner.JUnitCore org.cicirello.sequences.distance.PrimitiveValueTests org.cicirello.sequences.distance.SequenceTests org.cicirello.sequences.distance.SequenceDistanceTests org.cicirello.permutations.PermutationTestCases org.cicirello.permutations.distance.PermutationDistanceTests org.cicirello.math.stats.StatisticsTests
 if errorlevel 1 goto testingError
 
 REM compile source of examples and experiment replication programs
