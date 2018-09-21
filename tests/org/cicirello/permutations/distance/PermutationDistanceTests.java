@@ -344,23 +344,25 @@ public class PermutationDistanceTests {
 	
 	
 	private void identicalPermutations(PermutationDistanceMeasurer d) {
-		for (int n = 1; n <= 10; n++) {
+		for (int n = 0; n <= 10; n++) {
 			Permutation p = new Permutation(n);
 			Permutation copy = new Permutation(p);
 			assertEquals("distance of a permutation to itself should be 0", 0, d.distance(p, copy));
+			assertEquals("distance of a permutation to itself should be 0", 0, d.distance(p, p));
 		}
 	}
 	
 	private void identicalPermutationsDouble(PermutationDistanceMeasurerDouble d) {
-		for (int n = 1; n <= 10; n++) {
+		for (int n = 0; n <= 10; n++) {
 			Permutation p = new Permutation(n);
 			Permutation copy = new Permutation(p);
 			assertEquals("distance of a permutation to itself should be 0", 0.0, d.distancef(p, copy), EPSILON);
+			assertEquals("distance of a permutation to itself should be 0", 0.0, d.distancef(p, p), EPSILON);
 		}
 	}
 	
 	private void reversalInvariance(PermutationDistanceMeasurer d) {
-		for (int n = 1; n <= 10; n++) {
+		for (int n = 0; n <= 10; n++) {
 			Permutation p = new Permutation(n);
 			Permutation copy = new Permutation(p);
 			copy.reverse();

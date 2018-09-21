@@ -31,6 +31,29 @@ import static org.junit.Assert.*;
 public class PermutationTestCases {
 	
 	@Test
+	public void testZeroLengthPermutations() {
+		// different ways of constructing 0 length permutations.
+		Permutation p1 = new Permutation(0);		
+		Permutation p2 = new Permutation(new int[] {});
+		Permutation p3 = new Permutation(0,0);
+		Permutation copy = new Permutation(p1);
+		
+		// the above 4 should all be equivalent, so check
+		assertEquals(p1,p2);
+		assertEquals(p1,p3);
+		assertEquals(p1,copy);
+		assertEquals(p2,p3);
+		assertEquals(p2,copy);
+		assertEquals(p3,copy);
+		
+		assertEquals("length of inverse of zero length permutation should be 0", 0, p1.getInverse().length);
+		
+		// confirm that reverse() and scramble() don't throw exceptions
+		p1.reverse();
+		p1.scramble();
+	}
+	
+	@Test
 	public void testPermutationConstructor() {
 		for (int n = 1; n <= 10; n++) {
 			for (int i = 0; i < 10; i++) {

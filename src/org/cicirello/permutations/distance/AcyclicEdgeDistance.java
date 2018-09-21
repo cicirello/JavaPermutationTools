@@ -56,7 +56,7 @@ public class AcyclicEdgeDistance extends AbstractPermutationDistanceMeasurer {
 		int countNonSharedEdges = 0;
 		int L1 = p1.length();
 		int L2 = p2.length();
-		
+		if (L1==L2 && L1==0) return 0;
 		int[] successors2 = new int[L2];
 		for (int i = 0; i < L2 - 1; i++) {
 			successors2[p2.get(i)] = p2.get(i+1);
