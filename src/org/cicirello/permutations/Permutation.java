@@ -44,39 +44,39 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	private static final long serialVersionUID = 1L;
 	
 	/**
-     * Initializes a random permutation of n integers.  Uses
+	 * Initializes a random permutation of n integers.  Uses
 	 * java.util.concurrent.ThreadLocalRandom as the source of efficient random number generation.
-     * @param n the length of the permutation
-     */
+	 * @param n the length of the permutation
+	 */
 	public Permutation(int n) {
 		this(n, ThreadLocalRandom.current());
 	}
  
-    /**
-     * Initializes a random permutation of n integers.
-     * @param n the length of the permutation
+	/**
+	 * Initializes a random permutation of n integers.
+	 * @param n the length of the permutation
 	 * @param r A source of randomness.
-     */
-    public Permutation(int n, SplittableRandom r) {
-        permutation = new int[n];
-        for (int i = 0; i < n; i++) {
-            permutation[i] = i;   
-        }
-        scramble(r);
-    }
+	 */
+	public Permutation(int n, SplittableRandom r) {
+		permutation = new int[n];
+		for (int i = 0; i < n; i++) {
+			permutation[i] = i;   
+		}
+		scramble(r);
+	}
 	
 	/**
-     * Initializes a random permutation of n integers.
-     * @param n the length of the permutation
+	 * Initializes a random permutation of n integers.
+	 * @param n the length of the permutation
 	 * @param r A source of randomness.
-     */
-    public Permutation(int n, Random r) {
-        permutation = new int[n];
-        for (int i = 0; i < n; i++) {
-            permutation[i] = i;   
-        }
-        scramble(r);
-    }
+	 */
+	public Permutation(int n, Random r) {
+		permutation = new int[n];
+		for (int i = 0; i < n; i++) {
+			permutation[i] = i;   
+		}
+		scramble(r);
+	}
 	
 	/**
 	* Initializes a specific permutation from an integer in mixed radix form representing the chosen
@@ -89,8 +89,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	public Permutation(int n, int value) {
 		permutation = new int[n];
 		for (int i = 0; i < n; i++) {
-            permutation[i] = i;   
-        }
+			permutation[i] = i;   
+		}
 		for (int i = 0; i < n-1; i++) {
 			int j = i + value % (n-i);
 			int temp = permutation[j];
@@ -104,7 +104,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	
 	/**
 	 * Initializes a permutation of n integers to be identical to the elements of an array.
-     * @param p An array of integers. Each of the integers in the interval [0, p.length) must occur exactly one time each.
+	 * @param p An array of integers. Each of the integers in the interval [0, p.length) must occur exactly one time each.
 	 * @throws IllegalArgumentException if p either contains duplicates, or contains any negative elements, 
 	 *         or contains any elements equal or greater than p.length.
 	 */
@@ -118,39 +118,39 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		permutation = p.clone();
 	}
 	
-    /**
-     * Initializes a permutation of n integers to be identical to a given
-     * permutation.
-     * @param p the given permutation.
-     */
-    public Permutation(Permutation p) {
-        permutation = new int[p.permutation.length];
-        System.arraycopy(p.permutation, 0, permutation, 0, p.permutation.length);
-    }
-    
-    /**
-     * Initializes a permutation of the integers in the interval [0, length) based on their relative order
+	/**
+	 * Initializes a permutation of n integers to be identical to a given
+	 * permutation.
+	 * @param p the given permutation.
+	 */
+	public Permutation(Permutation p) {
+		permutation = new int[p.permutation.length];
+		System.arraycopy(p.permutation, 0, permutation, 0, p.permutation.length);
+	}
+	
+	/**
+	 * Initializes a permutation of the integers in the interval [0, length) based on their relative order
 	 * in a permutation p.  If length is greater than or equal to p.length, then this constructor generates a copy of p.
 	 * If length is less than p.length, then the new permutation contains the integers, 0, 1, 2, ..., (length - 1), in the 
 	 * order that those elements appear in p.  For example, if p is the permutation [ 5, 3, 7, 2, 6, 1, 0, 8, 4] and if length
 	 * is 4, this constructor will generate the permutation [3, 2, 1, 0] since 3 appears prior to 2, 2 appears prior to 1, and 1
 	 * appears prior to 0 in permutation p.
-     *
-     * @param p the source permutation.
-     * @param length size of new permutation
-     */
-    public Permutation(Permutation p, int length) {
+	 *
+	 * @param p the source permutation.
+	 * @param length size of new permutation
+	 */
+	public Permutation(Permutation p, int length) {
 		if (length > p.permutation.length) length = p.permutation.length;
 		else if (length < 0) length = 0;
-        permutation = new int[length];
-        int k = 0;
+		permutation = new int[length];
+		int k = 0;
 		for (int i = 0; i < p.permutation.length && k < length; i++) {
 			if (p.permutation[i] < length) {
 				permutation[k] = p.permutation[i];
 				k++;
 			}
 		}
-    }
+	}
 	
 	
 	/**
@@ -178,48 +178,35 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		}
 		return result;
 	}
-     
+	 
 	 /**
 	 * Computes the inverse of the permutation.
 	 *
 	 * @return The inverse of the permutation, such that for all i, if
 	 * pi(i) = j, then inv(j) = i
 	 */
-    public int[] getInverse() {
+	public int[] getInverse() {
 		int[] inverse = new int[permutation.length];
 		for (int i = 0; i < permutation.length; i++) {
 			inverse[permutation[i]] = i;
 		}
 		return inverse;
 	}  
-    
+	
 	/**
-     * Randomly shuffles the permutation. Uses
+	 * Randomly shuffles the permutation. Uses
 	 * java.util.concurrent.ThreadLocalRandom as 
 	 * the source of efficient random number generation.
-     */
-    public void scramble() {
+	 */
+	public void scramble() {
 		scramble(ThreadLocalRandom.current());
 	}
 	
-    /**
-     * Randomly shuffles the permutation.
-	 * @param r a source of randomness.
-     */
-    public void scramble(Random r) {
-		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = r.nextInt(i+1);
-			if (i != j) {
-				swap(i,j);
-			}
-		}
-	}
-    
 	/**
-     * Randomly shuffles the permutation.
+	 * Randomly shuffles the permutation.
 	 * @param r a source of randomness.
-     */
-    public void scramble(SplittableRandom r) {
+	 */
+	public void scramble(Random r) {
 		for (int i = permutation.length - 1; i > 0; i--) {
 			int j = r.nextInt(i+1);
 			if (i != j) {
@@ -229,37 +216,50 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	}
 	
 	/**
-     * Randomly shuffles a segment. Uses
+	 * Randomly shuffles the permutation.
+	 * @param r a source of randomness.
+	 */
+	public void scramble(SplittableRandom r) {
+		for (int i = permutation.length - 1; i > 0; i--) {
+			int j = r.nextInt(i+1);
+			if (i != j) {
+				swap(i,j);
+			}
+		}
+	}
+	
+	/**
+	 * Randomly shuffles a segment. Uses
 	 * java.util.concurrent.ThreadLocalRandom as 
 	 * the source of efficient random number generation.
-     * @param i endpoint of the segment
-     * (precondition: 0 &le; i &lt; length())
-     * @param j endpoint of the segment
-     * (precondition: 0 &le; j &lt; length())
+	 * @param i endpoint of the segment
+	 * (precondition: 0 &le; i &lt; length())
+	 * @param j endpoint of the segment
+	 * (precondition: 0 &le; j &lt; length())
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
-     */
-    public void scramble(int i, int j) {
+	 */
+	public void scramble(int i, int j) {
 		scramble(i, j, ThreadLocalRandom.current());
 	}
-        
-    /**
-     * Randomly shuffles a segment.
-     * @param i endpoint of the segment
-     * (precondition: 0 &le; i &lt; length())
-     * @param j endpoint of the segment
-     * (precondition: 0 &le; j &lt; length())
+		
+	/**
+	 * Randomly shuffles a segment.
+	 * @param i endpoint of the segment
+	 * (precondition: 0 &le; i &lt; length())
+	 * @param j endpoint of the segment
+	 * (precondition: 0 &le; j &lt; length())
 	 * @param r source of randomness
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
-     */
-    public void scramble(int i, int j, Random r) {
+	 */
+	public void scramble(int i, int j, Random r) {
 		if (i==j) { return; }
-        if (i > j) {
+		if (i > j) {
 			int temp = i;
 			i = j;
 			j = temp;
-        }
+		}
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
 			int l = i + r.nextInt(k-i+1);
@@ -271,25 +271,25 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		if (!changed || r.nextBoolean()) {
 			swap(i,i+1);
 		}
-    }
+	}
 	
 	/**
-     * Randomly shuffles a segment.
-     * @param i endpoint of the segment
-     * (precondition: 0 &le; i &lt; length())
-     * @param j endpoint of the segment
-     * (precondition: 0 &le; j &lt; length())
+	 * Randomly shuffles a segment.
+	 * @param i endpoint of the segment
+	 * (precondition: 0 &le; i &lt; length())
+	 * @param j endpoint of the segment
+	 * (precondition: 0 &le; j &lt; length())
 	 * @param r source of randomness
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
-     */
-    public void scramble(int i, int j, SplittableRandom r) {
+	 */
+	public void scramble(int i, int j, SplittableRandom r) {
 		if (i==j) { return; }
-        if (i > j) {
-            int temp = i;
+		if (i > j) {
+			int temp = i;
 			i = j;
 			j = temp;
-        }
+		}
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
 			int l = i + r.nextInt(k-i+1);
@@ -301,95 +301,95 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		if (!changed || r.nextBoolean()) {
 			swap(i,i+1);
 		}
-    }
+	}
 	
-    /**
-     * Retrieves the i'th integer of the permutation.
-     * @param i the index of the integer to retrieve.
-     * (precondition: 0 &le; i &lt; length())
-     * @return the integer in the i'th position.
+	/**
+	 * Retrieves the i'th integer of the permutation.
+	 * @param i the index of the integer to retrieve.
+	 * (precondition: 0 &le; i &lt; length())
+	 * @return the integer in the i'th position.
 	 * @throws ArrayIndexOutOfBoundsException if i is negative, 
 	 * or if i is greater than or equal to length()
-     */
-    public int get(int i) {
-        return permutation[i];
-    }
-    
-    /**
-     * Retrieves the length of the permutation.
-     * @return length of the permutation
-     */
-    public int length() {
-        return permutation.length;   
-    }
-    
-    /**
-     * Swaps 2 integers in the permutation.
-     * @param i position of first to swap
-     * (precondition: 0 &le; i &lt; length() &and; i != j)
-     * @param j the position of the second to swap
-     * (precondition: 0 &le; j &lt; length() &and; i != j)
+	 */
+	public int get(int i) {
+		return permutation[i];
+	}
+	
+	/**
+	 * Retrieves the length of the permutation.
+	 * @return length of the permutation
+	 */
+	public int length() {
+		return permutation.length;   
+	}
+	
+	/**
+	 * Swaps 2 integers in the permutation.
+	 * @param i position of first to swap
+	 * (precondition: 0 &le; i &lt; length() &and; i != j)
+	 * @param j the position of the second to swap
+	 * (precondition: 0 &le; j &lt; length() &and; i != j)
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
-     */
-    public void swap(int i, int j) {
-        if (i==j) return;
+	 */
+	public void swap(int i, int j) {
+		if (i==j) return;
 		int temp = permutation[i];
 		permutation[i] = permutation[j];
 		permutation[j] = temp;
-    }
-    
-    /**
-     * Reverses the order of the elements in the permutation.
-     */
-    public void reverse() {
-    	for (int i = 0, j = permutation.length-1; i < j; i++, j--) {
-    		swap(i, j);
-    	}
-    }
+	}
+	
+	/**
+	 * Reverses the order of the elements in the permutation.
+	 */
+	public void reverse() {
+		for (int i = 0, j = permutation.length-1; i < j; i++, j--) {
+			swap(i, j);
+		}
+	}
 	
 	/**
 	 * Reverses the order of the elements of a subrange of  the permutation.
 	 * @param i position of first index
-     * (precondition: 0 &le; i &lt; length() &and; i != j)
-     * @param j the position of the second index
-     * (precondition: 0 &le; j &lt; length() &and; i != j)
+	 * (precondition: 0 &le; i &lt; length() &and; i != j)
+	 * @param j the position of the second index
+	 * (precondition: 0 &le; j &lt; length() &and; i != j)
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void reverse(int i, int j) {
 		if (i > j) {
-            int temp = i;
+			int temp = i;
 			i = j;
 			j = temp;
-        }
+		}
 		for ( ; i < j; i++, j--) {
 			swap(i, j);
 		}
 	}
-    
-    /**
-     * Removes integer from one position and then inserts it into a
-     * a new position shifting the rest of the permutation as necessary.
-     * @param i position of integer to remove and insert
-     * (precondition: 0 &le; i &lt; length())
-     * @param j the position of the insertion point
-     * (precondition: 0 &le; j &lt; length())
+	
+	/**
+	 * Removes integer from one position and then inserts it into a
+	 * a new position shifting the rest of the permutation as necessary.
+	 * @param i position of integer to remove and insert
+	 * (precondition: 0 &le; i &lt; length())
+	 * @param j the position of the insertion point
+	 * (precondition: 0 &le; j &lt; length())
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
-     */
-    public void removeAndInsert(int i, int j) {
-        if (i < j) {
-            int n = permutation[i];
-            System.arraycopy(permutation, i+1, permutation, i, j-i);
-            permutation[j] = n;
-        } else if (i > j) {
-            int n = permutation[i];
-            System.arraycopy(permutation, j, permutation, j+1, i-j);
-            permutation[j] = n;
-        }
-    }
-    
+	 */
+	public void removeAndInsert(int i, int j) {
+		if (i < j) {
+			int n = permutation[i];
+			System.arraycopy(permutation, i+1, permutation, i, j-i);
+			permutation[j] = n;
+		} else if (i > j) {
+			int n = permutation[i];
+			System.arraycopy(permutation, j, permutation, j+1, i-j);
+			permutation[j] = n;
+		}
+	}
+	
 	/**
 	* Circular rotation of permutation (to the left).
 	* @param numPositions Number of positions to rotate.
@@ -402,37 +402,37 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		System.arraycopy(permutation, numPositions, permutation, 0, permutation.length-numPositions);
 		System.arraycopy(temp, 0, permutation, permutation.length-numPositions, numPositions);
 	}
-    
-    /**
-     * Removes a sub-array of integers from one position and then inserts it into a
-     * a new position shifting the rest of the permutation as necessary.
-     * @param i position of first integer in sub-array to remove and insert
-     * (precondition: 0 &le; i &lt; length())
-     * @param size the length of the sub-array
-     * (precondition: size + i &lt; length() and size + j - 1 &lt; length())
-     * @param j the position of the insertion point
-     * (precondition: 0 &le; j &lt; length())
+	
+	/**
+	 * Removes a sub-array of integers from one position and then inserts it into a
+	 * a new position shifting the rest of the permutation as necessary.
+	 * @param i position of first integer in sub-array to remove and insert
+	 * (precondition: 0 &le; i &lt; length())
+	 * @param size the length of the sub-array
+	 * (precondition: size + i &lt; length() and size + j - 1 &lt; length())
+	 * @param j the position of the insertion point
+	 * (precondition: 0 &le; j &lt; length())
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length().
-     */
-    public void removeAndInsert(int i, int size, int j) {
-        if ((size == 0) || (i == j)) {
-            return;
-        } else if (size == 1) {
-            removeAndInsert(i, j);
-        } else if (i > j) {
+	 */
+	public void removeAndInsert(int i, int size, int j) {
+		if ((size == 0) || (i == j)) {
+			return;
+		} else if (size == 1) {
+			removeAndInsert(i, j);
+		} else if (i > j) {
 			int[] temp = new int[i-j];
 			System.arraycopy(permutation, j, temp, 0, i-j);
 			System.arraycopy(permutation, i, permutation, j, size);
 			System.arraycopy(temp, 0, permutation, j+size, i-j);
 		} else if (i < j) {
 			int[] temp = new int[size];
-            System.arraycopy(permutation, i, temp, 0, size);
-            System.arraycopy(permutation, i+size, permutation, i, j-i);
-            System.arraycopy(temp, 0, permutation, j, size);
+			System.arraycopy(permutation, i, temp, 0, size);
+			System.arraycopy(permutation, i+size, permutation, i, j-i);
+			System.arraycopy(temp, 0, permutation, j, size);
 		}
-    }
-    
+	}
+	
 	/**
 	 * Returns an Iterator over all Permutations the length of this Permutation.  Iteration begins at this Permutation.
 	 * This Iterator does not iterate over the integers within the Permutation.
@@ -446,19 +446,19 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	public Iterator<Permutation> iterator() {
 		return new PermutationIterator(this);
 	}
-    
+	
 	/**
 	* Creates a String representing the permutation.
 	* @return a space separated sequence of the permutation's elements
 	*/
 	@Override
-    public String toString() {
-        String permS = "";
-        for (int i : permutation) {
-            permS += (i + " ");   
-        }
-        return permS;
-    }
+	public String toString() {
+		String permS = "";
+		for (int i : permutation) {
+			permS += (i + " ");   
+		}
+		return permS;
+	}
 	
 	/**
 	* Equality test: Two permutations are equal if they are of
@@ -487,6 +487,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	public int hashCode() {
 		return Arrays.hashCode(permutation);
 	}
-    
-    private final int[] permutation;
+	
+	private final int[] permutation;
 }
