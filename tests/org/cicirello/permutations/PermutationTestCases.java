@@ -106,11 +106,26 @@ public class PermutationTestCases {
 	
 	@Test
 	public void testPermutationConstructorCopyPartial() {
-		for (int n = 5, m = 2; n <= 10; n++, m++) {
-			Permutation p = new Permutation(n);
-			Permutation copy = new Permutation(p, m);
-			assertEquals("partial copy length", m, copy.length());
-			for (int i = 0; i < m; i++) assertEquals("elements should be in same order", p.get(i), copy.get(i));
+		for (int n = 1; n <= 10; n++) {
+			int[] forward = new int[n];
+			int[] backward = new int[n];
+			for (int i = 0; i < n; i++) {
+				backward[n-1-i] = forward[i] = i;
+			}
+			Permutation p1 = new Permutation(forward);
+			Permutation p2 = new Permutation(backward);
+			for (int m = 0; m <= n; m++) {
+				Permutation copy1 = new Permutation(p1, m);
+				Permutation copy2 = new Permutation(p2, m);
+				assertEquals("partial copy length", m, copy1.length());
+				assertEquals("partial copy length", m, copy2.length());
+				validatePermutation(copy1, m);
+				validatePermutation(copy2, m);
+				for (int i = 0; i < m; i++) {
+					assertEquals("should be sorted order", i, copy1.get(i));
+					assertEquals("should be reverse sorted order", m-1-i, copy2.get(i));
+				}
+			}
 		}
 	}
 	

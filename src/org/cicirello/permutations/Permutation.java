@@ -105,6 +105,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	/**
 	 * Initializes a permutation of n integers to be identical to the elements of an array.
      * @param p An array of integers. Each of the integers in the interval [0, p.length) must occur exactly one time each.
+	 * @throws IllegalArgumentException if p either contains duplicates, or contains any negative elements, 
+	 *         or contains any elements equal or greater than p.length.
 	 */
 	public Permutation(int[] p) {
 		boolean[] inP = new boolean[p.length];
@@ -127,16 +129,27 @@ public final class Permutation implements Serializable, Iterable<Permutation>
     }
     
     /**
-     * Initializes a permutation of integers to be identical to a subset of a given
-     * permutation.  Note: if the desired length is less than the source permutation,
-	 * then the resulting permutation will not contain all of the integers in [0,n).
-     * @param p the given permutation.
-     * @param length size of sub-permutation
+     * Initializes a permutation of the integers in the interval [0, length) based on their relative order
+	 * in a permutation p.  If length is greater than or equal to p.length, then this constructor generates a copy of p.
+	 * If length is less than p.length, then the new permutation contains the integers, 0, 1, 2, ..., (length - 1), in the 
+	 * order that those elements appear in p.  For example, if p is the permutation [ 5, 3, 7, 2, 6, 1, 0, 8, 4] and if length
+	 * is 4, this constructor will generate the permutation [3, 2, 1, 0] since 3 appears prior to 2, 2 appears prior to 1, and 1
+	 * appears prior to 0 in permutation p.
+     *
+     * @param p the source permutation.
+     * @param length size of new permutation
      */
     public Permutation(Permutation p, int length) {
 		if (length > p.permutation.length) length = p.permutation.length;
+		else if (length < 0) length = 0;
         permutation = new int[length];
-        System.arraycopy(p.permutation, 0, permutation, 0, length);
+        int k = 0;
+		for (int i = 0; i < p.permutation.length && k < length; i++) {
+			if (p.permutation[i] < length) {
+				permutation[k] = p.permutation[i];
+				k++;
+			}
+		}
     }
 	
 	
