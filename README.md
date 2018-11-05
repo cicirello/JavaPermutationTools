@@ -4,6 +4,8 @@ Copyright (C) 2018 Vincent A. Cicirello.
 
 https://www.cicirello.org/
 
+[![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
+
 ## Overview
 
 JPT is organized into the following packages:
