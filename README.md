@@ -4,6 +4,7 @@ Copyright (C) 2018 Vincent A. Cicirello.
 
 https://www.cicirello.org/
 
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950)
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
 
 ## Overview
