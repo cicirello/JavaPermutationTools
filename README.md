@@ -7,6 +7,11 @@ https://www.cicirello.org/
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950)
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
 
+## How to Cite
+
+If you use this library in your research, please cite the following paper:
+
+
 ## Overview
 
 JPT is organized into the following packages:
