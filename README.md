@@ -11,6 +11,7 @@ https://www.cicirello.org/
 
 If you use this library in your research, please cite the following paper:
 
+> Cicirello, Vincent A (2018). JavaPermutationTools: A Java Library of Permutation Distance Metrics. *Journal of Open Source Software*, 3(31), 950.  https://doi.org/10.21105/joss.00950 .
 
 ## Overview
 
