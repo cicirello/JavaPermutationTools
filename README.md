@@ -15,6 +15,11 @@ If you use this library in your research, please cite the following paper:
 
 ## Overview
 
+The JavaPermutationTools (JPT) API provides Java classes that enable representing and generating 
+permutations and sequences, as well as performing computation on permutations and sequences. 
+It includes implementations of a variety of permutation distance metrics as well as distance 
+metrics on sequences (i.e., Strings, arrays, and other ordered data types). 
+
 JPT is organized into the following packages:
 * __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
 * __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
