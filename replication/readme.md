@@ -12,6 +12,14 @@ are backwards compatible).
 
 The following replication programs are currently available:
 
+* org.cicirello.replication.bict2019.BICT2019: This program generates the data for the
+principal component analysis, as well as the fitness distance correlation data,
+from the paper:
+V. A. Cicirello, "Classification of Permutation Distance Metrics for Fitness Landscape Analysis," 
+in Proceedings of the 11th International Conference on Bio-inspired Information and 
+Communications Technologies.  March 2019.
+https://www.cicirello.org/publications/cicirello2019bict.html
+
 * org.cicirello.replication.flairs2013.Flairs2013: This program generates the correlation
 data that appears in Tables 1 and 2, as well as the data necessary to generate the
 graphs in Figures 1, 2, 3, 4, and 5 of the paper:
@@ -39,6 +47,7 @@ in the exbin directory.  If your working directory is the root
 of the repository, then you can run the replication programs from the command line with the following:
 
 ```
+java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.bict2019.BICT2019
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 ```
