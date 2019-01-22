@@ -475,7 +475,7 @@ public class BICT2019 {
 			int end = p.get((i+1)%p.length());
 			double deltaX = cities[start][0] - cities[end][0];
 			double deltaY = cities[start][1] - cities[end][1];
-			double edgeCost = start < end ? Math.sqrt(deltaX*deltaX + deltaY*deltaY) : 2.0; 
+			double edgeCost = start < end || (end==0 && start==p.length()-1) ? Math.sqrt(deltaX*deltaX + deltaY*deltaY) : 2.0; 
 			cost = cost + edgeCost;
 		}
 		return cost;
