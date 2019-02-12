@@ -1,1 +1,4 @@
+User-agent: SemanticScholarBot
+Disallow: /
+
 Sitemap: https://jpt.cicirello.org/sitemap.txt
