@@ -192,9 +192,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * @param <T> Type of element in sequence
 	 * @return distance between s1 and s2
 	 */
-	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
-		return distance(s1,s2);
-	}
+	abstract <T> int distance(Sequence<T> s1, Sequence<T> s2);
 	
 	/**
 	 * Measures the distance between two Sequences.
