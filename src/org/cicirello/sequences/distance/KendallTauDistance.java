@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,6 +22,7 @@ package org.cicirello.sequences.distance;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 /**
@@ -88,6 +89,33 @@ import java.util.Arrays;
  */
 public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	
+	private final boolean USE_HASHMAP;
+	
+	/**
+	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
+	 * where n is the length of the sequence.  Both sequences must be the same length.
+	 * The default algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
+	 * or a sequence of an object type that implements the Comparable interface).
+	 */
+	public KendallTauDistance() {
+		USE_HASHMAP = false;
+	}
+	
+	/**
+	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
+	 * where n is the length of the sequence.  Both sequences must be the same length.
+	 * The default algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
+	 * or a sequence of an object type that implements the Comparable interface).
+	 * The alternate algorithm doesn't require sequence elements to be comparable, and will work with
+	 * sequences of any primitive type, as well as any object type (provided that the objects are hashable, i.e.,
+	 * of a class that has overridden the hashCode method of the Object class).
+	 *
+	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
+	 */
+	public KendallTauDistance(boolean useAlternateAlg) {
+		USE_HASHMAP = useAlternateAlg;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
@@ -98,7 +126,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 		if (s1.length() == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length()][2];
-		int numLabels = relabelElementsToInts(s1,s2,relabeling);
+		int numLabels = USE_HASHMAP ? relabelElementsToIntsWithHash(s1,s2,relabeling) : relabelElementsToInts(s1,s2,relabeling);
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		
@@ -155,6 +183,25 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 			j = c1.search(s2.get(i));
 			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
 			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private <T> int relabelElementsToIntsWithHash(Sequence<T> s1, Sequence<T> s2, int[][] relabeling) {
+		HashMap<T,Integer> labelMap = new HashMap<T,Integer>();
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1.get(i))) {
+				current++;
+				labelMap.put(s1.get(i),current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1.get(i)); 
+			Integer j = labelMap.get(s2.get(i));
+			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
 		}
 		return current+1;
 	}

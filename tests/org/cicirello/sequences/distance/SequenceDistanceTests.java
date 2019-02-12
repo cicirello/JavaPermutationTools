@@ -163,6 +163,46 @@ public class SequenceDistanceTests {
 		assertEquals("case where discordant pair counting fails", 9, d.distance(t2,t1));
 	}
 	
+	@Test
+	public void testKendallTauDistanceAlg2() {
+		KendallTauDistance d = new KendallTauDistance(true);
+		identicalSequences(d);
+		// test first with simpler cases: all unique elements
+		for (int n = 2; n <= 10; n++) {
+			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
+			int[] s1 = new int[n];
+			int[] s2 = new int[n];
+			int[] s3 = new int[n];
+			for (int i = 0; i < n; i++) {
+				s3[i] = s1[i] = s2[n-1-i] = i+2;
+				// deliberately didn't use 0 to n-1 for a bit of white box testing (i.e., testing the indexing into arrays of queues)
+			}
+			s3[0] = s2[0];
+			s3[n-1] = s2[n-1];
+			int expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(s1,s2));
+			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(s1,s3));
+			assertEquals("end points swapped", expected, d.distance(s3,s1));
+		}
+		Permutation p = new Permutation(6);
+		int[] s1 = new int[6];
+		for (int i = 0; i < 6; i++) s1[i] = p.get(i);
+		int[] s2 = new int[6];
+		for (Permutation q : p) {
+			for (int i = 0; i < 6; i++) s2[i] = q.get(i);
+			int expected = naiveKendalTau(s1,s2);
+			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s1,s2));
+			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s2,s1));
+		}
+		// Now test with duplicate elements
+		String t1 = "abcdaabb";
+		String t2 = "dcbababa";
+		assertEquals("case where discordant pair counting fails", 9, d.distance(t1,t2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(t2,t1));
+	}
+	
 	// simple naive O(n^2) version if elements are all unique
 	private int naiveKendalTau(int[] s1, int[] s2) {
 		int count = 0;
