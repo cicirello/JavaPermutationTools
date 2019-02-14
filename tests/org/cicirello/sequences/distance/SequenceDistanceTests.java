@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -35,6 +35,59 @@ import org.cicirello.permutations.Permutation;
 public class SequenceDistanceTests {
 	
 	private final static double EPSILON = 1e-10;
+	
+	@Test
+	public void testEMObjectSequences() {
+		ExactMatchDistance d = new ExactMatchDistance();
+		String[] a0 = {"a", "b", "c", "d", "e", "f"};
+		String[] a1 = {"a", "b", "c", "d", "e", "f"};
+		assertEquals("same", 0, d.distance(a0,a1));
+		String[] a2 = {"f", "a", "b", "c", "d", "e"};
+		String[] a3 = {"f", "b", "c", "d", "e", "a"};
+		String[] a4 = {"a", "d", "c", "b", "e", "f"};
+		assertEquals("maximal distance", 6, d.distance(a1,a2));
+		assertEquals("end points differ", 2, d.distance(a1,a3));
+		assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+		String[] b1 = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
+		String[] b2 = {"f", "a", "b", "c", "d", "e", "g", "h", "i"};
+		String[] b3 = {"f", "b", "c", "d", "e", "a", "g", "h", "i"};
+		String[] b4 = {"a", "d", "c", "b", "e", "f", "g", "h", "i"};
+		assertEquals("identical except for extras", 3, d.distance(a1,b1));
+		assertEquals("maximal distance", 9, d.distance(a1,b2));
+		assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+		assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+		assertEquals("identical except for extras", 3, d.distance(b1,a1));
+		assertEquals("maximal distance", 9, d.distance(b2,a1));
+		assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+		assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		
+		NonComparable[] c1 = new NonComparable[6];
+		NonComparable[] c2 = new NonComparable[6];
+		NonComparable[] c3 = new NonComparable[6];
+		for (int i = 0; i < c1.length; i++) {
+			c1[i] = new NonComparable(i);
+			c2[(i+1)%c2.length] = new NonComparable(i);
+			c3[i] = new NonComparable(i);
+		}
+		NonComparable temp = c3[0];
+		c3[0] = c3[5];
+		c3[5] = temp;
+		assertEquals("maximal distance", 6, d.distance(c1,c2));
+		assertEquals("end points differ", 2, d.distance(c1,c3));
+	}
+	
+	private static class NonComparable {
+		private int id;
+		public NonComparable(int me) {
+			id = me;
+		}
+		public boolean equals(Object other) {
+			return ((NonComparable)other).id == id;
+		}
+		public int hashCode() {
+			return id;
+		}
+	}
 	
 	@Test
 	public void testExactMatchDistance() {
@@ -110,6 +163,55 @@ public class SequenceDistanceTests {
 	}
 	
 	@Test
+	public void testEditObjectSequences() {
+		String[] s1 = {"a","b","a","c","a","d","a","e","a","f","a","h","a","i","a","j","a"};
+		String[] s2 = {"k","a","m","n","o","p","a","l","a","a","q","a","a","a","a"};
+		EditDistance d = new EditDistance(1, 1, 2);
+		assertEquals(16, d.distance(s1,s2));
+		assertEquals(16.0, d.distancef(s1,s2), EPSILON);
+		d = new EditDistance(3, 3, 6);
+		assertEquals(48, d.distance(s1,s2));
+		assertEquals(48.0, d.distancef(s1,s2), EPSILON);
+		
+		String[] s3 = {"a","a","a","a","a","b","c","d","e","f","a","a","a","a","a","b","c","d","e","f","a","a","a","a","a"};
+		String[] s4 = {"b","b","b","b","b","b","c","d","e","f","b","b","b","b","b","b","c","d","e","f","b","b","b","b","b"};
+		d = new EditDistance(2, 2, 3);
+		assertEquals(45, d.distance(s3,s4));
+		assertEquals(45.0, d.distancef(s3,s4), EPSILON);
+		
+		d = new EditDistance(3, 3, 6);
+		NonComparable[] c1 = new NonComparable[17];
+		for (int i = 0; i < 17; i++) {
+			c1[i] = (i%2)==0 ? new NonComparable(0) : new NonComparable(i);
+		}
+		NonComparable[] c2 = new NonComparable[16];
+		for (int i = 0; i < 16; i++) {
+			c2[i] = (i%2==0) ? new NonComparable(100 + i) : new NonComparable(0);
+		}
+		assertEquals(51, d.distance(c1,c2));
+	}
+	
+	@Test
+	public void testLCSObjectSequences() {
+		LongestCommonSubsequenceDistance d = new LongestCommonSubsequenceDistance();
+		String[] s1 = {"a","b","a","c","a","d","a","e","a","f","a","h","a","i","a","j","a"};
+		String[] s2 = {"k","a","m","n","o","p","a","l","a","a","q","a","a","a","a"};
+		assertEquals(16, d.distance(s1,s2));
+		String[] s3 = {"a","b","a","c","a","d","a","e","a","f","a","h","a","i","a","j","a","z","a","z","a","z","a","z","a","z","a"};
+		assertEquals(26, d.distance(s3,s2));
+		
+		NonComparable[] c1 = new NonComparable[17];
+		for (int i = 0; i < 17; i++) {
+			c1[i] = (i%2)==0 ? new NonComparable(0) : new NonComparable(i);
+		}
+		NonComparable[] c2 = new NonComparable[16];
+		for (int i = 0; i < 16; i++) {
+			c2[i] = (i%2==0) ? new NonComparable(100 + i) : new NonComparable(0);
+		}
+		assertEquals(17, d.distance(c1,c2));
+	}
+	
+	@Test
 	public void testLongestCommonSubsequenceDistance() {
 		LongestCommonSubsequenceDistance d = new LongestCommonSubsequenceDistance();
 		identicalSequences(d);
@@ -121,6 +223,88 @@ public class SequenceDistanceTests {
 		s1 = "abacadaeafahaiajazazazazaza";
 		// increasing length of s1 without changing lcs should increase distance to 26
 		assertEquals(26, d.distance(s1,s2));
+	}
+	
+	@Test
+	public void testTauObjectSequences() {
+		KendallTauDistance d = new KendallTauDistance();
+		for (int n = 2; n <= 10; n++) {
+			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
+			String[] s1 = new String[n];
+			String[] s2 = new String[n];
+			String[] s3 = new String[n];
+			char letter = 'a';
+			for (int i = 0; i < n; i++) {
+				s3[i] = s1[i] = s2[n-1-i] = (""+letter);
+				letter = (char)(letter + 1);
+			}
+			s3[0] = s2[0];
+			s3[n-1] = s2[n-1];
+			int expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(s1,s2));
+			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(s1,s3));
+			assertEquals("end points swapped", expected, d.distance(s3,s1));
+		}
+		for (int n = 2; n <= 10; n++) {
+			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
+			NonComparable[] s1 = new NonComparable[n];
+			NonComparable[] s2 = new NonComparable[n];
+			NonComparable[] s3 = new NonComparable[n];
+			for (int i = 0; i < n; i++) {
+				s3[i] = s1[i] = s2[n-1-i] = new NonComparable(i+2);
+			}
+			s3[0] = s2[0];
+			s3[n-1] = s2[n-1];
+			int expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(s1,s2));
+			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(s1,s3));
+			assertEquals("end points swapped", expected, d.distance(s3,s1));
+		}
+	}
+	
+	@Test
+	public void testTauAlg2ObjectSequences() {
+		KendallTauDistance d = new KendallTauDistance(true);
+		for (int n = 2; n <= 10; n++) {
+			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
+			String[] s1 = new String[n];
+			String[] s2 = new String[n];
+			String[] s3 = new String[n];
+			char letter = 'a';
+			for (int i = 0; i < n; i++) {
+				s3[i] = s1[i] = s2[n-1-i] = (""+letter);
+				letter = (char)(letter + 1);
+			}
+			s3[0] = s2[0];
+			s3[n-1] = s2[n-1];
+			int expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(s1,s2));
+			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(s1,s3));
+			assertEquals("end points swapped", expected, d.distance(s3,s1));
+		}
+		for (int n = 2; n <= 10; n++) {
+			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
+			NonComparable[] s1 = new NonComparable[n];
+			NonComparable[] s2 = new NonComparable[n];
+			NonComparable[] s3 = new NonComparable[n];
+			for (int i = 0; i < n; i++) {
+				s3[i] = s1[i] = s2[n-1-i] = new NonComparable(i+2);
+			}
+			s3[0] = s2[0];
+			s3[n-1] = s2[n-1];
+			int expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(s1,s2));
+			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(s1,s3));
+			assertEquals("end points swapped", expected, d.distance(s3,s1));
+		}
 	}
 	
 	@Test
@@ -246,3 +430,5 @@ public class SequenceDistanceTests {
 	}
 
 }
+
+

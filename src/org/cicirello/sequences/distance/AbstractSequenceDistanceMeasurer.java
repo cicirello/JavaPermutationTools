@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -182,6 +182,30 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	@Override
 	public final int distance(String s1, String s2) {
 		return distance(new PrimitiveSequence(s1.toCharArray()),new PrimitiveSequence(s2.toCharArray()));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final int distance(Object[] s1, Object[] s2) {
+		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
+			return distance(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
+		} else {
+			return distance(new NonComparableObjectSequence(s1), new NonComparableObjectSequence(s2));
+		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final double distancef(Object[] s1, Object[] s2) {
+		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
+			return distancef(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
+		} else {
+			return distancef(new NonComparableObjectSequence(s1), new NonComparableObjectSequence(s2));
+		}
 	}
 	
 	/**

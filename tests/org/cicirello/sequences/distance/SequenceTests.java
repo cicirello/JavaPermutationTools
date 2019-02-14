@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -55,6 +55,54 @@ public class SequenceTests {
 				if (i>j) assertTrue(paw.greaterThan(i,other,j));
 				if (i>=j) assertTrue(paw.greaterThanOrEqual(i,other,j));
 			}
+		}
+		String pv1 = paw.get(3);
+		paw.set(7, pv1);
+		String pv2 = paw.get(7);
+		assertEquals("get and set", pv1, pv2);
+		String before1 = other.get(2);
+		String before2 = other.get(6);
+		other.swap(2, 6);
+		String after1 = other.get(2);
+		String after2 = other.get(6);
+		assertEquals("swap", before1, after2);
+		assertEquals("swap", before2, after1);
+		
+		Sequence<String> copy = paw.copy();
+		for (int i = 0; i < N; i++) {
+			String v1 = paw.get(i);
+			String v2 = copy.get(i);
+			assertTrue(v1.equals(v2));
+		}
+		String v0_1 = paw.get(0);
+		String vN_2 = copy.get(N-1);
+		for (int i = 0; i < N; i++) {
+			paw.set(i, v0_1);
+			copy.set(i, vN_2);
+		}
+		for (int i = 0; i < N; i++) {
+			String v1 = paw.get(i);
+			String v2 = copy.get(i);
+			assertFalse(v1.equals(v2));
+		}
+	}
+	
+	@Test
+	public void testNonComparableObjectSequence() {
+		// Testing ObjectSequence with a sequence of strings.
+		// If it works for String objects, it should work for any other class of objects that are Comparable
+		final int N = 26;
+		String[] array = new String[N];
+		for (int i = 0; i < N; i++) {
+			char[] c = { (char)('A' + i) };
+			array[i] = new String(c);
+		}
+		Sequence<String> paw = new NonComparableObjectSequence<String>(array);
+		Sequence<String> other = new NonComparableObjectSequence<String>(array.clone());
+		assertEquals("length", N, paw.length());
+		for (int i = 0; i < N; i++) {
+			assertTrue(paw.equal(i,i));
+			assertTrue(paw.equal(i,other,i));
 		}
 		String pv1 = paw.get(3);
 		paw.set(7, pv1);

@@ -110,6 +110,8 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	 * sequences of any primitive type, as well as any object type (provided that the objects are hashable, i.e.,
 	 * of a class that has overridden the hashCode method of the Object class).
 	 *
+	 * @since 1.2.3
+	 *
 	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
 	 */
 	public KendallTauDistance(boolean useAlternateAlg) {
@@ -126,7 +128,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 		if (s1.length() == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length()][2];
-		int numLabels = USE_HASHMAP ? relabelElementsToIntsWithHash(s1,s2,relabeling) : relabelElementsToInts(s1,s2,relabeling);
+		int numLabels = USE_HASHMAP || s1 instanceof NonComparableObjectSequence ? relabelElementsToIntsWithHash(s1,s2,relabeling) : relabelElementsToInts(s1,s2,relabeling);
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		

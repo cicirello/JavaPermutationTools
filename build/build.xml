@@ -48,6 +48,7 @@
 		<batchtest>
           <fileset dir="${testbin}">
             <include name="**/*.class"/>
+			<exclude name="**/*$*"/>
           </fileset>
         </batchtest>
 	</junit>

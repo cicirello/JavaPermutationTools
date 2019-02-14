@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -112,4 +112,13 @@ public interface SequenceDistanceMeasurerDouble {
 	 */
 	double distancef(String s1, String s2);
 	
+	/**
+	 * Measures the distance between two arrays of objects.
+	 *
+	 * @since 1.2.3
+	 * @param s1 First array.
+	 * @param s2 Second array.
+	 * @return distance between s1 and s2
+	 */
+	double distancef(Object[] s1, Object[] s2);
 }
