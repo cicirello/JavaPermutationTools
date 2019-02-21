@@ -94,28 +94,32 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	/**
 	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
 	 * where n is the length of the sequence.  Both sequences must be the same length.
-	 * The default algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
-	 * or a sequence of an object type that implements the Comparable interface).
+	 * The default algorithm requires sequence elements to be hashable, and supports sequences of any primitive type,
+	 * or a sequence of an object type of a class that has overridden the hashCode 
+	 * and equals methods of the Object class.
 	 */
 	public KendallTauDistance() {
-		USE_HASHMAP = false;
+		USE_HASHMAP = true;
 	}
 	
 	/**
 	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
 	 * where n is the length of the sequence.  Both sequences must be the same length.
-	 * The default algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
+	 * The default algorithm requires sequence elements to be hashable, and supports sequences of any primitive type,
+	 * or a sequence of an object type of a class that has overridden the hashCode 
+	 * and equals methods of the Object class.
+	 * The alternate algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
 	 * or a sequence of an object type that implements the Comparable interface).
-	 * The alternate algorithm doesn't require sequence elements to be comparable, and will work with
-	 * sequences of any primitive type, as well as any object type (provided that the objects are hashable, i.e.,
-	 * of a class that has overridden the hashCode method of the Object class).
+	 * Our experiments indicate that the alternate algorithm tends to be slower (even though same asymptotic runtime).
+	 * However, in cases where hash collisions are common, the alternate algorithm may run faster than the default,
+	 * whose performance depends on the performance of a hash table.
 	 *
 	 * @since 1.2.3
 	 *
 	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
 	 */
 	public KendallTauDistance(boolean useAlternateAlg) {
-		USE_HASHMAP = useAlternateAlg;
+		USE_HASHMAP = !useAlternateAlg;
 	}
 	
 	/**
