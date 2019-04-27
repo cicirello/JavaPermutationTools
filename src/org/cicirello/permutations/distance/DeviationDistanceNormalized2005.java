@@ -62,8 +62,8 @@ import org.cicirello.permutations.Permutation;
  * management," in Proc. of MIC2005, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2  
- * @since 1.0
+ * @version 1.19.4.27  
+ * @since 1.2.3
  * 
  */
 public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasurerDouble  {
