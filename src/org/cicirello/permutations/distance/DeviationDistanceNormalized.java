@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -28,7 +28,8 @@ import org.cicirello.permutations.Permutation;
  * <p>Normalized Deviation distance is the sum of the positional deviation of the permutation elements
  * divided by N-1 (where N is the length of the permutation).
  * The positional deviation of an element is the difference in its location in the two
- * permutations.</p>
+ * permutations.  Normalizing by dividing by N-1 causes each element's contribution to 
+ * distance to be in the interval [0,1].</p>
  *
  * <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3].
  * Element 0 is displaced by 1 position.  Likewise for elements 1 and 2.
@@ -38,14 +39,13 @@ import org.cicirello.permutations.Permutation;
  *
  * <p>Sum the deviations: 1 + 1 + 1 + 2 + 0 + 3 = 8.</p>  
  *
- * <p>The length is 6.  So, normalized deviation distance is 8 / 6 = 1.3333.</p>
+ * <p>The length is 6.  So, normalized deviation distance is 8 / (6-1) = 1.6.</p>
  *
  * <p>Runtime: O(n), where n is the permutation length.</p>
  * 
- * <p>Normalized deviation distance was introduced in the following (although they simply
- * referred to it as deviation distance):<br>
- *  V. Campos, M. Laguna, and R. Marti, "Context-independent scatter and tabu search for permutation problems," 
- *  INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
+ * <p>Normalized deviation distance was introduced in:<br>
+ * S. Ronald, "More distance functions for order-based encodings," in 
+ * Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.2  
