@@ -158,6 +158,30 @@ public class PermutationDistanceTests {
 	}
 	
 	@Test
+	public void testDeviationDistanceNormalized2005() {
+		DeviationDistanceNormalized2005 d = new DeviationDistanceNormalized2005();
+		identicalPermutationsDouble(d);
+		for (int n = 2; n <= 10; n++) {
+			Permutation p = new Permutation(n);
+			Permutation copy = new Permutation(p);
+			Permutation reversed = new Permutation(p);
+			reversed.reverse();
+			for (int i = 1; i < n; i++) {
+				// rotations are a special case that are easy to compute analytically (perfect for unit tests)
+				copy.rotate(1);
+				int expected = 2*i*(n-i);
+				int norm = n*n;
+				if (n%2==1) norm--;
+				norm /= 2;
+				double expectedD = expected / (norm*1.0);
+				assertEquals("deviation distance", expectedD, d.distancef(p, copy), EPSILON);
+			}
+			// Reverse of permutation should be distance 1.0 from original.
+			assertEquals("deviation distance", 1, d.distancef(p, reversed), EPSILON);
+		}
+	}
+	
+	@Test
 	public void testSquaredDeviationDistance() {
 		SquaredDeviationDistance d = new SquaredDeviationDistance();
 		identicalPermutations(d);
@@ -347,8 +371,8 @@ public class PermutationDistanceTests {
 		for (int n = 0; n <= 10; n++) {
 			Permutation p = new Permutation(n);
 			Permutation copy = new Permutation(p);
-			assertEquals("distance of a permutation to itself should be 0", 0, d.distance(p, copy));
-			assertEquals("distance of a permutation to itself should be 0", 0, d.distance(p, p));
+			assertEquals("distance of a permutation to itself should be 0; length was " + n, 0, d.distance(p, copy));
+			assertEquals("distance of a permutation to itself should be 0; length was " + n, 0, d.distance(p, p));
 		}
 	}
 	
@@ -356,8 +380,8 @@ public class PermutationDistanceTests {
 		for (int n = 0; n <= 10; n++) {
 			Permutation p = new Permutation(n);
 			Permutation copy = new Permutation(p);
-			assertEquals("distance of a permutation to itself should be 0", 0.0, d.distancef(p, copy), EPSILON);
-			assertEquals("distance of a permutation to itself should be 0", 0.0, d.distancef(p, p), EPSILON);
+			assertEquals("distance of a permutation to itself should be 0; length was " + n, 0.0, d.distancef(p, copy), EPSILON);
+			assertEquals("distance of a permutation to itself should be 0; length was " + n, 0.0, d.distancef(p, p), EPSILON);
 		}
 	}
 	
