@@ -231,6 +231,10 @@ final class PrimitiveValue {
 		double doubleValue() { return value; }
 		float floatValue() { return value; }
 		@Override
+		public int hashCode() {
+			return (int)((value>>>32)^value);
+		}
+		@Override
 		public boolean equals(Object obj) {
 			if (obj == this) return true;
 			if (obj == null || !(obj instanceof Long)) return false;
@@ -352,15 +356,8 @@ final class PrimitiveValue {
 		float floatValue() { return (float)value; }
 		@Override
 		public int hashCode() {
-			if (value == 0.0) return 0;
-			double temp = value;
-			int cast = (int)temp;
-			while (cast == 0) {
-				temp *= 10;
-				cast = (int)temp;
-			}
-			if (cast > -10 && cast < 10) temp *= 1000000;
-			return (int)temp;
+			long asLong = java.lang.Double.doubleToLongBits(value);
+			return (int)((asLong>>>32)^asLong);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -384,15 +381,7 @@ final class PrimitiveValue {
 		float floatValue() { return value; } 
 		@Override
 		public int hashCode() {
-			if (value == 0.0f) return 0;
-			float temp = value;
-			int cast = (int)temp;
-			while (cast == 0) {
-				temp = temp * 10;
-				cast = (int)temp;
-			}
-			if (cast > -10 && cast < 10) temp = temp * 1000000;
-			return (int)temp;
+			return java.lang.Float.floatToIntBits(value);
 		}
 		@Override
 		public boolean equals(Object obj) {
