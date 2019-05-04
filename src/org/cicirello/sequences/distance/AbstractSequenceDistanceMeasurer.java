@@ -30,7 +30,7 @@ package org.cicirello.sequences.distance;
  *
  * <p>If your sequences are guaranteed not to contain duplicates, and the pair of sequences is guaranteed to contain the same set of elements, and are of the same length,
  * then consider instead extending or using the classes that extend 
- * the {@link org.cicirello.permutations.distance.AbstractPermutationDistanceMeasurer AbstractPermutationDistanceMeasurer}
+ * the AbstractPermutationDistanceMeasurer
  * class.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
@@ -188,11 +188,12 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public final int distance(Object[] s1, Object[] s2) {
 		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
 			return distance(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
 		} else {
-			return distance(new NonComparableObjectSequence(s1), new NonComparableObjectSequence(s2));
+			return distance(new NonComparableObjectSequence<Object>(s1), new NonComparableObjectSequence<Object>(s2));
 		}
 	}
 	
@@ -200,11 +201,12 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public final double distancef(Object[] s1, Object[] s2) {
 		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
 			return distancef(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
 		} else {
-			return distancef(new NonComparableObjectSequence(s1), new NonComparableObjectSequence(s2));
+			return distancef(new NonComparableObjectSequence<Object>(s1), new NonComparableObjectSequence<Object>(s2));
 		}
 	}
 	

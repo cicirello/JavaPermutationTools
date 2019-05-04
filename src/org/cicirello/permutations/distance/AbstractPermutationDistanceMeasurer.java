@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2015, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -31,7 +31,7 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  *
  */
-public abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, PermutationDistanceMeasurerDouble {
+abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, PermutationDistanceMeasurerDouble {
 	
 		
 	/**

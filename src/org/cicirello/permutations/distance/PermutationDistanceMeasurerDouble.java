@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -40,34 +40,5 @@ public interface PermutationDistanceMeasurerDouble
 	 * @return distance between p1 and p2 
 	 */
 	double distancef(Permutation p1, Permutation p2);
-	
-	/*
-	 * Measures the distance between two permutations, with reversal independence:
-	 * distance = min { distance(p1,p2), distance(p1,reverse(p2)) }
-	 * 
-	 * @param p1 first permutation
-	 * @param p2 second permutation 
-	 * @return distance between p1 and p2 
-	 */
-	//double distancefReversalIndependent(Permutation p1, Permutation p2);
-	
-	/*
-	 * Measures the distance between two permutations, with cyclic independence:
-	 * distance = min_{i in [0,N)} distance(p1,rotate(p2,i))
-	 * 
-	 * @param p1 first permutation
-	 * @param p2 second permutation 
-	 * @return distance between p1 and p2 
-	 */
-	//double distancefCyclicIndependent(Permutation p1, Permutation p2);
-	
-	/*
-	 * Measures the distance between two permutations, with cyclic and reversal independence:
-	 * distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }
-	 * 
-	 * @param p1 first permutation
-	 * @param p2 second permutation 
-	 * @return distance between p1 and p2 
-	 */
-	//double distancefCyclicReversalIndependent(Permutation p1, Permutation p2);
+
 }
