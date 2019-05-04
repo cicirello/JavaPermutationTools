@@ -194,7 +194,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	}
 	
 	private <T> int relabelElementsToIntsWithHash(Sequence<T> s1, Sequence<T> s2, int[][] relabeling) {
-		HashMap<T,Integer> labelMap = new HashMap<T,Integer>();
+		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(relabeling.length / 0.75)+2);
 		int current = -1;
 		for (int i = 0; i < relabeling.length; i++) {
 			if (!labelMap.containsKey(s1.get(i))) {
