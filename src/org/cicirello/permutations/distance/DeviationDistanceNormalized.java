@@ -70,7 +70,7 @@ public class DeviationDistanceNormalized implements PermutationDistanceMeasurerD
 	 */
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
-		if (p1.length() == 1) return 0; 
+		if (p1.length() <= 1) return 0; 
 		return devDistance.distancef(p1,p2) / (p1.length() - 1);
 	}
 

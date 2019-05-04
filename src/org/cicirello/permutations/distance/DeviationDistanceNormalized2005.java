@@ -85,8 +85,7 @@ public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasu
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
 		if (p1.length() <= 1) return 0; 
-		double normFactor = 2.0 / (p1.length() * p1.length() - (p1.length() % 2));
-		return devDistance.distancef(p1,p2) * normFactor;
+		return devDistance.distancef(p1,p2) * 2.0 / (p1.length() * p1.length() - (p1.length() % 2));
 	}
 
 }
