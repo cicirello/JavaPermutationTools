@@ -227,7 +227,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testTauObjectSequences() {
-		KendallTauDistance d = new KendallTauDistance();
+		KendallTauSequenceDistance d = new KendallTauSequenceDistance();
 		for (int n = 2; n <= 10; n++) {
 			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
 			String[] s1 = new String[n];
@@ -268,7 +268,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testTauAlg2ObjectSequences() {
-		KendallTauDistance d = new KendallTauDistance(true);
+		KendallTauSequenceDistance d = new KendallTauSequenceDistance(true);
 		for (int n = 2; n <= 10; n++) {
 			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
 			String[] s1 = new String[n];
@@ -309,7 +309,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testKendallTauDistance() {
-		KendallTauDistance d = new KendallTauDistance();
+		KendallTauSequenceDistance d = new KendallTauSequenceDistance();
 		identicalSequences(d);
 		// test first with simpler cases: all unique elements
 		for (int n = 2; n <= 10; n++) {
@@ -349,7 +349,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testKendallTauDistanceAlg2() {
-		KendallTauDistance d = new KendallTauDistance(true);
+		KendallTauSequenceDistance d = new KendallTauSequenceDistance(true);
 		identicalSequences(d);
 		// test first with simpler cases: all unique elements
 		for (int n = 2; n <= 10; n++) {

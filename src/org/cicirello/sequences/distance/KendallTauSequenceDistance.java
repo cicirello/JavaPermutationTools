@@ -87,7 +87,7 @@ import java.util.HashMap;
  * @version 2.18.8.31
  * @since 1.1
  */
-public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
+public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
 	
 	private final boolean USE_HASHMAP;
 	
@@ -98,7 +98,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	 * or a sequence of an object type of a class that has overridden the hashCode 
 	 * and equals methods of the Object class.
 	 */
-	public KendallTauDistance() {
+	public KendallTauSequenceDistance() {
 		USE_HASHMAP = true;
 	}
 	
@@ -118,7 +118,7 @@ public final class KendallTauDistance extends AbstractSequenceDistanceMeasurer {
 	 *
 	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
 	 */
-	public KendallTauDistance(boolean useAlternateAlg) {
+	public KendallTauSequenceDistance(boolean useAlternateAlg) {
 		USE_HASHMAP = !useAlternateAlg;
 	}
 	
