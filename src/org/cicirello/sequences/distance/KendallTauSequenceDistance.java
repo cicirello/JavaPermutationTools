@@ -26,62 +26,54 @@ import java.util.HashMap;
 
 
 /**
- * <p>Kendall Tau distance is
+ * <p>Kendall Tau Sequence Distance is
  * the minimum number of adjacent swaps necessary to transform one sequence into the other.
- * Thus, for this reason, it is sometimes also known as bubble sort distance since bubble sort uses adjacent swaps to sort.</p>
+ * It is an edit distance with adjacent swap as the edit operation.  It is applicable only
+ * if both sequences are the same length and contain the same set of elements.</p>
  *
- * <p>As a distance metric, it originated specifically to measure distance between permutations (i.e., sequence of unique elements).
- * In the case of permutations, it is very closely related to Kendall tau rank correlation.  Kendall tau distance (for permutations) is essentially
- * the count of the number of permutation inversions (or discordant pairs), 
- * providing a minimum distance of 0 for identical permutations and a maximum distance of n(n-1)/2,
- * where n is the length.  The max case is distance between a permutation and its reverse.</p>
+ * <p>As a distance metric, Kendall Tau Distance originated specifically to measure distance between 
+ * permutations (i.e., sequence of unique elements).  But, the Kendall Tau Sequence Distance that
+ * is implemented here is an
+ * extension of Kendall Tau Distance to general sequences (i.e., strings that can contain duplicate 
+ * elements).</p>
  *
- * <p>Adapting Kendall tau distance from permutations to general sequences (i.e., strings that can contain duplicate elements) is usually,
- * and (in our opinion) incorrectly done using the equivalent adaptation of Kendall tau rank correlation to partial rankings (i.e., rankings 
- * involving ties).  That extension of Kendall tau distance to strings uses the same sort of count of discordant pairs as when computing
- * Kendall tau rank correlation with ties.  In the case of strings, this is wrong.  The string elements are not ranks, and the result does not
- * give you minimum adjacent swaps to edit one string to the other.</p>
- *
- * <p>Consider this example.  Let s1 = "abcdaabb" and s2 = "dcbababa".  Computing number of discordant pairs (in the sense of Kendall
- * tau rank correlation) in this case is 11.  I'll leave it as an exercise to the reader of this documentation to confirm.  However,
- * it is possible to edit s2 into s1 with fewer than 11 adjacent swaps--namely with 9 swaps as follows: "cdbababa", "cbdababa", "bcdababa",
+ * <p>Consider this example.  Let s1 = "abcdaabb" and s2 = "dcbababa".  
+ * The shortest sequence of adjacent swaps to edit s2 into s1 is the following sequence of 9 swaps:
+ * "cdbababa", "cbdababa", "bcdababa",
  * "bcadbaba", "bacdbaba", "abcdbaba", "abcdabba", "abcdabab", "abcdaabb".</p>
  *
- * <p>Our implementation, instead, actually computed the minimum number of adjacent swaps to transform s1 into s2, and works
- * as follows.  First, the alphabet of s1 is mapped to the integers from 0 to L-1 (where L is the number of unique characters).
- * This step is done in O(n lg n) time by sorting a copy of s1 and comparing adjacent elements for equality.  Second, s1 and s2 are 
- * both relabeled from the original alphabet to this new integer based alphabet.  This relabeling step is also O(n lg n), involving a binary search
- * of the sorted copy of s1 for each of the n elements of s1 and each of the n elements of s2.</p>
+ * <p>In this Java class, we provide implementations of two algorithms.  Both algorithms are relevant
+ * for computing the distance between arrays of primitive values as well as distance between String objects.
+ * For computing the Kendall Tau
+ * Sequence Distance of two arrays of any primitive type (e.g., arrays of ints, longs, shorts, bytes, chars,
+ * floats, doubles, or booleans), as well as for computing the distance between two String objects, the runtime
+ * of both algorithms is O(n lg n), where n is the length of the array or String.</p>
  *
- * <p>The third step involves performing a bucket sort of the relabeled s1.  Specifically, L empty buckets are initialized, where buckets are
- * implemented as simple singly linked lists.  For each element of the relabeled s1, its index is added to the bucket corresponding to
- * its integer label, maintaining the order the indices were added.  Each bucket contains the indices of all copies of the corresponding
- * element.  For example, if s1 = "abaabc", and if the relabeled version is "010012", then bucket 0 contains (0, 2, 3), bucket 1 contains (1, 4),
- * bucket 2 contains (5).  Next, another bucket sort of the relabeled s2 is performed in the same way, with an additional set of L
- * buckets.  There will be at most 2n buckets (if all elements are unique), so the time to initialize the empty buckets is O(n) in worst case.
- * The time to populate the buckets with the indices of the relabeled elements of s1 and s2 is O(n), involving simple linear iteration.
- * Therefore, this bucket sort step is likewise O(n) time.</p>
+ * <p>If you are computing the distance between two arrays of Objects, the two algorithms have the
+ * following restrictions.  The default algorithm requires the objects to be of a class that 
+ * overrides the hashCode and equals methods of the {@link java.lang.Object} class.  The alternate
+ * algorithm requires Objects to be of a class that implements the {@link java.lang.Comparable} 
+ * interface, and overrides the equals method of the {@link java.lang.Object} class.  The runtime
+ * for computing distance between arrays of objects via the default algorithm is O(h(m) n + n lg n),
+ * where n is the array length, m is the size of the objects in the array, and h(m) is the
+ * runtime to compute a hash of an object of size m.  The runtime for the alternate algorithm for
+ * arrays of objects is O(c(m) n lg n), where n and m are as before, and c(m) is the runtime of
+ * the compareTo method for objects of size m.  The default algorithm is the preferred algorithm
+ * in most cases.  The alternate algorithm may run faster if the cost to compare objects, c(m),
+ * is significantly less than the cost to hash objects, h(m).</p>
  *
- * <p>This fourth step involves generating a permutation that maps the elements of s1 to the corresponding elements of s2.  Consider as an example
- * the following partially defined string s1 = "**A**A**A**".  Each of the * are characters other than "A".  Now consider an s2 = "AA********A".
- * Both contain 3 copies of "A".  In s1 they are at positions {2, 5, 8}, and in s2 positions {0, 1, 10}.  In the shortest sequence of adjacent swaps that
- * transforms s1 to s2, the "A" in position 2 of s1 must correspond to the "A" in position 0 of s2.  Likewise,
- * the "A" in position 5 of s1 must correspond to the "A" in position 1 of s2, and  
- * the "A" in position 8 of s1 must correspond to the "A" in position 10 of s2.  Why?  Well, if they were mapped any other way, then at some point
- * in the sequence of adjacent swaps, there'd be a swap of a pair of adjacent "A"s.  Such a swap accomplishes nothing other than increasing the edit 
- * sequence length.  So the minimum number of adjacent swaps must not have any like this.</p>
+ * <p>Runtime: O(n lg n) for String objects and sequences of primitives, 
+ * where n is the length of the sequence.</p>
  *
- * <p>Therefore, the fourth step involves iterating over the buckets from step 3 to generate a mapping between elements of s1 and s2.
- * If bucket b1(i,j) is the index of the jth copy of element i in s1, and similarly for b2(i,j), then this mapping M will be such that
- * M[b1(i,j)] = b2(i,j).  Generating this mapping requires O(n) time.</p>
+ * <p>If your sequences are guaranteed not to have duplicates, 
+ * and to contain the same set of elements, then consider instead using the
+ * {@link org.cicirello.permutations.distance.KendallTauDistance} class, which 
+ * assumes permutations of the integers from 0 to N-1.</p>
  *
- * <p>The previous step provides a permutation of the integers from 0 to n-1 that maps the elements between the two strings (sequences).
- * The final step is to count the inversions in that permutation which is done in O(n lg n) time with a modified mergesort.</p>
- *
- * <p>Runtime: O(n lg n), where n is the length of the shorter of the two sequences.</p>
- *
- * <p>If your sequences are guaranteed not to have duplicates, and to contain the same set of elements, then consider instead using the
- * {@link org.cicirello.permutations.distance.KendallTauDistance} class, which assumes permutations of the integers from 0 to N-1.</p>
+ * <p>This program replicates the data for the paper:<br>
+ * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2019arXiv.html">"Kendall Tau
+ * Sequence Distance: Extending Kendall Tau from Ranks to Sequences,"</a> 
+ * arXiv preprint arXiv: [cs.DM], May 2019.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.31
@@ -92,27 +84,31 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	private final boolean USE_HASHMAP;
 	
 	/**
-	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
-	 * where n is the length of the sequence.  Both sequences must be the same length.
-	 * The default algorithm requires sequence elements to be hashable, and supports sequences of any primitive type,
-	 * or a sequence of an object type of a class that has overridden the hashCode 
-	 * and equals methods of the Object class.
+	 * The KendallTauDistance class provides two algorithms.  
+	 * The default algorithm requires sequence elements to either be primitives (e.g.,
+	 * byte, short, int, long, char, float, double, boolean) or to be of a class that overrides
+	 * the hashCode and equals methods of the {@link java.lang.Object} class.
 	 */
 	public KendallTauSequenceDistance() {
 		USE_HASHMAP = true;
 	}
 	
 	/**
-	 * The KendallTauDistance class provides two algorithms.  The runtime of both algorithms is O(n lg n)
-	 * where n is the length of the sequence.  Both sequences must be the same length.
-	 * The default algorithm requires sequence elements to be hashable, and supports sequences of any primitive type,
-	 * or a sequence of an object type of a class that has overridden the hashCode 
-	 * and equals methods of the Object class.
-	 * The alternate algorithm requires sequence elements to be comparable (e.g., sequences of any primitive type,
-	 * or a sequence of an object type that implements the Comparable interface).
-	 * Our experiments indicate that the alternate algorithm tends to be slower (even though same asymptotic runtime).
-	 * However, in cases where hash collisions are common, the alternate algorithm may run faster than the default,
-	 * whose performance depends on the performance of a hash table.
+	 * <p>The KendallTauDistance class provides two algorithms.
+	 * This constructor enables you to select which algorithm to use.</p>
+	 * 
+	 * <p>The default algorithm requires sequence elements to either be primitives (e.g.,
+	 * byte, short, int, long, char, float, double, boolean) or to be of a class that overrides
+	 * the hashCode and equals methods of the {@link java.lang.Object} class.</p>
+	 *
+	 * <p>The alternate algorithm requires objects to be of a class that implements 
+	 * the {@link java.lang.Comparable} interface, and overrides the equals method 
+	 * of the {@link java.lang.Object} class.</p>
+	 *
+	 * <p>Under most conditions, the preferred algorithm is the default.  The alternate
+	 * algorithm may be desirable if the cost to compare objects is significantly less than the
+	 * cost to hash objects, or if the objects are of a class that implements Comparable but
+	 * which does not provide an implementation of hashCode.</p>
 	 *
 	 * @since 1.2.3
 	 *
