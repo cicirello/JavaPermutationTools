@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -53,7 +53,7 @@ import org.cicirello.permutations.Permutation;
  * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.18.6.20
+ * @version 1.19.5.8
  * @since 1.0
  */
 public class EditDistance implements PermutationDistanceMeasurerDouble 
@@ -61,8 +61,6 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	private double insertCost;
 	private double deleteCost;
 	private double changeCost;
-  
-	private boolean disallowChanges;
   
 	/**
 	* Constructs an EditDistance function.
@@ -76,7 +74,6 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 		this.insertCost = insertCost;
 		this.deleteCost = deleteCost;
 		this.changeCost = changeCost;
-		disallowChanges = false;
 	}
   
 	/**
@@ -85,7 +82,7 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	 */
 	public EditDistance() {
 		insertCost = deleteCost = 0.5;
-		disallowChanges = true;
+		changeCost = 1.0;
 	}
   
 	/**
@@ -95,7 +92,6 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	public double distancef(Permutation p1, Permutation p2) {
 		int L1 = p1.length();
 		int L2 = p2.length();
-		if (disallowChanges) changeCost = L1 + L2;
 		double[][] D = new double[L1 + 1][L2 + 1];
 		for (int i = 1; i <= L1; i++) {
 			D[i][0] = D[i-1][0] + deleteCost;
