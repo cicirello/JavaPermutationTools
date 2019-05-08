@@ -193,9 +193,11 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
 			return distance(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
 		} else {
-			return distance(new NonComparableObjectSequence<Object>(s1), new NonComparableObjectSequence<Object>(s2));
+			return distance(new NonComparableObjectSequence<>(s1), new NonComparableObjectSequence<>(s2));
 		}
 	}
+	
+	
 	
 	/**
 	 * {@inheritDoc}
@@ -206,7 +208,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
 			return distancef(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
 		} else {
-			return distancef(new NonComparableObjectSequence<Object>(s1), new NonComparableObjectSequence<Object>(s2));
+			return distancef(new NonComparableObjectSequence<>(s1), new NonComparableObjectSequence<>(s2));
 		}
 	}
 	
