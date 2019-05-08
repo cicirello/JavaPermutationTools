@@ -92,6 +92,8 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	public double distancef(Permutation p1, Permutation p2) {
 		int L1 = p1.length();
 		int L2 = p2.length();
+		if (L1 != L2) throw new IllegalArgumentException("Permutations must be of the same length.");
+		if (L1 <= 1) return 0;
 		double[][] D = new double[L1 + 1][L2 + 1];
 		for (int i = 1; i <= L1; i++) {
 			D[i][0] = D[i-1][0] + deleteCost;
@@ -111,6 +113,32 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 			}
 		}
 		return D[L1][L2];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException The maxf method is not currently unsupported when computing
+	 * edit distance.
+	 */
+	@Override
+	public double maxf(int length) {
+		throw new UnsupportedOperationException("Unimplemented.");
+		/* // Doesn't quite work.  Might be too complicated to efficiently compute in general. 
+		if (length <= 1) return 0;
+		double combined = insertCost + deleteCost;
+		boolean even = length % 2 == 0;
+		if (even && combined <= changeCost*length/(length-1)) {
+			return (length-1)*combined;
+		}
+		if (!even && combined <= changeCost) {
+			return (length-1)*combined;
+		}
+		if (length == 3) {
+			return Math.max(Math.min(combined, 3*changeCost), Math.min(2*combined, 2*changeCost)); 
+		}
+		double m1 = length*changeCost;
+		double m2 = maxf(length-1)+combined;
+		return Math.min(m1, m2); */
 	}
   
 }

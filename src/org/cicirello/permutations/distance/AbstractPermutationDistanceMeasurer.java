@@ -27,7 +27,7 @@ import org.cicirello.permutations.Permutation;
  * where distance is an integer value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2
+ * @version 1.19.5.8
  * @since 1.0
  *
  */
@@ -41,6 +41,12 @@ abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanc
 	final public double distancef(Permutation p1, Permutation p2) {
 		return distance(p1,p2);
 	}
-		
-		
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	final public double maxf(int length) {
+		return max(length);
+	}
 }

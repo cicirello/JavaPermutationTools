@@ -1,5 +1,5 @@
 /*
- * Copyright 2008, 2010, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2008, 2010, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,7 +33,7 @@ import org.cicirello.permutations.Permutation;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2  
+ * @version 1.19.5.8  
  * @since 1.0
  */
 public class ExactMatchDistance extends AbstractPermutationDistanceMeasurer {
@@ -52,6 +52,15 @@ public class ExactMatchDistance extends AbstractPermutationDistanceMeasurer {
 			}
 		}
 		return misMatchPoints; 
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 1) return 0;
+		return length;
 	}
   
 }

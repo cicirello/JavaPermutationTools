@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2016-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -32,13 +32,11 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n), where n is the permutation length.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2
+ * @version 1.19.5.8
  * @since 1.0
  */
 public class ScrambleDistance extends AbstractPermutationDistanceMeasurer {
 
-	
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -47,5 +45,14 @@ public class ScrambleDistance extends AbstractPermutationDistanceMeasurer {
 		if (p1.equals(p2)) return 0;
 		else return 1;
 	}	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 1) return 0;
+		return 1;
+	}
 
 }

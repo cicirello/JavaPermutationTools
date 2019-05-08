@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -32,7 +32,7 @@ import org.cicirello.permutations.Permutation;
  * the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.18.6.20
+ * @version 1.19.5.8
  * @since 1.0
  *  
  */
@@ -67,5 +67,16 @@ public final class CyclicIndependentDistance implements PermutationDistanceMeasu
 			result = Math.min(result, d.distance(p1, pCopy));
 		}
 		return result;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws UnsupportedOperationException The max method is unsupported when computing
+	 * distance with cyclic independence.
+	 */
+	@Override
+	public int max(int length) {
+		throw new UnsupportedOperationException("Unimplemented.");
 	}
 }

@@ -62,7 +62,7 @@ import org.cicirello.permutations.Permutation;
  * management," in Proc. of MIC2005, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.4.27  
+ * @version 1.19.5.8  
  * @since 1.2.3
  * 
  */
@@ -86,6 +86,15 @@ public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasu
 	public double distancef(Permutation p1, Permutation p2) {
 		if (p1.length() <= 1) return 0; 
 		return devDistance.distancef(p1,p2) * 2.0 / (p1.length() * p1.length() - (p1.length() % 2));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double maxf(int length) {
+		if (length <= 1) return 0;
+		return 1.0;
 	}
 
 }

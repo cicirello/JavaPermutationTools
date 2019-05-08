@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2015, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -43,22 +43,20 @@ import org.cicirello.permutations.Permutation;
  * C. Lee, "Some properties of nonbinary error-correcting codes," in IRE Transactions on Information Theory, vol. 4, no. 2, pp. 77-82, June 1958.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2
+ * @version 1.19.5.8
  * @since 1.0
  * 
  */
 public class LeeDistance extends AbstractPermutationDistanceMeasurer {
-
-	
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		int distancePoints = 0;
 		int L1 = p1.length();
-	  
+		if (L1 <= 1) return 0;
+		int distancePoints = 0;
 		int[] invP1 = p1.getInverse();
 		int[] invP2 = p2.getInverse();
 	  
@@ -68,6 +66,15 @@ public class LeeDistance extends AbstractPermutationDistanceMeasurer {
 		}
 	  
 		return distancePoints;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 1) return 0;
+		return length * (length / 2);
 	}
 
 }

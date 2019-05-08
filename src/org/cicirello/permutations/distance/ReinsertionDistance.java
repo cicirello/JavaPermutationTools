@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -57,13 +57,11 @@ import org.cicirello.permutations.Permutation;
  * Communications of the ACM, 20(5):350-353, May, 1977.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.17 
+ * @version 1.19.5.8 
  * @since 1.0
  *
  */
 public class ReinsertionDistance extends AbstractPermutationDistanceMeasurer {
-
-	
 	
 	/**
 	 * {@inheritDoc}
@@ -71,6 +69,15 @@ public class ReinsertionDistance extends AbstractPermutationDistanceMeasurer {
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
 		return p1.length() - lcs(p1,p2);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 1) return 0;
+		return length - 1;
 	}
 	
 	// This version runs in O(n lg n)

@@ -27,7 +27,7 @@ import org.cicirello.permutations.Permutation;
  * where the distance is a floating-point value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.18.6.20
+ * @version 1.19.5.8
  * @since 1.0
  */
 public interface PermutationDistanceMeasurerDouble
@@ -40,5 +40,15 @@ public interface PermutationDistanceMeasurerDouble
 	 * @return distance between p1 and p2 
 	 */
 	double distancef(Permutation p1, Permutation p2);
+	
+	/**
+	 * Computes the maximum possible distance between permutations
+	 * of a specified length.
+	 *
+	 * @param length Permutation length.
+	 * @return the maximum distance between a pair of permutations of the specified length.
+	 * @since 1.2.4
+	 */
+	double maxf(int length);
 
 }

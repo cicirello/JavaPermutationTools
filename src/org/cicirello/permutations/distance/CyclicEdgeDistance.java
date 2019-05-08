@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -42,7 +42,7 @@ import org.cicirello.permutations.Permutation;
  * S. Ronald, "Distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1997, pp. 49–54.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2 
+ * @version 1.19.5.8 
  * @since 1.0
  */
 public class CyclicEdgeDistance extends AbstractPermutationDistanceMeasurer {
@@ -68,5 +68,15 @@ public class CyclicEdgeDistance extends AbstractPermutationDistanceMeasurer {
 		}
 		
 		return countNonSharedEdges;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 3) return 0;
+		if (length == 4) return 2;
+		return length;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2014-2015, 2017-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2014-2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -44,7 +44,7 @@ import org.cicirello.permutations.Permutation;
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.2 
+ * @version 1.19.5.8 
  * @since 1.0
  */
 public class CyclicRTypeDistance extends AbstractPermutationDistanceMeasurer {
@@ -71,6 +71,12 @@ public class CyclicRTypeDistance extends AbstractPermutationDistanceMeasurer {
 		return countNonSharedEdges;
 	}
 	
-
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int max(int length) {
+		if (length <= 2) return 0;
+		return length;
+	}
 }
