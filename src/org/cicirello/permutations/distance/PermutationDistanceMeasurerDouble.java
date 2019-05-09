@@ -27,7 +27,7 @@ import org.cicirello.permutations.Permutation;
  * where the distance is a floating-point value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8
+ * @version 1.19.5.9
  * @since 1.0
  */
 public interface PermutationDistanceMeasurerDouble
@@ -49,6 +49,27 @@ public interface PermutationDistanceMeasurerDouble
 	 * @return the maximum distance between a pair of permutations of the specified length.
 	 * @since 1.2.4
 	 */
-	double maxf(int length);
+	default double maxf(int length) {
+		throw new UnsupportedOperationException("Unimplemented for this class.");
+	}
+	
+	/**
+	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
+	 * 
+	 * <p>This method is supported by any implementing class that implements the maxf method.
+	 * If maxf is unsupported, then so is normalizedDistance.  Please consult the documentation
+	 * of maxf for support information.</p>
+	 *
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 
+	 * @throws UnsupportedOperationException If this class doesn't support the maxf method.
+	 * @since 1.2.4
+	 */
+	default double normalizedDistance(Permutation p1, Permutation p2) {
+		double m = maxf(p1.length());
+		if (m==0) return 0;
+		return distancef(p1,p2) / m;
+	}
 
 }

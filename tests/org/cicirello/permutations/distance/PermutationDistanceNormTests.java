@@ -26,9 +26,9 @@ import static org.junit.Assert.*;
 import org.cicirello.permutations.*;
 
 /**
- * JUnit 4 tests for the max method of various classes that implement permutation distance metrics.
+ * JUnit 4 tests for the normalizedDistance method of various classes that implement permutation distance metrics.
  */
-public class PermutationDistanceMaxTests {
+public class PermutationDistanceNormTests {
 	
 	private final static double EPSILON = 1e-10;
 	
@@ -36,7 +36,7 @@ public class PermutationDistanceMaxTests {
 	public void testAcyclicEdgeDistance() {
 		AcyclicEdgeDistance d = new AcyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class PermutationDistanceMaxTests {
 	public void testCyclicEdgeDistance() {
 		CyclicEdgeDistance d = new CyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=3 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class PermutationDistanceMaxTests {
 	public void testCyclicRTypeDistance() {
 		CyclicRTypeDistance d = new CyclicRTypeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class PermutationDistanceMaxTests {
 	public void testRTypeDistance() {
 		RTypeDistance d = new RTypeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class PermutationDistanceMaxTests {
 	public void testDeviationDistance() {
 		DeviationDistance d = new DeviationDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class PermutationDistanceMaxTests {
 	public void testDeviationDistanceNormalized() {
 		DeviationDistanceNormalized d = new DeviationDistanceNormalized();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON);
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class PermutationDistanceMaxTests {
 	public void testDeviationDistanceNormalized2005() {
 		DeviationDistanceNormalized2005 d = new DeviationDistanceNormalized2005();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON);
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
 		}
 	}
 	
@@ -92,7 +92,7 @@ public class PermutationDistanceMaxTests {
 	public void testSquaredDeviationDistance() {
 		SquaredDeviationDistance d = new SquaredDeviationDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class PermutationDistanceMaxTests {
 	public void testLeeDistance() {
 		LeeDistance d = new LeeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class PermutationDistanceMaxTests {
 	public void testExactMatchDistance() {
 		ExactMatchDistance d = new ExactMatchDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -116,7 +116,7 @@ public class PermutationDistanceMaxTests {
 	public void testInterchangeDistance() {
 		InterchangeDistance d = new InterchangeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -124,7 +124,7 @@ public class PermutationDistanceMaxTests {
 	public void testKendallTauDistance() {
 		KendallTauDistance d = new KendallTauDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -133,7 +133,7 @@ public class PermutationDistanceMaxTests {
 	public void testReinsertionDistance() {
 		ReinsertionDistance d = new ReinsertionDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMax(d,n), d.max(n));
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
 		}
 	}
 	
@@ -145,7 +145,7 @@ public class PermutationDistanceMaxTests {
 				for (double c = i+d; c < 1.0; c += 0.1) {
 					EditDistance dist = new EditDistance(i, d, c);
 					for (int n = 0; n <= 7; n++) {
-						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", bruteForceComputeMaxD(dist,n), dist.maxf(n), EPSILON);
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
 					}
 				}
 			}
@@ -155,18 +155,18 @@ public class PermutationDistanceMaxTests {
 				for (double c =0.0; c < 1.0 && c < i+d; c += 0.1) {
 					EditDistance dist = new EditDistance(i, d, c);
 					for (int n = 0; n <= 7; n++) {
-						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", bruteForceComputeMaxD(dist,n), dist.maxf(n), EPSILON);
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
 					}
 				}
 			}
 		} */
 	}
 	
-	private int bruteForceComputeMax(PermutationDistanceMeasurer d, int n) {
-		int max = 0;
+	private double bruteForceComputeMax(PermutationDistanceMeasurer d, int n) {
+		double max = 0;
 		Permutation p1 = new Permutation(n, 0);
 		for (Permutation p2 : p1) {
-			max = Math.max(max, d.distance(p1,p2));
+			max = Math.max(max, d.normalizedDistance(p1,p2));
 		}
 		return max;
 	}
@@ -175,7 +175,7 @@ public class PermutationDistanceMaxTests {
 		double max = 0;
 		Permutation p1 = new Permutation(n, 0);
 		for (Permutation p2 : p1) {
-			max = Math.max(max, d.distancef(p1,p2));
+			max = Math.max(max, d.normalizedDistance(p1,p2));
 		}
 		return max;
 	}

@@ -32,7 +32,7 @@ import org.cicirello.permutations.Permutation;
  * the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8
+ * @version 1.19.5.9
  * @since 1.0
  *  
  */
@@ -70,9 +70,10 @@ public final class CyclicIndependentDistanceDouble implements PermutationDistanc
 	}
 	
 	/**
-	 * {@inheritDoc}
-	 * @throws UnsupportedOperationException The maxf method is unsupported when computing
+	 * The maxf method is unsupported when computing
 	 * distance with cyclic independence.
+	 * 
+	 * @throws UnsupportedOperationException If method is invoked.
 	 */
 	@Override
 	public double maxf(int length) {

@@ -53,7 +53,7 @@ import org.cicirello.permutations.Permutation;
  * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8
+ * @version 1.19.5.9
  * @since 1.0
  */
 public class EditDistance implements PermutationDistanceMeasurerDouble 
@@ -92,8 +92,7 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	public double distancef(Permutation p1, Permutation p2) {
 		int L1 = p1.length();
 		int L2 = p2.length();
-		if (L1 != L2) throw new IllegalArgumentException("Permutations must be of the same length.");
-		if (L1 <= 1) return 0;
+		if (L1 == L2 && L1 <= 1) return 0;
 		double[][] D = new double[L1 + 1][L2 + 1];
 		for (int i = 1; i <= L1; i++) {
 			D[i][0] = D[i-1][0] + deleteCost;
@@ -116,29 +115,36 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 	}
 	
 	/**
-	 * {@inheritDoc}
-	 * @throws UnsupportedOperationException The maxf method is not currently unsupported when computing
+	 * The maxf method is not currently unsupported when computing
 	 * edit distance.
+	 *
+	 * @throws UnsupportedOperationException If this method is invoked. 
 	 */
 	@Override
 	public double maxf(int length) {
 		throw new UnsupportedOperationException("Unimplemented.");
-		/* // Doesn't quite work.  Might be too complicated to efficiently compute in general. 
+		/* // This is close but doesn't work.  Might be too complex to be worth computing here.
 		if (length <= 1) return 0;
 		double combined = insertCost + deleteCost;
-		boolean even = length % 2 == 0;
-		if (even && combined <= changeCost*length/(length-1)) {
+		if (combined <= changeCost) {
 			return (length-1)*combined;
 		}
-		if (!even && combined <= changeCost) {
-			return (length-1)*combined;
-		}
-		if (length == 3) {
-			return Math.max(Math.min(combined, 3*changeCost), Math.min(2*combined, 2*changeCost)); 
-		}
-		double m1 = length*changeCost;
-		double m2 = maxf(length-1)+combined;
-		return Math.min(m1, m2); */
+		if (length % 2 == 0) {
+			double m1 = (length-1)*combined;
+			double m2 = length*changeCost;
+			double m3 = combined + (length-2)*changeCost;
+			double max = m1 < m2 ? m1 : m2;
+			if (m3 < max) max = m3;
+			return max;
+		} else {
+			double m = (length-1)*changeCost;
+			double m1 = (length-2)*combined;
+			double m2 = length*changeCost;
+			double m3 = combined + (length-2)*changeCost;
+			double max = m1 < m2 ? m1 : m2;
+			if (m3 < max) max = m3;
+			return m > max ? m : max;
+		} */
 	}
   
 }

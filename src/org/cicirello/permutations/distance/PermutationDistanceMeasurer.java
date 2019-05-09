@@ -26,7 +26,7 @@ import org.cicirello.permutations.Permutation;
  * Implement this interface, PermutationDistanceMeasurer, to define a distance metric for permutations.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8
+ * @version 1.19.5.9
  * @since 1.0
  */
 public interface PermutationDistanceMeasurer
@@ -48,5 +48,20 @@ public interface PermutationDistanceMeasurer
 	 * @return the maximum distance between a pair of permutations of the specified length.
 	 * @since 1.2.4
 	 */
-	int max(int length);
+	default int max(int length) {
+		throw new UnsupportedOperationException("Unimplemented for this class.");
+	}
+	
+	/**
+	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
+	 * 
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 
+	 * @throws UnsupportedOperationException If this class doesn't support the max method.
+	 * @since 1.2.4
+	 */
+	default double normalizedDistance(Permutation p1, Permutation p2) {
+		throw new UnsupportedOperationException("Unimplemented for this class.");
+	}
 }
