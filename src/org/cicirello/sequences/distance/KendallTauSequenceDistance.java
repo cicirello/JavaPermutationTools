@@ -70,10 +70,10 @@ import java.util.HashMap;
  * {@link org.cicirello.permutations.distance.KendallTauDistance} class, which 
  * assumes permutations of the integers from 0 to N-1.</p>
  *
- * <p>This program replicates the data for the paper:<br>
+ * <p>This distance metric, and both algorithms, is first described in the paper:<br>
  * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2019arXiv.html">"Kendall Tau
  * Sequence Distance: Extending Kendall Tau from Ranks to Sequences,"</a> 
- * arXiv preprint arXiv: [cs.DM], May 2019.</p>
+ * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 2.18.8.31
