@@ -22,6 +22,8 @@
 package org.cicirello.permutations;
 
 import java.util.SplittableRandom;
+import java.util.concurrent.ThreadLocalRandom;
+import java.math.BigInteger;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -73,13 +75,67 @@ public class PermutationTestCases {
 	@Test
 	public void testPermutationConstructorSpecific() {
 		int fact = 1;
-		for (int n = 1; n <= 4; n++) {
+		for (int n = 1; n <= 6; n++) {
 			fact *= n;
 			for (int i = 0; i < fact; i++) {
 				Permutation p = new Permutation(n, i);
 				assertEquals("toInteger should produce same int value", i, p.toInteger());
+				assertEquals("toBigInteger should produce same int value", BigInteger.valueOf(i), p.toBigInteger());
 				validatePermutation(p, n);
 			}
+		}
+		int n = 12;
+		fact = 1;
+		for (int i = 2; i <= n; i++) {
+			fact *= i;
+		}
+		SplittableRandom r = new SplittableRandom();
+		for (int i = 0; i < 100; i++) {
+			int which = r.nextInt(fact);
+			Permutation p = new Permutation(n, which);
+			assertEquals("toInteger should produce same int value", which, p.toInteger());
+			assertEquals("toBigInteger should produce same int value", BigInteger.valueOf(which), p.toBigInteger());
+			validatePermutation(p, n);
+		}
+	}
+	
+	@Test
+	public void testPermutationConstructorSpecificBigInt() {
+		int fact = 1;
+		for (int n = 1; n <= 6; n++) {
+			fact *= n;
+			for (int i = 0; i < fact; i++) {
+				BigInteger big = BigInteger.valueOf(i);
+				Permutation p = new Permutation(n, big);
+				assertEquals("toInteger should produce same int value", i, p.toInteger());
+				assertEquals("toBigInteger should produce same int value", big, p.toBigInteger());
+				validatePermutation(p, n);
+			}
+		}
+		int n = 12;
+		fact = 1;
+		for (int i = 2; i <= n; i++) {
+			fact *= i;
+		}
+		SplittableRandom r = new SplittableRandom();
+		for (int i = 0; i < 100; i++) {
+			int which = r.nextInt(fact);
+			BigInteger bigWhich = BigInteger.valueOf(which);
+			Permutation p = new Permutation(n, bigWhich);
+			assertEquals("toInteger should produce same int value", which, p.toInteger());
+			assertEquals("toBigInteger should produce same int value", bigWhich, p.toBigInteger());
+			validatePermutation(p, n);
+		}
+		n = 20;
+		BigInteger f = BigInteger.ONE;
+		for (int i = 2; i <= n; i++) {
+			f = f.multiply(BigInteger.valueOf(i));
+		}
+		for (int i = 0; i < 20; i++) {
+			BigInteger bigWhich = new BigInteger(f.bitLength()-1, ThreadLocalRandom.current());
+			Permutation p = new Permutation(n, bigWhich);
+			assertEquals("toBigInteger should produce same BigInteger value", bigWhich, p.toBigInteger());
+			validatePermutation(p, n);
 		}
 	}
 	

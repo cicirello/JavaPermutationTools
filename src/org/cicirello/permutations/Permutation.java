@@ -1,5 +1,5 @@
 /*
- * Copyright 2005, 2010, 2014-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005, 2010, 2014-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,6 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.io.Serializable;
 import java.util.Iterator;
+import java.math.BigInteger;
 
 
 /**
@@ -35,7 +36,7 @@ import java.util.Iterator;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 2.18.8.1
+ * @version 1.19.5.9
  * @since 1.0
  */
 public final class Permutation implements Serializable, Iterable<Permutation>
@@ -82,7 +83,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	* Initializes a specific permutation from an integer in mixed radix form representing the chosen
 	* permutation.  See the toInteger() method which can be used to generate this value for a given
 	* permutation.  The n! permutations of the integers from 0 to n-1 are mapped to the integers from
-	* 0..(n!-1).
+	* 0..(n!-1).  Runtime of this constructor is O(n^2).
 	* @param n The length of the permutation.
 	* @param value The integer value of the permutation in the interval: 0..(n!-1).
 	*/
@@ -99,6 +100,44 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 			}
 			permutation[i] = temp;
 			value = value / (n-i);
+		}
+	}
+	
+	/**
+	* <p>Initializes a specific permutation from an integer in mixed radix form representing the chosen
+	* permutation.  See the toInteger() method which can be used to generate this value for a given
+	* permutation.  The n! permutations of the integers from 0 to n-1 are mapped to the integers from
+	* 0..(n!-1).  Runtime of this constructor is O(n^2).</p>
+	* 
+	* <p>Even with the operations on BigInteger objects, the runtime is O(n^2).  It performs O(n^2)
+	* operations on primitive values.  It performs only O(n) divisions on BigInteger objects.
+	* It can be shown that the amortized cost of all of those divisions is bounded by the
+	* most costly division (each division involves progressively smaller numbers).  The
+	* largest number involved in a division is the parameter value, which can be at most n!.
+	* The number n! consists of O(log((n-1)!)) = O(n log n) digits.  Java's BigInteger division method
+	* currently implements the Burnikel-Ziegler algorithm, using the Toom–Cook multiplication algorithm.
+	* Dividing m-digit numbers with this combination has a runtime of O(m^1.465 log(m)).  Substituting
+	* the number of digits for m, we have: O(n^1.465 log(n)^2.465).  The cost of all of the divisions
+	* is thus less asymptotically than the cost of the primitive operations: O(n^2).</p>
+	*
+	* @param n The length of the permutation.
+	* @param value The integer value of the permutation in the interval: 0..(n!-1).
+	* @since 1.2.5
+	*/
+	public Permutation(int n, BigInteger value) {
+		permutation = new int[n];
+		for (int i = 0; i < n; i++) {
+			permutation[i] = i;   
+		}
+		for (int i = 0; i < n-1; i++) {
+			BigInteger[] divRem = value.divideAndRemainder(BigInteger.valueOf(n-i));
+			int j = i + divRem[1].intValue();
+			int temp = permutation[j];
+			for (int k = j; k > i; k--) {
+				permutation[k] = permutation[k-1];
+			}
+			permutation[i] = temp;
+			value = divRem[0];
 		}
 	}
 	
@@ -156,7 +195,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	/**
 	* Generates a unique integer representing the permutation.  Maps the permutations of the integers, 0..(N-1), to 
 	* the integers, 0..(N!-1), using a mixed radix representation.  This method is only supported for permutations
-	* of length 12 or less.
+	* of length 12 or less.  Runtime of this method is O(N^2).
 	* @return a mixed radix representation of the permutation
 	* @throws UnsupportedOperationException when permutation length is greater than 12.
 	*/
@@ -174,6 +213,39 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 				index[j]--;
 			}
 			multiplier *= factor;
+			factor--;
+		}
+		return result;
+	}
+	
+	/**
+	* <p>Generates a unique integer representing the permutation.  Maps the permutations of the integers, 0..(N-1), to 
+	* the integers, 0..(N!-1), using a mixed radix representation.</p>  
+	* <p>Even with the use of BigInteger objects, the runtime of this method is O(N^2).  Specifically,
+	* it performs O(N^2) operations on primitives.  And the sequence of operations on BigIntegers costs
+	* no more than the cost to compute N! using BigInteger objects, whose runtime bounded by that of the last
+	* multiplication of N * (N-1)!  The number (N-1)! consists of O(log((N-1)!)) = O(N log N) digits.  Java's
+	* BigInteger.multiply currently implements the Toom–Cook algorithm, which has a runtime for M-digit numbers
+	* of O(M^1.465).  Thus, the cost of all of the BigInteger operations is O(N^1.465 log(N)^1.465).  Therefore,
+	* the runtime is dominated by the cost of the primitive operations: O(N^2).</p>
+	*
+	* @return a mixed radix representation of the permutation
+	* @since 1.2.5
+	*/
+	public BigInteger toBigInteger() {
+		int N = permutation.length;
+		if (N <= 12) return BigInteger.valueOf(toInteger());
+		int[] index = new int[N];
+		for (int i = 0; i < N; i++) index[i] = i;
+		BigInteger result = BigInteger.ZERO;
+		BigInteger multiplier = BigInteger.ONE;
+		int factor = N;
+		for (int i = 0; i < N-1; i++) {
+			result = result.add(multiplier.multiply(BigInteger.valueOf(index[permutation[i]])));
+			for (int j = permutation[i]; j < N; j++) {
+				index[j]--;
+			}
+			multiplier = multiplier.multiply(BigInteger.valueOf(factor));
 			factor--;
 		}
 		return result;
