@@ -71,7 +71,7 @@ import java.util.HashMap;
  * assumes permutations of the integers from 0 to N-1.</p>
  *
  * <p>This distance metric, and both algorithms, is first described in the paper:<br>
- * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2019arXiv.html">"Kendall Tau
+ * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2019arXiv.html" target=_top>"Kendall Tau
  * Sequence Distance: Extending Kendall Tau from Ranks to Sequences,"</a> 
  * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
  *
