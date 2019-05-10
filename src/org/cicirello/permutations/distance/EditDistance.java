@@ -56,7 +56,7 @@ import org.cicirello.permutations.Permutation;
  * @version 1.19.5.10
  * @since 1.0
  */
-public class EditDistance implements PermutationDistanceMeasurerDouble 
+public final class EditDistance implements PermutationDistanceMeasurerDouble 
 {
 	private double insertCost;
 	private double deleteCost;

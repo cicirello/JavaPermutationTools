@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -52,7 +52,7 @@ package org.cicirello.sequences.distance;
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.28
+ * @version 1.19.5.10
  * @since 1.1
  */
 public class EditDistance extends AbstractSequenceDistanceMeasurer {
@@ -110,7 +110,7 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	 @Override
-	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
+	final <T> int distance(Sequence<T> s1, Sequence<T> s2) {
 		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
 		int L1 = s1.length();
 		int L2 = s2.length();
@@ -139,7 +139,7 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	<T> double distancef(Sequence<T> s1, Sequence<T> s2) {
+	final <T> double distancef(Sequence<T> s1, Sequence<T> s2) {
 		int L1 = s1.length();
 		int L2 = s2.length();
 		double[][] D = new double[L1 + 1][L2 + 1];

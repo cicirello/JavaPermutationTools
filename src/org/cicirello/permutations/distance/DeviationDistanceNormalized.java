@@ -52,7 +52,7 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  * 
  */
-public class DeviationDistanceNormalized implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
+public final class DeviationDistanceNormalized implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	

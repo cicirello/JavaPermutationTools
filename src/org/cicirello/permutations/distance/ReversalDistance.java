@@ -50,7 +50,7 @@ import org.cicirello.permutations.Permutation;
 * @version 1.19.5.10
 * @since 1.0
 */
-public class ReversalDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+public final class ReversalDistance extends AbstractNormalizedPermutationDistanceMeasurer {
 
 	private byte[] dist;
 	private int PERM_LENGTH;
