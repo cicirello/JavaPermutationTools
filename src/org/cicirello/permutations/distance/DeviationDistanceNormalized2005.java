@@ -66,7 +66,7 @@ import org.cicirello.permutations.Permutation;
  * @since 1.2.3
  * 
  */
-public final class DeviationDistanceNormalized2005 implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
+public final class DeviationDistanceNormalized2005 implements NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	
@@ -101,6 +101,22 @@ public final class DeviationDistanceNormalized2005 implements PermutationDistanc
 	@Override
 	public double normalizedDistance(Permutation p1, Permutation p2) {
 		return distancef(p1,p2); 
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double boundf(int length) {
+		return maxf(length);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double normalizedByBound(Permutation p1, Permutation p2) {
+		return normalizedDistance(p1, p2);
 	}
 
 }

@@ -31,13 +31,13 @@ import org.cicirello.permutations.Permutation;
  * @since 1.2.5
  *
  */
-abstract class AbstractNormalizedPermutationDistanceMeasurer extends AbstractPermutationDistanceMeasurer implements NormalizedPermutationDistanceMeasurer {
+abstract class AbstractNormalizedPermutationDistanceMeasurer extends AbstractPermutationDistanceMeasurer implements NormalizedPermutationDistanceMeasurer, NormalizedPermutationDistanceMeasurerDouble {
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	final public double maxf(int length) {
+	public final double maxf(int length) {
 		return max(length);
 	}
 	
@@ -46,9 +46,33 @@ abstract class AbstractNormalizedPermutationDistanceMeasurer extends AbstractPer
 	 * {@inheritDoc}
 	 */
 	@Override
-	final public double normalizedDistance(Permutation p1, Permutation p2) {
+	public final double normalizedDistance(Permutation p1, Permutation p2) {
 		int m = max(p1.length());
 		if (m==0) return 0;
 		return 1.0 * distance(p1,p2) / m;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final double boundf(int length) {
+		return max(length);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final int bound(int length) {
+		return max(length);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final double normalizedByBound(Permutation p1, Permutation p2) {
+		return normalizedDistance(p1, p2);
 	}
 }

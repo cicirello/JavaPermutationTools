@@ -52,7 +52,7 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  * 
  */
-public final class DeviationDistanceNormalized implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
+public final class DeviationDistanceNormalized implements NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	
@@ -90,6 +90,22 @@ public final class DeviationDistanceNormalized implements PermutationDistanceMea
 		double m = maxf(p1.length());
 		if (m == 0.0) return 0;
 		return distancef(p1,p2) / m; 
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double boundf(int length) {
+		return maxf(length);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double normalizedByBound(Permutation p1, Permutation p2) {
+		return normalizedDistance(p1, p2);
 	}
 
 }

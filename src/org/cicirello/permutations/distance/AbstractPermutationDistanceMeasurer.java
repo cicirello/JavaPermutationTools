@@ -31,13 +31,13 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  *
  */
-abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer {
+abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, PermutationDistanceMeasurerDouble {
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	final public double distancef(Permutation p1, Permutation p2) {
+	public final double distancef(Permutation p1, Permutation p2) {
 		return distance(p1,p2);
 	}
 }

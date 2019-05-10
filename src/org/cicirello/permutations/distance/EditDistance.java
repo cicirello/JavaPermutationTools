@@ -56,7 +56,7 @@ import org.cicirello.permutations.Permutation;
  * @version 1.19.5.10
  * @since 1.0
  */
-public final class EditDistance implements PermutationDistanceMeasurerDouble 
+public final class EditDistance implements BoundedPermutationDistanceMeasurerDouble 
 {
 	private double insertCost;
 	private double deleteCost;
@@ -112,6 +112,38 @@ public final class EditDistance implements PermutationDistanceMeasurerDouble
 			}
 		}
 		return D[L1][L2];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The upper bound is computed as the minimum of either the maximum 
+	 * cost if only change operations are used ( n*changeCost ),
+	 * or the maximum cost if no change operations are used ( (n-1)*(insertCost + deleteCost) ).</p>
+	 */
+	@Override
+	public double boundf(int length) {
+		if (length <= 1) return 0;
+		double combined = insertCost + deleteCost;
+		final double EPSILON = 1e-10;
+		if (combined <= changeCost) {
+			return (length-1)*combined + EPSILON;
+		}
+		// Max if don't use changes
+		double m1 = (length-1)*combined;
+		// Max if only use changes
+		double m2 = length*changeCost;
+		return (m1 < m2 ? m1 : m2) + EPSILON;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double normalizedByBound(Permutation p1, Permutation p2) {
+		double m = boundf(p1.length());
+		if (m==0) return 0;
+		return distancef(p1,p2) / m;
 	}
 	
 	/* // REMOVED FOR NOW

@@ -30,7 +30,17 @@ import org.cicirello.permutations.Permutation;
  * @version 1.19.5.10
  * @since 1.2.5
  */
-public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermutationDistanceMeasurerDouble {
+public interface NormalizedPermutationDistanceMeasurer extends BoundedPermutationDistanceMeasurer {
+	
+	/**
+	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
+	 * 
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 normalized to the interval [0.0, 1.0] 
+	 * @since 1.2.5
+	 */
+	double normalizedDistance(Permutation p1, Permutation p2);
 	
 	/**
 	 * Computes the maximum possible distance between permutations
