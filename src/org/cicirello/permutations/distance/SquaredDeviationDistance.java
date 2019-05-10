@@ -49,6 +49,11 @@ import org.cicirello.permutations.Permutation;
  * 
  */
 public class SquaredDeviationDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public SquaredDeviationDistance() {}
 
 	/**
 	 * {@inheritDoc}

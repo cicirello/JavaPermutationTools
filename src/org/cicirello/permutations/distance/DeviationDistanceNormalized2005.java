@@ -71,7 +71,7 @@ public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasu
 	private DeviationDistance devDistance;
 	
 	/**
-	 * Construct the distance measure.
+	 * Constructs the distance measurer as specified in the class documentation.
 	 */
 	public DeviationDistanceNormalized2005() {
 		devDistance = new DeviationDistance();

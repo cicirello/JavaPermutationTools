@@ -44,6 +44,12 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  */
 public class InterchangeDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public InterchangeDistance() {}
+	
     /**
 	 * {@inheritDoc}
 	 */

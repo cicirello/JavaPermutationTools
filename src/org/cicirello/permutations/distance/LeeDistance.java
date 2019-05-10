@@ -48,6 +48,11 @@ import org.cicirello.permutations.Permutation;
  * 
  */
 public class LeeDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public LeeDistance() {}
 
 	/**
 	 * {@inheritDoc}

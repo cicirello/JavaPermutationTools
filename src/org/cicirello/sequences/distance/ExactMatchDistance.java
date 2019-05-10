@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -42,10 +42,15 @@ package org.cicirello.sequences.distance;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.28
+ * @version 1.19.5.10
  * @since 1.1
  */
 public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public ExactMatchDistance() {}
 	
 	/**
 	 * {@inheritDoc}

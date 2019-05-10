@@ -64,6 +64,11 @@ import org.cicirello.permutations.Permutation;
 public class ReinsertionDistance extends AbstractNormalizedPermutationDistanceMeasurer {
 	
 	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public ReinsertionDistance() {}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

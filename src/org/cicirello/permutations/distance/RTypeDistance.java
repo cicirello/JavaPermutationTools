@@ -48,6 +48,11 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  */
 public class RTypeDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public RTypeDistance() {}
 
 	/**
 	 * {@inheritDoc}

@@ -38,6 +38,10 @@ import org.cicirello.permutations.Permutation;
  */
 public class ExactMatchDistance extends AbstractNormalizedPermutationDistanceMeasurer {
   
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public ExactMatchDistance() {}
 	
 	/**
 	 * {@inheritDoc}

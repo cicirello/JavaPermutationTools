@@ -46,8 +46,11 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  */
 public class CyclicEdgeDistance extends AbstractNormalizedPermutationDistanceMeasurer {
-
-
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public CyclicEdgeDistance() {}
 	
 	/**
 	 * {@inheritDoc}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,10 +27,13 @@ package org.cicirello.math.la;
  * represented as 2-D Java arrays.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>  
- * @version 1.18.7.1
+ * @version 1.19.5.10
  * @since 1.3
  */
 public class MatrixOps {
+	
+	// Utility class of static methods.  Should not be instantiated.
+	private MatrixOps() {}
 	
 	/**
 	 * Transpose a square matrix inline.

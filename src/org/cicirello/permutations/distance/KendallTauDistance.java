@@ -53,6 +53,11 @@ import java.util.Arrays;
  * 
  */
 public class KendallTauDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+	
+	/**
+	 * Constructs the distance measurer as specified in the class documentation.
+	 */
+	public KendallTauDistance() {}
 
 	/**
 	 * {@inheritDoc}
