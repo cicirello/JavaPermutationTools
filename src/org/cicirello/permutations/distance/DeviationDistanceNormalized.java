@@ -48,11 +48,11 @@ import org.cicirello.permutations.Permutation;
  * Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8  
+ * @version 1.19.5.10  
  * @since 1.0
  * 
  */
-public class DeviationDistanceNormalized implements PermutationDistanceMeasurerDouble  {
+public class DeviationDistanceNormalized implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	
@@ -63,9 +63,7 @@ public class DeviationDistanceNormalized implements PermutationDistanceMeasurerD
 		devDistance = new DeviationDistance();
 	}
 	
-	/**
-	 * This method implements the normalized deviation distance.
-	 * 
+	/** 
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -81,6 +79,17 @@ public class DeviationDistanceNormalized implements PermutationDistanceMeasurerD
 	public double maxf(int length) {
 		if (length <= 1) return 0;
 		return (length * length - (length % 2)) / (2.0 * (length-1));
+	}
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double normalizedDistance(Permutation p1, Permutation p2) {
+		double m = maxf(p1.length());
+		if (m == 0.0) return 0;
+		return distancef(p1,p2) / m; 
 	}
 
 }

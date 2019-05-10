@@ -42,11 +42,11 @@ import org.cicirello.permutations.Permutation;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8  
+ * @version 1.19.5.10  
  * @since 1.0
  * 
  */
-public class DeviationDistance extends AbstractPermutationDistanceMeasurer {
+public class DeviationDistance extends AbstractNormalizedPermutationDistanceMeasurer {
 
 	/**
 	 * {@inheritDoc}

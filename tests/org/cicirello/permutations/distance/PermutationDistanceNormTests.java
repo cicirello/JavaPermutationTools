@@ -137,7 +137,7 @@ public class PermutationDistanceNormTests {
 		}
 	}
 	
-	@Test
+	//@Test // uncomment if we implement
 	public void testEditDistance() {
 		/* // Uncomment if we implement. 
 		for (double i = 0.0; i < 1.0; i += 0.1) {
@@ -162,7 +162,7 @@ public class PermutationDistanceNormTests {
 		} */
 	}
 	
-	private double bruteForceComputeMax(PermutationDistanceMeasurer d, int n) {
+	private double bruteForceComputeMax(NormalizedPermutationDistanceMeasurer d, int n) {
 		double max = 0;
 		Permutation p1 = new Permutation(n, 0);
 		for (Permutation p2 : p1) {
@@ -171,7 +171,7 @@ public class PermutationDistanceNormTests {
 		return max;
 	}
 	
-	private double bruteForceComputeMaxD(PermutationDistanceMeasurerDouble d, int n) {
+	private double bruteForceComputeMaxD(NormalizedPermutationDistanceMeasurerDouble d, int n) {
 		double max = 0;
 		Permutation p1 = new Permutation(n, 0);
 		for (Permutation p2 : p1) {

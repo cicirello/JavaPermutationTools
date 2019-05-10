@@ -44,10 +44,10 @@ import org.cicirello.permutations.Permutation;
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8 
+ * @version 1.19.5.10 
  * @since 1.0
  */
-public class CyclicRTypeDistance extends AbstractPermutationDistanceMeasurer {
+public class CyclicRTypeDistance extends AbstractNormalizedPermutationDistanceMeasurer {
 	
 	
 	

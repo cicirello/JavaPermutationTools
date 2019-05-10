@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -21,38 +21,34 @@
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
+
 /**
- * Scramble Distance:
- *
- * <p>Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.
- * This was implemented for a very specific purpose, and unlikely to be subsequently useful.</p>
- *
- * <p>The scramble distance is 0 if permutation p1 is identical to p2.  Otherwise, scramble distance is 1.</p>
- *
- * <p>Runtime: O(n), where n is the permutation length.</p>
- *
+ * Implement this interface to define a distance metric for permutations that supports
+ * normalizing the distance to the interval [0,1].
+ * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 1.19.5.10
- * @since 1.0
+ * @since 1.2.5
  */
-public class ScrambleDistance extends AbstractNormalizedPermutationDistanceMeasurer {
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int distance(Permutation p1, Permutation p2) {
-		if (p1.equals(p2)) return 0;
-		else return 1;
-	}	
+public interface NormalizedPermutationDistanceMeasurerDouble {
 	
 	/**
-	 * {@inheritDoc}
+	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
+	 * 
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 
+	 * @since 1.2.5
 	 */
-	@Override
-	public int max(int length) {
-		if (length <= 1) return 0;
-		return 1;
-	}
-
+	double normalizedDistance(Permutation p1, Permutation p2);
+	
+	/**
+	 * Computes the maximum possible distance between permutations
+	 * of a specified length.
+	 *
+	 * @param length Permutation length.
+	 * @return the maximum distance between a pair of permutations of the specified length.
+	 * @since 1.2.5
+	 */
+	double maxf(int length);
 }

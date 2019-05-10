@@ -57,11 +57,11 @@ import org.cicirello.permutations.Permutation;
  * Communications of the ACM, 20(5):350-353, May, 1977.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8 
+ * @version 1.19.5.10 
  * @since 1.0
  *
  */
-public class ReinsertionDistance extends AbstractPermutationDistanceMeasurer {
+public class ReinsertionDistance extends AbstractNormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * {@inheritDoc}

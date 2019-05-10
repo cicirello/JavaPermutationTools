@@ -32,7 +32,7 @@ import org.cicirello.permutations.Permutation;
  * to the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.9
+ * @version 1.19.5.10
  * @since 1.0
  *  
  */
@@ -66,16 +66,5 @@ public final class ReversalIndependentDistanceDouble implements PermutationDista
 			result = Math.min(result, d.distancef(p1, pCopy));
 		}
 		return result;
-	}
-	
-	/**
-	 * The maxf method is unsupported when computing
-	 * distance with reversal independence.
-	 * 
-	 * @throws UnsupportedOperationException If method is invoked.
-	 */
-	@Override
-	public double maxf(int length) {
-		throw new UnsupportedOperationException("Unimplemented.");
 	}
 }

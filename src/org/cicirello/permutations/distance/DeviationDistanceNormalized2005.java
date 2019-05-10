@@ -62,11 +62,11 @@ import org.cicirello.permutations.Permutation;
  * management," in Proc. of MIC2005, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.8  
+ * @version 1.19.5.10  
  * @since 1.2.3
  * 
  */
-public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasurerDouble  {
+public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	
@@ -78,8 +78,6 @@ public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasu
 	}
 	
 	/**
-	 * This method implements the normalized deviation distance.
-	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -95,6 +93,14 @@ public class DeviationDistanceNormalized2005 implements PermutationDistanceMeasu
 	public double maxf(int length) {
 		if (length <= 1) return 0;
 		return 1.0;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double normalizedDistance(Permutation p1, Permutation p2) {
+		return distancef(p1,p2); 
 	}
 
 }

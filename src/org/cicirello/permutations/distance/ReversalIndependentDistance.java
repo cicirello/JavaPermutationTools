@@ -36,7 +36,7 @@ import org.cicirello.permutations.Permutation;
  * @since 1.0
  *  
  */
-public final class ReversalIndependentDistance implements PermutationDistanceMeasurer {
+public final class ReversalIndependentDistance extends AbstractPermutationDistanceMeasurer {
 	
 	private PermutationDistanceMeasurer d;
 	
@@ -68,14 +68,4 @@ public final class ReversalIndependentDistance implements PermutationDistanceMea
 		return result;
 	}
 	
-	/**
-	 * The max method is unsupported when computing
-	 * distance with reversal independence.
-	 * 
-	 * @throws UnsupportedOperationException If method is invoked.
-	 */
-	@Override
-	public int max(int length) {
-		throw new UnsupportedOperationException("Unimplemented.");
-	}
 }

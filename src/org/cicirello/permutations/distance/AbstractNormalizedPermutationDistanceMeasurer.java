@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -16,43 +16,39 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License
- * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
+ * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>. *
  */
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
+
 /**
- * Scramble Distance:
- *
- * <p>Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.
- * This was implemented for a very specific purpose, and unlikely to be subsequently useful.</p>
- *
- * <p>The scramble distance is 0 if permutation p1 is identical to p2.  Otherwise, scramble distance is 1.</p>
- *
- * <p>Runtime: O(n), where n is the permutation length.</p>
- *
+ * Extend this abstract class to define a distance metric for permutations
+ * where distance is an integer value, and which supports normalizing the distance. 
+ * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  * @version 1.19.5.10
- * @since 1.0
+ * @since 1.2.5
+ *
  */
-public class ScrambleDistance extends AbstractNormalizedPermutationDistanceMeasurer {
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int distance(Permutation p1, Permutation p2) {
-		if (p1.equals(p2)) return 0;
-		else return 1;
-	}	
+abstract class AbstractNormalizedPermutationDistanceMeasurer extends AbstractPermutationDistanceMeasurer implements NormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int max(int length) {
-		if (length <= 1) return 0;
-		return 1;
+	final public double maxf(int length) {
+		return max(length);
 	}
-
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	final public double normalizedDistance(Permutation p1, Permutation p2) {
+		int m = max(p1.length());
+		if (m==0) return 0;
+		return 1.0 * distance(p1,p2) / m;
+	}
 }

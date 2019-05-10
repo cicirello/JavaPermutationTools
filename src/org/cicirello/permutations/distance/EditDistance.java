@@ -53,7 +53,7 @@ import org.cicirello.permutations.Permutation;
  * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.9
+ * @version 1.19.5.10
  * @since 1.0
  */
 public class EditDistance implements PermutationDistanceMeasurerDouble 
@@ -114,15 +114,15 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 		return D[L1][L2];
 	}
 	
-	/**
+	/* // REMOVED FOR NOW
 	 * The maxf method is not currently unsupported when computing
 	 * edit distance.
 	 *
 	 * @throws UnsupportedOperationException If this method is invoked. 
 	 */
-	@Override
-	public double maxf(int length) {
-		throw new UnsupportedOperationException("Unimplemented.");
+	//@Override
+	//public double maxf(int length) {
+		//throw new UnsupportedOperationException("Unimplemented.");
 		/* // This is close but doesn't work.  Might be too complex to be worth computing here.
 		if (length <= 1) return 0;
 		double combined = insertCost + deleteCost;
@@ -145,6 +145,6 @@ public class EditDistance implements PermutationDistanceMeasurerDouble
 			if (m3 < max) max = m3;
 			return m > max ? m : max;
 		} */
-	}
+	//}
   
 }
