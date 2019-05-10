@@ -150,6 +150,17 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testPermutationSetFromArray() {
+		int[][] arrays = { { 0 }, { 1, 0 }, { 1, 0, 2 }, { 3, 1, 2, 0 } };
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a.length, 0);
+			p.set(a);
+			validatePermutation(p, a.length);
+			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+	}
+	
+	@Test
 	public void testPermutationCopyConstructor() {
 		for (int n = 1; n <= 10; n++) {
 			for (int i = 0; i < 10; i++) {
