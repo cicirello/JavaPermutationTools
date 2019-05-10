@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,8 +33,8 @@ import java.util.NoSuchElementException;
  * modify the returned Permutation without risk of interfering with the operation of the Iterator.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 2.18.8.1
- * @since 2.0
+ * @version 1.19.5.10
+ * @since 1.2
  */
 public class PermutationIterator implements Iterator<Permutation> {
 	
