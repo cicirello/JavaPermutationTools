@@ -251,7 +251,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		return result;
 	}
 	 
-	 /**
+	/**
 	 * Computes the inverse of the permutation.
 	 *
 	 * @return The inverse of the permutation, such that for all i, if
@@ -264,6 +264,31 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		}
 		return inverse;
 	}  
+	
+	/**
+	 * Computes a Permutation that is the inverse of this Permutation.
+	 * Specifically, this.get(i) == j iff inverse.get(j) == i.
+	 *
+	 * @return The inverse of the permutation, such that for all i,
+	 * this.get(i) == j iff inverse.get(j) == i. 
+	 * @since 1.3
+	 */
+	public Permutation getInversePermutation() {
+		return new Permutation(getInverse());
+	}
+	
+	/**
+	 * Inverts the Permutation, such that if p1 is the Permutation immediately
+	 * prior to the call to invert, and if p2 is the Permutation immediately after
+	 * the call to invert, then p1.get(i) == j iff p2.get(j) == i, for all i, j.
+	 * @since 1.3
+	 */
+	public void invert() {
+		int[] inverse = getInverse();
+		for (int i = 0; i < inverse.length; i++) {
+			permutation[i] = inverse[i];
+		}
+	}
 	
 	/**
 	 * Randomly shuffles the permutation. Uses
@@ -385,6 +410,20 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public int get(int i) {
 		return permutation[i];
+	}
+	
+	/**
+	 * Generates an array of int values from the interval [0, n) in the same order
+	 * that they occur in this Permutation.  The array that is returned is independent of
+	 * the object state (i.e., changes to its contents will not affect the Permutation).
+	 *
+	 * @return an int array containing the Permutation elements in the same order that they appear in
+	 * the Permutation.
+	 *
+	 * @since 1.3
+	 */
+	public int[] toArray() {
+		return permutation.clone();
 	}
 	
 	/**

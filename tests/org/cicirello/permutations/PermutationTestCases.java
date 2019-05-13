@@ -210,13 +210,59 @@ public class PermutationTestCases {
 	
 	@Test
 	public void testPermutationInverse() {
-		Permutation p = new Permutation(new int[] {4, 2, 5, 0, 3, 1});
+		int[] before = {4, 2, 5, 0, 3, 1};
+		int[] beforeCopy = before.clone();
+		Permutation p = new Permutation(before);
 		int[] expected = {3, 5, 1, 4, 0, 2};
 		int[] inv = p.getInverse();
 		assertArrayEquals("inverse", expected, inv);
+		assertArrayEquals("confirm inverse didn't change original", beforeCopy, before);
 		int[] array = {0, 1, 2, 3, 4, 5};
 		p = new Permutation(array);
 		assertArrayEquals("inverse", array, p.getInverse());
+	}
+	
+	@Test
+	public void testPermutationInverseP() {
+		int[] before = {4, 2, 5, 0, 3, 1};
+		Permutation p = new Permutation(before);
+		Permutation p2 = new Permutation(before);
+		int[] expected = {3, 5, 1, 4, 0, 2};
+		Permutation pExpected = new Permutation(expected);
+		Permutation inv = p.getInversePermutation();
+		assertEquals("inverse", pExpected, inv);
+		assertEquals("confirm inverse didn't change original", p2, p);
+		int[] array = {0, 1, 2, 3, 4, 5};
+		p = new Permutation(array);
+		assertEquals("inverse", p, p.getInversePermutation());
+	}
+	
+	@Test
+	public void testPermutationInvert() {
+		int[] before = {4, 2, 5, 0, 3, 1};
+		Permutation p = new Permutation(before);
+		int[] expected = {3, 5, 1, 4, 0, 2};
+		Permutation pExpected = new Permutation(expected);
+		p.invert();
+		assertEquals("inverse", pExpected, p);
+		int[] array = {0, 1, 2, 3, 4, 5};
+		p = new Permutation(array);
+		pExpected = new Permutation(array);
+		p.invert();
+		assertEquals("inverse", pExpected, p);
+	}
+	
+	@Test
+	public void testToArray() {
+		int[] init = {4, 2, 5, 0, 3, 1};
+		Permutation p = new Permutation(init);
+		int[] array = p.toArray();
+		assertArrayEquals("should be equal to current state", init, array);
+		for (int i = 0; i < array.length; i++) {
+			// change the array to confirm did not affect Permutation
+			array[i] = i;
+		}
+		assertArrayEquals("should still be equal to current state", init, p.toArray());
 	}
 	
 	@Test
