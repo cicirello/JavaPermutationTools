@@ -44,7 +44,7 @@ public class PermutationIterator implements Iterator<Permutation> {
 	
 	/**
 	 * Initializes a PermutationIterator to iterate over all permutations of a given length.  Specifically, it iterates over
-	 * permutations of the first n integers, i.e., the integers in the interval [0, n-1).  The first permutation in the 
+	 * permutations of the first n integers, i.e., the integers in the interval [0, n-1].  The first permutation in the 
 	 * iteration is chosen randomly.
 	 *
 	 * @param n The length of the permutations.
