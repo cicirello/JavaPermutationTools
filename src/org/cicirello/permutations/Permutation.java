@@ -626,4 +626,80 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	}
 	
 	private final int[] permutation;
+	
+	/**
+	 * <p>The Permutation.Mechanic class provides a means of adding application-specific
+	 * operations on Permutations without the need to directly alter the Permutation
+	 * class.  It is similar to a Visitor from the Visitor pattern.</p>
+	 *
+	 * <p>The methods of the Permutation.Mechanic class are unsafe, and if used incorrectly
+	 * can result in invalid Permutation state, and/or runtime exceptions.  The methods of
+	 * this nested class do not perform any bounds checks.  Additionally, they do not check 
+	 * whether the usage produces a valid permutation.</p>
+	 *
+	 * <p>The Permutation.Mechanic class cannot be instantiated directly.  To use, you must
+	 * define a subtype by extending the Permutation.Mechanic class.  It is the responsibility 
+	 * of the subclass to ensure that all of the methods of the subclass are safe.  For example,
+	 * one of the set methods of the Permutation.Mechanic class enables setting a specific 
+	 * index of a Permutation to any integer value.  Individual calls to that method will
+	 * produce an invalid Permutation.  It is the responsibility of any public method of the subclass to ensure
+	 * that a combination of calls to the set method is performed that results in a valid Permutation by the
+	 * time that subclass method returns.</p>
+	 *
+	 * <p>Here's the Mechanic analogy: Imagine that you take your car in for service.  The mechanic
+	 * opens the hood, and starts disconnecting and removing stuff.  During much of that time,
+	 * your car is inoperable.  However, by the time you pick up your car, it has been put back
+	 * together properly, and is in functioning order.  Perhaps it has new tires, or a new timing belt, etc,
+	 * so its state has changed.</p>
+	 *
+	 * <p>Consider a subclass, Subclass, of the Permutation.Mechanic.  An object of Subclass is like a mechanic,
+	 * and the Permutation passed to its methods is the car.  Each call to a public method of Subclass is like
+	 * a visit to the service station.  Just like a mechanic can take your car apart during that service visit,
+	 * a public method of Subclass can similarly, temporarily, create a non-functioning Permutation.  However,
+	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
+	 *
+	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
+	 * @version 1.19.5.13
+	 * @since 1.3
+	 */
+	public static class Mechanic {
+		
+		/**
+		 * The default constructor can only be called by subclasses.
+		 */
+		protected Mechanic() {}
+		
+		/**
+		 * Changes the state of the Permutation according to the contents 
+		 * of an array of int values.  The caller of this method is responsible
+		 * to ensure that the array is the same length as the Permutation,
+		 * and that the elements are a valid permutation of the integers from the 
+		 * set { 0, 1, ..., n-1 } where n is the length of the permutation.
+		 * The behavior of the Permutation object may become unstable otherwise.
+		 *
+		 * @param p Permutation object to change.
+		 * @param permutation An array of int values, assumed the be a valid permutation 
+		 * of the integers from 0 to n-1.
+		 */
+		protected final void set(Permutation p, int[] permutation) {
+			for (int i = 0; i < permutation.length; i++) {
+				p.permutation[i] = permutation[i]; 
+			}
+		}
+		
+		/**
+		 * Changes the integer in one specific location of a Permutation.  Individual calls
+		 * to this method will, in most cases, produce an invalid Permutation.  The caller
+		 * is responsible for making a combination of calls to this method that together produce
+		 * a valid Permutation.  The behavior of the Permutation object may become unstable otherwise.
+		 * The caller should not return until the state of the Permutation object is again valid.
+		 *
+		 * @param p Permutation object to change.
+		 * @param index The index of the position to change.
+		 * @param value The value to change that position to.
+		 */
+		protected final void set(Permutation p, int index, int value) {
+			p.permutation[index] = value;
+		}
+	}
 }
