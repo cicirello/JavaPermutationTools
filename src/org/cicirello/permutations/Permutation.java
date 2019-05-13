@@ -36,7 +36,7 @@ import java.math.BigInteger;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.10
+ * @version 1.19.5.13
  * @since 1.0
  */
 public final class Permutation implements Serializable, Iterable<Permutation>
@@ -274,7 +274,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @since 1.3
 	 */
 	public Permutation getInversePermutation() {
-		return new Permutation(getInverse());
+		Permutation copy = new Permutation(this);
+		copy.invert();
+		return copy;
 	}
 	
 	/**
