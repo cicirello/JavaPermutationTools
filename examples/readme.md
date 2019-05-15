@@ -8,6 +8,7 @@ currently includes the following examples:
 * org.cicirello.examples.jpt.PermutationExamples
 * org.cicirello.examples.jpt.SimpleDistanceExamples
 * org.cicirello.examples.jpt.SequenceDistanceExamples
+* org.cicirello.examples.jpt.PermutationHashCodes
 
 Read the comments in the source code itself for a description of what they
 demonstrate, etc.
@@ -34,4 +35,5 @@ java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
+java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
 ```

@@ -82,6 +82,7 @@ java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
 java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
+java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.bict2019.BICT2019
