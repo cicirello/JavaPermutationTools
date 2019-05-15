@@ -143,16 +143,33 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	
 	/**
 	 * Initializes a permutation of n integers to be identical to the elements of an array.
-	 * @param p An array of integers. Each of the integers in the interval [0, p.length) must occur exactly one time each.
+	 * @param p An array of integers. Each of the integers in the 
+	 * interval [0, p.length) must occur exactly one time each.
 	 * @throws IllegalArgumentException if p either contains duplicates, or contains any negative elements, 
 	 *         or contains any elements equal or greater than p.length.
 	 */
 	public Permutation(int[] p) {
-		boolean[] inP = new boolean[p.length];
-		for (int e : p) {
-			if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of p must be in interval [0, p.length)");
-			if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
-			inP[e] = true;
+		this(p, true);
+	}
+	
+	/**
+	 * Internal constructor.
+	 *
+	 * @param p An array of integers. Each of the integers in the 
+	 * interval [0, p.length) must occur exactly one time each.
+	 * @param validate If true, constructor verifies that p is valid.
+	 * @throws IllegalArgumentException If validate is true, and if p either 
+	 *         contains duplicates, or contains any negative elements, 
+	 *         or contains any elements equal or greater than p.length.
+	 */
+	private Permutation(int[] p, boolean validate) {
+		if (validate) {
+			boolean[] inP = new boolean[p.length];
+			for (int e : p) {
+				if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of p must be in interval [0, p.length)");
+				if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
+				inP[e] = true;
+			}
 		}
 		permutation = p.clone();
 	}
@@ -274,9 +291,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @since 1.3
 	 */
 	public Permutation getInversePermutation() {
-		Permutation copy = new Permutation(this);
-		copy.invert();
-		return copy;
+		return new Permutation(getInverse(), false);
 	}
 	
 	/**
