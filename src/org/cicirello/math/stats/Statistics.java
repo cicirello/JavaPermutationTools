@@ -27,10 +27,10 @@ package org.cicirello.math.stats;
  * Utility class of basic statistics.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.10
+ * @version 1.19.5.16
  * @since 1.0
  */
-public class Statistics {
+public final class Statistics {
 	
 	// Utility class of static methods.  Should not be instantiated.
 	private Statistics() {}
