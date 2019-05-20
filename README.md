@@ -25,6 +25,7 @@ JPT is organized into the following packages:
 * __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
 * __org.cicirello.sequences.distance__: Collection of distance metrics on Strings and other sequences.
 * __org.cicirello.math.la__ : Linear algebra related classes.
+* __org.cicirello.math.rand__ : Classes related to efficient, or specialized, random number generation. 
 * __org.cicirello.math.stats__: Statistics related classes.
 
 Javadoc documentation is in the /docs folder as well as at https://jpt.cicirello.org/
