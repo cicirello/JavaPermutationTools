@@ -353,6 +353,85 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	}
 	
 	/**
+	 * Randomly shuffles the permutation. Uses
+	 * java.util.concurrent.ThreadLocalRandom as 
+	 * the source of efficient random number generation.
+	 * 
+	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
+	 * guarantees that the result is a different permutation than it was originally.
+	 * @since 1.4
+	 */
+	public void scramble(boolean guaranteeDifferent) {
+		if (guaranteeDifferent) {
+			boolean changed = false;
+			for (int i = permutation.length - 1; i > 1; i--) {
+				int j = RandomIndexer.nextInt(i+1);
+				if (i != j) {
+					swap(i,j);
+					changed = true;
+				}
+			}
+			if (permutation.length > 1 && (!changed || ThreadLocalRandom.current().nextBoolean())) {
+				swap(0,1);
+			}
+		} else {
+			scramble();
+		}
+	}
+	
+	/**
+	 * Randomly shuffles the permutation. 
+	 * 
+	 * @param r a source of randomness.
+	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
+	 * guarantees that the result is a different permutation than it was originally.
+	 * @since 1.4
+	 */
+	public void scramble(Random r, boolean guaranteeDifferent) {
+		if (guaranteeDifferent) {
+			boolean changed = false;
+			for (int i = permutation.length - 1; i > 1; i--) {
+				int j = RandomIndexer.nextInt(i+1, r);
+				if (i != j) {
+					swap(i,j);
+					changed = true;
+				}
+			}
+			if (permutation.length > 1 && (!changed || r.nextBoolean())) {
+				swap(0,1);
+			}
+		} else {
+			scramble(r);
+		}
+	}
+	
+	/**
+	 * Randomly shuffles the permutation. 
+	 * 
+	 * @param r a source of randomness.
+	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
+	 * guarantees that the result is a different permutation than it was originally.
+	 * @since 1.4
+	 */
+	public void scramble(SplittableRandom r, boolean guaranteeDifferent) {
+		if (guaranteeDifferent) {
+			boolean changed = false;
+			for (int i = permutation.length - 1; i > 1; i--) {
+				int j = RandomIndexer.nextInt(i+1, r);
+				if (i != j) {
+					swap(i,j);
+					changed = true;
+				}
+			}
+			if (permutation.length > 1 && (!changed || r.nextBoolean())) {
+				swap(0,1);
+			}
+		} else {
+			scramble(r);
+		}
+	}
+	
+	/**
 	 * Randomly shuffles a segment. Uses
 	 * java.util.concurrent.ThreadLocalRandom as 
 	 * the source of efficient random number generation.

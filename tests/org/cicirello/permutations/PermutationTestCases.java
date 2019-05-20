@@ -22,6 +22,7 @@
 package org.cicirello.permutations;
 
 import java.util.SplittableRandom;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.math.BigInteger;
 import org.junit.*;
@@ -53,6 +54,11 @@ public class PermutationTestCases {
 		// confirm that reverse() and scramble() don't throw exceptions
 		p1.reverse();
 		p1.scramble();
+		p1.scramble(new Random());
+		p1.scramble(new SplittableRandom());
+		p1.scramble(true);
+		p1.scramble(new Random(),true);
+		p1.scramble(new SplittableRandom(),true);
 	}
 	
 	@Test
@@ -362,6 +368,40 @@ public class PermutationTestCases {
 			assertEquals("Should iterate over all permutations of given length", fact, count);
 		}
 	}
+	
+	@Test
+	public void testScramble() {
+		Random r1 = new Random();
+		SplittableRandom r2 = new SplittableRandom();
+		for (int i = 0; i < 8; i++) {
+			Permutation p = new Permutation(i);
+			for (int j = 0; j < 10; j++) {
+				Permutation original = new Permutation(p);
+				p.scramble();
+				validatePermutation(p, i);
+				original = new Permutation(p);
+				p.scramble(r1);
+				validatePermutation(p, i);
+				original = new Permutation(p);
+				p.scramble(r2);
+				validatePermutation(p, i);
+				original = new Permutation(p);
+				p.scramble(true);
+				validatePermutation(p, i);
+				if (i > 1) assertNotEquals(original, p);
+				original = new Permutation(p);
+				p.scramble(r1, true);
+				validatePermutation(p, i);
+				if (i > 1) assertNotEquals(original, p);
+				original = new Permutation(p);
+				p.scramble(r2, true);
+				validatePermutation(p, i);
+				if (i > 1) assertNotEquals(original, p);
+			}
+		}
+	}
+	
+	
 	
 	
 	private void validatePermutation(Permutation p, int n) {
