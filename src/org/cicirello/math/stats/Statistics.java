@@ -261,5 +261,81 @@ public final class Statistics {
 		}
 		return corr;
 	}
+	
+	/**
+	 * Welch's t-test, also known as t-test with unequal variances.
+	 * The Welch's t-test can be used when variances are unequal and
+	 * is also applicable if sample sizes differ.
+	 *
+	 * @param data1 First dataset.
+	 * @param data2 Second dataset.
+	 * @return The t statistic.
+	 * @since 1.4
+	 */
+	public static double tTestUnequalVariances(double[] data1, double[] data2) {
+		return (mean(data1)-mean(data2)) / Math.sqrt(varianceSample(data1)/data1.length + varianceSample(data2)/data2.length);
+	}
+	
+	/**
+	 * Welch's t-test, also known as t-test with unequal variances.
+	 * The Welch's t-test can be used when variances are unequal and
+	 * is also applicable if sample sizes differ.
+	 *
+	 * @param data1 First dataset.
+	 * @param data2 Second dataset.
+	 * @return The t statistic.
+	 * @since 1.4
+	 */
+	public static double tTestUnequalVariances(int[] data1, int[] data2) {
+		return (mean(data1)-mean(data2)) / Math.sqrt(varianceSample(data1)/data1.length + varianceSample(data2)/data2.length);
+	}
+	
+	/**
+	 * Welch's t-test, also known as t-test with unequal variances.
+	 * The Welch's t-test can be used when variances are unequal and
+	 * is also applicable if sample sizes differ.  This method computes
+	 * both the t statistic, as well as the approximate degrees of freedom.
+	 *
+	 * @param data1 First dataset.
+	 * @param data2 Second dataset.
+	 * @return An array, a, of length 2 such that a[0] is the t statistic (as a Double object), and
+	 * a[1] is the degrees of freedom (as an Integer object).
+	 * @since 1.4
+	 */
+	public static Number[] tTestWelch(double[] data1, double[] data2) {
+		Number[] result = new Number[2];
+		double term1 = varianceSample(data1)/data1.length;
+		double term2 = varianceSample(data2)/data2.length;
+		double termSum = term1 + term2;
+		double vDenom = term1*term1/(data1.length-1) + term2*term2/(data2.length-1);
+		double v = termSum*termSum/vDenom; 		
+		result[0] = new Double((mean(data1)-mean(data2)) / Math.sqrt(termSum));
+		result[1] = new Integer((int)v);
+		return result;
+	}
+	
+	/**
+	 * Welch's t-test, also known as t-test with unequal variances.
+	 * The Welch's t-test can be used when variances are unequal and
+	 * is also applicable if sample sizes differ.  This method computes
+	 * both the t statistic, as well as the approximate degrees of freedom.
+	 *
+	 * @param data1 First dataset.
+	 * @param data2 Second dataset.
+	 * @return An array, a, of length 2 such that a[0] is the t statistic (as a Double object), and
+	 * a[1] is the degrees of freedom (as an Integer object).
+	 * @since 1.4
+	 */
+	public static Number[] tTestWelch(int[] data1, int[] data2) {
+		Number[] result = new Number[2];
+		double term1 = varianceSample(data1)/data1.length;
+		double term2 = varianceSample(data2)/data2.length;
+		double termSum = term1 + term2;
+		double vDenom = term1*term1/(data1.length-1) + term2*term2/(data2.length-1);
+		double v = termSum*termSum/vDenom; 		
+		result[0] = new Double((mean(data1)-mean(data2)) / Math.sqrt(termSum));
+		result[1] = new Integer((int)v);
+		return result;
+	}
 }
 
