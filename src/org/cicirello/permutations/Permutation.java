@@ -29,6 +29,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.math.BigInteger;
 
+import org.cicirello.math.rand.RandomIndexer;
 
 /**
  * Representation of a permutation of the integers from 0 to N-1, inclusive.
@@ -36,7 +37,7 @@ import java.math.BigInteger;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.13
+ * @version 1.19.5.20
  * @since 1.0
  */
 public final class Permutation implements Serializable, Iterable<Permutation>
@@ -50,7 +51,11 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @param n the length of the permutation
 	 */
 	public Permutation(int n) {
-		this(n, ThreadLocalRandom.current());
+		permutation = new int[n];
+		for (int i = 0; i < n; i++) {
+			permutation[i] = i;   
+		}
+		scramble();
 	}
  
 	/**
@@ -313,7 +318,12 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * the source of efficient random number generation.
 	 */
 	public void scramble() {
-		scramble(ThreadLocalRandom.current());
+		for (int i = permutation.length - 1; i > 0; i--) {
+			int j = RandomIndexer.nextInt(i+1);
+			if (i != j) {
+				swap(i,j);
+			}
+		}
 	}
 	
 	/**
@@ -322,7 +332,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public void scramble(Random r) {
 		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = r.nextInt(i+1);
+			int j = RandomIndexer.nextInt(i+1, r);
 			if (i != j) {
 				swap(i,j);
 			}
@@ -335,7 +345,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public void scramble(SplittableRandom r) {
 		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = r.nextInt(i+1);
+			int j = RandomIndexer.nextInt(i+1, r);
 			if (i != j) {
 				swap(i,j);
 			}
@@ -354,7 +364,23 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void scramble(int i, int j) {
-		scramble(i, j, ThreadLocalRandom.current());
+		if (i==j) { return; }
+		if (i > j) {
+			int temp = i;
+			i = j;
+			j = temp;
+		}
+		boolean changed = false;
+		for (int k = j; k > i + 1; k--) {
+			int l = i + RandomIndexer.nextInt(k-i+1);
+			if (l != k) {
+				swap(l,k);
+				changed = true;
+			}
+		}
+		if (!changed || ThreadLocalRandom.current().nextBoolean()) {
+			swap(i,i+1);
+		}
 	}
 		
 	/**
@@ -376,7 +402,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		}
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
-			int l = i + r.nextInt(k-i+1);
+			int l = i + RandomIndexer.nextInt(k-i+1, r);
 			if (l != k) {
 				swap(l,k);
 				changed = true;
@@ -406,7 +432,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		}
 		boolean changed = false;
 		for (int k = j; k > i + 1; k--) {
-			int l = i + r.nextInt(k-i+1);
+			int l = i + RandomIndexer.nextInt(k-i+1, r);
 			if (l != k) {
 				swap(l,k);
 				changed = true;
