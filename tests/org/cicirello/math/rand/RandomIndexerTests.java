@@ -119,6 +119,62 @@ public class RandomIndexerTests {
 		assertTrue("chi square too high too often, countHigh=" + countH, countH <= 130);
 	}
 	
+	@Test
+	public void testRandBiasedInt_ThreadLocalRandom() {
+		final int REPS_PER_BUCKET = 10;
+		for (int i = 1; i <= 13; i++) {
+			for (int trial = 0; trial < 10; trial++) {
+				int[] a = new int[i];
+				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
+					int k = RandomIndexer.nextBiasedInt(i);
+					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					a[k] += 1;
+				}
+				for (int k = 0; k < i; k++) {
+					assertTrue("failed to generate any samples of "+k,a[k]>0);
+				}
+			}
+		}
+	}
+	
+	@Test
+	public void testRandBiasedInt_SplittableRandom() {
+		final int REPS_PER_BUCKET = 10;
+		SplittableRandom gen = new SplittableRandom(42);
+		for (int i = 1; i <= 13; i++) {
+			for (int trial = 0; trial < 10; trial++) {
+				int[] a = new int[i];
+				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
+					int k = RandomIndexer.nextBiasedInt(i, gen);
+					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					a[k] += 1;
+				}
+				for (int k = 0; k < i; k++) {
+					assertTrue("failed to generate any samples of "+k,a[k]>0);
+				}
+			}
+		}
+	}
+	
+	@Test
+	public void testRandBiasedInt_Random() {
+		final int REPS_PER_BUCKET = 10;
+		Random gen = new Random(42);
+		for (int i = 1; i <= 13; i++) {
+			for (int trial = 0; trial < 10; trial++) {
+				int[] a = new int[i];
+				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
+					int k = RandomIndexer.nextBiasedInt(i, gen);
+					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					a[k] += 1;
+				}
+				for (int k = 0; k < i; k++) {
+					assertTrue("failed to generate any samples of "+k,a[k]>0);
+				}
+			}
+		}
+	}
+	
 	
 	
 	private double chiSquare(int[] buckets) {
