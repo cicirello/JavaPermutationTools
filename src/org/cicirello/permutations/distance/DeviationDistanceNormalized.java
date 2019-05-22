@@ -48,7 +48,7 @@ import org.cicirello.permutations.Permutation;
  * Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10  
+ * @version 1.19.5.22  
  * @since 1.0
  * 
  */
@@ -78,7 +78,7 @@ public final class DeviationDistanceNormalized implements NormalizedPermutationD
 	@Override
 	public double maxf(int length) {
 		if (length <= 1) return 0;
-		return (length * length - (length % 2)) / (2.0 * (length-1));
+		return (length * length - (length & 1)) / (2.0 * (length-1));
 	}
 	
 	

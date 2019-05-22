@@ -57,7 +57,7 @@ import org.cicirello.permutations.Permutation;
  * Communications of the ACM, 20(5):350-353, May, 1977.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10 
+ * @version 1.19.5.22 
  * @since 1.0
  *
  */
@@ -110,7 +110,7 @@ public final class ReinsertionDistance extends AbstractNormalizedPermutationDist
 	
 	private int binSearch(int[] array, int value, int low, int high) {
 		if (high == low) return low;
-		int mid = (high+low) / 2;
+		int mid = (high+low) >> 1;
 		if (value <= array[mid] && value > array[mid-1]) {
 			return mid;
 		} else if (value > array[mid]) {
@@ -118,39 +118,6 @@ public final class ReinsertionDistance extends AbstractNormalizedPermutationDist
 		} else {
 			return binSearch(array, value, low, mid-1);
 		}
-	}
-	
-	// OLD O(n^2) Version: Keep temporarily
-	private int lcsOLD(Permutation p1, Permutation p2) {
-		int L1 = p1.length();
-		int L2 = p2.length();
-		int start = L1;
-		for (int i = 0; i < L1; i++) {
-			if (p1.get(i) != p2.get(i)) {
-				start = i;
-				break;
-			}
-		}
-		if (start == L1) return L1;
-		int end = L1-1;
-		for (int i = L1-1; i > start; i--) {
-			if (p1.get(i) != p2.get(i)) {
-				end = i;
-				break;
-			}
-		}
-		int C_length = end-start+2;
-		int[][] C = new int[C_length][C_length];
-		for (int i = 1; i < C_length; i++) {
-			for (int j = 1; j < C_length; j++) {
-				if (p1.get(start+i-1) == p2.get(start+j-1)) {
-					C[i][j] = C[i-1][j-1] + 1;
-				} else {
-					C[i][j] = Math.max(C[i][j-1], C[i-1][j]);
-				}
-			}
-		}
-		return C[C_length-1][C_length-1]+start+L1-end-1;
 	}
 
 }
