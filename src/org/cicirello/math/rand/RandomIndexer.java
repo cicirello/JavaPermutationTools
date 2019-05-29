@@ -199,16 +199,23 @@ public final class RandomIndexer {
 	 * <p>Generates a random integer in the interval: [0, bound).</p>
 	 * <p>This method uses Random as the pseudorandom number generator, and is thus
 	 * safe for use with threads.  However, it does not use Random.nextInt(int bound)
-	 * method.  Instead, our nextBiasedInt(int bound) method computes a random int in the target interval
-	 * via a multiplication and a shift, rather than the more common mod.  This method does not
-	 * correct for bias via rejection sampling, and thus some values in the interval [0, bound)
-	 * may be more likely than others.  There is no bias for bound values that are powers of 2.
+	 * method.  Instead, our nextBiasedInt(int bound) 
+	 * method computes a random int in the target interval
+	 * via a multiplication and a shift, 
+	 * rather than the more common mod.  This method does not
+	 * correct for bias via rejection sampling, 
+	 * and thus some values in the interval [0, bound)
+	 * may be more likely than others.  There is no 
+	 * bias for bound values that are powers of 2.
 	 * Otherwise, the lower the value of bound, the less bias; and the higher
-	 * the value of bound, the more bias.  If your bound is relatively low, and if your application
-	 * does not require strict uniformity, then this method is significantly faster than any
+	 * the value of bound, the more bias.  
+	 * If your bound is relatively low, and if your application
+	 * does not require strict uniformity, 
+	 * then this method is significantly faster than any
 	 * approach that corrects for bias.  We started with  
 	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
-	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * Generation in an Interval," ACM Transactions 
+	 * on Modeling and Computer Simulation, 29(1), 2019.
 	 * But we removed from it the rejection sampling portion.</p>
 	 *
 	 * @param bound Upper bound, exclusive, on range of random integers (must be positive).
@@ -220,5 +227,315 @@ public final class RandomIndexer {
 		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
 		return (int)((long)(gen.nextInt() & 0x7fffffff) * (long)bound >> 31);
 	}
+	
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>Uses the reservoir sampling algorithm (Algorithm R) 
+	 * from J. Vitter's 1985 article "Random Sampling
+	 * with a Reservoir" from ACM Transactions on Mathematical Software.  
+	 * The runtime is O(n)
+	 * and it generates O(n-k) random numbers.  Thus, it is an 
+	 * especially good choice as k
+	 * approaches n.  Only constant extra space required.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleViaReservoir(int n, int k, int[] result) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			result[i] = i;
+		}
+		for (int i = k; i < n; i++) {
+			int j = RandomIndexer.nextInt(i+1);
+			if (j < k) {
+				result[j] = i;
+			}
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>Uses the reservoir sampling algorithm (Algorithm R) 
+	 * from J. Vitter's 1985 article "Random Sampling
+	 * with a Reservoir" from ACM Transactions 
+	 * on Mathematical Software.  The runtime is O(n)
+	 * and it generates O(n-k) random numbers.  
+	 * Thus, it is an especially good choice as k
+	 * approaches n.  Only constant extra space required.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleViaReservoir(int n, int k, int[] result, Random gen) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			result[i] = i;
+		}
+		for (int i = k; i < n; i++) {
+			int j = RandomIndexer.nextInt(i+1, gen);
+			if (j < k) {
+				result[j] = i;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>Uses the reservoir sampling algorithm (Algorithm R) 
+	 * from J. Vitter's 1985 article "Random Sampling
+	 * with a Reservoir" from ACM Transactions 
+	 * on Mathematical Software.  The runtime is O(n)
+	 * and it generates O(n-k) random numbers.  Thus, it is an especially good choice as k
+	 * approaches n.  Only constant extra space required.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleViaReservoir(int n, int k, int[] result, SplittableRandom gen) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			result[i] = i;
+		}
+		for (int i = k; i < n; i++) {
+			int j = RandomIndexer.nextInt(i+1, gen);
+			if (j < k) {
+				result[j] = i;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(n)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than sampleReservoir when k &lt; n-k.
+	 * However, this uses O(n) extra space, whereas the reservoir algorithm
+	 * uses no extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		int[] pool = new int[n];
+		for (int i = 0; i < n; i++) pool[i] = i;
+		int remaining = n;
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(remaining);
+			result[i] = pool[temp];
+			remaining--;
+			pool[temp] = pool[remaining];
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(n)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than sampleReservoir when k &lt; n-k.
+	 * However, this uses O(n) extra space, whereas the reservoir algorithm
+	 * uses no extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result, SplittableRandom gen) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		int[] pool = new int[n];
+		for (int i = 0; i < n; i++) pool[i] = i;
+		int remaining = n;
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(remaining, gen);
+			result[i] = pool[temp];
+			remaining--;
+			pool[temp] = pool[remaining];
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(n)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than sampleReservoir when k &lt; n-k.
+	 * However, this uses O(n) extra space, whereas the reservoir algorithm
+	 * uses no extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result, Random gen) {
+		// doesn't check bounds of result
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		int[] pool = new int[n];
+		for (int i = 0; i < n; i++) pool[i] = i;
+		int remaining = n;
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(remaining, gen);
+			result[i] = pool[temp];
+			remaining--;
+			pool[temp] = pool[remaining];
+		}
+		return result;
+	}
+	
+	
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>
+	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
+	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>The runtime is O(n)
+	 * and it generates O(min(k, n-k)) random numbers.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sample(int n, int k, int[] result) {
+		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result);
+		else return sampleViaReservoir(n, k, result);
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>
+	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
+	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>The runtime is O(n)
+	 * and it generates O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
+		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result, gen);
+		else return sampleViaReservoir(n, k, result, gen);
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>
+	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
+	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>The runtime is O(n)
+	 * and it generates O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen Source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sample(int n, int k, int[] result, Random gen) {
+		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result, gen);
+		else return sampleViaReservoir(n, k, result, gen);
+	}
+	
 	
 }
