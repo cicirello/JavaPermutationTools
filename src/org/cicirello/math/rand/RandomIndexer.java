@@ -537,5 +537,100 @@ public final class RandomIndexer {
 		else return sampleViaReservoir(n, k, result, gen);
 	}
 	
+	/**
+	 * <p>Generates a random sample of 2 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 2 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextIntPair(int n, int[] result) {
+		// doesn't check if n is at least 2.
+		if (result == null) result = new int[2];
+		result[0] = RandomIndexer.nextInt(n);
+		int temp = RandomIndexer.nextInt(n-1);
+		if (temp >= result[0]) {
+			result[1] = temp + 1;
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 2 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 2 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextIntPair(int n, int[] result, SplittableRandom gen) {
+		// doesn't check if n is at least 2.
+		if (result == null) result = new int[2];
+		result[0] = RandomIndexer.nextInt(n, gen);
+		int temp = RandomIndexer.nextInt(n-1, gen);
+		if (temp >= result[0]) {
+			result[1] = temp + 1;
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 2 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 2 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextIntPair(int n, int[] result, Random gen) {
+		// doesn't check if n is at least 2.
+		if (result == null) result = new int[2];
+		result[0] = RandomIndexer.nextInt(n, gen);
+		int temp = RandomIndexer.nextInt(n-1, gen);
+		if (temp >= result[0]) {
+			result[1] = temp + 1;
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
 	
 }

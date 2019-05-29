@@ -749,7 +749,118 @@ public class RandomIndexerSampleTests {
 	}
 	
 	
+	@Test
+	public void testPair_ThreadLocalRandom() {
+		final int REPS_PER_BUCKET = 100;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 2; n <= 6; n++) {
+			for (int i = 0; i < 10; i++) {
+				int[] result = RandomIndexer.nextIntPair(n, null);
+				assertEquals("Length of result should be 2", 2, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertTrue("result should be sorted", result[0] < result[1]);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[1] < n);
+			}
+		}
+		for (int n = 2; n <= 6; n++) {
+			int countH = 0;
+			for (int trial = 0; trial < TRIALS; trial++) {
+				int[][] buckets = new int[n][n];
+				int numBuckets = n*(n-1)/2;
+				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+					int[] result = RandomIndexer.nextIntPair(n, null);
+					buckets[result[0]][result[1]]++;
+				}
+				double chi = chiSquare(buckets, numBuckets);
+				if (chi > limit95[numBuckets-1]) countH++;
+			}
+			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+		}
+	}
 	
+	@Test
+	public void testPair_SplittableRandom() {
+		SplittableRandom gen = new SplittableRandom(42);
+		final int REPS_PER_BUCKET = 100;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 2; n <= 6; n++) {
+			for (int i = 0; i < 10; i++) {
+				int[] result = RandomIndexer.nextIntPair(n, null, gen);
+				assertEquals("Length of result should be 2", 2, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertTrue("result should be sorted", result[0] < result[1]);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[1] < n);
+			}
+		}
+		for (int n = 2; n <= 6; n++) {
+			int countH = 0;
+			for (int trial = 0; trial < TRIALS; trial++) {
+				int[][] buckets = new int[n][n];
+				int numBuckets = n*(n-1)/2;
+				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+					int[] result = RandomIndexer.nextIntPair(n, null, gen);
+					buckets[result[0]][result[1]]++;
+				}
+				double chi = chiSquare(buckets, numBuckets);
+				if (chi > limit95[numBuckets-1]) countH++;
+			}
+			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+		}
+	}
+	
+	@Test
+	public void testPair_Random() {
+		Random gen = new Random(42);
+		final int REPS_PER_BUCKET = 100;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 2; n <= 6; n++) {
+			for (int i = 0; i < 10; i++) {
+				int[] result = RandomIndexer.nextIntPair(n, null, gen);
+				assertEquals("Length of result should be 2", 2, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertTrue("result should be sorted", result[0] < result[1]);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[1] < n);
+			}
+		}
+		for (int n = 2; n <= 6; n++) {
+			int countH = 0;
+			for (int trial = 0; trial < TRIALS; trial++) {
+				int[][] buckets = new int[n][n];
+				int numBuckets = n*(n-1)/2;
+				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+					int[] result = RandomIndexer.nextIntPair(n, null, gen);
+					buckets[result[0]][result[1]]++;
+				}
+				double chi = chiSquare(buckets, numBuckets);
+				if (chi > limit95[numBuckets-1]) countH++;
+			}
+			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+		}
+	}
 	
 	
 	
