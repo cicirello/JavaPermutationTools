@@ -121,7 +121,7 @@ public class RandomIndexerTests {
 	
 	@Test
 	public void testRandBiasedInt_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 10;
+		final int REPS_PER_BUCKET = 20;
 		for (int i = 1; i <= 13; i++) {
 			for (int trial = 0; trial < 10; trial++) {
 				int[] a = new int[i];
@@ -139,7 +139,7 @@ public class RandomIndexerTests {
 	
 	@Test
 	public void testRandBiasedInt_SplittableRandom() {
-		final int REPS_PER_BUCKET = 10;
+		final int REPS_PER_BUCKET = 20;
 		SplittableRandom gen = new SplittableRandom(42);
 		for (int i = 1; i <= 13; i++) {
 			for (int trial = 0; trial < 10; trial++) {
@@ -158,7 +158,7 @@ public class RandomIndexerTests {
 	
 	@Test
 	public void testRandBiasedInt_Random() {
-		final int REPS_PER_BUCKET = 10;
+		final int REPS_PER_BUCKET = 20;
 		Random gen = new Random(42);
 		for (int i = 1; i <= 13; i++) {
 			for (int trial = 0; trial < 10; trial++) {

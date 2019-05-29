@@ -542,6 +542,8 @@ public final class RandomIndexer {
 	 * set of integers in the interval [0, n).  All n choose 2 combinations are equally
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the sample that is generated.  
@@ -555,7 +557,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result) {
-		// doesn't check if n is at least 2.
 		if (result == null) result = new int[2];
 		result[0] = RandomIndexer.nextInt(n);
 		int temp = RandomIndexer.nextInt(n-1);
@@ -587,7 +588,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, SplittableRandom gen) {
-		// doesn't check if n is at least 2.
 		if (result == null) result = new int[2];
 		result[0] = RandomIndexer.nextInt(n, gen);
 		int temp = RandomIndexer.nextInt(n-1, gen);
@@ -619,13 +619,149 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, Random gen) {
-		// doesn't check if n is at least 2.
 		if (result == null) result = new int[2];
 		result[0] = RandomIndexer.nextInt(n, gen);
 		int temp = RandomIndexer.nextInt(n-1, gen);
 		if (temp >= result[0]) {
 			result[1] = temp + 1;
 		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result) {
+		if (result == null) result = new int[3];
+		result[0] = RandomIndexer.nextInt(n);
+		int temp = RandomIndexer.nextInt(n-1);
+		if (temp >= result[0]) {
+			result[1] = temp + 1; 
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		temp = RandomIndexer.nextInt(n-2);
+		if (temp >= result[0]) {
+			temp++;
+			if (temp >= result[1]) {
+				result[2] = temp + 1;
+			} else {
+				result[2] = result[1];
+				result[1] = temp;
+			}
+		} else {
+			result[2] = result[1];
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result, SplittableRandom gen) {
+		if (result == null) result = new int[3];
+		result[0] = RandomIndexer.nextInt(n, gen);
+		int temp = RandomIndexer.nextInt(n-1, gen);
+		if (temp >= result[0]) {
+			result[1] = temp + 1; 
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		temp = RandomIndexer.nextInt(n-2, gen);
+		if (temp >= result[0]) {
+			temp++;
+			if (temp >= result[1]) {
+				result[2] = temp + 1;
+			} else {
+				result[2] = result[1];
+				result[1] = temp;
+			}
+		} else {
+			result[2] = result[1];
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result, Random gen) {
+		if (result == null) result = new int[3];
+		result[0] = RandomIndexer.nextInt(n, gen);
+		int temp = RandomIndexer.nextInt(n-1, gen);
+		if (temp >= result[0]) {
+			result[1] = temp + 1; 
+		} else {
+			result[1] = result[0];
+			result[0] = temp;
+		}
+		temp = RandomIndexer.nextInt(n-2, gen);
+		if (temp >= result[0]) {
+			temp++;
+			if (temp >= result[1]) {
+				result[2] = temp + 1;
+			} else {
+				result[2] = result[1];
+				result[1] = temp;
+			}
+		} else {
+			result[2] = result[1];
 			result[1] = result[0];
 			result[0] = temp;
 		}
