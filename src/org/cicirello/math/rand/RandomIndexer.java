@@ -254,7 +254,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
@@ -294,7 +293,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result, Random gen) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
@@ -332,7 +330,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result, SplittableRandom gen) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
@@ -370,7 +367,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		int[] pool = new int[n];
@@ -407,7 +403,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result, SplittableRandom gen) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		int[] pool = new int[n];
@@ -444,7 +439,6 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result, Random gen) {
-		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		int[] pool = new int[n];
@@ -460,14 +454,134 @@ public final class RandomIndexer {
 	}
 	
 	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(k<sup>2</sup>)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleInsertion(int n, int k, int[] result) {
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(n-i);
+			int j = k-i; 
+			for ( ; j < k; j++) {
+				if (temp >= result[j]) {
+					temp++;
+					result[j-1] = result[j];
+				} else break;
+			}
+			result[j-1] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(k<sup>2</sup>)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen The source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleInsertion(int n, int k, int[] result, SplittableRandom gen) {
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(n-i, gen);
+			int j = k-i; 
+			for ( ; j < k; j++) {
+				if (temp >= result[j]) {
+					temp++;
+					result[j-1] = result[j];
+				} else break;
+			}
+			result[j-1] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely.</p>  
+	 * <p>The runtime is O(k<sup>2</sup>)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least k.
+	 * @param gen The source of randomness.
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
+	 */
+	public static int[] sampleInsertion(int n, int k, int[] result, Random gen) {
+		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
+		if (result == null) result = new int[k];
+		for (int i = 0; i < k; i++) {
+			int temp = RandomIndexer.nextInt(n-i, gen);
+			int j = k-i; 
+			for ( ; j < k; j++) {
+				if (temp >= result[j]) {
+					temp++;
+					result[j-1] = result[j];
+				} else break;
+			}
+			result[j-1] = temp;
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.samplePool and
-	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
-	 * <p>The runtime is O(n)
+	 * <p>This method chooses among the RandomIndexer.samplePool, 
+	 * RandomIndexer.sampleReservoir, and RandomIndexer.sampleInsertion 
+	 * methods based on the values of n and k.</p>
+	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
 	 * pseudorandom number generator, and is thus safe for use with threads.</p>
@@ -483,17 +597,20 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result) {
-		if (2 * k < n) return samplePool(n, k, result);
-		else return sampleReservoir(n, k, result);
+		if (2 * k < n) {
+			if (k * k < n) return sampleInsertion(n, k, result);
+			else return samplePool(n, k, result);
+		} else return sampleReservoir(n, k, result);
 	}
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.samplePool and
-	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
-	 * <p>The runtime is O(n)
+	 * <p>This method chooses among the RandomIndexer.samplePool, 
+	 * RandomIndexer.sampleReservoir, and RandomIndexer.sampleInsertion 
+	 * methods based on the values of n and k.</p>
+	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 *
 	 * @param n The number of integers to choose from.
@@ -508,17 +625,20 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
-		if (2 * k < n) return samplePool(n, k, result, gen);
-		else return sampleReservoir(n, k, result, gen);
+		if (2 * k < n) {
+			if (k * k < n) return sampleInsertion(n, k, result, gen);
+			else return samplePool(n, k, result, gen);
+		} else return sampleReservoir(n, k, result, gen);
 	}
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.samplePool and
-	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
-	 * <p>The runtime is O(n)
+	 * <p>This method chooses among the RandomIndexer.samplePool, 
+	 * RandomIndexer.sampleReservoir, and RandomIndexer.sampleInsertion 
+	 * methods based on the values of n and k.</p>
+	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 *
 	 * @param n The number of integers to choose from.
@@ -533,8 +653,10 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
-		if (2 * k < n) return samplePool(n, k, result, gen);
-		else return sampleReservoir(n, k, result, gen);
+		if (2 * k < n) {
+			if (k * k < n) return sampleInsertion(n, k, result, gen);
+			else return samplePool(n, k, result, gen);
+		} else return sampleReservoir(n, k, result, gen);
 	}
 	
 	/**

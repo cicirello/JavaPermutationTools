@@ -50,7 +50,8 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testSampleReservoir_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 250;
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 200;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -75,7 +76,7 @@ public class RandomIndexerSampleTests {
 			int m = n < 3 ? n : 3;
 			for (int k = 1; k <= m; k++) {
 				int countH = 0;
-				for (int trial = 0; trial < 100; trial++) {
+				for (int trial = 0; trial < TRIALS; trial++) {
 					int[] buckets1 = new int[n];
 					int[][] buckets2 = new int[n][n];
 					int[][][] buckets3 = new int[n][n][n];
@@ -119,7 +120,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH, countH <= 10);
+				assertTrue("chi square too high too often, countHigh=" + countH, countH <= TRIALS*0.1);
 			}
 		}
 	}
@@ -283,8 +284,8 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testSamplePool_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 250;
-		final int TRIALS = 100;
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 200;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -519,8 +520,8 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testSample_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 250;
-		final int TRIALS = 100;
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 200;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -751,8 +752,8 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testPair_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 200;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -770,6 +771,7 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be less than " + n, result[1] < n);
 			}
 		}
+		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 2; n <= 6; n++) {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
@@ -788,8 +790,8 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testTriple_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 200;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -810,6 +812,7 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be less than " + n, result[2] < n);
 			}
 		}
+		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 3; n <= 6; n++) {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
@@ -982,6 +985,241 @@ public class RandomIndexerSampleTests {
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+		}
+	}
+	
+	
+	
+	
+	
+	@Test
+	public void testSampleInsertion_ThreadLocalRandom() {
+		final int REPS_PER_BUCKET = 250;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 1; n <= 6; n++) {
+			for (int k = 0; k <= n; k++) {
+				int[] result = RandomIndexer.sampleInsertion(n, k, null);
+				assertEquals("Length of result should be " + k, k, result.length);
+				boolean[] inResult = new boolean[n];
+				for (int i = 0; i < k; i++) {
+					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
+					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					inResult[result[i]] = true;
+				}
+			}
+		}
+		if (DISABLE_CHI_SQUARE_TESTS) return;
+		for (int n = 1; n <= 5; n++) {
+			int m = n < 3 ? n : 3;
+			for (int k = 1; k <= m; k++) {
+				int countH = 0;
+				for (int trial = 0; trial < TRIALS; trial++) {
+					int[] buckets1 = new int[n];
+					int[][] buckets2 = new int[n][n];
+					int[][][] buckets3 = new int[n][n][n];
+					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
+					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
+						int[] result = RandomIndexer.sampleInsertion(n, k, null);
+						Arrays.sort(result);
+						switch (k) {
+							case 1: buckets1[result[0]] += 1; break;
+							case 2: buckets2[result[0]][result[1]] += 1; break;
+							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
+						}
+					}
+					switch (k) {
+						case 1: 
+						for (int x = 0; x < n; x++) {
+							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+						}
+						double chi1 = chiSquare(buckets1, numBuckets);
+						if (chi1 > limit95[numBuckets-1]) countH++;
+						break;
+						case 2: 
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+							}
+						}
+						double chi2 = chiSquare(buckets2, numBuckets);
+						if (chi2 > limit95[numBuckets-1]) countH++;
+						break;
+						case 3:
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								for (int z = y+1; z < n; z++) {
+									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+								}
+							}
+						}
+						double chi3 = chiSquare(buckets3, numBuckets);
+						if (chi3 > limit95[numBuckets-1]) countH++;
+						break;
+					}
+				}
+				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+			}
+		}
+	}
+	
+	@Test
+	public void testSampleInsertion_SplittableRandom() {
+		SplittableRandom gen = new SplittableRandom(42);
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 1; n <= 6; n++) {
+			for (int k = 0; k <= n; k++) {
+				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+				assertEquals("Length of result should be " + k, k, result.length);
+				boolean[] inResult = new boolean[n];
+				for (int i = 0; i < k; i++) {
+					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
+					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					inResult[result[i]] = true;
+				}
+			}
+		}
+		for (int n = 1; n <= 5; n++) {
+			int m = n < 3 ? n : 3;
+			for (int k = 1; k <= m; k++) {
+				int countH = 0;
+				for (int trial = 0; trial < TRIALS; trial++) {
+					int[] buckets1 = new int[n];
+					int[][] buckets2 = new int[n][n];
+					int[][][] buckets3 = new int[n][n][n];
+					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
+					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
+						int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+						Arrays.sort(result);
+						switch (k) {
+							case 1: buckets1[result[0]] += 1; break;
+							case 2: buckets2[result[0]][result[1]] += 1; break;
+							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
+						}
+					}
+					switch (k) {
+						case 1: 
+						for (int x = 0; x < n; x++) {
+							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+						}
+						double chi1 = chiSquare(buckets1, numBuckets);
+						if (chi1 > limit95[numBuckets-1]) countH++;
+						break;
+						case 2: 
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+							}
+						}
+						double chi2 = chiSquare(buckets2, numBuckets);
+						if (chi2 > limit95[numBuckets-1]) countH++;
+						break;
+						case 3:
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								for (int z = y+1; z < n; z++) {
+									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+								}
+							}
+						}
+						double chi3 = chiSquare(buckets3, numBuckets);
+						if (chi3 > limit95[numBuckets-1]) countH++;
+						break;
+					}
+				}
+				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+			}
+		}
+	}
+	
+	@Test
+	public void testSampleInsertion_Random() {
+		Random gen = new Random(42);
+		final int REPS_PER_BUCKET = 200;
+		final int TRIALS = 100;
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03,
+			22.36, 23.69, 25.0,
+			26.3, 27.59, 28.87, 30.14, 31.41
+		};
+		for (int n = 1; n <= 6; n++) {
+			for (int k = 0; k <= n; k++) {
+				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+				assertEquals("Length of result should be " + k, k, result.length);
+				boolean[] inResult = new boolean[n];
+				for (int i = 0; i < k; i++) {
+					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
+					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					inResult[result[i]] = true;
+				}
+			}
+		}
+		for (int n = 1; n <= 5; n++) {
+			int m = n < 3 ? n : 3;
+			for (int k = 1; k <= m; k++) {
+				int countH = 0;
+				for (int trial = 0; trial < TRIALS; trial++) {
+					int[] buckets1 = new int[n];
+					int[][] buckets2 = new int[n][n];
+					int[][][] buckets3 = new int[n][n][n];
+					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
+					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
+						int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+						Arrays.sort(result);
+						switch (k) {
+							case 1: buckets1[result[0]] += 1; break;
+							case 2: buckets2[result[0]][result[1]] += 1; break;
+							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
+						}
+					}
+					switch (k) {
+						case 1: 
+						for (int x = 0; x < n; x++) {
+							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+						}
+						double chi1 = chiSquare(buckets1, numBuckets);
+						if (chi1 > limit95[numBuckets-1]) countH++;
+						break;
+						case 2: 
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+							}
+						}
+						double chi2 = chiSquare(buckets2, numBuckets);
+						if (chi2 > limit95[numBuckets-1]) countH++;
+						break;
+						case 3:
+						for (int x = 0; x < n; x++) {
+							for (int y = x+1; y < n; y++) {
+								for (int z = y+1; z < n; z++) {
+									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+								}
+							}
+						}
+						double chi3 = chiSquare(buckets3, numBuckets);
+						if (chi3 > limit95[numBuckets-1]) countH++;
+						break;
+					}
+				}
+				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+			}
 		}
 	}
 	
