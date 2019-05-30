@@ -253,7 +253,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleViaReservoir(int n, int k, int[] result) {
+	public static int[] sampleReservoir(int n, int k, int[] result) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -293,7 +293,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleViaReservoir(int n, int k, int[] result, Random gen) {
+	public static int[] sampleReservoir(int n, int k, int[] result, Random gen) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -331,7 +331,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleViaReservoir(int n, int k, int[] result, SplittableRandom gen) {
+	public static int[] sampleReservoir(int n, int k, int[] result, SplittableRandom gen) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -369,7 +369,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result) {
+	public static int[] samplePool(int n, int k, int[] result) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -406,7 +406,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result, SplittableRandom gen) {
+	public static int[] samplePool(int n, int k, int[] result, SplittableRandom gen) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -443,7 +443,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
-	public static int[] sampleAuxiliaryMemory(int n, int k, int[] result, Random gen) {
+	public static int[] samplePool(int n, int k, int[] result, Random gen) {
 		// doesn't check bounds of result
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
@@ -465,8 +465,8 @@ public final class RandomIndexer {
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
-	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>This method chooses between the RandomIndexer.samplePool and
+	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
@@ -483,16 +483,16 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result) {
-		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result);
-		else return sampleViaReservoir(n, k, result);
+		if (2 * k < n) return samplePool(n, k, result);
+		else return sampleReservoir(n, k, result);
 	}
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
-	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>This method chooses between the RandomIndexer.samplePool and
+	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 *
@@ -508,16 +508,16 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
-		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result, gen);
-		else return sampleViaReservoir(n, k, result, gen);
+		if (2 * k < n) return samplePool(n, k, result, gen);
+		else return sampleReservoir(n, k, result, gen);
 	}
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>
-	 * <p>This method chooses between the RandomIndexer.sampleAuxiliaryMemory and
-	 * RandomIndexer.sampleViaReservoir methods based on the values of n and k.</p>
+	 * <p>This method chooses between the RandomIndexer.samplePool and
+	 * RandomIndexer.sampleReservoir methods based on the values of n and k.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 *
@@ -533,8 +533,8 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
-		if (2 * k < n) return sampleAuxiliaryMemory(n, k, result, gen);
-		else return sampleViaReservoir(n, k, result, gen);
+		if (2 * k < n) return samplePool(n, k, result, gen);
+		else return sampleReservoir(n, k, result, gen);
 	}
 	
 	/**

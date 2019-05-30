@@ -60,7 +60,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleViaReservoir(n, k, null);
+				int[] result = RandomIndexer.sampleReservoir(n, k, null);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -81,7 +81,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleViaReservoir(n, k, null);
+						int[] result = RandomIndexer.sampleReservoir(n, k, null);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
@@ -137,7 +137,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleViaReservoir(n, k, null, gen);
+				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -157,7 +157,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleViaReservoir(n, k, null, gen);
+						int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
@@ -213,7 +213,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleViaReservoir(n, k, null, gen);
+				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -233,7 +233,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleViaReservoir(n, k, null, gen);
+						int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
@@ -282,7 +282,7 @@ public class RandomIndexerSampleTests {
 	
 	
 	@Test
-	public void testSampleAuxiliaryMemory_ThreadLocalRandom() {
+	public void testSamplePool_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 250;
 		final int TRIALS = 100;
 		double[] limit95 = {
@@ -294,7 +294,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null);
+				int[] result = RandomIndexer.samplePool(n, k, null);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -315,7 +315,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null);
+						int[] result = RandomIndexer.samplePool(n, k, null);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
@@ -359,7 +359,7 @@ public class RandomIndexerSampleTests {
 	}
 	
 	@Test
-	public void testSampleAuxiliaryMemory_SplittableRandom() {
+	public void testSamplePool_SplittableRandom() {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
@@ -372,7 +372,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null, gen);
+				int[] result = RandomIndexer.samplePool(n, k, null, gen);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -392,7 +392,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null, gen);
+						int[] result = RandomIndexer.samplePool(n, k, null, gen);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
@@ -436,7 +436,7 @@ public class RandomIndexerSampleTests {
 	}
 	
 	@Test
-	public void testSampleAuxiliaryMemory_Random() {
+	public void testSamplePool_Random() {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
@@ -449,7 +449,7 @@ public class RandomIndexerSampleTests {
 		};
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null, gen);
+				int[] result = RandomIndexer.samplePool(n, k, null, gen);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -469,7 +469,7 @@ public class RandomIndexerSampleTests {
 					int[][][] buckets3 = new int[n][n][n];
 					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
 					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleAuxiliaryMemory(n, k, null, gen);
+						int[] result = RandomIndexer.samplePool(n, k, null, gen);
 						Arrays.sort(result);
 						switch (k) {
 							case 1: buckets1[result[0]] += 1; break;
