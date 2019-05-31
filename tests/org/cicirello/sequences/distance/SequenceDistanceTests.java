@@ -93,28 +93,201 @@ public class SequenceDistanceTests {
 	public void testExactMatchDistance() {
 		ExactMatchDistance d = new ExactMatchDistance();
 		identicalSequences(d);
-		int[] a1 = {0, 1, 2, 3, 4, 5};
-		int[] a2 = {5, 0, 1, 2, 3, 4};
-		int[] a3 = {5, 1, 2, 3, 4, 0};
-		int[] a4 = {0, 3, 2, 1, 4, 5};
-		// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
-		// and all of the individual distance methods delegate computation to a common method.
-		assertEquals("maximal distance", 6, d.distance(a1,a2));
-		assertEquals("end points differ", 2, d.distance(a1,a3));
-		assertEquals("differ in interior positions", 2, d.distance(a1,a4));
-		int[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-		int[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
-		int[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
-		int[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
-		// tests with different length sequences
-		assertEquals("identical except for extras", 3, d.distance(a1,b1));
-		assertEquals("maximal distance", 9, d.distance(a1,b2));
-		assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
-		assertEquals("differ in interior positions", 5, d.distance(a1,b4));
-		assertEquals("identical except for extras", 3, d.distance(b1,a1));
-		assertEquals("maximal distance", 9, d.distance(b2,a1));
-		assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
-		assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		{ // int
+			int[] a1 = {0, 1, 2, 3, 4, 5};
+			int[] a2 = {5, 0, 1, 2, 3, 4};
+			int[] a3 = {5, 1, 2, 3, 4, 0};
+			int[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			int[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			int[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			int[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			int[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // long
+			long[] a1 = {0, 1, 2, 3, 4, 5};
+			long[] a2 = {5, 0, 1, 2, 3, 4};
+			long[] a3 = {5, 1, 2, 3, 4, 0};
+			long[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			long[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			long[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			long[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			long[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // short
+			short[] a1 = {0, 1, 2, 3, 4, 5};
+			short[] a2 = {5, 0, 1, 2, 3, 4};
+			short[] a3 = {5, 1, 2, 3, 4, 0};
+			short[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			short[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			short[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			short[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			short[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // byte
+			byte[] a1 = {0, 1, 2, 3, 4, 5};
+			byte[] a2 = {5, 0, 1, 2, 3, 4};
+			byte[] a3 = {5, 1, 2, 3, 4, 0};
+			byte[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			byte[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			byte[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			byte[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			byte[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // char
+			char[] a1 = {0, 1, 2, 3, 4, 5};  
+			char[] a2 = {5, 0, 1, 2, 3, 4};
+			char[] a3 = {5, 1, 2, 3, 4, 0};
+			char[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			String s1 = new String(a1);
+			String s2 = new String(a2);
+			String s3 = new String(a3);
+			String s4 = new String(a4);
+			assertEquals("maximal distance", 6, d.distance(s1,s2));
+			assertEquals("end points differ", 2, d.distance(s1,s3));
+			assertEquals("differ in interior positions", 2, d.distance(s1,s4));
+			char[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			char[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			char[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			char[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+			String t1 = new String(b1);
+			String t2 = new String(b2);
+			String t3 = new String(b3);
+			String t4 = new String(b4);
+			assertEquals("identical except for extras", 3, d.distance(s1,t1));
+			assertEquals("maximal distance", 9, d.distance(s1,t2));
+			assertEquals("end points of shorter differ", 5, d.distance(s1,t3));
+			assertEquals("differ in interior positions", 5, d.distance(s1,t4));
+			assertEquals("identical except for extras", 3, d.distance(t1,s1));
+			assertEquals("maximal distance", 9, d.distance(t2,s1));
+			assertEquals("end points of shorter differ", 5, d.distance(t3,s1));
+			assertEquals("differ in interior positions", 5, d.distance(t4,s1));
+		}
+		{ // double
+			double[] a1 = {0, 1, 2, 3, 4, 5};
+			double[] a2 = {5, 0, 1, 2, 3, 4};
+			double[] a3 = {5, 1, 2, 3, 4, 0};
+			double[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			double[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			double[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			double[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			double[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // float
+			float[] a1 = {0, 1, 2, 3, 4, 5};
+			float[] a2 = {5, 0, 1, 2, 3, 4};
+			float[] a3 = {5, 1, 2, 3, 4, 0};
+			float[] a4 = {0, 3, 2, 1, 4, 5};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			float[] b1 = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+			float[] b2 = {5, 0, 1, 2, 3, 4, 6, 7, 8};
+			float[] b3 = {5, 1, 2, 3, 4, 0, 6, 7, 8};
+			float[] b4 = {0, 3, 2, 1, 4, 5, 6, 7, 8};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
+		{ // boolean
+			boolean[] a1 = {false, true, false, true, false, true};
+			boolean[] a2 = {true, false, true, false, true, false};
+			boolean[] a3 = {true, true, false, true, false, false};
+			boolean[] a4 = {false, true, true, false, false, true};
+			assertEquals("maximal distance", 6, d.distance(a1,a2));
+			assertEquals("end points differ", 2, d.distance(a1,a3));
+			assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+			boolean[] b1 = {false, true, false, true, false, true, true, true, true};
+			boolean[] b2 = {true, false, true, false, true, false, false, false, false};
+			boolean[] b3 = {true, true, false, true, false, false, true, true, true};
+			boolean[] b4 = {false, true, true, false, false, true, true, true, true};
+			// tests with different length sequences
+			assertEquals("identical except for extras", 3, d.distance(a1,b1));
+			assertEquals("maximal distance", 9, d.distance(a1,b2));
+			assertEquals("end points of shorter differ", 5, d.distance(a1,b3));
+			assertEquals("differ in interior positions", 5, d.distance(a1,b4));
+			assertEquals("identical except for extras", 3, d.distance(b1,a1));
+			assertEquals("maximal distance", 9, d.distance(b2,a1));
+			assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
+			assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		}
 	}
 	
 	@Test
@@ -147,11 +320,109 @@ public class SequenceDistanceTests {
 		d = new EditDistance(cost_i, cost_d, cost_i+cost_d);
 		assertEquals(16, d.distance(s1,s2));
 		assertEquals(16.0, d.distancef(s1,s2), EPSILON);
+		char[] a1 = s1.toCharArray();
+		char[] a2 = s2.toCharArray();
+		assertEquals(16, d.distance(a1,a2));
+		assertEquals(16.0, d.distancef(a1,a2), EPSILON);
 		cost_i = 3;
 		cost_d = 3;
-		d = new EditDistance(cost_i, cost_d, cost_i+cost_d);
-		assertEquals(48, d.distance(s1,s2));
-		assertEquals(48.0, d.distancef(s1,s2), EPSILON);
+		EditDistance d2 = new EditDistance(cost_i, cost_d, cost_i+cost_d);
+		assertEquals(48, d2.distance(s1,s2));
+		assertEquals(48.0, d2.distancef(s1,s2), EPSILON);
+		{
+			boolean[] b1 = {true, false, true, false, true, false, true, true, true, true, true, true};
+			boolean[] b2 = {false, false, true, true, true, false, false, false};
+			// lcs is 5... lengths are 12 and 8
+			assertEquals(10, d.distance(b1,b2));
+			assertEquals(10.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(30, d2.distance(b1,b2));
+			assertEquals(30.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // int
+			int[] b1 = new int[a1.length];
+			int[] b2 = new int[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // long
+			long[] b1 = new long[a1.length];
+			long[] b2 = new long[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // short
+			short[] b1 = new short[a1.length];
+			short[] b2 = new short[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (short)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (short)a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // byte
+			byte[] b1 = new byte[a1.length];
+			byte[] b2 = new byte[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (byte)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (byte)a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // double
+			double[] b1 = new double[a1.length];
+			double[] b2 = new double[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}
+		{ // float
+			float[] b1 = new float[a1.length];
+			float[] b2 = new float[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			assertEquals(16.0, d.distancef(b1,b2), EPSILON);
+			assertEquals(48, d2.distance(b1,b2));
+			assertEquals(48.0, d2.distancef(b1,b2), EPSILON);
+		}	
+		
 		s1 = "aaaaabcdefaaaaabcdefaaaaa";
 		s2 = "bbbbbbcdefbbbbbbcdefbbbbb";
 		cost_i = 2;
@@ -160,6 +431,82 @@ public class SequenceDistanceTests {
 		d = new EditDistance(cost_i, cost_d, cost_c);
 		assertEquals(45, d.distance(s1,s2));
 		assertEquals(45.0, d.distancef(s1,s2), EPSILON);
+		a1 = s1.toCharArray();
+		a2 = s2.toCharArray();
+		assertEquals(45, d.distance(a1,a2));
+		assertEquals(45.0, d.distancef(a1,a2), EPSILON);
+		{ // int
+			int[] b1 = new int[a1.length];
+			int[] b2 = new int[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
+		{ // long
+			long[] b1 = new long[a1.length];
+			long[] b2 = new long[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
+		{ // short
+			short[] b1 = new short[a1.length];
+			short[] b2 = new short[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (short)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (short)a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
+		{ // byte
+			byte[] b1 = new byte[a1.length];
+			byte[] b2 = new byte[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (byte)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (byte)a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
+		{ // double
+			double[] b1 = new double[a1.length];
+			double[] b2 = new double[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
+		{ // float
+			float[] b1 = new float[a1.length];
+			float[] b2 = new float[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(45, d.distance(b1,b2));
+			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
+		}
 	}
 	
 	@Test
@@ -220,9 +567,120 @@ public class SequenceDistanceTests {
 		String s1 = "abacadaeafahaiaja";
 		String s2 = "kamnopalaaqaaaa";
 		assertEquals(16, d.distance(s1,s2));
-		s1 = "abacadaeafahaiajazazazazaza";
+		String s3 = "abacadaeafahaiajazazazazaza";
 		// increasing length of s1 without changing lcs should increase distance to 26
-		assertEquals(26, d.distance(s1,s2));
+		assertEquals(26, d.distance(s3,s2));
+		char[] a1 = s1.toCharArray();
+		char[] a2 = s2.toCharArray();
+		assertEquals(16, d.distance(a1,a2));
+		char[] a3 = s3.toCharArray();
+		assertEquals(26, d.distance(a3,a2));
+		{
+			boolean[] b1 = {true, false, true, false, true, false, true, true, true, true, true, true};
+			boolean[] b2 = {false, false, true, true, true, false, false, false};
+			// lcs is 5... lengths are 12 and 8
+			assertEquals(10, d.distance(b1,b2));
+			assertEquals(10.0, d.distancef(b1,b2), EPSILON);
+			boolean[] b3 = {false, false, true, true, true, false, false, false, false, false, false};
+			assertEquals(13, d.distance(b1,b3));
+			assertEquals(13.0, d.distancef(b1,b3), EPSILON);
+		}
+		{ // int
+			int[] b1 = new int[a1.length];
+			int[] b2 = new int[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			int[] b3 = new int[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
+		{ // long
+			long[] b1 = new long[a1.length];
+			long[] b2 = new long[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			long[] b3 = new long[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
+		{ // short
+			short[] b1 = new short[a1.length];
+			short[] b2 = new short[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (short)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (short)a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			short[] b3 = new short[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = (short)a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
+		{ // byte
+			byte[] b1 = new byte[a1.length];
+			byte[] b2 = new byte[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = (byte)a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = (byte)a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			byte[] b3 = new byte[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = (byte)a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
+		{ // double
+			double[] b1 = new double[a1.length];
+			double[] b2 = new double[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			double[] b3 = new double[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
+		{ // float
+			float[] b1 = new float[a1.length];
+			float[] b2 = new float[a2.length];
+			for (int i = 0; i < b1.length; i++) {
+				b1[i] = a1[i];
+			}
+			for (int i = 0; i < b2.length; i++) {
+				b2[i] = a2[i];
+			}
+			assertEquals(16, d.distance(b1,b2));
+			float[] b3 = new float[a3.length];
+			for (int i = 0; i < b3.length; i++) {
+				b3[i] = a3[i];
+			}
+			assertEquals(26, d.distance(b3,b2));
+		}
 	}
 	
 	@Test
@@ -329,6 +787,99 @@ public class SequenceDistanceTests {
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			{ // long
+				long[] t1 = new long[n];
+				long[] t2 = new long[n];
+				long[] t3 = new long[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // short
+				short[] t1 = new short[n];
+				short[] t2 = new short[n];
+				short[] t3 = new short[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (short)s1[i]; t2[i] = (short)s2[i]; t3[i] = (short)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // byte
+				byte[] t1 = new byte[n];
+				byte[] t2 = new byte[n];
+				byte[] t3 = new byte[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (byte)s1[i]; t2[i] = (byte)s2[i]; t3[i] = (byte)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // char
+				char[] t1 = new char[n];
+				char[] t2 = new char[n];
+				char[] t3 = new char[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (char)s1[i]; t2[i] = (char)s2[i]; t3[i] = (char)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				String u1 = new String(t1);
+				String u2 = new String(t2);
+				String u3 = new String(t3);
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(u1,u2));
+				assertEquals("maximal distance", expected, d.distance(u2,u1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(u1,u3));
+				assertEquals("end points swapped", expected, d.distance(u3,u1));
+			}
+			{ // float
+				float[] t1 = new float[n];
+				float[] t2 = new float[n];
+				float[] t3 = new float[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // double
+				double[] t1 = new double[n];
+				double[] t2 = new double[n];
+				double[] t3 = new double[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
 		}
 		Permutation p = new Permutation(6);
 		int[] s1 = new int[6];
@@ -340,11 +891,149 @@ public class SequenceDistanceTests {
 			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s1,s2));
 			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s2,s1));
 		}
+		{ // long
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			long[] t1 = new long[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			long[] t2 = new long[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // short
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			short[] t1 = new short[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (short)r.get(i);
+			short[] t2 = new short[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (short)q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // byte
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			byte[] t1 = new byte[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (byte)r.get(i);
+			byte[] t2 = new byte[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (byte)q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // char
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			char[] t1 = new char[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (char)r.get(i);
+			String u1 = new String(t1);
+			char[] t2 = new char[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (char)q.get(i);
+				String u2 = new String(t2);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(u1,u2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(u2,u1));
+			}
+		}
+		{ // float
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			float[] t1 = new float[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			float[] t2 = new float[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // double
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			double[] t1 = new double[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			double[] t2 = new double[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
 		// Now test with duplicate elements
 		String t1 = "abcdaabb";
 		String t2 = "dcbababa";
 		assertEquals("case where discordant pair counting fails", 9, d.distance(t1,t2));
 		assertEquals("case where discordant pair counting fails", 9, d.distance(t2,t1));
+		char[] c1 = t1.toCharArray();
+		char[] c2 = t2.toCharArray();
+		long[] L1 = new long[c1.length];
+		long[] L2 = new long[c2.length];
+		short[] sh1 = new short[c1.length];
+		short[] sh2 = new short[c2.length];
+		byte[] b1 = new byte[c1.length];
+		byte[] b2 = new byte[c2.length];
+		int[] i1 = new int[c1.length];
+		int[] i2 = new int[c2.length];
+		float[] f1 = new float[c1.length];
+		float[] f2 = new float[c2.length];
+		double[] d1 = new double[c1.length];
+		double[] d2 = new double[c2.length];
+		for (int i = 0; i < c1.length; i++) {
+			L1[i] = i1[i] = c1[i];
+			d1[i] = f1[i] = i1[i];
+			sh1[i] = (short)c1[i];
+			b1[i] = (byte)c1[i];
+			L2[i] = i2[i] = c2[i];
+			d2[i] = f2[i] = i2[i];
+			sh2[i] = (short)c2[i];
+			b2[i] = (byte)c2[i];
+		}
+		assertEquals("case where discordant pair counting fails", 9, d.distance(c1,c2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(c2,c1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(L1,L2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(L2,L1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(sh1,sh2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(sh2,sh1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(b1,b2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(b2,b1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(i1,i2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(i2,i1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(f1,f2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(f2,f1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(d1,d2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(d2,d1));
+		for (int n = 2; n < 8; n++) {
+			for (int i = 1; i < n; i++) {
+				boolean[] a1 = new boolean[n];
+				boolean[] a2 = new boolean[n];
+				for (int j = 0; j < i; j++) {
+					a2[j] = a1[n-1-j] = true;
+				}
+				int expected = i * (n-i);
+				assertEquals("boolean case", expected, d.distance(a2,a1));
+				assertEquals("boolean case", expected, d.distance(a1,a2));
+			}
+		}
 	}
 	
 	@Test
@@ -369,6 +1058,99 @@ public class SequenceDistanceTests {
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			{ // long
+				long[] t1 = new long[n];
+				long[] t2 = new long[n];
+				long[] t3 = new long[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // short
+				short[] t1 = new short[n];
+				short[] t2 = new short[n];
+				short[] t3 = new short[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (short)s1[i]; t2[i] = (short)s2[i]; t3[i] = (short)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // byte
+				byte[] t1 = new byte[n];
+				byte[] t2 = new byte[n];
+				byte[] t3 = new byte[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (byte)s1[i]; t2[i] = (byte)s2[i]; t3[i] = (byte)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // char
+				char[] t1 = new char[n];
+				char[] t2 = new char[n];
+				char[] t3 = new char[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = (char)s1[i]; t2[i] = (char)s2[i]; t3[i] = (char)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				String u1 = new String(t1);
+				String u2 = new String(t2);
+				String u3 = new String(t3);
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(u1,u2));
+				assertEquals("maximal distance", expected, d.distance(u2,u1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(u1,u3));
+				assertEquals("end points swapped", expected, d.distance(u3,u1));
+			}
+			{ // float
+				float[] t1 = new float[n];
+				float[] t2 = new float[n];
+				float[] t3 = new float[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
+			{ // double
+				double[] t1 = new double[n];
+				double[] t2 = new double[n];
+				double[] t3 = new double[n];
+				for (int i = 0; i < n; i++) {
+					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+			}
 		}
 		Permutation p = new Permutation(6);
 		int[] s1 = new int[6];
@@ -380,11 +1162,149 @@ public class SequenceDistanceTests {
 			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s1,s2));
 			assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(s2,s1));
 		}
+		{ // long
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			long[] t1 = new long[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			long[] t2 = new long[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // short
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			short[] t1 = new short[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (short)r.get(i);
+			short[] t2 = new short[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (short)q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // byte
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			byte[] t1 = new byte[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (byte)r.get(i);
+			byte[] t2 = new byte[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (byte)q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // char
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			char[] t1 = new char[5];
+			for (int i = 0; i < 5; i++) s1[i] = t1[i] = (char)r.get(i);
+			String u1 = new String(t1);
+			char[] t2 = new char[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) s2[i] = t2[i] = (char)q.get(i);
+				String u2 = new String(t2);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(u1,u2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(u2,u1));
+			}
+		}
+		{ // float
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			float[] t1 = new float[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			float[] t2 = new float[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
+		{ // double
+			s1 = new int[5];
+			s2 = new int[5];
+			Permutation r = new Permutation(5);
+			double[] t1 = new double[5];
+			for (int i = 0; i < 5; i++) t1[i] = s1[i] = r.get(i);
+			double[] t2 = new double[5];
+			for (Permutation q : r) {
+				for (int i = 0; i < 5; i++) t2[i] = s2[i] = q.get(i);
+				int expected = naiveKendalTau(s1,s2);
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t1,t2));
+				assertEquals("checking consistence with naive implementation of unique element version", expected, d.distance(t2,t1));
+			}
+		}
 		// Now test with duplicate elements
 		String t1 = "abcdaabb";
 		String t2 = "dcbababa";
 		assertEquals("case where discordant pair counting fails", 9, d.distance(t1,t2));
 		assertEquals("case where discordant pair counting fails", 9, d.distance(t2,t1));
+		char[] c1 = t1.toCharArray();
+		char[] c2 = t2.toCharArray();
+		long[] L1 = new long[c1.length];
+		long[] L2 = new long[c2.length];
+		short[] sh1 = new short[c1.length];
+		short[] sh2 = new short[c2.length];
+		byte[] b1 = new byte[c1.length];
+		byte[] b2 = new byte[c2.length];
+		int[] i1 = new int[c1.length];
+		int[] i2 = new int[c2.length];
+		float[] f1 = new float[c1.length];
+		float[] f2 = new float[c2.length];
+		double[] d1 = new double[c1.length];
+		double[] d2 = new double[c2.length];
+		for (int i = 0; i < c1.length; i++) {
+			L1[i] = i1[i] = c1[i];
+			d1[i] = f1[i] = i1[i];
+			sh1[i] = (short)c1[i];
+			b1[i] = (byte)c1[i];
+			L2[i] = i2[i] = c2[i];
+			d2[i] = f2[i] = i2[i];
+			sh2[i] = (short)c2[i];
+			b2[i] = (byte)c2[i];
+		}
+		assertEquals("case where discordant pair counting fails", 9, d.distance(c1,c2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(c2,c1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(L1,L2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(L2,L1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(sh1,sh2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(sh2,sh1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(b1,b2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(b2,b1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(i1,i2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(i2,i1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(f1,f2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(f2,f1));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(d1,d2));
+		assertEquals("case where discordant pair counting fails", 9, d.distance(d2,d1));
+		for (int n = 2; n < 8; n++) {
+			for (int i = 1; i < n; i++) {
+				boolean[] a1 = new boolean[n];
+				boolean[] a2 = new boolean[n];
+				for (int j = 0; j < i; j++) {
+					a2[j] = a1[n-1-j] = true;
+				}
+				int expected = i * (n-i);
+				assertEquals("boolean case", expected, d.distance(a2,a1));
+				assertEquals("boolean case", expected, d.distance(a1,a2));
+			}
+		}
 	}
 	
 	// simple naive O(n^2) version if elements are all unique
@@ -411,21 +1331,67 @@ public class SequenceDistanceTests {
 	
 	private void identicalSequences(SequenceDistanceMeasurer d) {
 		for (int n = 0; n <= 10; n++) {
-			int[] a = new int[n];
-			for (int i = 0; i < n; i++) a[i] = ThreadLocalRandom.current().nextInt(100);
-			// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
-			// and all of the individual distance methods delegate computation to a common method.
-			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a, a.clone()));
+			int[] a1 = new int[n];
+			long[] a2 = new long[n];
+			short[] a3 = new short[n];
+			byte[] a4 = new byte[n];
+			char[] a5 = new char[n];
+			float[] a6 = new float[n];
+			double[] a7 = new double[n];
+			boolean[] a8 = new boolean[n];
+			for (int i = 0; i < n; i++) {
+				a1[i] = ThreadLocalRandom.current().nextInt(100);
+				a2[i] = ThreadLocalRandom.current().nextInt(100);
+				a3[i] = (short)ThreadLocalRandom.current().nextInt(100);
+				a4[i] = (byte)ThreadLocalRandom.current().nextInt(100);
+				a5[i] = (char)ThreadLocalRandom.current().nextInt(100);
+				a6[i] = ThreadLocalRandom.current().nextInt(100);
+				a7[i] = ThreadLocalRandom.current().nextInt(100);
+				a8[i] = ThreadLocalRandom.current().nextBoolean();
+			}
+			String a9 = new String(a5);
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a1, a1.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a2, a2.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a3, a3.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a4, a4.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a5, a5.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a6, a6.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a7, a7.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a8, a8.clone()));
+			assertEquals("distance of a sequence to itself should be 0", 0, d.distance(a9, new String(a9)));
 		}
 	}
 	
 	private void identicalSequencesD(SequenceDistanceMeasurerDouble d) {
 		for (int n = 0; n <= 10; n++) {
-			int[] a = new int[n];
-			for (int i = 0; i < n; i++) a[i] = ThreadLocalRandom.current().nextInt(100);
-			// testing with sequences of any one type should be sufficient, since the various sequence types have been separately tested,
-			// and all of the individual distance methods delegate computation to a common method.
-			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a, a.clone()), EPSILON);
+			int[] a1 = new int[n];
+			long[] a2 = new long[n];
+			short[] a3 = new short[n];
+			byte[] a4 = new byte[n];
+			char[] a5 = new char[n];
+			float[] a6 = new float[n];
+			double[] a7 = new double[n];
+			boolean[] a8 = new boolean[n];
+			for (int i = 0; i < n; i++) {
+				a1[i] = ThreadLocalRandom.current().nextInt(100);
+				a2[i] = ThreadLocalRandom.current().nextInt(100);
+				a3[i] = (short)ThreadLocalRandom.current().nextInt(100);
+				a4[i] = (byte)ThreadLocalRandom.current().nextInt(100);
+				a5[i] = (char)ThreadLocalRandom.current().nextInt(100);
+				a6[i] = ThreadLocalRandom.current().nextInt(100);
+				a7[i] = ThreadLocalRandom.current().nextInt(100);
+				a8[i] = ThreadLocalRandom.current().nextBoolean();
+			}
+			String a9 = new String(a5);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a1, a1.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a2, a2.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a3, a3.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a4, a4.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a5, a5.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a6, a6.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a7, a7.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a8, a8.clone()), EPSILON);
+			assertEquals("distance of a sequence to itself should be 0", 0.0, d.distancef(a9, new String(a9)), EPSILON);
 		}
 	}
 

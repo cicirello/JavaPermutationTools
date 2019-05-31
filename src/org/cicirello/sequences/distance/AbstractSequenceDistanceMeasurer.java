@@ -20,21 +20,18 @@
  */
 package org.cicirello.sequences.distance;
 
-
-
 /**
- * <p>Extend this abstract class to define a distance metric for permutations where distance is an integer value.  To extend this class,
- * you must implement the method {@link org.cicirello.sequences.distance.AbstractSequenceDistanceMeasurer#distance(org.cicirello.sequences.Sequence,org.cicirello.sequences.Sequence)}.
- * In doing so, your distance measure will in turn support arrays of any primitive type, as well as Strings, as the default implementations of all of the other distance and
- * distancef methods provided in this abstract class delegate computation to that method.</p>
+ * <p>Extend this abstract class to define a distance metric for 
+ * permutations where distance is an integer value.</p>
  *
- * <p>If your sequences are guaranteed not to contain duplicates, and the pair of sequences is guaranteed to contain the same set of elements, and are of the same length,
+ * <p>If your sequences are guaranteed not to contain duplicates, and 
+ * the pair of sequences is guaranteed to contain the same set of elements, and are of the same length,
  * then consider instead extending or using the classes that extend 
  * the AbstractPermutationDistanceMeasurer
  * class.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.28
+ * @version 2.19.5.30
  * @since 1.1
  */
 abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
@@ -43,195 +40,79 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(long[] s1, long[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(long[] s1, long[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(int[] s1, int[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(int[] s1, int[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(short[] s1, short[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(short[] s1, short[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(byte[] s1, byte[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(byte[] s1, byte[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(char[] s1, char[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(char[] s1, char[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(double[] s1, double[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(double[] s1, double[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(float[] s1, float[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(float[] s1, float[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(boolean[] s1, boolean[] s2) {
-		return distancef(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(boolean[] s1, boolean[] s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double distancef(String s1, String s2) {
-		return distancef(new PrimitiveSequence(s1.toCharArray()),new PrimitiveSequence(s2.toCharArray()));
-	}
-	
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(long[] s1, long[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(String s1, String s2) {
+		return distance(s1, s2);
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final int distance(int[] s1, int[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
+	public double distancef(Object[] s1, Object[] s2) {
+		return distance(s1, s2);
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(short[] s1, short[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(byte[] s1, byte[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(char[] s1, char[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(double[] s1, double[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(float[] s1, float[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(boolean[] s1, boolean[] s2) {
-		return distance(new PrimitiveSequence(s1),new PrimitiveSequence(s2));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final int distance(String s1, String s2) {
-		return distance(new PrimitiveSequence(s1.toCharArray()),new PrimitiveSequence(s2.toCharArray()));
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public final int distance(Object[] s1, Object[] s2) {
-		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
-			return distance(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
-		} else {
-			return distance(new NonComparableObjectSequence<>(s1), new NonComparableObjectSequence<>(s2));
-		}
-	}
-	
-	
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public final double distancef(Object[] s1, Object[] s2) {
-		if (s1 instanceof Comparable[] && s2 instanceof Comparable[]) {
-			return distancef(new ObjectSequence((Comparable[])s1), new ObjectSequence((Comparable[])s2));
-		} else {
-			return distancef(new NonComparableObjectSequence<>(s1), new NonComparableObjectSequence<>(s2));
-		}
-	}
-	
-	/**
-	 * Measures the distance between two Sequences.
-	 * 
-	 * @param s1 First String.
-	 * @param s2 Second String.
-	 * @param <T> Type of element in sequence
-	 * @return distance between s1 and s2
-	 */
-	abstract <T> int distance(Sequence<T> s1, Sequence<T> s2);
-	
-	/**
-	 * Measures the distance between two Sequences.
-	 * 
-	 * @param s1 First String.
-	 * @param s2 Second String.
-	 * @param <T> Type of element in sequence
-	 * @return distance between s1 and s2
-	 */
-	<T> double distancef(Sequence<T> s1, Sequence<T> s2) {
-		return distance(s1,s2);
-	}
-	
 }

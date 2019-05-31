@@ -76,7 +76,7 @@ import java.util.HashMap;
  * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.31
+ * @version 2.19.5.31
  * @since 1.1
  */
 public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
@@ -123,17 +123,228 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
 	 */
 	@Override
-	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
-		if (s1.length() != s2.length()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
-		if (s1.length() == 0) return 0;
+	public int distance(int[] s1, int[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
 		
-		int[][] relabeling = new int[s1.length()][2];
-		int numLabels = USE_HASHMAP || s1 instanceof NonComparableObjectSequence ? relabelElementsToIntsWithHash(s1,s2,relabeling) : relabelElementsToInts(s1,s2,relabeling);
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Integer[] b1 = Arrays.stream(s1).boxed().toArray(Integer[]::new);
+			Integer[] b2 = Arrays.stream(s2).boxed().toArray(Integer[]::new);
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(long[] s1, long[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
 		
-		int[] mapping = mapElements(buckets, relabeling.length);
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Long[] b1 = Arrays.stream(s1).boxed().toArray(Long[]::new);
+			Long[] b2 = Arrays.stream(s2).boxed().toArray(Long[]::new);
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
 		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(short[] s1, short[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Short[] b1 = new Short[s1.length];
+			Short[] b2 = new Short[s2.length];
+			for (int i = 0; i < s1.length; i++) {
+				b1[i] = s1[i];
+				b2[i] = s2[i];
+			}
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(byte[] s1, byte[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			numLabels = relabelElementsWithHash(s1,s2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(char[] s1, char[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Character[] b1 = new Character[s1.length];
+			Character[] b2 = new Character[s2.length];
+			for (int i = 0; i < s1.length; i++) {
+				b1[i] = s1[i];
+				b2[i] = s2[i];
+			}
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(String s1, String s2) {
+		return distance(s1.toCharArray(), s2.toCharArray());
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(float[] s1, float[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Float[] b1 = new Float[s1.length];
+			Float[] b2 = new Float[s2.length];
+			for (int i = 0; i < s1.length; i++) {
+				b1[i] = s1[i];
+				b2[i] = s2[i];
+			}
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(double[] s1, double[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP) {
+			Double[] b1 = Arrays.stream(s1).boxed().toArray(Double[]::new);
+			Double[] b2 = Arrays.stream(s2).boxed().toArray(Double[]::new);
+			numLabels = relabelElementsWithHash(b1,b2,relabeling);
+		} else {
+			numLabels = relabelElements(s1,s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(boolean[] s1, boolean[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels = relabelElements(s1,s2,relabeling);
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * <p>If the distance measurer object is configured, via the constructor, to use the
+	 * alternate algorithm, but the arrays passed to this method do not implement
+	 * the Comparable interface, then this method will disregard the choice of alternate
+	 * algorithm and use the default algorithm instead.</p>
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 */
+	@Override
+	public int distance(Object[] s1, Object[] s2) {
+		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length][2];
+		int numLabels; 
+		if (USE_HASHMAP || !(s1 instanceof Comparable[])) {
+			numLabels = relabelElementsWithHash(s1,s2,relabeling);
+		} else {
+			numLabels = relabelElements((Comparable[])s1,(Comparable[])s2,relabeling);
+		}
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
 	}
 	
@@ -169,41 +380,248 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		return buckets;
 	}
 	
-	private <T> int relabelElementsToInts(Sequence<T> s1, Sequence<T> s2, int[][] relabeling) {
-		Sequence<T> c1 = s1.copy();
-		c1.sort();
-		int[] labels = new int[c1.length()];
+	private int relabelElementsWithHash(Object[] s1, Object[] s2, int[][] relabeling) {
+		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(relabeling.length / 0.75)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			Integer j = labelMap.get(s2[i]);
+			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(byte[] s1, byte[] s2, int[][] relabeling) {
+		// Since there are only 256 possible byte values, use a simple array of length 256 for the hash table.
+		// Always perfect hashing with no collisions in this special case.
+		int[] labelMap = new int[256];
+		int current = 0;
+		for (int i = 0; i < relabeling.length; i++) {
+			int key = 255 & (int)s1[i];
+			if (labelMap[key]==0) {
+				current++;
+				labelMap[key] = current;
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int key1 = 255 & (int)s1[i];
+			relabeling[i][0] = labelMap[key1] - 1; 
+			int key2 = 255 & (int)s2[i];
+			int j = labelMap[key2];
+			if (j == 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j - 1;
+		}
+		return current;
+	}
+	
+	private int relabelElements(int[] s1, int[] s2, int[][] relabeling) {
+		int[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
 		int current = labels[0] = 0;
 		for (int i = 1; i < labels.length; i++) {
-			if (!c1.equal(i, i-1)) current++;
+			if (c1[i] != c1[i-1]) current++;
 			labels[i] = current;
 		}
 		
 		for (int i = 0; i < relabeling.length; i++) {
-			int j = c1.search(s1.get(i));
+			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
-			j = c1.search(s2.get(i));
+			j = Arrays.binarySearch(c1, s2[i]);
 			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
 	}
 	
-	private <T> int relabelElementsToIntsWithHash(Sequence<T> s1, Sequence<T> s2, int[][] relabeling) {
-		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(relabeling.length / 0.75)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1.get(i))) {
-				current++;
-				labelMap.put(s1.get(i),current);
-			}
+	private int relabelElements(long[] s1, long[] s2, int[][] relabeling) {
+		long[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
 		}
 		
 		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1.get(i)); 
-			Integer j = labelMap.get(s2.get(i));
-			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(short[] s1, short[] s2, int[][] relabeling) {
+		short[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(byte[] s1, byte[] s2, int[][] relabeling) {
+		byte[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(char[] s1, char[] s2, int[][] relabeling) {
+		char[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(String s1, String s2, int[][] relabeling) {
+		char[] c1 = s1.toCharArray();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1.charAt(i));
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2.charAt(i));
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(float[] s1, float[] s2, int[][] relabeling) {
+		float[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(double[] s1, double[] s2, int[][] relabeling) {
+		double[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(boolean[] s1, boolean[] s2, int[][] relabeling) {
+		int trueCount1 = 0;
+		int trueCount2 = 0;
+		for (int i = 0; i < s1.length; i++) {
+			if (s1[i]) trueCount1++;
+			if (s2[i]) trueCount2++;
+		}
+		if (trueCount1 != trueCount2) {
+			throw new IllegalArgumentException("Sequences must contain same elements.");
+		}
+		if (trueCount1 < s1.length) {
+			for (int i = 0; i < relabeling.length; i++) {
+				relabeling[i][0] = s1[i] ? 1 : 0; 
+				relabeling[i][1] = s2[i] ? 1 : 0;
+			}
+		} else {
+			for (int i = 0; i < relabeling.length; i++) {
+				relabeling[i][0] = relabeling[i][1] = 0; 
+			}
+		}
+		return trueCount1 > 0 && s1.length > trueCount1 ? 2 : 1;
+	}
+	
+	private int relabelElements(Comparable[] s1, Comparable[] s2, int[][] relabeling) {
+		Comparable[] c1 = s1.clone();
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, s1[i]);
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
 		}
 		return current+1;
 	}

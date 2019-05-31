@@ -42,7 +42,7 @@ package org.cicirello.sequences.distance;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.5.30
  * @since 1.1
  */
 public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
@@ -56,20 +56,210 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 */
 	@Override
-	<T> int distance(Sequence<T> s1, Sequence<T> s2) {
-		int n = s1.length();
-		int m = s2.length();
-		if (m < n) {
-			int temp = n;
-			n = m;
-			m = temp;
+	public int distance(int[] s1, int[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
 		}
-		int cost = m - n;
 		for (int i = 0; i < n; i++) {
-			if (!s1.equal(i, s2, i)) {
+			if (s1[i] != s2[i]) {
 				cost++;
 			}
 		}
 		return cost;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(long[] s1, long[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(short[] s1, short[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(byte[] s1, byte[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(char[] s1, char[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(boolean[] s1, boolean[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(double[] s1, double[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(float[] s1, float[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1[i] != s2[i]) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(String s1, String s2) {
+		int n = s1.length();
+		int cost = 0;
+		if (s2.length() < n) {
+			cost = n - s2.length();
+			n = s2.length();
+		} else if (n < s2.length()) {
+			cost = s2.length() - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (s1.charAt(i) != s2.charAt(i)) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int distance(Object[] s1, Object[] s2) {
+		int n = s1.length;
+		int cost = 0;
+		if (s2.length < n) {
+			cost = n - s2.length;
+			n = s2.length;
+		} else if (n < s2.length) {
+			cost = s2.length - n;
+		}
+		for (int i = 0; i < n; i++) {
+			if (!s1[i].equals(s2[i])) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
 }

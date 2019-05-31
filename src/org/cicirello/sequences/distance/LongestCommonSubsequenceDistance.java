@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -39,14 +39,14 @@ package org.cicirello.sequences.distance;
  * common length, common set of elements, and unique elements properties of permutations to more efficiently (in O(n lg n) time) compute the longest common
  * subpermutation (i.e., that class does not delegate the work to the edit distance algorithm).  However, the result of ReinsertionDistance is
  * half of what LongestCommonSunsequenceDistance would compute.  This is because for permutations the elements that would be inserted are exactly the same as those that would be
- * deleted by the edit operations, and ReinsertionmDistance is defined as an edit distance with one edit operation, removal/reinsertion
+ * deleted by the edit operations, and ReinsertionDistance is defined as an edit distance with one edit operation, removal/reinsertion
  * (i.e., a deletion is only half the operation, and the insertion is the other half of the operation).</p>
  *
  * <p>Wagner and Fischer's String Edit Distance was introduced in:<br>
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.29
+ * @version 2.19.5.30
  * @since 1.1
  */
 public final class LongestCommonSubsequenceDistance extends EditDistance {

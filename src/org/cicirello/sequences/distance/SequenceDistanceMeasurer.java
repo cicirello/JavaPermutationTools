@@ -33,7 +33,7 @@ package org.cicirello.sequences.distance;
  * interface.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.18.8.28
+ * @version 2.19.5.30
  * @since 1.1
  */
 public interface SequenceDistanceMeasurer {
@@ -114,6 +114,8 @@ public interface SequenceDistanceMeasurer {
 	
 	/**
 	 * Measures the distance between two arrays of objects.
+	 * The objects in the arrays must be of a class that has overridden the
+	 * Object.equals method.
 	 *
 	 * @since 1.2.3
 	 * @param s1 First array.

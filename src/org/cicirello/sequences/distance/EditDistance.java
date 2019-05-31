@@ -52,10 +52,10 @@ package org.cicirello.sequences.distance;
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.5.30
  * @since 1.1
  */
-public class EditDistance extends AbstractSequenceDistanceMeasurer {
+public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
 	
 	private final int insert_i;
 	private final int delete_i;
@@ -109,21 +109,19 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 	 * {@inheritDoc}
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
-	 @Override
-	final <T> int distance(Sequence<T> s1, Sequence<T> s2) {
+	@Override
+	public int distance(int[] s1, int[] s2) {
 		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int L1 = s1.length();
-		int L2 = s2.length();
-		int[][] D = new int[L1 + 1][L2 + 1];
-		for (int i = 1; i <= L1; i++) {
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
 			D[i][0] = D[i-1][0] + delete_i;
 		}
-		for (int j = 1; j <= L2; j++) {
+		for (int j = 1; j <= s2.length; j++) {
 			D[0][j] = D[0][j-1] + insert_i;
 		}
-		for (int i = 1; i <= L1; i++) {
-			for (int j = 1; j <= L2; j++) { 
-				int m1 = D[i-1][j-1] + ((!s1.equal(i-1, s2, j-1)) ? change_i : 0);
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
 				int m2 = D[i-1][j] + delete_i;
 				int m3 = D[i][j-1] + insert_i;
 				int min = m1;
@@ -132,26 +130,276 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 				D[i][j] = min;
 			}
 		}
-		return D[L1][L2];
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(long[] s1, long[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(short[] s1, short[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(byte[] s1, byte[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(char[] s1, char[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(boolean[] s1, boolean[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(double[] s1, double[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(float[] s1, float[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(String s1, String s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length() + 1][s2.length() + 1];
+		for (int i = 1; i <= s1.length(); i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length(); j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length(); i++) {
+			for (int j = 1; j <= s2.length(); j++) { 
+				int m1 = D[i-1][j-1] + (s1.charAt(i-1) != s2.charAt(j-1) ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length()][s2.length()];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws UnsupportedOperationException if costs were initialized with double values.
+	 */
+	@Override
+	public int distance(Object[] s1, Object[] s2) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				int m1 = D[i-1][j-1] + (!s1[i-1].equals(s2[j-1]) ? change_i : 0);
+				int m2 = D[i-1][j] + delete_i;
+				int m3 = D[i][j-1] + insert_i;
+				int min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	final <T> double distancef(Sequence<T> s1, Sequence<T> s2) {
-		int L1 = s1.length();
-		int L2 = s2.length();
-		double[][] D = new double[L1 + 1][L2 + 1];
-		for (int i = 1; i <= L1; i++) {
+	public double distancef(int[] s1, int[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
 			D[i][0] = D[i-1][0] + delete_d;
 		}
-		for (int j = 1; j <= L2; j++) {
+		for (int j = 1; j <= s2.length; j++) {
 			D[0][j] = D[0][j-1] + insert_d;
 		}
-		for (int i = 1; i <= L1; i++) {
-			for (int j = 1; j <= L2; j++) { 
-				double m1 = D[i-1][j-1] + ((!s1.equal(i-1, s2, j-1)) ? change_d : 0);
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
 				double m2 = D[i-1][j] + delete_d;
 				double m3 = D[i][j-1] + insert_d;
 				double min = m1;
@@ -160,7 +408,241 @@ public class EditDistance extends AbstractSequenceDistanceMeasurer {
 				D[i][j] = min;
 			}
 		}
-		return D[L1][L2];
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(long[] s1, long[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(short[] s1, short[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(byte[] s1, byte[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(char[] s1, char[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(boolean[] s1, boolean[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(double[] s1, double[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(float[] s1, float[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(String s1, String s2) {
+		double[][] D = new double[s1.length() + 1][s2.length() + 1];
+		for (int i = 1; i <= s1.length(); i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length(); j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length(); i++) {
+			for (int j = 1; j <= s2.length(); j++) { 
+				double m1 = D[i-1][j-1] + (s1.charAt(i-1) != s2.charAt(j-1) ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length()][s2.length()];
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public double distancef(Object[] s1, Object[] s2) {
+		double[][] D = new double[s1.length + 1][s2.length + 1];
+		for (int i = 1; i <= s1.length; i++) {
+			D[i][0] = D[i-1][0] + delete_d;
+		}
+		for (int j = 1; j <= s2.length; j++) {
+			D[0][j] = D[0][j-1] + insert_d;
+		}
+		for (int i = 1; i <= s1.length; i++) {
+			for (int j = 1; j <= s2.length; j++) { 
+				double m1 = D[i-1][j-1] + (!s1[i-1].equals(s2[j-1]) ? change_d : 0);
+				double m2 = D[i-1][j] + delete_d;
+				double m3 = D[i][j-1] + insert_d;
+				double min = m1;
+				if (m2 < min) min = m2;
+				if (m3 < min) min = m3;
+				D[i][j] = min;
+			}
+		}
+		return D[s1.length][s2.length];
 	}
 	
 	private boolean isIntAsDouble(double d) {
