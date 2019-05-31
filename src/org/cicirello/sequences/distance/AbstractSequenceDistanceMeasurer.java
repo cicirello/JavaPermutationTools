@@ -31,7 +31,7 @@ package org.cicirello.sequences.distance;
  * class.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.19.5.30
+ * @version 2.19.5.31
  * @since 1.1
  */
 abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
@@ -40,7 +40,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(long[] s1, long[] s2) {
+	public final double distancef(long[] s1, long[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -48,7 +48,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(int[] s1, int[] s2) {
+	public final double distancef(int[] s1, int[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -56,7 +56,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(short[] s1, short[] s2) {
+	public final double distancef(short[] s1, short[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -64,7 +64,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(byte[] s1, byte[] s2) {
+	public final double distancef(byte[] s1, byte[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -72,7 +72,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(char[] s1, char[] s2) {
+	public final double distancef(char[] s1, char[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -80,7 +80,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(double[] s1, double[] s2) {
+	public final double distancef(double[] s1, double[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -88,7 +88,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(float[] s1, float[] s2) {
+	public final double distancef(float[] s1, float[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -96,7 +96,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(boolean[] s1, boolean[] s2) {
+	public final double distancef(boolean[] s1, boolean[] s2) {
 		return distance(s1, s2);
 	}
 	
@@ -104,7 +104,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(String s1, String s2) {
+	public final double distancef(String s1, String s2) {
 		return distance(s1, s2);
 	}
 	
@@ -112,7 +112,7 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 * {@inheritDoc}
 	 */
 	@Override
-	public double distancef(Object[] s1, Object[] s2) {
+	public final double distancef(Object[] s1, Object[] s2) {
 		return distance(s1, s2);
 	}
 }
