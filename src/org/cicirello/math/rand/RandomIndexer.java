@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.22
+ * @version 1.19.5.31
  * @since 1.4
  *
  */
@@ -886,6 +886,133 @@ public final class RandomIndexer {
 			result[2] = result[1];
 			result[1] = result[0];
 			result[0] = temp;
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * Each position in the result is equally likely true or false.</p>
+	 * <p>Runtime: O(n).</p>
+	 * <p>This method uses ThreadLocalRandom as the source of randomness,
+	 * and is thus safe for use with threads.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @return An array of n randomly generated boolean values.
+	 */
+	public static boolean[] arrayMask(int n) {
+		boolean[] result = new boolean[n];
+		ThreadLocalRandom gen = ThreadLocalRandom.current();
+		for (int i = 0; i < n; i++) {
+			result[i] = gen.nextBoolean();
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * Each position in the result is equally likely true or false.</p>
+	 * <p>Runtime: O(n).</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param gen The source of randomness.
+	 * @return An array of n randomly generated boolean values.
+	 */
+	public static boolean[] arrayMask(int n, SplittableRandom gen) {
+		boolean[] result = new boolean[n];
+		for (int i = 0; i < n; i++) {
+			result[i] = gen.nextBoolean();
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * Each position in the result is equally likely true or false.</p>
+	 * <p>Runtime: O(n).</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param gen The source of randomness.
+	 * @return An array of n randomly generated boolean values.
+	 */
+	public static boolean[] arrayMask(int n, Random gen) {
+		boolean[] result = new boolean[n];
+		for (int i = 0; i < n; i++) {
+			result[i] = gen.nextBoolean();
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length and specified number of true values,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param k The desired number of true values, which must be no greater than n.
+	 * @return An array of n boolean values, exactly k of which are equal to true.
+	 */
+	public static boolean[] arrayMask(int n, int k) {
+		boolean[] result = new boolean[n];
+		if (k >= n) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (k > 0) {
+			int[] indexes = sample(n, k, null);
+			for (int i = 0; i < k; i++) {
+				result[indexes[i]] = true;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length and specified number of true values,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param k The desired number of true values, which must be no greater than n.
+	 * @param gen The source of randomness.
+	 * @return An array of n boolean values, exactly k of which are equal to true.
+	 */
+	public static boolean[] arrayMask(int n, int k, SplittableRandom gen) {
+		boolean[] result = new boolean[n];
+		if (k >= n) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (k > 0) {
+			int[] indexes = sample(n, k, null, gen);
+			for (int i = 0; i < k; i++) {
+				result[indexes[i]] = true;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length and specified number of true values,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param k The desired number of true values, which must be no greater than n.
+	 * @param gen The source of randomness.
+	 * @return An array of n boolean values, exactly k of which are equal to true.
+	 */
+	public static boolean[] arrayMask(int n, int k, Random gen) {
+		boolean[] result = new boolean[n];
+		if (k >= n) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (k > 0) {
+			int[] indexes = sample(n, k, null, gen);
+			for (int i = 0; i < k; i++) {
+				result[indexes[i]] = true;
+			}
 		}
 		return result;
 	}

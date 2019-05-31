@@ -37,6 +37,89 @@ public class RandomIndexerTests {
 	private static double EPSILON = 1e-10;
 	
 	@Test
+	public void testArrayMask() {
+		SplittableRandom r1 = new SplittableRandom(42);
+		Random r2 = new Random(42);
+		for (int n = 1; n <= 5; n++) {
+			for (int k = 0; k <= n; k++) {
+				boolean[] mask = RandomIndexer.arrayMask(n, k);
+				assertEquals("length incorrect", n, mask.length);
+				int count = 0;
+				for (int i = 0; i < mask.length; i++) {
+					if (mask[i]) count++;
+				}
+				assertEquals("wrong number of true values", k, count);
+				
+				mask = RandomIndexer.arrayMask(n, k, r1);
+				assertEquals("length incorrect", n, mask.length);
+				count = 0;
+				for (int i = 0; i < mask.length; i++) {
+					if (mask[i]) count++;
+				}
+				assertEquals("wrong number of true values", k, count);
+				
+				mask = RandomIndexer.arrayMask(n, k, r2);
+				assertEquals("length incorrect", n, mask.length);
+				count = 0;
+				for (int i = 0; i < mask.length; i++) {
+					if (mask[i]) count++;
+				}
+				assertEquals("wrong number of true values", k, count);
+				
+				mask = RandomIndexer.arrayMask(n);
+				assertEquals("length incorrect", n, mask.length);
+				
+				mask = RandomIndexer.arrayMask(n, r1);
+				assertEquals("length incorrect", n, mask.length);
+				
+				mask = RandomIndexer.arrayMask(n, r2);
+				assertEquals("length incorrect", n, mask.length);
+			}
+		}
+		
+		final int TRIALS = 120000;
+		for (int n = 1; n <= 5; n++) {
+			final int MAX = TRIALS / n;
+			int[] buckets = {0, 0};
+			for (int t = 0; t < MAX; t++) {
+				boolean[] mask = RandomIndexer.arrayMask(n);
+				for (int i = 0; i < n; i++) {
+					if (mask[i]) buckets[1]++;
+					else buckets[0]++;
+				}
+			}
+			double chi = chiSquare(buckets);
+			assertTrue("Using ThreadLocalRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+		}
+		for (int n = 1; n <= 5; n++) {
+			final int MAX = TRIALS / n;
+			int[] buckets = {0, 0};
+			for (int t = 0; t < MAX; t++) {
+				boolean[] mask = RandomIndexer.arrayMask(n, r1);
+				for (int i = 0; i < n; i++) {
+					if (mask[i]) buckets[1]++;
+					else buckets[0]++;
+				}
+			}
+			double chi = chiSquare(buckets);
+			assertTrue("Using SplittableRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+		}
+		for (int n = 1; n <= 5; n++) {
+			final int MAX = TRIALS / n;
+			int[] buckets = {0, 0};
+			for (int t = 0; t < MAX; t++) {
+				boolean[] mask = RandomIndexer.arrayMask(n, r2);
+				for (int i = 0; i < n; i++) {
+					if (mask[i]) buckets[1]++;
+					else buckets[0]++;
+				}
+			}
+			double chi = chiSquare(buckets);
+			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+		}
+	}
+	
+	@Test
 	public void testRandInt_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 100;
 		double[] limit95 = {
