@@ -260,7 +260,7 @@ public final class RandomIndexer {
 			result[i] = i;
 		}
 		for (int i = k; i < n; i++) {
-			int j = RandomIndexer.nextInt(i+1);
+			int j = nextInt(i+1);
 			if (j < k) {
 				result[j] = i;
 			}
@@ -299,7 +299,7 @@ public final class RandomIndexer {
 			result[i] = i;
 		}
 		for (int i = k; i < n; i++) {
-			int j = RandomIndexer.nextInt(i+1, gen);
+			int j = nextInt(i+1, gen);
 			if (j < k) {
 				result[j] = i;
 			}
@@ -336,7 +336,7 @@ public final class RandomIndexer {
 			result[i] = i;
 		}
 		for (int i = k; i < n; i++) {
-			int j = RandomIndexer.nextInt(i+1, gen);
+			int j = nextInt(i+1, gen);
 			if (j < k) {
 				result[j] = i;
 			}
@@ -373,7 +373,7 @@ public final class RandomIndexer {
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(remaining);
+			int temp = nextInt(remaining);
 			result[i] = pool[temp];
 			remaining--;
 			pool[temp] = pool[remaining];
@@ -409,7 +409,7 @@ public final class RandomIndexer {
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(remaining, gen);
+			int temp = nextInt(remaining, gen);
 			result[i] = pool[temp];
 			remaining--;
 			pool[temp] = pool[remaining];
@@ -445,7 +445,7 @@ public final class RandomIndexer {
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(remaining, gen);
+			int temp = nextInt(remaining, gen);
 			result[i] = pool[temp];
 			remaining--;
 			pool[temp] = pool[remaining];
@@ -480,7 +480,7 @@ public final class RandomIndexer {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(n-i);
+			int temp = nextInt(n-i);
 			int j = k-i; 
 			for ( ; j < k; j++) {
 				if (temp >= result[j]) {
@@ -518,7 +518,7 @@ public final class RandomIndexer {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(n-i, gen);
+			int temp = nextInt(n-i, gen);
 			int j = k-i; 
 			for ( ; j < k; j++) {
 				if (temp >= result[j]) {
@@ -556,7 +556,7 @@ public final class RandomIndexer {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
 		if (result == null) result = new int[k];
 		for (int i = 0; i < k; i++) {
-			int temp = RandomIndexer.nextInt(n-i, gen);
+			int temp = nextInt(n-i, gen);
 			int j = k-i; 
 			for ( ; j < k; j++) {
 				if (temp >= result[j]) {
@@ -680,8 +680,8 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntPair(int n, int[] result) {
 		if (result == null) result = new int[2];
-		result[0] = RandomIndexer.nextInt(n);
-		int temp = RandomIndexer.nextInt(n-1);
+		result[0] = nextInt(n);
+		int temp = nextInt(n-1);
 		if (temp >= result[0]) {
 			result[1] = temp + 1;
 		} else {
@@ -711,8 +711,8 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntPair(int n, int[] result, SplittableRandom gen) {
 		if (result == null) result = new int[2];
-		result[0] = RandomIndexer.nextInt(n, gen);
-		int temp = RandomIndexer.nextInt(n-1, gen);
+		result[0] = nextInt(n, gen);
+		int temp = nextInt(n-1, gen);
 		if (temp >= result[0]) {
 			result[1] = temp + 1;
 		} else {
@@ -742,8 +742,8 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntPair(int n, int[] result, Random gen) {
 		if (result == null) result = new int[2];
-		result[0] = RandomIndexer.nextInt(n, gen);
-		int temp = RandomIndexer.nextInt(n-1, gen);
+		result[0] = nextInt(n, gen);
+		int temp = nextInt(n-1, gen);
 		if (temp >= result[0]) {
 			result[1] = temp + 1;
 		} else {
@@ -775,9 +775,9 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntTriple(int n, int[] result) {
 		if (result == null) result = new int[3];
-		result[0] = RandomIndexer.nextInt(n);
-		result[1] = RandomIndexer.nextInt(n-1);
-		result[2] = RandomIndexer.nextInt(n-2);
+		result[0] = nextInt(n);
+		result[1] = nextInt(n-1);
+		result[2] = nextInt(n-2);
 		adjustTriple(result);
 		return result;
 	}
@@ -827,9 +827,9 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntTriple(int n, int[] result, SplittableRandom gen) {
 		if (result == null) result = new int[3];
-		result[0] = RandomIndexer.nextInt(n, gen);
-		result[1] = RandomIndexer.nextInt(n-1, gen);
-		result[2] = RandomIndexer.nextInt(n-2, gen);
+		result[0] = nextInt(n, gen);
+		result[1] = nextInt(n-1, gen);
+		result[2] = nextInt(n-2, gen);
 		adjustTriple(result);
 		return result;
 	}
@@ -854,9 +854,9 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextIntTriple(int n, int[] result, Random gen) {
 		if (result == null) result = new int[3];
-		result[0] = RandomIndexer.nextInt(n, gen);
-		result[1] = RandomIndexer.nextInt(n-1, gen);
-		result[2] = RandomIndexer.nextInt(n-2, gen);
+		result[0] = nextInt(n, gen);
+		result[1] = nextInt(n-1, gen);
+		result[2] = nextInt(n-2, gen);
 		adjustTriple(result);
 		return result;
 	}
@@ -983,6 +983,139 @@ public final class RandomIndexer {
 			int[] indexes = sample(n, k, null, gen);
 			for (int i = 0; i < k; i++) {
 				result[indexes[i]] = true;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 2 integers, i, j, without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window.  
+	 * All pairs that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the pair.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers, i, j, 
+	 * from the interval [0, n), such that |i-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextWindowedIntPair(int n, int window, int[] result) {
+		if (result == null) result = new int[2];
+		if (window >= n) window = n - 1;
+		final int z1 = n - window;
+		final int z2 = 2*z1;
+		int i = nextInt(z2 + window - 1);
+		int j = nextInt(window);
+		if (i < z2) {
+			result[0] = i >> 1;
+			result[1] = result[0] + 1 + j;
+		} else {
+			i -= z1;
+			j += z1;
+			if (i >= j){
+				result[0] = j;
+				result[1] = i + 1;
+			} else {
+				result[0] = i;
+				result[1] = j;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 2 integers, i, j, without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window.  
+	 * All pairs that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the pair.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers, i, j, 
+	 * from the interval [0, n), such that |i-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextWindowedIntPair(int n, int window, int[] result, SplittableRandom gen) {
+		if (result == null) result = new int[2];
+		if (window >= n) window = n - 1;
+		final int z1 = n - window;
+		final int z2 = 2*z1;
+		int i = nextInt(z2 + window - 1, gen);
+		int j = nextInt(window, gen);
+		if (i < z2) {
+			result[0] = i >> 1;
+			result[1] = result[0] + 1 + j;
+		} else {
+			i -= z1;
+			j += z1;
+			if (i >= j){
+				result[0] = j;
+				result[1] = i + 1;
+			} else {
+				result[0] = i;
+				result[1] = j;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 2 integers, i, j, without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window.  
+	 * All pairs that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the pair.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 2.
+	 * @param gen Source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers, i, j, 
+	 * from the interval [0, n), such that |i-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
+	 */
+	public static int[] nextWindowedIntPair(int n, int window, int[] result, Random gen) {
+		if (result == null) result = new int[2];
+		if (window >= n) window = n - 1;
+		final int z1 = n - window;
+		final int z2 = 2*z1;
+		int i = nextInt(z2 + window - 1, gen);
+		int j = nextInt(window, gen);
+		if (i < z2) {
+			result[0] = i >> 1;
+			result[1] = result[0] + 1 + j;
+		} else {
+			i -= z1;
+			j += z1;
+			if (i >= j){
+				result[0] = j;
+				result[1] = i + 1;
+			} else {
+				result[0] = i;
+				result[1] = j;
 			}
 		}
 		return result;
