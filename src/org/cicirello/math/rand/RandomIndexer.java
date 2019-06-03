@@ -776,28 +776,35 @@ public final class RandomIndexer {
 	public static int[] nextIntTriple(int n, int[] result) {
 		if (result == null) result = new int[3];
 		result[0] = RandomIndexer.nextInt(n);
-		int temp = RandomIndexer.nextInt(n-1);
-		if (temp >= result[0]) {
-			result[1] = temp + 1; 
+		result[1] = RandomIndexer.nextInt(n-1);
+		result[2] = RandomIndexer.nextInt(n-2);
+		adjustTriple(result);
+		return result;
+	}
+	
+	private static void adjustTriple(int[] result) {
+		if (result[1] >= result[0]) {
+			result[1]++;
 		} else {
-			result[1] = result[0];
-			result[0] = temp;
+			int temp = result[0];
+			result[0] = result[1];
+			result[1] = temp;
 		}
-		temp = RandomIndexer.nextInt(n-2);
-		if (temp >= result[0]) {
-			temp++;
-			if (temp >= result[1]) {
-				result[2] = temp + 1;
+		if (result[2] >= result[0]) {
+			result[2]++;
+			if (result[2] >= result[1]) {
+				result[2]++;
 			} else {
-				result[2] = result[1];
-				result[1] = temp;
+				int temp = result[1];
+				result[1] = result[2];
+				result[2] = temp;
 			}
 		} else {
+			int temp = result[2];
 			result[2] = result[1];
 			result[1] = result[0];
 			result[0] = temp;
 		}
-		return result;
 	}
 	
 	/**
@@ -821,27 +828,9 @@ public final class RandomIndexer {
 	public static int[] nextIntTriple(int n, int[] result, SplittableRandom gen) {
 		if (result == null) result = new int[3];
 		result[0] = RandomIndexer.nextInt(n, gen);
-		int temp = RandomIndexer.nextInt(n-1, gen);
-		if (temp >= result[0]) {
-			result[1] = temp + 1; 
-		} else {
-			result[1] = result[0];
-			result[0] = temp;
-		}
-		temp = RandomIndexer.nextInt(n-2, gen);
-		if (temp >= result[0]) {
-			temp++;
-			if (temp >= result[1]) {
-				result[2] = temp + 1;
-			} else {
-				result[2] = result[1];
-				result[1] = temp;
-			}
-		} else {
-			result[2] = result[1];
-			result[1] = result[0];
-			result[0] = temp;
-		}
+		result[1] = RandomIndexer.nextInt(n-1, gen);
+		result[2] = RandomIndexer.nextInt(n-2, gen);
+		adjustTriple(result);
 		return result;
 	}
 	
@@ -866,27 +855,9 @@ public final class RandomIndexer {
 	public static int[] nextIntTriple(int n, int[] result, Random gen) {
 		if (result == null) result = new int[3];
 		result[0] = RandomIndexer.nextInt(n, gen);
-		int temp = RandomIndexer.nextInt(n-1, gen);
-		if (temp >= result[0]) {
-			result[1] = temp + 1; 
-		} else {
-			result[1] = result[0];
-			result[0] = temp;
-		}
-		temp = RandomIndexer.nextInt(n-2, gen);
-		if (temp >= result[0]) {
-			temp++;
-			if (temp >= result[1]) {
-				result[2] = temp + 1;
-			} else {
-				result[2] = result[1];
-				result[1] = temp;
-			}
-		} else {
-			result[2] = result[1];
-			result[1] = result[0];
-			result[0] = temp;
-		}
+		result[1] = RandomIndexer.nextInt(n-1, gen);
+		result[2] = RandomIndexer.nextInt(n-2, gen);
+		adjustTriple(result);
 		return result;
 	}
 	
