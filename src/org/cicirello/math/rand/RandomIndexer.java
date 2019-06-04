@@ -1010,8 +1010,8 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result) {
+		if (window >= n - 1) return nextIntPair(n, result);
 		if (result == null) result = new int[2];
-		if (window >= n) window = n - 1;
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1);
@@ -1054,8 +1054,8 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, SplittableRandom gen) {
+		if (window >= n - 1) return nextIntPair(n, result, gen);
 		if (result == null) result = new int[2];
-		if (window >= n) window = n - 1;
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
@@ -1098,8 +1098,8 @@ public final class RandomIndexer {
 	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, Random gen) {
+		if (window >= n - 1) return nextIntPair(n, result, gen);
 		if (result == null) result = new int[2];
-		if (window >= n) window = n - 1;
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
