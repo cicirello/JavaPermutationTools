@@ -1122,4 +1122,206 @@ public final class RandomIndexer {
 	}
 	
 	
+	
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
+		if (window >= n - 1) return nextIntTriple(n, result);
+		if (result == null) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2);
+		int j = nextInt(window);
+		int k = nextInt(window - 1);
+		if (k >= j) {
+			k++;
+		} else {
+			int temp = j;
+			j = k;
+			k = temp;
+		}
+		if (i < z3) {
+			result[0] = i / 3;
+			result[2] = result[1] = result[0] + 1;
+			result[1] += j;
+			result[2] += k;
+		} else {
+			i = i - z3 + z1;
+			j += z1;
+			k += z1;
+			if (i >= j) {
+				i++;
+				if (i >= k) {
+					result[0] = j;
+					result[1] = k;
+					result[2] = i + 1;
+				} else {
+					result[0] = j;
+					result[1] = i;
+					result[2] = k;
+				}
+			} else {
+				result[0] = i;
+				result[1] = j;
+				result[2] = k;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @param gen The source of randomness.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result, SplittableRandom gen) {
+		if (window >= n - 1) return nextIntTriple(n, result, gen);
+		if (result == null) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2, gen);
+		int j = nextInt(window, gen);
+		int k = nextInt(window - 1, gen);
+		if (k >= j) {
+			k++;
+		} else {
+			int temp = j;
+			j = k;
+			k = temp;
+		}
+		if (i < z3) {
+			result[0] = i / 3;
+			result[2] = result[1] = result[0] + 1;
+			result[1] += j;
+			result[2] += k;
+		} else {
+			i = i - z3 + z1;
+			j += z1;
+			k += z1;
+			if (i >= j) {
+				i++;
+				if (i >= k) {
+					result[0] = j;
+					result[1] = k;
+					result[2] = i + 1;
+				} else {
+					result[0] = j;
+					result[1] = i;
+					result[2] = k;
+				}
+			} else {
+				result[0] = i;
+				result[1] = j;
+				result[2] = k;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the sample that is generated.  
+	 * You may pass null, in which
+	 * case an array will be constructed for you.  
+	 * If you pass an array, ensure that its length is at least 3.
+	 * @param gen The source of randomness.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result, Random gen) {
+		if (window >= n - 1) return nextIntTriple(n, result, gen);
+		if (result == null) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2, gen);
+		int j = nextInt(window, gen);
+		int k = nextInt(window - 1, gen);
+		if (k >= j) {
+			k++;
+		} else {
+			int temp = j;
+			j = k;
+			k = temp;
+		}
+		if (i < z3) {
+			result[0] = i / 3;
+			result[2] = result[1] = result[0] + 1;
+			result[1] += j;
+			result[2] += k;
+		} else {
+			i = i - z3 + z1;
+			j += z1;
+			k += z1;
+			if (i >= j) {
+				i++;
+				if (i >= k) {
+					result[0] = j;
+					result[1] = k;
+					result[2] = i + 1;
+				} else {
+					result[0] = j;
+					result[1] = i;
+					result[2] = k;
+				}
+			} else {
+				result[0] = i;
+				result[1] = j;
+				result[2] = k;
+			}
+		}
+		return result;
+	}
+	
+	
 }
