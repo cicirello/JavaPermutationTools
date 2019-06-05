@@ -787,12 +787,41 @@ public class SequenceDistanceTests {
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			// test with negative values. rationale: default algorithm
+			// relies on hash tables, so make sure negatives don't break hash table.
+			int[] neg1 = new int[n];
+			int[] neg2 = new int[n];
+			int[] neg3 = new int[n];
+			for (int i = 0; i < n; i++) {
+				neg1[i] = -s1[i];
+				neg2[i] = -s2[i];
+				neg3[i] = -s3[i];
+			}
+			expected = n*(n-1)/2;
+			assertEquals("maximal distance", expected, d.distance(neg1,neg2));
+			assertEquals("maximal distance", expected, d.distance(neg2,neg1));
+			expected = 2*n-3;
+			assertEquals("end points swapped", expected, d.distance(neg1,neg3));
+			assertEquals("end points swapped", expected, d.distance(neg3,neg1));
 			{ // long
 				long[] t1 = new long[n];
 				long[] t2 = new long[n];
 				long[] t3 = new long[n];
 				for (int i = 0; i < n; i++) {
 					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				// test with negative values. rationale: default algorithm
+				// relies on hash tables, so make sure negatives don't break hash table.	
+				for (int i = 0; i < n; i++) {
+					t1[i] = -t1[i];
+					t2[i] = -t2[i];
+					t3[i] = -t3[i];
 				}
 				expected = n*(n-1)/2;
 				assertEquals("maximal distance", expected, d.distance(t1,t2));
@@ -814,6 +843,19 @@ public class SequenceDistanceTests {
 				expected = 2*n-3;
 				assertEquals("end points swapped", expected, d.distance(t1,t3));
 				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				// test with negative values. rationale: default algorithm
+				// relies on hash tables, so make sure negatives don't break hash table.	
+				for (int i = 0; i < n; i++) {
+					t1[i] = (short)(-1 * t1[i]);
+					t2[i] = (short)(-1 * t2[i]);
+					t3[i] = (short)(-1 * t3[i]);
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
 			}
 			{ // byte
 				byte[] t1 = new byte[n];
@@ -821,6 +863,19 @@ public class SequenceDistanceTests {
 				byte[] t3 = new byte[n];
 				for (int i = 0; i < n; i++) {
 					t1[i] = (byte)s1[i]; t2[i] = (byte)s2[i]; t3[i] = (byte)s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				// test with negative values. rationale: default algorithm
+				// relies on hash tables, so make sure negatives don't break hash table.	
+				for (int i = 0; i < n; i++) {
+					t1[i] = (byte)(-1 * t1[i]);
+					t2[i] = (byte)(-1 * t2[i]);
+					t3[i] = (byte)(-1 * t3[i]);
 				}
 				expected = n*(n-1)/2;
 				assertEquals("maximal distance", expected, d.distance(t1,t2));
@@ -865,6 +920,19 @@ public class SequenceDistanceTests {
 				expected = 2*n-3;
 				assertEquals("end points swapped", expected, d.distance(t1,t3));
 				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				// test with negative values. rationale: default algorithm
+				// relies on hash tables, so make sure negatives don't break hash table.	
+				for (int i = 0; i < n; i++) {
+					t1[i] = -t1[i];
+					t2[i] = -t2[i];
+					t3[i] = -t3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
 			}
 			{ // double
 				double[] t1 = new double[n];
@@ -872,6 +940,19 @@ public class SequenceDistanceTests {
 				double[] t3 = new double[n];
 				for (int i = 0; i < n; i++) {
 					t1[i] = s1[i]; t2[i] = s2[i]; t3[i] = s3[i];
+				}
+				expected = n*(n-1)/2;
+				assertEquals("maximal distance", expected, d.distance(t1,t2));
+				assertEquals("maximal distance", expected, d.distance(t2,t1));
+				expected = 2*n-3;
+				assertEquals("end points swapped", expected, d.distance(t1,t3));
+				assertEquals("end points swapped", expected, d.distance(t3,t1));
+				// test with negative values. rationale: default algorithm
+				// relies on hash tables, so make sure negatives don't break hash table.	
+				for (int i = 0; i < n; i++) {
+					t1[i] = -t1[i];
+					t2[i] = -t2[i];
+					t3[i] = -t3[i];
 				}
 				expected = n*(n-1)/2;
 				assertEquals("maximal distance", expected, d.distance(t1,t2));

@@ -662,6 +662,8 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		return count;
 	}
 	
+	// internal data structures below
+	
 	private static final class Bucket {
 		Node head;
 		Node tail;
