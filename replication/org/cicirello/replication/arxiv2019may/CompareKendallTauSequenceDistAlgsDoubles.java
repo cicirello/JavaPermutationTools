@@ -24,6 +24,7 @@ package org.cicirello.replication.arxiv2019may;
 import org.cicirello.sequences.distance.KendallTauSequenceDistance;
 import java.util.concurrent.ThreadLocalRandom;
 import java.lang.management.*;
+import java.lang.ref.WeakReference;
 
 /**
  * <p>This program replicates the data for the paper:<br>
@@ -35,6 +36,17 @@ import java.lang.management.*;
  */
 public class CompareKendallTauSequenceDistAlgsDoubles {
 	
+	public static int toTime(KendallTauSequenceDistance d, double[][] a, double[][] b) {
+		// Summing and returning the sum of distances is
+		// just to prevent the Java JIT from considering this dead code and optimizing it away.
+		int total = 0;
+		for (int i = 0; i < a.length; i++) {
+			int distance = d.distance(a[i], b[i]);
+			total += distance;
+		}
+		return total;
+	}
+	
 	public static void main(String[] args) {
 		KendallTauSequenceDistance dHash = new KendallTauSequenceDistance();
 		KendallTauSequenceDistance dSort = new KendallTauSequenceDistance(true);
@@ -43,35 +55,54 @@ public class CompareKendallTauSequenceDistAlgsDoubles {
 		final int N = 100;
 		int[] alphabetSize = {1, 4, 16, 64, 256, 1024, 4096, 16384, 65536};
 		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
+		bean.setThreadCpuTimeEnabled(true);
+		// WARM UP THE JAVA JIT.
+		double[][] iArrays = new double[N*N][];
+		double[][] iShuffled = new double[N*N][];
+		for (int i = 0; i < iArrays.length; i++) {
+			iArrays[i] = randDoubleSequence(1000, 100);
+			iShuffled[i] = shuffleCopy(iArrays[i]);
+		}
+		toTime(dHash, iArrays, iShuffled);
+		toTime(dSort, iArrays, iShuffled);
+		// force garbage collection of extra large arrays used during warmup
+		WeakReference ref1 = new WeakReference<Object>(iArrays);
+		WeakReference ref2 = new WeakReference<Object>(iShuffled);
+		iArrays = null;
+		iShuffled = null;
+		while(ref1.get() != null || ref2.get() != null) {
+			System.gc();
+		}
+		// END WARM UP PHASE.
 		System.out.printf("%8s\t%8s\t%8s\t%8s\n", "L", "Alphabet", "TimeHash", "TimeSort");
+		int x = 0;
 		for (int L = MIN_L; L <= MAX_L; L *= 2) {
 			for (int j = 0; j < alphabetSize.length; j++) {
 				int R = alphabetSize[j];
 				//if (R < 1) R = 1;
-				double[][] iArrays = new double[N][];
-				double[][] iShuffled = new double[N][];
+				iArrays = new double[N][];
+				iShuffled = new double[N][];
 				for (int i = 0; i < N; i++) {
 					iArrays[i] = randDoubleSequence(L, R);
 					iShuffled[i] = shuffleCopy(iArrays[i]);
 				}
 				System.out.printf("%8d\t%8d", L, R);
 				long start = bean.getCurrentThreadCpuTime();
-				for (int i = 0; i < N; i++) {
-					int d = dHash.distance(iArrays[i], iShuffled[i]);
-				}
+				int dSum1 = toTime(dHash, iArrays, iShuffled);
 				long end = bean.getCurrentThreadCpuTime();
 				double seconds = 1.0*(end-start)/1000000000/N;
 				System.out.printf("\t%8.6f", seconds);
 				start = bean.getCurrentThreadCpuTime();
-				for (int i = 0; i < N; i++) {
-					int d = dSort.distance(iArrays[i], iShuffled[i]);
-				}
+				int dSum2 = toTime(dSort, iArrays, iShuffled);
 				end = bean.getCurrentThreadCpuTime();
 				seconds = 1.0*(end-start)/1000000000/N;
 				System.out.printf("\t%8.6f", seconds);
 				System.out.println();
+				// Do something with the return values to trick Java JIT.
+				x += (dSum1 - dSum2);
 			}
 		}
+		System.out.println("Done " + x);
 	}
 	
 	
