@@ -76,7 +76,7 @@ import java.util.HashMap;
  * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.19.5.31
+ * @version 2.19.6.5
  * @since 1.1
  */
 public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
@@ -86,7 +86,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	/**
 	 * The KendallTauDistance class provides two algorithms.  
 	 * The default algorithm requires sequence elements to either be primitives (e.g.,
-	 * byte, short, int, long, char, float, double, boolean) or to be of a class that overrides
+	 * byte, short, int, long, char, float, double, boolean) or to be objects of a class that overrides
 	 * the hashCode and equals methods of the {@link java.lang.Object} class.
 	 */
 	public KendallTauSequenceDistance() {
@@ -98,10 +98,11 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	 * This constructor enables you to select which algorithm to use.</p>
 	 * 
 	 * <p>The default algorithm requires sequence elements to either be primitives (e.g.,
-	 * byte, short, int, long, char, float, double, boolean) or to be of a class that overrides
+	 * byte, short, int, long, char, float, double, boolean) or to be objects of a class that overrides
 	 * the hashCode and equals methods of the {@link java.lang.Object} class.</p>
 	 *
-	 * <p>The alternate algorithm requires objects to be of a class that implements 
+	 * <p>The alternate algorithm requires sequence elements to either be primitives (e.g.,
+	 * byte, short, int, long, char, float, double, boolean) or to be objects of a class that implements 
 	 * the {@link java.lang.Comparable} interface, and overrides the equals method 
 	 * of the {@link java.lang.Object} class.</p>
 	 *
@@ -126,17 +127,8 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	public int distance(int[] s1, int[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Integer[] b1 = Arrays.stream(s1).boxed().toArray(Integer[]::new);
-			Integer[] b2 = Arrays.stream(s2).boxed().toArray(Integer[]::new);
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -152,15 +144,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Long[] b1 = Arrays.stream(s1).boxed().toArray(Long[]::new);
-			Long[] b2 = Arrays.stream(s2).boxed().toArray(Long[]::new);
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -176,19 +160,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Short[] b1 = new Short[s1.length];
-			Short[] b2 = new Short[s2.length];
-			for (int i = 0; i < s1.length; i++) {
-				b1[i] = s1[i];
-				b2[i] = s2[i];
-			}
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -204,13 +176,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			numLabels = relabelElementsWithHash(s1,s2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -226,19 +192,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Character[] b1 = new Character[s1.length];
-			Character[] b2 = new Character[s2.length];
-			for (int i = 0; i < s1.length; i++) {
-				b1[i] = s1[i];
-				b2[i] = s2[i];
-			}
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -250,7 +204,14 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	 */
 	@Override
 	public int distance(String s1, String s2) {
-		return distance(s1.toCharArray(), s2.toCharArray());
+		if (s1.length() != s2.length()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.length() == 0) return 0;
+		
+		int[][] relabeling = new int[s1.length()][2];
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
 	}
 	
 	/**
@@ -263,19 +224,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Float[] b1 = new Float[s1.length];
-			Float[] b2 = new Float[s2.length];
-			for (int i = 0; i < s1.length; i++) {
-				b1[i] = s1[i];
-				b2[i] = s2[i];
-			}
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -291,15 +240,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP) {
-			Double[] b1 = Arrays.stream(s1).boxed().toArray(Double[]::new);
-			Double[] b2 = Arrays.stream(s2).boxed().toArray(Double[]::new);
-			numLabels = relabelElementsWithHash(b1,b2,relabeling);
-		} else {
-			numLabels = relabelElements(s1,s2,relabeling);
-		}
-		
+		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -315,8 +256,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = relabelElements(s1,s2,relabeling);
-		
+		int numLabels = relabelElements(s1,s2,relabeling);		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping);
@@ -336,12 +276,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		if (s1.length == 0) return 0;
 		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels; 
-		if (USE_HASHMAP || !(s1 instanceof Comparable[])) {
-			numLabels = relabelElementsWithHash(s1,s2,relabeling);
-		} else {
-			numLabels = relabelElements((Comparable[])s1,(Comparable[])s2,relabeling);
-		}
+		int numLabels = (USE_HASHMAP || !(s1 instanceof Comparable[])) ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements((Comparable[])s1,(Comparable[])s2,relabeling);
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
@@ -381,7 +316,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	}
 	
 	private int relabelElementsWithHash(Object[] s1, Object[] s2, int[][] relabeling) {
-		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(relabeling.length / 0.75)+2);
+		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(1.334 * relabeling.length)+2);
 		int current = -1;
 		for (int i = 0; i < relabeling.length; i++) {
 			if (!labelMap.containsKey(s1[i])) {
@@ -394,6 +329,139 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 			relabeling[i][0] = labelMap.get(s1[i]); 
 			Integer j = labelMap.get(s2[i]);
 			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(int[] s1, int[] s2, int[][] relabeling) {
+		IntHT labelMap = new IntHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(double[] s1, double[] s2, int[][] relabeling) {
+		DoubleHT labelMap = new DoubleHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(float[] s1, float[] s2, int[][] relabeling) {
+		DoubleHT labelMap = new DoubleHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(long[] s1, long[] s2, int[][] relabeling) {
+		LongHT labelMap = new LongHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(short[] s1, short[] s2, int[][] relabeling) {
+		ShortHT labelMap = new ShortHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(char[] s1, char[] s2, int[][] relabeling) {
+		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1[i])) {
+				current++;
+				labelMap.put(s1[i],current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1[i]); 
+			int j = labelMap.get(s2[i]);
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private int relabelElementsWithHash(String s1, String s2, int[][] relabeling) {
+		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (int i = 0; i < relabeling.length; i++) {
+			if (!labelMap.containsKey(s1.charAt(i))) {
+				current++;
+				labelMap.put(s1.charAt(i),current);
+			}
+		}
+		
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(s1.charAt(i)); 
+			int j = labelMap.get(s2.charAt(i));
+			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
 			relabeling[i][1] = j;
 		}
 		return current+1;
@@ -685,6 +753,370 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 			int value;
 			Node next;
 			Node(int value) { this.value = value; }
+		}
+	}
+	
+	private static final class IntHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x40000000;
+		private int mask;
+		
+		IntHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(int key) {
+			return (key ^ (key >>> 16)) & mask;
+		}
+		
+		boolean containsKey(int key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(int key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(int key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			int key;
+			int value;
+			Node next;
+			Node(int key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
+		}
+	}
+	
+	private static final class LongHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x40000000;
+		private int mask;
+		
+		LongHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(long key) {
+			int x = (int)(key ^ (key >>> 32));
+			return (x ^ (x >>> 16)) & mask;
+		}
+		
+		boolean containsKey(long key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(long key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(long key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			long key;
+			int value;
+			Node next;
+			Node(long key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
+		}
+	}
+	
+	private static final class ShortHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x10000;
+		private int mask;
+		
+		ShortHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(short key) {
+			return key & mask;
+		}
+		
+		boolean containsKey(short key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(short key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(short key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			short key;
+			int value;
+			Node next;
+			Node(short key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
+		}
+	}
+	
+	private static final class CharHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x10000;
+		private int mask;
+		
+		CharHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(char key) {
+			return key & mask;
+		}
+		
+		boolean containsKey(char key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(char key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(char key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			char key;
+			int value;
+			Node next;
+			Node(char key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
+		}
+	}
+	
+	private static final class DoubleHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x40000000;
+		private int mask;
+		
+		DoubleHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(double key) {
+			long x = Double.doubleToLongBits(key);
+			int y = (int)(x ^ (x >>> 32));
+			return (y ^ (y >>> 16)) & mask;
+		}
+		
+		boolean containsKey(double key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(double key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(double key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			double key;
+			int value;
+			Node next;
+			Node(double key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
+		}
+	}
+	
+	private static final class FloatHT {
+		
+		private Node[] table;
+		private static final int MAX_SIZE = 0x40000000;
+		private int mask;
+		
+		FloatHT(int minSize) {
+			if (minSize > MAX_SIZE) {
+				minSize = MAX_SIZE;
+				mask = minSize - 1;
+			} else {
+				minSize = minSize - 1;
+				minSize = minSize | (minSize >> 1);
+				minSize = minSize | (minSize >> 2);
+				minSize = minSize | (minSize >> 4);
+				minSize = minSize | (minSize >> 8);
+				minSize = minSize | (minSize >> 16);
+				mask = minSize;
+				minSize++;
+			}
+			table = new Node[minSize];
+		}
+		
+		int index(float key) {
+			int x = Float.floatToIntBits(key);
+			return (x ^ (x >>> 16)) & mask;
+		}
+		
+		boolean containsKey(float key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return true;
+			}
+			return false;
+		}
+		
+		int get(float key) {
+			for (Node current = table[index(key)]; current != null; current = current.next) {
+				if (current.key == key) return current.value;
+			}
+			// NOTE: our internal usage never puts a negative as a value
+			return -1;
+		}
+		
+		void put(float key, int value) {
+			// warning: assumes key is not already in hash table (only used internally so ok).
+			int i = index(key);
+			table[i] = new Node(key, value, table[i]);
+		}
+		
+		static final class Node {
+			float key;
+			int value;
+			Node next;
+			Node(float key, int value, Node next) {
+				this.key = key;
+				this.value = value;
+				this.next = next;
+			}
 		}
 	}
 	
