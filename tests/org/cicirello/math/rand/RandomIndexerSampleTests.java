@@ -1395,7 +1395,7 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
 			}
 		}
-		//if (DISABLE_CHI_SQUARE_TESTS) return;
+		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 3; n <= 6; n++) {
 			for (int w = 2; w < n; w++) {
 				int countH = 0;
