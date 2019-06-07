@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.31
+ * @version 1.19.6.7
  * @since 1.4
  *
  */
@@ -598,7 +598,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] sample(int n, int k, int[] result) {
 		if (2 * k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result);
+			if (k * k < 2 * n) return sampleInsertion(n, k, result);
 			else return samplePool(n, k, result);
 		} else return sampleReservoir(n, k, result);
 	}
@@ -626,7 +626,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
 		if (2 * k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result, gen);
+			if (k * k < 2 * n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
 	}
@@ -654,7 +654,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
 		if (2 * k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result, gen);
+			if (k * k < 2 * n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
 	}
