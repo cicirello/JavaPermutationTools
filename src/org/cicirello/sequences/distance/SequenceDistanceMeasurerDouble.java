@@ -20,7 +20,7 @@
  */
 package org.cicirello.sequences.distance;
 
-
+import java.util.List;
 
 /**
  * <p>Implement this interface, SequenceDistanceMeasurerDouble, to define a distance metric for sequences.  A sequence may have duplicate elements, unlike
@@ -33,7 +33,7 @@ package org.cicirello.sequences.distance;
  * interface.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.19.5.30
+ * @version 1.19.6.10
  * @since 1.1
  */
 public interface SequenceDistanceMeasurerDouble {
@@ -123,4 +123,18 @@ public interface SequenceDistanceMeasurerDouble {
 	 * @return distance between s1 and s2
 	 */
 	double distancef(Object[] s1, Object[] s2);
+	
+	/**
+	 * Measures the distance between two lists of objects.
+	 * The objects in the lists must be of a class that has overridden the
+	 * Object.equals method.
+	 *
+	 * @since 1.5
+	 * @param s1 First list.
+	 * @param s2 Second list.
+	 * @param <T> Type of List elements.
+	 * @return distance between s1 and s2
+	 */
+	<T> double distancef(List<T> s1, List<T> s2);
 }
+

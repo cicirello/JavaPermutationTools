@@ -20,6 +20,8 @@
  */
 package org.cicirello.sequences.distance;
 
+import java.util.List;
+
 /**
  * <p>Extend this abstract class to define a distance metric for 
  * permutations where distance is an integer value.</p>
@@ -31,7 +33,7 @@ package org.cicirello.sequences.distance;
  * class.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.19.5.31
+ * @version 1.19.6.10
  * @since 1.1
  */
 abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
@@ -113,6 +115,14 @@ abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasu
 	 */
 	@Override
 	public final double distancef(Object[] s1, Object[] s2) {
+		return distance(s1, s2);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final <T> double distancef(List<T> s1, List<T> s2) {
 		return distance(s1, s2);
 	}
 }

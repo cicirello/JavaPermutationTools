@@ -25,6 +25,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.cicirello.sequences.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
 
 // KendallTau tests uses Permutation class
 import org.cicirello.permutations.Permutation;
@@ -42,12 +43,16 @@ public class SequenceDistanceTests {
 		String[] a0 = {"a", "b", "c", "d", "e", "f"};
 		String[] a1 = {"a", "b", "c", "d", "e", "f"};
 		assertEquals("same", 0, d.distance(a0,a1));
+		assertEquals("same", 0, d.distance(toList(a0),toList(a1)));
 		String[] a2 = {"f", "a", "b", "c", "d", "e"};
 		String[] a3 = {"f", "b", "c", "d", "e", "a"};
 		String[] a4 = {"a", "d", "c", "b", "e", "f"};
 		assertEquals("maximal distance", 6, d.distance(a1,a2));
 		assertEquals("end points differ", 2, d.distance(a1,a3));
 		assertEquals("differ in interior positions", 2, d.distance(a1,a4));
+		assertEquals("maximal distance", 6, d.distance(toList(a1),toList(a2)));
+		assertEquals("end points differ", 2, d.distance(toList(a1),toList(a3)));
+		assertEquals("differ in interior positions", 2, d.distance(toList(a1),toList(a4)));
 		String[] b1 = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
 		String[] b2 = {"f", "a", "b", "c", "d", "e", "g", "h", "i"};
 		String[] b3 = {"f", "b", "c", "d", "e", "a", "g", "h", "i"};
@@ -60,6 +65,15 @@ public class SequenceDistanceTests {
 		assertEquals("maximal distance", 9, d.distance(b2,a1));
 		assertEquals("end points of shorter differ", 5, d.distance(b3,a1));
 		assertEquals("differ in interior positions", 5, d.distance(b4,a1));
+		
+		assertEquals("identical except for extras", 3, d.distance(toList(a1),toList(b1)));
+		assertEquals("maximal distance", 9, d.distance(toList(a1),toList(b2)));
+		assertEquals("end points of shorter differ", 5, d.distance(toList(a1),toList(b3)));
+		assertEquals("differ in interior positions", 5, d.distance(toList(a1),toList(b4)));
+		assertEquals("identical except for extras", 3, d.distance(toList(b1),toList(a1)));
+		assertEquals("maximal distance", 9, d.distance(toList(b2),toList(a1)));
+		assertEquals("end points of shorter differ", 5, d.distance(toList(b3),toList(a1)));
+		assertEquals("differ in interior positions", 5, d.distance(toList(b4),toList(a1)));
 		
 		NonComparable[] c1 = new NonComparable[6];
 		NonComparable[] c2 = new NonComparable[6];
@@ -74,6 +88,20 @@ public class SequenceDistanceTests {
 		c3[5] = temp;
 		assertEquals("maximal distance", 6, d.distance(c1,c2));
 		assertEquals("end points differ", 2, d.distance(c1,c3));
+		assertEquals("maximal distance", 6, d.distance(toList(c1),toList(c2)));
+		assertEquals("end points differ", 2, d.distance(toList(c1),toList(c3)));
+	}
+	
+	private ArrayList<String> toList(String[] a) {
+		ArrayList<String> list = new ArrayList<String>();
+		for (String s : a) list.add(s);
+		return list;
+	}
+	
+	private ArrayList<NonComparable> toList(NonComparable[] a) {
+		ArrayList<NonComparable> list = new ArrayList<NonComparable>();
+		for (NonComparable s : a) list.add(s);
+		return list;
 	}
 	
 	private static class NonComparable {
@@ -516,15 +544,21 @@ public class SequenceDistanceTests {
 		EditDistance d = new EditDistance(1, 1, 2);
 		assertEquals(16, d.distance(s1,s2));
 		assertEquals(16.0, d.distancef(s1,s2), EPSILON);
+		assertEquals(16, d.distance(toList(s1),toList(s2)));
+		assertEquals(16.0, d.distancef(toList(s1),toList(s2)), EPSILON);
 		d = new EditDistance(3, 3, 6);
 		assertEquals(48, d.distance(s1,s2));
 		assertEquals(48.0, d.distancef(s1,s2), EPSILON);
+		assertEquals(48, d.distance(toList(s1),toList(s2)));
+		assertEquals(48.0, d.distancef(toList(s1),toList(s2)), EPSILON);
 		
 		String[] s3 = {"a","a","a","a","a","b","c","d","e","f","a","a","a","a","a","b","c","d","e","f","a","a","a","a","a"};
 		String[] s4 = {"b","b","b","b","b","b","c","d","e","f","b","b","b","b","b","b","c","d","e","f","b","b","b","b","b"};
 		d = new EditDistance(2, 2, 3);
 		assertEquals(45, d.distance(s3,s4));
 		assertEquals(45.0, d.distancef(s3,s4), EPSILON);
+		assertEquals(45, d.distance(toList(s3),toList(s4)));
+		assertEquals(45.0, d.distancef(toList(s3),toList(s4)), EPSILON);
 		
 		d = new EditDistance(3, 3, 6);
 		NonComparable[] c1 = new NonComparable[17];
@@ -536,6 +570,7 @@ public class SequenceDistanceTests {
 			c2[i] = (i%2==0) ? new NonComparable(100 + i) : new NonComparable(0);
 		}
 		assertEquals(51, d.distance(c1,c2));
+		assertEquals(51, d.distance(toList(c1),toList(c2)));
 	}
 	
 	@Test
@@ -544,8 +579,10 @@ public class SequenceDistanceTests {
 		String[] s1 = {"a","b","a","c","a","d","a","e","a","f","a","h","a","i","a","j","a"};
 		String[] s2 = {"k","a","m","n","o","p","a","l","a","a","q","a","a","a","a"};
 		assertEquals(16, d.distance(s1,s2));
+		assertEquals(16, d.distance(toList(s1),toList(s2)));
 		String[] s3 = {"a","b","a","c","a","d","a","e","a","f","a","h","a","i","a","j","a","z","a","z","a","z","a","z","a","z","a"};
 		assertEquals(26, d.distance(s3,s2));
+		assertEquals(26, d.distance(toList(s3),toList(s2)));
 		
 		NonComparable[] c1 = new NonComparable[17];
 		for (int i = 0; i < 17; i++) {
@@ -556,6 +593,7 @@ public class SequenceDistanceTests {
 			c2[i] = (i%2==0) ? new NonComparable(100 + i) : new NonComparable(0);
 		}
 		assertEquals(17, d.distance(c1,c2));
+		assertEquals(17, d.distance(toList(c1),toList(c2)));
 	}
 	
 	@Test
@@ -701,9 +739,13 @@ public class SequenceDistanceTests {
 			int expected = n*(n-1)/2;
 			assertEquals("maximal distance", expected, d.distance(s1,s2));
 			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			assertEquals("maximal distance", expected, d.distance(toList(s1),toList(s2)));
+			assertEquals("maximal distance", expected, d.distance(toList(s2),toList(s1)));
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			assertEquals("end points swapped", expected, d.distance(toList(s1),toList(s3)));
+			assertEquals("end points swapped", expected, d.distance(toList(s3),toList(s1)));
 		}
 		for (int n = 2; n <= 10; n++) {
 			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
@@ -718,9 +760,13 @@ public class SequenceDistanceTests {
 			int expected = n*(n-1)/2;
 			assertEquals("maximal distance", expected, d.distance(s1,s2));
 			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			assertEquals("maximal distance", expected, d.distance(toList(s1),toList(s2)));
+			assertEquals("maximal distance", expected, d.distance(toList(s2),toList(s1)));
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			assertEquals("end points swapped", expected, d.distance(toList(s1),toList(s3)));
+			assertEquals("end points swapped", expected, d.distance(toList(s3),toList(s1)));
 		}
 	}
 	
@@ -742,9 +788,13 @@ public class SequenceDistanceTests {
 			int expected = n*(n-1)/2;
 			assertEquals("maximal distance", expected, d.distance(s1,s2));
 			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			assertEquals("maximal distance", expected, d.distance(toList(s1),toList(s2)));
+			assertEquals("maximal distance", expected, d.distance(toList(s2),toList(s1)));
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			assertEquals("end points swapped", expected, d.distance(toList(s1),toList(s3)));
+			assertEquals("end points swapped", expected, d.distance(toList(s3),toList(s1)));
 		}
 		for (int n = 2; n <= 10; n++) {
 			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
@@ -759,9 +809,13 @@ public class SequenceDistanceTests {
 			int expected = n*(n-1)/2;
 			assertEquals("maximal distance", expected, d.distance(s1,s2));
 			assertEquals("maximal distance", expected, d.distance(s2,s1));
+			assertEquals("maximal distance", expected, d.distance(toList(s1),toList(s2)));
+			assertEquals("maximal distance", expected, d.distance(toList(s2),toList(s1)));
 			expected = 2*n-3;
 			assertEquals("end points swapped", expected, d.distance(s1,s3));
 			assertEquals("end points swapped", expected, d.distance(s3,s1));
+			assertEquals("end points swapped", expected, d.distance(toList(s1),toList(s3)));
+			assertEquals("end points swapped", expected, d.distance(toList(s3),toList(s1)));
 		}
 	}
 	

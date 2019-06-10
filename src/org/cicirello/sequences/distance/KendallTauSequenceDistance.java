@@ -23,7 +23,8 @@ package org.cicirello.sequences.distance;
 
 import java.util.Arrays;
 import java.util.HashMap;
-
+import java.util.List;
+import java.util.Iterator;
 
 /**
  * <p>Kendall Tau Sequence Distance is
@@ -76,7 +77,7 @@ import java.util.HashMap;
  * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 2.19.6.5
+ * @version 1.19.6.10
  * @since 1.1
  */
 public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
@@ -283,6 +284,23 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		return countInversions(mapping);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> int distance(List<T> s1, List<T> s2) {
+		if (s1.size() != s2.size()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
+		if (s1.size() == 0) return 0;
+		
+		int[][] relabeling = new int[s1.size()][2];
+		@SuppressWarnings("unchecked")
+		int numLabels = (USE_HASHMAP || !(s1.get(0) instanceof Comparable)) ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements((List<Comparable>)s1,(List<Comparable>)s2,relabeling);
+		
+		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
+		int[] mapping = mapElements(buckets, relabeling.length);	
+		return countInversions(mapping);
+	}
+	
 	private int[] mapElements(Bucket[][] buckets, int seqLength) {
 		int[] mapping = new int[seqLength];		
 		for (int k = 0; k < buckets.length; k++) {
@@ -328,6 +346,26 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
 			Integer j = labelMap.get(s2[i]);
+			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = j;
+		}
+		return current+1;
+	}
+	
+	private <T> int relabelElementsWithHash(List<T> s1, List<T> s2, int[][] relabeling) {
+		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(1.334 * relabeling.length)+2);
+		int current = -1;
+		for (T e : s1) {
+			if (!labelMap.containsKey(e)) {
+				current++;
+				labelMap.put(e,current);
+			}
+		}
+		Iterator<T> iter1 = s1.iterator();
+		Iterator<T> iter2 = s2.iterator();
+		for (int i = 0; i < relabeling.length; i++) {
+			relabeling[i][0] = labelMap.get(iter1.next()); 
+			Integer j = labelMap.get(iter2.next());
 			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
 			relabeling[i][1] = j;
 		}
@@ -688,6 +726,27 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
+			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			relabeling[i][1] = labels[j];
+		}
+		return current+1;
+	}
+	
+	private int relabelElements(List<Comparable> s1, List<Comparable> s2, int[][] relabeling) {
+		Comparable[] c1 = s1.toArray(new Comparable[s1.size()]);
+		Arrays.sort(c1);
+		int[] labels = new int[c1.length];
+		int current = labels[0] = 0;
+		for (int i = 1; i < labels.length; i++) {
+			if (c1[i] != c1[i-1]) current++;
+			labels[i] = current;
+		}
+		Iterator<Comparable> iter1 = s1.iterator();
+		Iterator<Comparable> iter2 = s2.iterator();
+		for (int i = 0; i < relabeling.length; i++) {
+			int j = Arrays.binarySearch(c1, iter1.next());
+			relabeling[i][0] = labels[j];
+			j = Arrays.binarySearch(c1, iter2.next());
 			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
 			relabeling[i][1] = labels[j];
 		}

@@ -20,6 +20,8 @@
  */
 package org.cicirello.sequences.distance;
 
+import java.util.List;
+import java.util.Iterator;
 
 /**
  * <p>ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
@@ -42,7 +44,7 @@ package org.cicirello.sequences.distance;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.30
+ * @version 1.19.6.10
  * @since 1.1
  */
 public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
@@ -256,6 +258,29 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		}
 		for (int i = 0; i < n; i++) {
 			if (!s1[i].equals(s2[i])) {
+				cost++;
+			}
+		}
+		return cost;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> int distance(List<T> s1, List<T> s2) {
+		int n = s1.size();
+		int cost = 0;
+		if (s2.size() < n) {
+			cost = n - s2.size();
+			n = s2.size();
+		} else if (n < s2.size()) {
+			cost = s2.size() - n;
+		}
+		Iterator<T> iter1 = s1.iterator();
+		Iterator<T> iter2 = s2.iterator();
+		for (int i = 0; i < n; i++) {
+			if (!iter1.next().equals(iter2.next())) {
 				cost++;
 			}
 		}
