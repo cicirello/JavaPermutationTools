@@ -23,6 +23,7 @@ metrics on sequences (i.e., Strings, arrays, and other ordered data types).
 JPT is organized into the following packages:
 * __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
 * __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
+* __org.cicirello.sequences__: Classes that perform a variety of operations on sequences (such as arrays, etc).
 * __org.cicirello.sequences.distance__: Collection of distance metrics on Strings and other sequences.
 * __org.cicirello.math.la__ : Linear algebra related classes.
 * __org.cicirello.math.rand__ : Classes related to efficient, or specialized, random number generation. 
