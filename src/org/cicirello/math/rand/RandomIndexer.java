@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.6.7
+ * @version 1.19.6.10
  * @since 1.4
  *
  */
@@ -945,6 +945,79 @@ public final class RandomIndexer {
 		}
 		return result;
 	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(n), and it uses O(n) random doubles.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param p The probability that an element of the result is true.
+	 * @return An array of n boolean values, such that each element is true with probability p.
+	 * @since 1.5
+	 */
+	public static boolean[] arrayMask(int n, double p) {
+		boolean[] result = new boolean[n];
+		if (p >= 1) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (p > 0) {
+			ThreadLocalRandom gen = ThreadLocalRandom.current();
+			for (int i = 0; i < n; i++) {
+				result[i] = gen.nextDouble() < p;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(n), and it uses O(n) random doubles.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param p The probability that an element of the result is true.
+	 * @param gen The source of randomness.
+	 * @return An array of n boolean values, such that each element is true with probability p.
+	 * @since 1.5
+	 */
+	public static boolean[] arrayMask(int n, double p, SplittableRandom gen) {
+		boolean[] result = new boolean[n];
+		if (p >= 1) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (p > 0) {
+			for (int i = 0; i < n; i++) {
+				result[i] = gen.nextDouble() < p;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
+	 * <p>Runtime: O(n), and it uses O(n) random doubles.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param p The probability that an element of the result is true.
+	 * @param gen The source of randomness.
+	 * @return An array of n boolean values, such that each element is true with probability p.
+	 * @since 1.5
+	 */
+	public static boolean[] arrayMask(int n, double p, Random gen) {
+		boolean[] result = new boolean[n];
+		if (p >= 1) {
+			for (int i = 0; i < n; i++) result[i] = true;
+		} else if (p > 0) {
+			for (int i = 0; i < n; i++) {
+				result[i] = gen.nextDouble() < p;
+			}
+		}
+		return result;
+	}
+	
+	
 	
 	/**
 	 * <p>Generates a random sample of 2 integers, i, j, without replacement, from the
