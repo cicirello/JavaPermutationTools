@@ -23,6 +23,8 @@
 package org.cicirello.sequences;
 
 import org.cicirello.math.rand.RandomIndexer;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * ArraySampler is a class of utility methods related to 
@@ -55,13 +57,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static int[] sample(int[] source, int k, int[] target) {
 		if (2 * k < source.length) {
@@ -84,13 +84,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static long[] sample(long[] source, int k, long[] target) {
 		if (2 * k < source.length) {
@@ -113,13 +111,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static short[] sample(short[] source, int k, short[] target) {
 		if (2 * k < source.length) {
@@ -142,13 +138,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static byte[] sample(byte[] source, int k, byte[] target) {
 		if (2 * k < source.length) {
@@ -171,13 +165,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sample(char[] source, int k, char[] target) {
 		if (2 * k < source.length) {
@@ -200,13 +192,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sample(String source, int k, char[] target) {
 		if (2 * k < source.length()) {
@@ -229,13 +219,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static double[] sample(double[] source, int k, double[] target) {
 		if (2 * k < source.length) {
@@ -258,13 +246,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static float[] sample(float[] source, int k, float[] target) {
 		if (2 * k < source.length) {
@@ -287,23 +273,20 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
+	 * @param <T> The type of array elements.
+	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws NullPointerException if target or source are null
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
-	public static void sample(Object[] source, int k, Object[] target) {
+	public static <T> T[] sample(T[] source, int k, T[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) sampleInsertion(source, k, target);
-			else samplePool(source, k, target);
-		} else sampleReservoir(source, k, target);
+			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			else return samplePool(source, k, target);
+		} else return sampleReservoir(source, k, target);
 	}
-	
-	
-	
+
 	
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
@@ -321,19 +304,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int[] source, int k, int[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new int[k];
+		if (target == null || target.length < k) target = new int[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -362,19 +343,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static long[] sampleReservoir(long[] source, int k, long[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new long[k];
+		if (target == null || target.length < k) target = new long[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -403,19 +382,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static short[] sampleReservoir(short[] source, int k, short[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new short[k];
+		if (target == null || target.length < k) target = new short[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -444,19 +421,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new byte[k];
+		if (target == null || target.length < k) target = new byte[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -485,19 +460,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sampleReservoir(char[] source, int k, char[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new char[k];
+		if (target == null || target.length < k) target = new char[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -526,19 +499,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sampleReservoir(String source, int k, char[] target) {
 		if (k > source.length()) {
 			throw new IllegalArgumentException("k must be no greater than length of source");
 		}
-		if (target == null) target = new char[k];
+		if (target == null || target.length < k) target = new char[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source.charAt(i);
 		}
@@ -567,19 +538,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static double[] sampleReservoir(double[] source, int k, double[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new double[k];
+		if (target == null || target.length < k) target = new double[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -608,19 +577,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static float[] sampleReservoir(float[] source, int k, float[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new float[k];
+		if (target == null || target.length < k) target = new float[k];
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
 		}
@@ -649,17 +616,22 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
+	 * @param <T> The type of array elements.
+	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws NullPointerException if target or source are null
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
-	public static void sampleReservoir(Object[] source, int k, Object[] target) {
+	@SuppressWarnings("unchecked")
+	public static <T> T[] sampleReservoir(T[] source, int k, T[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
+		}
+		if (target == null) {
+			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
+		} else if (target.length < k) {
+			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
 		}
 		for (int i = 0; i < k; i++) {
 			target[i] = source[i];
@@ -670,10 +642,8 @@ public final class SequenceSampler {
 				target[j] = source[i];
 			}
 		}
+		return target;
 	}
-	
-	
-	
 	
 	
 	/**
@@ -690,19 +660,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static int[] samplePool(int[] source, int k, int[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new int[k];
+		if (target == null || target.length < k) target = new int[k];
 		int[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -728,19 +696,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static long[] samplePool(long[] source, int k, long[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new long[k];
+		if (target == null || target.length < k) target = new long[k];
 		long[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -766,19 +732,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static short[] samplePool(short[] source, int k, short[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new short[k];
+		if (target == null || target.length < k) target = new short[k];
 		short[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -804,19 +768,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static byte[] samplePool(byte[] source, int k, byte[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new byte[k];
+		if (target == null || target.length < k) target = new byte[k];
 		byte[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -842,19 +804,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] samplePool(char[] source, int k, char[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new char[k];
+		if (target == null || target.length < k) target = new char[k];
 		char[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -880,13 +840,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] samplePool(String source, int k, char[] target) {
 		if (k > source.length()) {
@@ -909,19 +867,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static double[] samplePool(double[] source, int k, double[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new double[k];
+		if (target == null || target.length < k) target = new double[k];
 		double[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -947,19 +903,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static float[] samplePool(float[] source, int k, float[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new float[k];
+		if (target == null || target.length < k) target = new float[k];
 		float[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -985,19 +939,24 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
+	 * @param <T> The type of array elements.
+	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws NullPointerException if target or source are null
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
-	public static void samplePool(Object[] source, int k, Object[] target) {
+	@SuppressWarnings("unchecked")
+	public static <T> T[] samplePool(T[] source, int k, T[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		Object[] pool = source.clone();
+		if (target == null) {
+			target = (T[]) Array.newInstance(source.getClass().getComponentType(), k);
+		} else if (target.length < k) {
+			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
+		}
+		T[] pool = Arrays.copyOf(source, source.length);
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
 			int j = RandomIndexer.nextInt(remaining);
@@ -1005,6 +964,7 @@ public final class SequenceSampler {
 			remaining--;
 			pool[j] = pool[remaining];
 		}
+		return target;
 	}
 	
 	
@@ -1022,13 +982,11 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static int[] sampleInsertion(int[] source, int k, int[] target) {
 		if (k > source.length) {
@@ -1056,19 +1014,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static long[] sampleInsertion(long[] source, int k, long[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new long[k];
+		if (target == null || target.length < k) target = new long[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1091,19 +1047,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static short[] sampleInsertion(short[] source, int k, short[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new short[k];
+		if (target == null || target.length < k) target = new short[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1126,19 +1080,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static byte[] sampleInsertion(byte[] source, int k, byte[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new byte[k];
+		if (target == null || target.length < k) target = new byte[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1161,19 +1113,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sampleInsertion(char[] source, int k, char[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new char[k];
+		if (target == null || target.length < k) target = new char[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1196,19 +1146,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static char[] sampleInsertion(String source, int k, char[] target) {
 		if (k > source.length()) {
 			throw new IllegalArgumentException("k must be no greater than length of source");
 		}
-		if (target == null) target = new char[k];
+		if (target == null || target.length < k) target = new char[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length(), k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source.charAt(indexes[i]);
@@ -1231,19 +1179,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static double[] sampleInsertion(double[] source, int k, double[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new double[k];
+		if (target == null || target.length < k) target = new double[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1266,19 +1212,17 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result.  You may pass null, in which case the
-	 * method will construct an array for you.  If you pass an array for target, its 
-	 * length must be at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
 	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
 	public static float[] sampleInsertion(float[] source, int k, float[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		if (target == null) target = new float[k];
+		if (target == null || target.length < k) target = new float[k];
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1301,21 +1245,28 @@ public final class SequenceSampler {
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
-	 * @param target An array to hold the result of 
-	 * length at least k.
+	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
+	 * then this method will construct a new array for the result.
+	 * @param <T> The type of array elements.
+	 * @return An array containing the random sample.
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
-	 * @throws NullPointerException if target or source are null
-	 * @throws ArrayIndexOutOfBoundsException if target.length &lt; k.
 	 */
-	public static void sampleInsertion(Object[] source, int k, Object[] target) {
+	@SuppressWarnings("unchecked")
+	public static <T> T[] sampleInsertion(T[] source, int k, T[] target) {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
+		}
+		if (target == null) {
+			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
+		} else if (target.length < k) {
+			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
 		}
 		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
+		return target;
 	}
 	
 	

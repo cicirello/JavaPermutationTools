@@ -859,9 +859,9 @@ public class SequenceSamplerTests {
 			String sMixed = new String(mixedQuantities);
 			String sSame = new String(allSame);
 			for (int k = 1; k <= n; k++) {
-				validateSample(allDiff, SequenceSampler.sampleReservoir(sAllDiff, k, null));
-				validateSample(mixedQuantities, SequenceSampler.sampleReservoir(sMixed, k, null));
-				validateSample(allSame, SequenceSampler.sampleReservoir(sSame, k, null));
+				validateSample(allDiff, SequenceSampler.samplePool(sAllDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.samplePool(sMixed, k, null));
+				validateSample(allSame, SequenceSampler.samplePool(sSame, k, null));
 			}
 		}
 	}
@@ -889,9 +889,9 @@ public class SequenceSamplerTests {
 			String sMixed = new String(mixedQuantities);
 			String sSame = new String(allSame);
 			for (int k = 1; k <= n; k++) {
-				validateSample(allDiff, SequenceSampler.sampleReservoir(sAllDiff, k, null));
-				validateSample(mixedQuantities, SequenceSampler.sampleReservoir(sMixed, k, null));
-				validateSample(allSame, SequenceSampler.sampleReservoir(sSame, k, null));
+				validateSample(allDiff, SequenceSampler.sampleInsertion(sAllDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.sampleInsertion(sMixed, k, null));
+				validateSample(allSame, SequenceSampler.sampleInsertion(sSame, k, null));
 			}
 		}
 	}
@@ -919,9 +919,9 @@ public class SequenceSamplerTests {
 			String sMixed = new String(mixedQuantities);
 			String sSame = new String(allSame);
 			for (int k = 1; k <= n; k++) {
-				validateSample(allDiff, SequenceSampler.sampleReservoir(sAllDiff, k, null));
-				validateSample(mixedQuantities, SequenceSampler.sampleReservoir(sMixed, k, null));
-				validateSample(allSame, SequenceSampler.sampleReservoir(sSame, k, null));
+				validateSample(allDiff, SequenceSampler.sample(sAllDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.sample(sMixed, k, null));
+				validateSample(allSame, SequenceSampler.sample(sSame, k, null));
 			}
 		}
 	}
@@ -948,15 +948,9 @@ public class SequenceSamplerTests {
 				allSame[i] = "" + (char)(100);
 			}
 			for (int k = 1; k <= n; k++) {
-				String[] target = new String[k];
-				SequenceSampler.sampleReservoir(allDiff, k, target);
-				validateSample(allDiff, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(mixedQuantities, k, target);
-				validateSample(mixedQuantities, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(allSame, k, target);
-				validateSample(allSame, target);
+				validateSample(allDiff, SequenceSampler.sampleReservoir(allDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.sampleReservoir(mixedQuantities, k, null));
+				validateSample(allSame, SequenceSampler.sampleReservoir(allSame, k, null));
 			}
 		}
 	}
@@ -981,15 +975,9 @@ public class SequenceSamplerTests {
 				allSame[i] = "" + (char)(100);
 			}
 			for (int k = 1; k <= n; k++) {
-				String[] target = new String[k];
-				SequenceSampler.sampleReservoir(allDiff, k, target);
-				validateSample(allDiff, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(mixedQuantities, k, target);
-				validateSample(mixedQuantities, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(allSame, k, target);
-				validateSample(allSame, target);
+				validateSample(allDiff, SequenceSampler.samplePool(allDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.samplePool(mixedQuantities, k, null));
+				validateSample(allSame, SequenceSampler.samplePool(allSame, k, null));
 			}
 		}
 	}
@@ -1014,15 +1002,9 @@ public class SequenceSamplerTests {
 				allSame[i] = "" + (char)(100);
 			}
 			for (int k = 1; k <= n; k++) {
-				String[] target = new String[k];
-				SequenceSampler.sampleReservoir(allDiff, k, target);
-				validateSample(allDiff, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(mixedQuantities, k, target);
-				validateSample(mixedQuantities, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(allSame, k, target);
-				validateSample(allSame, target);
+				validateSample(allDiff, SequenceSampler.sampleInsertion(allDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.sampleInsertion(mixedQuantities, k, null));
+				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null));
 			}
 		}
 	}
@@ -1047,15 +1029,9 @@ public class SequenceSamplerTests {
 				allSame[i] = "" + (char)(100);
 			}
 			for (int k = 1; k <= n; k++) {
-				String[] target = new String[k];
-				SequenceSampler.sampleReservoir(allDiff, k, target);
-				validateSample(allDiff, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(mixedQuantities, k, target);
-				validateSample(mixedQuantities, target);
-				target = new String[k];
-				SequenceSampler.sampleReservoir(allSame, k, target);
-				validateSample(allSame, target);
+				validateSample(allDiff, SequenceSampler.sample(allDiff, k, null));
+				validateSample(mixedQuantities, SequenceSampler.sample(mixedQuantities, k, null));
+				validateSample(allSame, SequenceSampler.sample(allSame, k, null));
 			}
 		}
 	}
