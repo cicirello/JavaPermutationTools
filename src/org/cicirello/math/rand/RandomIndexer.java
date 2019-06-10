@@ -245,17 +245,15 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			result[i] = i;
 		}
@@ -283,18 +281,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result, Random gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			result[i] = i;
 		}
@@ -320,18 +316,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result, SplittableRandom gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			result[i] = i;
 		}
@@ -358,17 +352,15 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		int[] pool = new int[n];
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
@@ -393,18 +385,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result, SplittableRandom gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		int[] pool = new int[n];
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
@@ -429,18 +419,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] samplePool(int n, int k, int[] result, Random gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		int[] pool = new int[n];
 		for (int i = 0; i < n; i++) pool[i] = i;
 		int remaining = n;
@@ -468,17 +456,15 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleInsertion(int n, int k, int[] result) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			int temp = nextInt(n-i);
 			int j = k-i; 
@@ -505,18 +491,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen The source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleInsertion(int n, int k, int[] result, SplittableRandom gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			int temp = nextInt(n-i, gen);
 			int j = k-i; 
@@ -543,18 +527,16 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen The source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sampleInsertion(int n, int k, int[] result, Random gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null) result = new int[k];
+		if (result == null || result.length < k) result = new int[k];
 		for (int i = 0; i < k; i++) {
 			int temp = nextInt(n-i, gen);
 			int j = k-i; 
@@ -588,13 +570,11 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result) {
 		if (2 * k < n) {
@@ -615,14 +595,12 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
 		if (2 * k < n) {
@@ -643,14 +621,12 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
-	 * @param result An array to hold the sample that is generated.  You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least k.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; k.
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
 		if (2 * k < n) {
@@ -668,18 +644,15 @@ public final class RandomIndexer {
 	 * pseudorandom number generator, and is thus safe for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result) {
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n);
 		int temp = nextInt(n-1);
 		if (temp >= result[0]) {
@@ -698,19 +671,16 @@ public final class RandomIndexer {
 	 * <p>The runtime is O(1).</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, SplittableRandom gen) {
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n, gen);
 		int temp = nextInt(n-1, gen);
 		if (temp >= result[0]) {
@@ -729,19 +699,16 @@ public final class RandomIndexer {
 	 * <p>The runtime is O(1).</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, Random gen) {
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n, gen);
 		int temp = nextInt(n-1, gen);
 		if (temp >= result[0]) {
@@ -763,18 +730,15 @@ public final class RandomIndexer {
 	 * pseudorandom number generator, and is thus safe for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result) {
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		result[0] = nextInt(n);
 		result[1] = nextInt(n-1);
 		result[2] = nextInt(n-2);
@@ -814,19 +778,16 @@ public final class RandomIndexer {
 	 * <p>The runtime is O(1).</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, SplittableRandom gen) {
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -841,19 +802,16 @@ public final class RandomIndexer {
 	 * <p>The runtime is O(1).</p>
 	 *
 	 * @param n The number of integers to choose from.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers from the interval [0, n).  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, Random gen) {
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -998,20 +956,17 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the pair.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
 	 * from the interval [0, n), such that |i-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result) {
 		if (window >= n - 1) return nextIntPair(n, result);
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1);
@@ -1041,21 +996,18 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the pair.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
 	 * from the interval [0, n), such that |i-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, SplittableRandom gen) {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
@@ -1085,21 +1037,18 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the pair.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 2.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
 	 * from the interval [0, n), such that |i-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, Random gen) {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
-		if (result == null) result = new int[2];
+		if (result == null || result.length < 2) result = new int[2];
 		final int z1 = n - window;
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
@@ -1135,21 +1084,18 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
 	 * from the interval [0, n), such that |i-j| &le; window, and 
 	 * |i-k| &le; window, and |k-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
 		if (window >= n - 1) return nextIntTriple(n, result);
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2);
@@ -1200,10 +1146,8 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen The source of randomness.
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
@@ -1211,11 +1155,10 @@ public final class RandomIndexer {
 	 * |i-k| &le; window, and |k-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, SplittableRandom gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, gen);
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
@@ -1266,10 +1209,8 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
-	 * @param result An array to hold the sample that is generated.  
-	 * You may pass null, in which
-	 * case an array will be constructed for you.  
-	 * If you pass an array, ensure that its length is at least 3.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen The source of randomness.
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
@@ -1277,11 +1218,10 @@ public final class RandomIndexer {
 	 * |i-k| &le; window, and |k-j| &le; window.  The array is
 	 * sorted by increasing order.
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @throws ArrayIndexOutOfBoundsException if result.length &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, Random gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, gen);
-		if (result == null) result = new int[3];
+		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
