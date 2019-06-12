@@ -26,10 +26,10 @@ import org.cicirello.permutations.Permutation;
  * Implement this interface, PermutationDistanceMeasurer, to define a distance metric for permutations.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.6.12
  * @since 1.0
  */
-public interface PermutationDistanceMeasurer 
+public interface PermutationDistanceMeasurer extends PermutationDistanceMeasurerDouble
 {
 	/**
 	 * Measures the distance between two permutations.

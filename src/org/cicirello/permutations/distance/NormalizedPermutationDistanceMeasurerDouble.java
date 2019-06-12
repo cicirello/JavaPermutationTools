@@ -27,10 +27,10 @@ import org.cicirello.permutations.Permutation;
  * normalizing the distance to the interval [0,1].
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.6.12
  * @since 1.2.5
  */
-public interface NormalizedPermutationDistanceMeasurerDouble extends BoundedPermutationDistanceMeasurerDouble {
+public interface NormalizedPermutationDistanceMeasurerDouble {
 	
 	/**
 	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>

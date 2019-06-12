@@ -48,11 +48,11 @@ import java.util.Arrays;
  * M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.22
+ * @version 1.19.6.12
  * @since 1.0
  * 
  */
-public final class KendallTauDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+public final class KendallTauDistance extends AbstractPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.

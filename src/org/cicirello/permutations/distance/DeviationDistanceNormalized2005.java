@@ -34,7 +34,7 @@ import org.cicirello.permutations.Permutation;
  *
  * <p>Sevaux and Sorensen (2005) suggested a different normalizing factor that provides a distance
  * in the interval [0,1].  Maximal distance occurs for an inverted permutation.  The normalizing
- * factor is (N^2/2) when N is even and (N^2-1)/2 when N is odd.</p>
+ * factor is (N<sup>2</sup>/2) when N is even and (N<sup>2</sup>-1)/2 when N is odd.</p>
  *
  * <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3].
  * Element 0 is displaced by 1 position.  Likewise for elements 1 and 2.
@@ -62,11 +62,11 @@ import org.cicirello.permutations.Permutation;
  * management," in Proc. of MIC2005, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.22  
+ * @version 1.19.6.12  
  * @since 1.2.3
  * 
  */
-public final class DeviationDistanceNormalized2005 implements NormalizedPermutationDistanceMeasurerDouble  {
+public final class DeviationDistanceNormalized2005 implements PermutationDistanceMeasurerDouble, NormalizedPermutationDistanceMeasurerDouble  {
 
 	private DeviationDistance devDistance;
 	
@@ -103,20 +103,4 @@ public final class DeviationDistanceNormalized2005 implements NormalizedPermutat
 		return distancef(p1,p2); 
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double boundf(int length) {
-		return maxf(length);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double normalizedByBound(Permutation p1, Permutation p2) {
-		return normalizedDistance(p1, p2);
-	}
-
 }

@@ -42,7 +42,7 @@ import org.cicirello.permutations.Permutation;
  * one permutation into the other, known as Reinsertion Distance.  A reinsertion operation removes an element and reinserts it
  * in a different position, and is treated as a single composite operation.</p>
  *
- * <p>Runtime: O(n^2), where n is the permutation length.</p>
+ * <p>Runtime: O(n<sup>2</sup>), where n is the permutation length.</p>
  *
  * <p>Wagner and Fischer's String Edit Distance was introduced in:<br>
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
@@ -53,10 +53,10 @@ import org.cicirello.permutations.Permutation;
  * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.6.12
  * @since 1.0
  */
-public final class EditDistance implements BoundedPermutationDistanceMeasurerDouble 
+public final class EditDistance implements PermutationDistanceMeasurerDouble 
 {
 	private double insertCost;
 	private double deleteCost;
@@ -114,37 +114,7 @@ public final class EditDistance implements BoundedPermutationDistanceMeasurerDou
 		return D[L1][L2];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The upper bound is computed as the minimum of either the maximum 
-	 * cost if only change operations are used ( n*changeCost ),
-	 * or the maximum cost if no change operations are used ( (n-1)*(insertCost + deleteCost) ).</p>
-	 */
-	@Override
-	public double boundf(int length) {
-		if (length <= 1) return 0;
-		double combined = insertCost + deleteCost;
-		final double EPSILON = 1e-10;
-		if (combined <= changeCost) {
-			return (length-1)*combined + EPSILON;
-		}
-		// Max if don't use changes
-		double m1 = (length-1)*combined;
-		// Max if only use changes
-		double m2 = length*changeCost;
-		return (m1 < m2 ? m1 : m2) + EPSILON;
-	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public double normalizedByBound(Permutation p1, Permutation p2) {
-		double m = boundf(p1.length());
-		if (m==0) return 0;
-		return distancef(p1,p2) / m;
-	}
 	
 	/* // REMOVED FOR NOW
 	 * The maxf method is not currently unsupported when computing

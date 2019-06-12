@@ -32,10 +32,10 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n), where n is the permutation length.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.6.12
  * @since 1.0
  */
-public final class ScrambleDistance extends AbstractNormalizedPermutationDistanceMeasurer {
+public final class ScrambleDistance extends AbstractPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.

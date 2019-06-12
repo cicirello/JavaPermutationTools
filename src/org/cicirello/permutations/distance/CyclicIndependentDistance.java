@@ -32,11 +32,11 @@ import org.cicirello.permutations.Permutation;
  * the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.5.10
+ * @version 1.19.6.12
  * @since 1.0
  *  
  */
-public final class CyclicIndependentDistance extends AbstractPermutationDistanceMeasurer {
+public final class CyclicIndependentDistance implements PermutationDistanceMeasurer {
 	
 	private PermutationDistanceMeasurer d;
 	
@@ -67,6 +67,14 @@ public final class CyclicIndependentDistance extends AbstractPermutationDistance
 			result = Math.min(result, d.distance(p1, pCopy));
 		}
 		return result;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final double distancef(Permutation p1, Permutation p2) {
+		return distance(p1,p2);
 	}
 	
 }
