@@ -65,7 +65,7 @@ public final class SequenceSampler {
 	 */
 	public static int[] sample(int[] source, int k, int[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -92,7 +92,7 @@ public final class SequenceSampler {
 	 */
 	public static long[] sample(long[] source, int k, long[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -119,7 +119,7 @@ public final class SequenceSampler {
 	 */
 	public static short[] sample(short[] source, int k, short[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -146,7 +146,7 @@ public final class SequenceSampler {
 	 */
 	public static byte[] sample(byte[] source, int k, byte[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -173,7 +173,7 @@ public final class SequenceSampler {
 	 */
 	public static char[] sample(char[] source, int k, char[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -200,7 +200,7 @@ public final class SequenceSampler {
 	 */
 	public static char[] sample(String source, int k, char[] target) {
 		if (2 * k < source.length()) {
-			if (k * k < 2 * source.length()) return sampleInsertion(source, k, target);
+			if (k * k < source.length()) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -227,7 +227,7 @@ public final class SequenceSampler {
 	 */
 	public static double[] sample(double[] source, int k, double[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -254,7 +254,7 @@ public final class SequenceSampler {
 	 */
 	public static float[] sample(float[] source, int k, float[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
@@ -282,7 +282,7 @@ public final class SequenceSampler {
 	 */
 	public static <T> T[] sample(T[] source, int k, T[] target) {
 		if (2 * k < source.length) {
-			if (k * k < 2 * source.length) return sampleInsertion(source, k, target);
+			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
 	}
