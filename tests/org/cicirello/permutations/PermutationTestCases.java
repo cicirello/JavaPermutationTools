@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -32,6 +32,15 @@ import static org.junit.Assert.*;
  * JUnit 4 tests for the constructors and methods of the Permutation class, as well as the PermutationIterator.
  */
 public class PermutationTestCases {
+	
+	// Set to false to enable chi square tests for randomness of constructor and
+	// scramble, specifically for the constructor and scramble that uses ThreadLocalRandom
+	// since it is not seedable.  Tests passed repeatedly as of last update.
+	// If that constructor or scramble is updated, then this flag should be set false to enable
+	// tests (and reset true after passing).
+	// Note: This doesn't disable those tests for the constructors/scramble methods
+	// that use a source of randomness that is seedable.
+	private static final boolean disableChiSquareTests = true;
 	
 	@Test
 	public void testZeroLengthPermutations() {
@@ -401,8 +410,76 @@ public class PermutationTestCases {
 		}
 	}
 	
+	@Test
+	public void testUniformityOfConstructors() {
+		final int N = 12000;
+		Random r1 = new Random(42);
+		SplittableRandom r2 = new SplittableRandom(42);
+		int tooHigh0 = 0;
+		int tooHigh1 = 0;
+		int tooHigh2 = 0;
+		for (int k = 0; k < 100; k++) {
+			int[] counts0 = new int[120];
+			int[] counts1 = new int[120];
+			int[] counts2 = new int[120];
+			for (int i = 0; i < N; i++) {
+				Permutation p0 = new Permutation(5);
+				Permutation p1 = new Permutation(5, r1);
+				Permutation p2 = new Permutation(5, r2);
+				int j0 = p0.toInteger();
+				int j1 = p1.toInteger();
+				int j2 = p2.toInteger();
+				counts0[j0]++;
+				counts1[j1]++;
+				counts2[j2]++;
+			}
+			if (chiSquare(counts0) > 146.567) tooHigh0++;
+			if (chiSquare(counts1) > 146.567) tooHigh1++;
+			if (chiSquare(counts2) > 146.567) tooHigh2++;
+		}
+		if (!disableChiSquareTests) {
+			assertTrue("chi square above limit too often: default constructor", tooHigh0 <= 10);
+		}
+		assertTrue("chi square above limit too often: using class Random", tooHigh1 <= 10);
+		assertTrue("chi square above limit too often: using class SplittableRandom", tooHigh2 <= 10);
+	}
 	
-	
+	@Test
+	public void testUniformityOfScramble() {
+		final int N = 12000;
+		Random r1 = new Random(42);
+		SplittableRandom r2 = new SplittableRandom(42);
+		int tooHigh0 = 0;
+		int tooHigh1 = 0;
+		int tooHigh2 = 0;
+		Permutation p0 = new Permutation(5);
+		Permutation p1 = new Permutation(5, r1);
+		Permutation p2 = new Permutation(5, r2);
+		for (int k = 0; k < 100; k++) {
+			int[] counts0 = new int[120];
+			int[] counts1 = new int[120];
+			int[] counts2 = new int[120];
+			for (int i = 0; i < N; i++) {
+				p0.scramble();
+				p1.scramble(r1);
+				p2.scramble(r2);
+				int j0 = p0.toInteger();
+				int j1 = p1.toInteger();
+				int j2 = p2.toInteger();
+				counts0[j0]++;
+				counts1[j1]++;
+				counts2[j2]++;
+			}
+			if (chiSquare(counts0) > 146.567) tooHigh0++;
+			if (chiSquare(counts1) > 146.567) tooHigh1++;
+			if (chiSquare(counts2) > 146.567) tooHigh2++;
+		}
+		if (!disableChiSquareTests) {
+			assertTrue("chi square above limit too often: scramble", tooHigh0 <= 10);
+		}
+		assertTrue("chi square above limit too often: using class Random", tooHigh1 <= 10);
+		assertTrue("chi square above limit too often: using class SplittableRandom", tooHigh2 <= 10);
+	}
 	
 	private void validatePermutation(Permutation p, int n) {
 		assertEquals("permutation length", n, p.length());
@@ -413,6 +490,16 @@ public class PermutationTestCases {
 			assertFalse("permutation elements shouldn't be duplicated", inP[el]);
 			inP[el] = true;
 		}
+	}
+	
+	private double chiSquare(int[] buckets) {
+		int x = 0;
+		int n = 0;
+		for (int e : buckets) {
+			x = x + e*e;
+			n += e;
+		}
+		return 1.0*x / (n/buckets.length) - n;
 	}
 	
 }
