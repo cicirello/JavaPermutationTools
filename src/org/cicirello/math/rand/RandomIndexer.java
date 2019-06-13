@@ -342,6 +342,9 @@ public final class RandomIndexer {
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely.</p>  
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -376,7 +379,10 @@ public final class RandomIndexer {
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
-	 * likely.</p>  
+	 * likely.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -410,7 +416,10 @@ public final class RandomIndexer {
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
-	 * likely.</p>  
+	 * likely.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.

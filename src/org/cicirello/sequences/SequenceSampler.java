@@ -649,7 +649,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -685,7 +688,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p> 
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -721,7 +727,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -757,7 +766,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p> 
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -793,7 +805,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -829,7 +844,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k chars, without replacement, from a
 	 * given source String.  All n choose k combinations are equally
-	 * likely, where n is the length of the source String.</p>  
+	 * likely, where n is the length of the source String.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -856,7 +874,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p> 
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -892,7 +913,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
@@ -928,7 +952,10 @@ public final class SequenceSampler {
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
-	 * likely, where n is the length of the source array.</p>  
+	 * likely, where n is the length of the source array.</p>
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>	 
 	 * <p>The runtime is O(n)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than sampleReservoir when k &lt; n-k.
