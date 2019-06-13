@@ -52,9 +52,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public Permutation(int n) {
 		permutation = new int[n];
-		for (int i = 0; i < n; i++) {
-			permutation[i] = i;   
-		}
 		scramble();
 	}
  
@@ -65,9 +62,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public Permutation(int n, SplittableRandom r) {
 		permutation = new int[n];
-		for (int i = 0; i < n; i++) {
-			permutation[i] = i;   
-		}
 		scramble(r);
 	}
 	
@@ -78,9 +72,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public Permutation(int n, Random r) {
 		permutation = new int[n];
-		for (int i = 0; i < n; i++) {
-			permutation[i] = i;   
-		}
 		scramble(r);
 	}
 	
@@ -318,10 +309,20 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * the source of efficient random number generation.
 	 */
 	public void scramble() {
-		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (i != j) {
-				swap(i,j);
+		if (permutation.length > 0) {
+			// Since we're scrambling entire permutation, just generate a new
+			// permutation of integers in [0, n).
+			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
+			// last complete paragraph.
+			permutation[0] = 0;
+			for (int i = 1; i < permutation.length; i++) {
+				int j = RandomIndexer.nextInt(i+1);
+				if (j == i) {
+					permutation[i] = i;
+				} else {
+					permutation[i] = permutation[j];
+					permutation[j] = i;
+				}			
 			}
 		}
 	}
@@ -331,10 +332,20 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @param r a source of randomness.
 	 */
 	public void scramble(Random r) {
-		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = RandomIndexer.nextInt(i+1, r);
-			if (i != j) {
-				swap(i,j);
+		if (permutation.length > 0) {
+			// Since we're scrambling entire permutation, just generate a new
+			// permutation of integers in [0, n).
+			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
+			// last complete paragraph.
+			permutation[0] = 0;
+			for (int i = 1; i < permutation.length; i++) {
+				int j = RandomIndexer.nextInt(i+1, r);
+				if (j == i) {
+					permutation[i] = i;
+				} else {
+					permutation[i] = permutation[j];
+					permutation[j] = i;
+				}			
 			}
 		}
 	}
@@ -344,10 +355,20 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @param r a source of randomness.
 	 */
 	public void scramble(SplittableRandom r) {
-		for (int i = permutation.length - 1; i > 0; i--) {
-			int j = RandomIndexer.nextInt(i+1, r);
-			if (i != j) {
-				swap(i,j);
+		if (permutation.length > 0) {
+			// Since we're scrambling entire permutation, just generate a new
+			// permutation of integers in [0, n).
+			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
+			// last complete paragraph.
+			permutation[0] = 0;
+			for (int i = 1; i < permutation.length; i++) {
+				int j = RandomIndexer.nextInt(i+1, r);
+				if (j == i) {
+					permutation[i] = i;
+				} else {
+					permutation[i] = permutation[j];
+					permutation[j] = i;
+				}			
 			}
 		}
 	}
