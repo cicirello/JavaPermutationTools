@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.6.12
+ * @version 1.19.6.19
  * @since 1.4
  *
  */
@@ -656,20 +656,16 @@ public final class RandomIndexer {
 	 * @param result An array to hold the pair that is generated.  If result is null
 	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result) {
 		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n);
-		int temp = nextInt(n-1);
-		if (temp >= result[0]) {
-			result[1] = temp + 1;
-		} else {
-			result[1] = result[0];
-			result[0] = temp;
-		}
+		result[1] = nextInt(n-1);
+		if (result[1] >= result[0]) {
+			result[1]++;
+		} 
 		return result;
 	}
 	
@@ -684,20 +680,16 @@ public final class RandomIndexer {
 	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, SplittableRandom gen) {
 		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n, gen);
-		int temp = nextInt(n-1, gen);
-		if (temp >= result[0]) {
-			result[1] = temp + 1;
-		} else {
-			result[1] = result[0];
-			result[0] = temp;
-		}
+		result[1] = nextInt(n-1, gen);
+		if (result[1] >= result[0]) {
+			result[1]++;
+		} 
 		return result;
 	}
 	
@@ -712,20 +704,16 @@ public final class RandomIndexer {
 	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, Random gen) {
 		if (result == null || result.length < 2) result = new int[2];
 		result[0] = nextInt(n, gen);
-		int temp = nextInt(n-1, gen);
-		if (temp >= result[0]) {
-			result[1] = temp + 1;
-		} else {
-			result[1] = result[0];
-			result[0] = temp;
-		}
+		result[1] = nextInt(n-1, gen);
+		if (result[1] >= result[0]) {
+			result[1]++;
+		} 
 		return result;
 	}
 	
@@ -755,7 +743,105 @@ public final class RandomIndexer {
 		return result;
 	}
 	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result, boolean sort) {
+		if (result == null || result.length < 3) result = new int[3];
+		result[0] = nextInt(n);
+		result[1] = nextInt(n-1);
+		result[2] = nextInt(n-2);
+		if (sort) adjustSortTriple(result);
+		else adjustTriple(result);
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
+	 * @param gen The source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result, boolean sort, SplittableRandom gen) {
+		if (result == null || result.length < 3) result = new int[3];
+		result[0] = nextInt(n, gen);
+		result[1] = nextInt(n-1, gen);
+		result[2] = nextInt(n-2, gen);
+		if (sort) adjustSortTriple(result);
+		else adjustTriple(result);
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
+	 * @param gen The source of randomness.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  The array is
+	 * sorted by increasing order.
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 */
+	public static int[] nextIntTriple(int n, int[] result, boolean sort, Random gen) {
+		if (result == null || result.length < 3) result = new int[3];
+		result[0] = nextInt(n, gen);
+		result[1] = nextInt(n-1, gen);
+		result[2] = nextInt(n-2, gen);
+		if (sort) adjustSortTriple(result);
+		else adjustTriple(result);
+		return result;
+	}
+	
 	private static void adjustTriple(int[] result) {
+		if (result[1] >= result[0]) {
+			result[1]++;
+			if (result[2] >= result[0]) {
+				result[2]++;
+				if (result[2] >= result[1]) result[2]++;
+			}
+		} else {
+			if (result[2] >= result[1]) {
+				result[2]++;
+				if (result[2] >= result[0]) result[2]++;
+			}
+		}
+	}
+	
+	private static void adjustSortTriple(int[] result) {
 		if (result[1] >= result[0]) {
 			result[1]++;
 		} else {
@@ -1176,7 +1262,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
-		if (window >= n - 1) return nextIntTriple(n, result);
+		if (window >= n - 1) return nextIntTriple(n, result, true);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
@@ -1239,7 +1325,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, SplittableRandom gen) {
-		if (window >= n - 1) return nextIntTriple(n, result, gen);
+		if (window >= n - 1) return nextIntTriple(n, result, true, gen);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
@@ -1302,7 +1388,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, Random gen) {
-		if (window >= n - 1) return nextIntTriple(n, result, gen);
+		if (window >= n - 1) return nextIntTriple(n, result, true, gen);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
