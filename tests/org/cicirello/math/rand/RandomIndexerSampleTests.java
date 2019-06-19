@@ -46,7 +46,7 @@ public class RandomIndexerSampleTests {
 	// If you make any changes to the sampling methods that depend upon ThreadLocalRandom,
 	// then change this constant to false, run all tests, and switch back to true if
 	// they pass.
-	private static final boolean DISABLE_CHI_SQUARE_TESTS = false; //true;
+	private static final boolean DISABLE_CHI_SQUARE_TESTS = true;
 	
 	@Test
 	public void testSampleReservoir_ThreadLocalRandom() {
@@ -285,7 +285,7 @@ public class RandomIndexerSampleTests {
 	@Test
 	public void testSamplePool_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
-		final int TRIALS = 200;
+		final int TRIALS = 100;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
@@ -824,6 +824,7 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][][] buckets = new int[n][n][n];
+				int[] sortBuckets = new int[6];
 				int numBuckets = n*(n-1)*(n-2)/6;
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntTriple(n, null);
@@ -1387,7 +1388,7 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testNextWindowedIntPair_TLR() {
-		final int REPS_PER_BUCKET = 500;
+		final int REPS_PER_BUCKET = 600;
 		final int TRIALS = 100;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
@@ -1594,8 +1595,7 @@ public class RandomIndexerSampleTests {
 				assertNotEquals("integers should be different", result[0], result[1]);
 				assertNotEquals("integers should be different", result[0], result[2]);
 				assertNotEquals("integers should be different", result[2], result[1]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
+				Arrays.sort(result);
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
@@ -1610,6 +1610,7 @@ public class RandomIndexerSampleTests {
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
+						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
@@ -1654,8 +1655,7 @@ public class RandomIndexerSampleTests {
 				assertNotEquals("integers should be different", result[0], result[1]);
 				assertNotEquals("integers should be different", result[0], result[2]);
 				assertNotEquals("integers should be different", result[2], result[1]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
+				Arrays.sort(result);
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
@@ -1669,6 +1669,7 @@ public class RandomIndexerSampleTests {
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
+						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
@@ -1713,8 +1714,7 @@ public class RandomIndexerSampleTests {
 				assertNotEquals("integers should be different", result[0], result[1]);
 				assertNotEquals("integers should be different", result[0], result[2]);
 				assertNotEquals("integers should be different", result[2], result[1]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
+				Arrays.sort(result);
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
@@ -1728,6 +1728,7 @@ public class RandomIndexerSampleTests {
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
+						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];

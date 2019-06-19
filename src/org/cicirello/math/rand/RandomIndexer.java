@@ -1251,8 +1251,7 @@ public final class RandomIndexer {
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
 	 * from the interval [0, n), such that |i-j| &le; window, and 
-	 * |i-k| &le; window, and |k-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
@@ -1263,40 +1262,47 @@ public final class RandomIndexer {
 		int i = nextInt(z3 + window - 2);
 		int j = nextInt(window);
 		int k = nextInt(window - 1);
+		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		return result;
+	}
+	
+	private static void setAndAdjustWindowedTriple(int[] result, int i, int j, int k, final int z1, final int z3) {
 		if (k >= j) {
 			k++;
-		} else {
-			int temp = j;
-			j = k;
-			k = temp;
 		}
 		if (i < z3) {
-			result[0] = i / 3;
-			result[2] = result[1] = result[0] + 1;
-			result[1] += j;
-			result[2] += k;
+			int q = i / 3;
+			int r = i % 3;
+			result[r] = q;
+			if (r==0) {
+				result[1] = q + 1 + j;
+				result[2] = q + 1 + k;
+			} else if (r==1) {
+				result[0] = q + 1 + j;
+				result[2] = q + 1 + k;
+			} else {
+				result[0] = q + 1 + j;
+				result[1] = q + 1 + k;
+			}
 		} else {
 			i = i - z3 + z1;
 			j += z1;
 			k += z1;
-			if (i >= j) {
-				i++;
-				if (i >= k) {
-					result[0] = j;
-					result[1] = k;
-					result[2] = i + 1;
-				} else {
-					result[0] = j;
-					result[1] = i;
-					result[2] = k;
+			if (j < k) {
+				if (i >= j) {
+					i++;
+					if (i >= k) i++;
 				}
 			} else {
-				result[0] = i;
-				result[1] = j;
-				result[2] = k;
+				if (i >= k) {
+					i++;
+					if (i >= j) i++;
+				}
 			}
+			result[0] = i;
+			result[1] = j;
+			result[2] = k;
 		}
-		return result;
 	}
 	
 	/**
@@ -1314,8 +1320,7 @@ public final class RandomIndexer {
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
 	 * from the interval [0, n), such that |i-j| &le; window, and 
-	 * |i-k| &le; window, and |k-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, SplittableRandom gen) {
@@ -1326,39 +1331,7 @@ public final class RandomIndexer {
 		int i = nextInt(z3 + window - 2, gen);
 		int j = nextInt(window, gen);
 		int k = nextInt(window - 1, gen);
-		if (k >= j) {
-			k++;
-		} else {
-			int temp = j;
-			j = k;
-			k = temp;
-		}
-		if (i < z3) {
-			result[0] = i / 3;
-			result[2] = result[1] = result[0] + 1;
-			result[1] += j;
-			result[2] += k;
-		} else {
-			i = i - z3 + z1;
-			j += z1;
-			k += z1;
-			if (i >= j) {
-				i++;
-				if (i >= k) {
-					result[0] = j;
-					result[1] = k;
-					result[2] = i + 1;
-				} else {
-					result[0] = j;
-					result[1] = i;
-					result[2] = k;
-				}
-			} else {
-				result[0] = i;
-				result[1] = j;
-				result[2] = k;
-			}
-		}
+		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
 		return result;
 	}
 	
@@ -1377,8 +1350,7 @@ public final class RandomIndexer {
 	 * @return An array containing the triple of 
 	 * randomly chosen integers, i, j, k 
 	 * from the interval [0, n), such that |i-j| &le; window, and 
-	 * |i-k| &le; window, and |k-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, Random gen) {
@@ -1389,39 +1361,7 @@ public final class RandomIndexer {
 		int i = nextInt(z3 + window - 2, gen);
 		int j = nextInt(window, gen);
 		int k = nextInt(window - 1, gen);
-		if (k >= j) {
-			k++;
-		} else {
-			int temp = j;
-			j = k;
-			k = temp;
-		}
-		if (i < z3) {
-			result[0] = i / 3;
-			result[2] = result[1] = result[0] + 1;
-			result[1] += j;
-			result[2] += k;
-		} else {
-			i = i - z3 + z1;
-			j += z1;
-			k += z1;
-			if (i >= j) {
-				i++;
-				if (i >= k) {
-					result[0] = j;
-					result[1] = k;
-					result[2] = i + 1;
-				} else {
-					result[0] = j;
-					result[1] = i;
-					result[2] = k;
-				}
-			} else {
-				result[0] = i;
-				result[1] = j;
-				result[2] = k;
-			}
-		}
+		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
 		return result;
 	}
 	
