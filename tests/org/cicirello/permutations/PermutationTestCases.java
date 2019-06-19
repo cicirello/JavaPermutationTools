@@ -169,7 +169,37 @@ public class PermutationTestCases {
 		int[][] arrays = { { 0 }, { 1, 0 }, { 1, 0, 2 }, { 3, 1, 2, 0 } };
 		for (int[] a : arrays) {
 			Permutation p = new Permutation(a.length, 0);
-			p.set(a);
+			p.set(a.clone());
+			validatePermutation(p, a.length);
+			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+	}
+	
+	@Test
+	public void testPermutationMechanicSet() {
+		
+		class MyMech extends Permutation.Mechanic {
+			public void testSet(Permutation p, int[] a) {
+				set(p, a);
+			}
+			public void testSet(Permutation p, int i, int v) {
+				set(p, i, v);
+			}
+		}
+		MyMech test = new MyMech();
+		
+		int[][] arrays = { { 0 }, { 1, 0 }, { 1, 0, 2 }, { 3, 1, 2, 0 } };
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a.length, 0);
+			test.testSet(p, a.clone()); 
+			validatePermutation(p, a.length);
+			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a.length, 0);
+			for (int i = 0; i < a.length; i++) {
+				test.testSet(p, i, a[i]);
+			} 
 			validatePermutation(p, a.length);
 			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
 		}

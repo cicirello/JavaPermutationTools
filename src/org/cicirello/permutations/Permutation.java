@@ -298,9 +298,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public void invert() {
 		int[] inverse = getInverse();
-		for (int i = 0; i < inverse.length; i++) {
-			permutation[i] = inverse[i];
-		}
+		System.arraycopy(inverse, 0, permutation, 0, inverse.length);
 	}
 	
 	/**
@@ -613,12 +611,13 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public void reverse(int i, int j) {
 		if (i > j) {
-			int temp = i;
-			i = j;
-			j = temp;
-		}
-		for ( ; i < j; i++, j--) {
-			swap(i, j);
+			for ( ; i > j; i--, j++) {
+				swap(i, j);
+			}
+		} else {
+			for ( ; i < j; i++, j--) {
+				swap(i, j);
+			}
 		}
 	}
 	
@@ -706,9 +705,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 			if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
 			inP[e] = true;
 		}
-		for (int i = 0; i < p.length; i++) {
-			permutation[i] = p[i];
-		}
+		System.arraycopy(p, 0, permutation, 0, p.length);
 	}
 	
 	/**
@@ -823,9 +820,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		 * of the integers from 0 to n-1.
 		 */
 		protected final void set(Permutation p, int[] permutation) {
-			for (int i = 0; i < permutation.length; i++) {
-				p.permutation[i] = permutation[i]; 
-			}
+			System.arraycopy(permutation, 0, p.permutation, 0, permutation.length);
 		}
 		
 		/**
