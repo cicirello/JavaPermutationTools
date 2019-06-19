@@ -52,13 +52,7 @@ public class RandomIndexerSampleTests {
 	public void testSampleReservoir_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 200;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null);
@@ -129,13 +123,7 @@ public class RandomIndexerSampleTests {
 	public void testSampleReservoir_SplittableRandom() {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
@@ -205,13 +193,7 @@ public class RandomIndexerSampleTests {
 	public void testSampleReservoir_Random() {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
@@ -284,15 +266,9 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testSamplePool_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 200;
+		final int REPS_PER_BUCKET = 400;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null);
@@ -364,13 +340,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null, gen);
@@ -441,13 +411,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null, gen);
@@ -522,13 +486,7 @@ public class RandomIndexerSampleTests {
 	public void testSample_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 200;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sample(n, k, null);
@@ -600,13 +558,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(40);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sample(n, k, null, gen);
@@ -677,13 +629,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sample(n, k, null, gen);
@@ -754,15 +700,7 @@ public class RandomIndexerSampleTests {
 	public void testPair_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 200;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77
-		};
+		
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null);
@@ -795,18 +733,7 @@ public class RandomIndexerSampleTests {
 	public void testTriple_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 200;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null);
@@ -825,13 +752,12 @@ public class RandomIndexerSampleTests {
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][][] buckets = new int[n][n][n];
 				int[] sortBuckets = new int[6];
-				int numBuckets = n*(n-1)*(n-2)/6;
+				int numBuckets = n*(n-1)*(n-2); 
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntTriple(n, null);
-					Arrays.sort(result);
 					buckets[result[0]][result[1]][result[2]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -842,18 +768,7 @@ public class RandomIndexerSampleTests {
 	public void testTripleSorted_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 200;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true);
@@ -890,18 +805,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, gen);
@@ -918,13 +822,12 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][][] buckets = new int[n][n][n];
-				int numBuckets = n*(n-1)*(n-2)/6;
+				int numBuckets = n*(n-1)*(n-2);
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-					Arrays.sort(result);
 					buckets[result[0]][result[1]][result[2]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -936,18 +839,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
@@ -982,18 +874,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, gen);
@@ -1010,13 +891,12 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][][] buckets = new int[n][n][n];
-				int numBuckets = n*(n-1)*(n-2)/6;
+				int numBuckets = n*(n-1)*(n-2);
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-					Arrays.sort(result);
 					buckets[result[0]][result[1]][result[2]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -1028,18 +908,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
@@ -1074,15 +943,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77
-		};
+		
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null, gen);
@@ -1115,15 +976,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77
-		};
+		
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null, gen);
@@ -1157,15 +1010,9 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testSampleInsertion_ThreadLocalRandom() {
-		final int REPS_PER_BUCKET = 250;
+		final int REPS_PER_BUCKET = 400;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null);
@@ -1237,13 +1084,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
@@ -1314,13 +1155,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
-		};
+		
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
@@ -1390,18 +1225,7 @@ public class RandomIndexerSampleTests {
 	public void testNextWindowedIntPair_TLR() {
 		final int REPS_PER_BUCKET = 600;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null);
@@ -1453,18 +1277,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
@@ -1515,18 +1328,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
@@ -1576,18 +1378,7 @@ public class RandomIndexerSampleTests {
 	public void testNextWindowedIntTriple_TLR() {
 		final int REPS_PER_BUCKET = 300;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
@@ -1608,16 +1399,21 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][][] buckets = new int[n][n][n];
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
+					numBuckets *= 6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
-						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
-							for (int h = j+1; h < n && h <= i+w; h++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (Math.abs(j-i) > w) continue;
+							for (int h = 0; h < n; h++) {
+								if (h==i || h==j) continue;
+								if (Math.abs(h-i) > w) continue;
+								if (Math.abs(j-h) > w) continue;
 								flatBuckets[k] = buckets[i][j][h];
 								k++;
 							}
@@ -1636,18 +1432,7 @@ public class RandomIndexerSampleTests {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
@@ -1667,16 +1452,21 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][][] buckets = new int[n][n][n];
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
+					numBuckets *= 6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
-							for (int h = j+1; h < n && h <= i+w; h++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (Math.abs(j-i) > w) continue;
+							for (int h = 0; h < n; h++) {
+								if (h==i || h==j) continue;
+								if (Math.abs(h-i) > w) continue;
+								if (Math.abs(j-h) > w) continue;
 								flatBuckets[k] = buckets[i][j][h];
 								k++;
 							}
@@ -1695,18 +1485,7 @@ public class RandomIndexerSampleTests {
 		Random gen = new Random(41);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
-		double[] limit95 = {
-			EPSILON, 3.841, 5.991, 7.815, 9.488, 
-			11.07, 12.59, 14.07, 15.51, 16.92, 
-			18.31, 19.68, 21.03,
-			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41,
-			32.67, 33.92, 35.17, 36.42, 37.65,
-			38.89, 40.11, 41.34, 42.56, 43.77,
-			44.99, 46.19, 47.40, 48.60, 49.80,
-			51.00, 52.19, 53.38, 54.57, 55.76,
-			56.94, 58.12
-		};
+		
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
@@ -1726,16 +1505,21 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][][] buckets = new int[n][n][n];
 					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
+					numBuckets *= 6;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-						Arrays.sort(result);
 						buckets[result[0]][result[1]][result[2]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
-							for (int h = j+1; h < n && h <= i+w; h++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (Math.abs(j-i) > w) continue;
+							for (int h = 0; h < n; h++) {
+								if (h==i || h==j) continue;
+								if (Math.abs(h-i) > w) continue;
+								if (Math.abs(j-h) > w) continue;
 								flatBuckets[k] = buckets[i][j][h];
 								k++;
 							}
@@ -1801,4 +1585,54 @@ public class RandomIndexerSampleTests {
 		}
 		return 1.0*m / (n/numBuckets) - n;
 	}
+	
+	private double chiSquareAll(int[][][] buckets, int numBuckets) {
+		int m = 0;
+		int n = 0;
+		for (int x = 0; x < buckets.length; x++) {
+			for (int y = 0; y < buckets.length; y++) {
+				if (y==x) continue;
+				for (int z = 0; z < buckets.length; z++) {
+					if (z==y || z==x) continue;
+					int e = buckets[x][y][z];
+					m = m + e*e;
+					n += e;
+				}
+			}
+		}
+		return 1.0*m / (n/numBuckets) - n;
+	}
+	
+	private final static double[] limit95 = {
+		EPSILON, 3.841458821, 5.991464547, 7.814727903,
+		9.487729037, 11.07049769, 12.59158724, 14.06714045,
+		15.50731306, 16.9189776, 18.30703805, 19.67513757,
+		21.02606982, 22.36203249, 23.6847913, 24.99579014,
+		26.2962276, 27.58711164, 28.86929943, 30.14352721,
+		31.41043284, 32.67057334, 33.92443847, 35.17246163,
+		36.4150285, 37.65248413, 38.88513866, 40.11327207,
+		41.33713815, 42.5569678, 43.77297183, 44.98534328,
+		46.19425952, 47.39988392, 48.60236737, 49.80184957,
+		50.99846017, 52.19231973, 53.38354062, 54.57222776,
+		55.75847928, 56.94238715, 58.12403768, 59.30351203,
+		60.48088658, 61.65623338, 62.82962041, 64.00111197,
+		65.1707689, 66.33864886, 67.50480655, 68.66929391,
+		69.83216034, 70.99345283, 72.15321617, 73.31149303,
+		74.46832416, 75.62374847, 76.77780316, 77.93052381,
+		79.08194449, 80.23209785, 81.38101519, 82.52872654,
+		83.67526074, 84.8206455, 85.96490744, 87.1080722,
+		88.25016442, 89.39120787, 90.53122543, 91.67023918,
+		92.80827038, 93.9453396, 95.08146667, 96.21667075,
+		97.35097038, 98.48438346, 99.61692732, 100.7486187,
+		101.879474, 103.0095087, 104.1387382, 105.2671773,
+		106.3948402, 107.521741, 108.647893, 109.7733094,
+		110.8980028, 112.0219857, 113.1452701, 114.2678677,
+		115.3897897, 116.5110473, 117.6316511, 118.7516118,
+		119.8709393, 120.9896437, 122.1077346, 123.2252215,
+		124.3421134, 125.4584194, 126.5741482, 127.6893083,
+		128.8039079, 129.9179553, 131.0314583, 132.1444245,
+		133.2568617, 134.3687771, 135.4801779, 136.5910712,
+		137.7014639, 138.8113626, 139.9207739, 141.0297043,
+		142.13816, 143.2461473, 144.353672, 145.4607402,
+		146.5673576 };
 }

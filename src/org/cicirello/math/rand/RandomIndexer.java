@@ -1255,7 +1255,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
-		if (window >= n - 1) return nextIntTriple(n, result, true);
+		if (window >= n - 1) return nextIntTriple(n, result);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
@@ -1324,7 +1324,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, SplittableRandom gen) {
-		if (window >= n - 1) return nextIntTriple(n, result, true, gen);
+		if (window >= n - 1) return nextIntTriple(n, result, gen);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
@@ -1354,7 +1354,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, Random gen) {
-		if (window >= n - 1) return nextIntTriple(n, result, true, gen);
+		if (window >= n - 1) return nextIntTriple(n, result, gen);
 		if (result == null || result.length < 3) result = new int[3];
 		final int z1 = n - window;
 		final int z3 = 3*z1;
