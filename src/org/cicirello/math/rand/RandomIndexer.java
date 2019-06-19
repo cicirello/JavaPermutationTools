@@ -1128,8 +1128,7 @@ public final class RandomIndexer {
 	 * or if result.length is less than 2, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
-	 * from the interval [0, n), such that |i-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * from the interval [0, n), such that |i-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result) {
@@ -1140,18 +1139,19 @@ public final class RandomIndexer {
 		int i = nextInt(z2 + window - 1);
 		int j = nextInt(window);
 		if (i < z2) {
-			result[0] = i >> 1;
-			result[1] = result[0] + 1 + j;
+			if ((i & 1) == 0) {
+				result[0] = i >> 1;
+				result[1] = result[0] + 1 + j;
+			} else {
+				result[1] = i >> 1;
+				result[0] = result[1] + 1 + j;
+			}
 		} else {
 			i -= z1;
 			j += z1;
-			if (i >= j){
-				result[0] = j;
-				result[1] = i + 1;
-			} else {
-				result[0] = i;
-				result[1] = j;
-			}
+			if (i >= j) result[0] = i + 1;
+			else result[0] = i;
+			result[1] = j;
 		}
 		return result;
 	}
@@ -1169,8 +1169,7 @@ public final class RandomIndexer {
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
-	 * from the interval [0, n), such that |i-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * from the interval [0, n), such that |i-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, SplittableRandom gen) {
@@ -1181,18 +1180,19 @@ public final class RandomIndexer {
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
 		if (i < z2) {
-			result[0] = i >> 1;
-			result[1] = result[0] + 1 + j;
+			if ((i & 1) == 0) {
+				result[0] = i >> 1;
+				result[1] = result[0] + 1 + j;
+			} else {
+				result[1] = i >> 1;
+				result[0] = result[1] + 1 + j;
+			}
 		} else {
 			i -= z1;
 			j += z1;
-			if (i >= j){
-				result[0] = j;
-				result[1] = i + 1;
-			} else {
-				result[0] = i;
-				result[1] = j;
-			}
+			if (i >= j) result[0] = i + 1;
+			else result[0] = i;
+			result[1] = j;
 		}
 		return result;
 	}
@@ -1210,8 +1210,7 @@ public final class RandomIndexer {
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
 	 * randomly chosen integers, i, j, 
-	 * from the interval [0, n), such that |i-j| &le; window.  The array is
-	 * sorted by increasing order.
+	 * from the interval [0, n), such that |i-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, Random gen) {
@@ -1222,18 +1221,19 @@ public final class RandomIndexer {
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
 		if (i < z2) {
-			result[0] = i >> 1;
-			result[1] = result[0] + 1 + j;
+			if ((i & 1) == 0) {
+				result[0] = i >> 1;
+				result[1] = result[0] + 1 + j;
+			} else {
+				result[1] = i >> 1;
+				result[0] = result[1] + 1 + j;
+			}
 		} else {
 			i -= z1;
 			j += z1;
-			if (i >= j){
-				result[0] = j;
-				result[1] = i + 1;
-			} else {
-				result[0] = i;
-				result[1] = j;
-			}
+			if (i >= j) result[0] = i + 1;
+			else result[0] = i;
+			result[1] = j;
 		}
 		return result;
 	}

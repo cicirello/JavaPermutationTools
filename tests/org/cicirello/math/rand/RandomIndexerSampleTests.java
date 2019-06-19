@@ -46,7 +46,7 @@ public class RandomIndexerSampleTests {
 	// If you make any changes to the sampling methods that depend upon ThreadLocalRandom,
 	// then change this constant to false, run all tests, and switch back to true if
 	// they pass.
-	private static final boolean DISABLE_CHI_SQUARE_TESTS = true;
+	private static final boolean DISABLE_CHI_SQUARE_TESTS = false; //true;
 	
 	@Test
 	public void testSampleReservoir_ThreadLocalRandom() {
@@ -759,7 +759,9 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77
 		};
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -777,17 +779,12 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][] buckets = new int[n][n];
-				int numBuckets = n*(n-1)/2;
+				int numBuckets = n*(n-1); // /2;
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntPair(n, null);
-					if (result[0] > result[1]) {
-						int temp = result[0];
-						result[0] = result[1];
-						result[1] = temp;
-					}
 					buckets[result[0]][result[1]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -803,7 +800,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -844,7 +846,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -887,7 +894,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -928,7 +940,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -969,7 +986,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -1010,7 +1032,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -1051,7 +1078,9 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77
 		};
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -1068,17 +1097,12 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][] buckets = new int[n][n];
-				int numBuckets = n*(n-1)/2;
+				int numBuckets = n*(n-1); // /2;
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntPair(n, null, gen);
-					if (result[0] > result[1]) {
-						int temp = result[0];
-						result[0] = result[1];
-						result[1] = temp;
-					}
 					buckets[result[0]][result[1]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -1095,7 +1119,9 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77
 		};
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
@@ -1112,17 +1138,12 @@ public class RandomIndexerSampleTests {
 			int countH = 0;
 			for (int trial = 0; trial < TRIALS; trial++) {
 				int[][] buckets = new int[n][n];
-				int numBuckets = n*(n-1)/2;
+				int numBuckets = n*(n-1); //  /2;
 				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 					int[] result = RandomIndexer.nextIntPair(n, null, gen);
-					if (result[0] > result[1]) {
-						int temp = result[0];
-						result[0] = result[1];
-						result[1] = temp;
-					}
 					buckets[result[0]][result[1]]++;
 				}
-				double chi = chiSquare(buckets, numBuckets);
+				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
@@ -1366,14 +1387,19 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testNextWindowedIntPair_TLR() {
-		final int REPS_PER_BUCKET = 200;
+		final int REPS_PER_BUCKET = 500;
 		final int TRIALS = 100;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
@@ -1397,19 +1423,18 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][] buckets = new int[n][n];
 					int numBuckets = w*(n-w) + w*(w-1)/2;
+					numBuckets *= 2;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntPair(n, w, null);
-						if (result[0] > result[1]) {
-							int temp = result[0];
-							result[0] = result[1];
-							result[1] = temp;
-						}
 						buckets[result[0]][result[1]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (j > i && j-i>w) continue;
+							if (i > j && i-j>w) continue;
 							flatBuckets[k] = buckets[i][j];
 							k++;
 						}
@@ -1432,7 +1457,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
@@ -1455,19 +1485,18 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][] buckets = new int[n][n];
 					int numBuckets = w*(n-w) + w*(w-1)/2;
+					numBuckets *= 2;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-						if (result[0] > result[1]) {
-							int temp = result[0];
-							result[0] = result[1];
-							result[1] = temp;
-						}
 						buckets[result[0]][result[1]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (j > i && j-i>w) continue;
+							if (i > j && i-j>w) continue;
 							flatBuckets[k] = buckets[i][j];
 							k++;
 						}
@@ -1490,7 +1519,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
@@ -1513,19 +1547,18 @@ public class RandomIndexerSampleTests {
 				for (int trial = 0; trial < TRIALS; trial++) {
 					int[][] buckets = new int[n][n];
 					int numBuckets = w*(n-w) + w*(w-1)/2;
+					numBuckets *= 2;
 					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
 						int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-						if (result[0] > result[1]) {
-							int temp = result[0];
-							result[0] = result[1];
-							result[1] = temp;
-						}
 						buckets[result[0]][result[1]]++;
 					}
 					int[] flatBuckets = new int[numBuckets];
 					int k = 0;
 					for (int i = 0; i < n; i++) {
-						for (int j = i+1; j < n && j <= i+w; j++) {
+						for (int j = 0; j < n; j++) {
+							if (j==i) continue;
+							if (j > i && j-i>w) continue;
+							if (i > j && i-j>w) continue;
 							flatBuckets[k] = buckets[i][j];
 							k++;
 						}
@@ -1540,14 +1573,19 @@ public class RandomIndexerSampleTests {
 	
 	@Test
 	public void testNextWindowedIntTriple_TLR() {
-		final int REPS_PER_BUCKET = 100;
+		final int REPS_PER_BUCKET = 300;
 		final int TRIALS = 100;
 		double[] limit95 = {
 			EPSILON, 3.841, 5.991, 7.815, 9.488, 
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
@@ -1602,7 +1640,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
@@ -1656,7 +1699,12 @@ public class RandomIndexerSampleTests {
 			11.07, 12.59, 14.07, 15.51, 16.92, 
 			18.31, 19.68, 21.03,
 			22.36, 23.69, 25.0,
-			26.3, 27.59, 28.87, 30.14, 31.41
+			26.3, 27.59, 28.87, 30.14, 31.41,
+			32.67, 33.92, 35.17, 36.42, 37.65,
+			38.89, 40.11, 41.34, 42.56, 43.77,
+			44.99, 46.19, 47.40, 48.60, 49.80,
+			51.00, 52.19, 53.38, 54.57, 55.76,
+			56.94, 58.12
 		};
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
@@ -1716,6 +1764,20 @@ public class RandomIndexerSampleTests {
 		int n = 0;
 		for (int x = 0; x < buckets.length; x++) {
 			for (int y = x+1; y < buckets.length; y++) {
+				int e = buckets[x][y];
+				m = m + e*e;
+				n += e;
+			}
+		}
+		return 1.0*m / (n/numBuckets) - n;
+	}
+	
+	private double chiSquareAll(int[][] buckets, int numBuckets) {
+		int m = 0;
+		int n = 0;
+		for (int x = 0; x < buckets.length; x++) {
+			for (int y = 0; y < buckets.length; y++) {
+				if (x==y) continue;
 				int e = buckets[x][y];
 				m = m + e*e;
 				n += e;
