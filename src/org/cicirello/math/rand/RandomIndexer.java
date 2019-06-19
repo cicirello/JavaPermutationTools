@@ -730,8 +730,7 @@ public final class RandomIndexer {
 	 * @param result An array to hold the pair that is generated.  If result is null
 	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result) {
@@ -756,8 +755,7 @@ public final class RandomIndexer {
 	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort) {
@@ -784,8 +782,7 @@ public final class RandomIndexer {
 	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
 	 * @param gen The source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort, SplittableRandom gen) {
@@ -812,8 +809,7 @@ public final class RandomIndexer {
 	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
 	 * @param gen The source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort, Random gen) {
@@ -877,8 +873,7 @@ public final class RandomIndexer {
 	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, SplittableRandom gen) {
@@ -901,8 +896,7 @@ public final class RandomIndexer {
 	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen Source of randomness.
 	 * @return An array containing the pair of 
-	 * randomly chosen integers from the interval [0, n).  The array is
-	 * sorted by increasing order.
+	 * randomly chosen integers from the interval [0, n).  
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, Random gen) {
