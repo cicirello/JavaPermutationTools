@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.6.19
+ * @version 1.19.6.21
  * @since 1.4
  *
  */
@@ -47,7 +47,8 @@ public final class RandomIndexer {
 	/**
 	 * <p>Generates a random integer uniformly distributed in the interval: [0, bound).</p>
 	 * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
-	 * safe for use with threads.  However, it does not use ThreadLocalRandom.nextInt(int bound)
+	 * safe, and efficient (i.e., non-blocking), for use with threads.  However, 
+	 * it does not use ThreadLocalRandom.nextInt(int bound)
 	 * method.  Instead, our nextInt(int bound) method is an implementation of 
 	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
 	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
@@ -147,7 +148,8 @@ public final class RandomIndexer {
 	/**
 	 * <p>Generates a random integer in the interval: [0, bound).</p>
 	 * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
-	 * safe for use with threads.  However, it does not use ThreadLocalRandom.nextInt(int bound)
+	 * safe, and efficient (i.e., non-blocking), for use with threads.  
+	 * However, it does not use ThreadLocalRandom.nextInt(int bound)
 	 * method.  Instead, our nextBiasedInt(int bound) method computes a random int in the target interval
 	 * via a multiplication and a shift, rather than the more common mod.  This method does not
 	 * correct for bias via rejection sampling, and thus some values in the interval [0, bound)
@@ -241,7 +243,8 @@ public final class RandomIndexer {
 	 * especially good choice as k
 	 * approaches n.  Only constant extra space required.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
@@ -252,18 +255,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null || result.length < k) result = new int[k];
-		for (int i = 0; i < k; i++) {
-			result[i] = i;
-		}
-		for (int i = k; i < n; i++) {
-			int j = nextInt(i+1);
-			if (j < k) {
-				result[j] = i;
-			}
-		}
-		return result;
+		return sampleReservoir(n, k, result, ThreadLocalRandom.current());
 	}
 	
 	
@@ -351,7 +343,8 @@ public final class RandomIndexer {
 	 * However, this uses O(n) extra space, whereas the reservoir algorithm
 	 * uses no extra space.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
@@ -362,18 +355,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] samplePool(int n, int k, int[] result) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null || result.length < k) result = new int[k];
-		int[] pool = new int[n];
-		for (int i = 0; i < n; i++) pool[i] = i;
-		int remaining = n;
-		for (int i = 0; i < k; i++) {
-			int temp = nextInt(remaining);
-			result[i] = pool[temp];
-			remaining--;
-			pool[temp] = pool[remaining];
-		}
-		return result;
+		return samplePool(n, k, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -461,7 +443,8 @@ public final class RandomIndexer {
 	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
 	 * while samplePool requires O(n) extra space.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
@@ -472,20 +455,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sampleInsertion(int n, int k, int[] result) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		if (result == null || result.length < k) result = new int[k];
-		for (int i = 0; i < k; i++) {
-			int temp = nextInt(n-i);
-			int j = k-i; 
-			for ( ; j < k; j++) {
-				if (temp >= result[j]) {
-					temp++;
-					result[j-1] = result[j];
-				} else break;
-			}
-			result[j-1] = temp;
-		}
-		return result;
+		return sampleInsertion(n, k, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -575,7 +545,8 @@ public final class RandomIndexer {
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param k The size of the desired sample.
@@ -587,9 +558,9 @@ public final class RandomIndexer {
 	 */
 	public static int[] sample(int n, int k, int[] result) {
 		if (2 * k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result);
-			else return samplePool(n, k, result);
-		} else return sampleReservoir(n, k, result);
+			if (k * k < n) return sampleInsertion(n, k, result, ThreadLocalRandom.current());
+			else return samplePool(n, k, result, ThreadLocalRandom.current());
+		} else return sampleReservoir(n, k, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -650,7 +621,8 @@ public final class RandomIndexer {
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the pair that is generated.  If result is null
@@ -724,7 +696,8 @@ public final class RandomIndexer {
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the pair that is generated.  If result is null
@@ -748,7 +721,8 @@ public final class RandomIndexer {
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the pair that is generated.  If result is null
@@ -773,8 +747,6 @@ public final class RandomIndexer {
 	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
-	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the pair that is generated.  If result is null
@@ -800,8 +772,6 @@ public final class RandomIndexer {
 	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
 	 * likely.</p>
 	 * <p>The runtime is O(1).</p>
-	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param result An array to hold the pair that is generated.  If result is null
@@ -820,46 +790,6 @@ public final class RandomIndexer {
 		if (sort) adjustSortTriple(result);
 		else adjustTriple(result);
 		return result;
-	}
-	
-	private static void adjustTriple(int[] result) {
-		if (result[1] >= result[0]) {
-			result[1]++;
-			if (result[2] >= result[0]) {
-				result[2]++;
-				if (result[2] >= result[1]) result[2]++;
-			}
-		} else {
-			if (result[2] >= result[1]) {
-				result[2]++;
-				if (result[2] >= result[0]) result[2]++;
-			}
-		}
-	}
-	
-	private static void adjustSortTriple(int[] result) {
-		if (result[1] >= result[0]) {
-			result[1]++;
-		} else {
-			int temp = result[0];
-			result[0] = result[1];
-			result[1] = temp;
-		}
-		if (result[2] >= result[0]) {
-			result[2]++;
-			if (result[2] >= result[1]) {
-				result[2]++;
-			} else {
-				int temp = result[1];
-				result[1] = result[2];
-				result[2] = temp;
-			}
-		} else {
-			int temp = result[2];
-			result[2] = result[1];
-			result[1] = result[0];
-			result[0] = temp;
-		}
 	}
 	
 	/**
@@ -914,18 +844,13 @@ public final class RandomIndexer {
 	 * Each position in the result is equally likely true or false.</p>
 	 * <p>Runtime: O(n).</p>
 	 * <p>This method uses ThreadLocalRandom as the source of randomness,
-	 * and is thus safe for use with threads.</p>
+	 * and is thus safe, and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The length of the array mask.
 	 * @return An array of n randomly generated boolean values.
 	 */
 	public static boolean[] arrayMask(int n) {
-		boolean[] result = new boolean[n];
-		ThreadLocalRandom gen = ThreadLocalRandom.current();
-		for (int i = 0; i < n; i++) {
-			result[i] = gen.nextBoolean();
-		}
-		return result;
+		return arrayMask(n, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -970,7 +895,8 @@ public final class RandomIndexer {
 	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
 	 * <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The length of the array mask.
 	 * @param k The desired number of true values, which must be no greater than n.
@@ -981,7 +907,7 @@ public final class RandomIndexer {
 		if (k >= n) {
 			for (int i = 0; i < n; i++) result[i] = true;
 		} else if (k > 0) {
-			int[] indexes = sample(n, k, null);
+			int[] indexes = sample(n, k, null, ThreadLocalRandom.current());
 			for (int i = 0; i < k; i++) {
 				result[indexes[i]] = true;
 			}
@@ -1040,7 +966,8 @@ public final class RandomIndexer {
 	 * where an "array mask" is an array of boolean values of the same length as another array.</p>
 	 * <p>Runtime: O(n), and it uses O(n) random doubles.</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The length of the array mask.
 	 * @param p The probability that an element of the result is true.
@@ -1048,16 +975,7 @@ public final class RandomIndexer {
 	 * @since 1.5
 	 */
 	public static boolean[] arrayMask(int n, double p) {
-		boolean[] result = new boolean[n];
-		if (p >= 1) {
-			for (int i = 0; i < n; i++) result[i] = true;
-		} else if (p > 0) {
-			ThreadLocalRandom gen = ThreadLocalRandom.current();
-			for (int i = 0; i < n; i++) {
-				result[i] = gen.nextDouble() < p;
-			}
-		}
-		return result;
+		return arrayMask(n, p, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1114,7 +1032,8 @@ public final class RandomIndexer {
 	 * All pairs that satisfy the window constraint are equally likely.</p>
 	 * <p>The runtime is O(1).</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the pair.
@@ -1132,21 +1051,7 @@ public final class RandomIndexer {
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1);
 		int j = nextInt(window);
-		if (i < z2) {
-			if ((i & 1) == 0) {
-				result[0] = i >> 1;
-				result[1] = result[0] + 1 + j;
-			} else {
-				result[1] = i >> 1;
-				result[0] = result[1] + 1 + j;
-			}
-		} else {
-			i -= z1;
-			j += z1;
-			if (i >= j) result[0] = i + 1;
-			else result[0] = i;
-			result[1] = j;
-		}
+		setAndAdjustWindowedPair(result, i, j, z1, z2);
 		return result;
 	}
 	
@@ -1173,21 +1078,7 @@ public final class RandomIndexer {
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
-		if (i < z2) {
-			if ((i & 1) == 0) {
-				result[0] = i >> 1;
-				result[1] = result[0] + 1 + j;
-			} else {
-				result[1] = i >> 1;
-				result[0] = result[1] + 1 + j;
-			}
-		} else {
-			i -= z1;
-			j += z1;
-			if (i >= j) result[0] = i + 1;
-			else result[0] = i;
-			result[1] = j;
-		}
+		setAndAdjustWindowedPair(result, i, j, z1, z2);
 		return result;
 	}
 	
@@ -1214,26 +1105,9 @@ public final class RandomIndexer {
 		final int z2 = 2*z1;
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
-		if (i < z2) {
-			if ((i & 1) == 0) {
-				result[0] = i >> 1;
-				result[1] = result[0] + 1 + j;
-			} else {
-				result[1] = i >> 1;
-				result[0] = result[1] + 1 + j;
-			}
-		} else {
-			i -= z1;
-			j += z1;
-			if (i >= j) result[0] = i + 1;
-			else result[0] = i;
-			result[1] = j;
-		}
+		setAndAdjustWindowedPair(result, i, j, z1, z2);
 		return result;
 	}
-	
-	
-	
 	
 	/**
 	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
@@ -1242,7 +1116,8 @@ public final class RandomIndexer {
 	 * All triples that satisfy the window constraint are equally likely.</p>
 	 * <p>The runtime is O(1).</p>
 	 * <p>This method uses ThreadLocalRandom as the 
-	 * pseudorandom number generator, and is thus safe for use with threads.</p>
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
@@ -1264,45 +1139,6 @@ public final class RandomIndexer {
 		int k = nextInt(window - 1);
 		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
 		return result;
-	}
-	
-	private static void setAndAdjustWindowedTriple(int[] result, int i, int j, int k, final int z1, final int z3) {
-		if (k >= j) {
-			k++;
-		}
-		if (i < z3) {
-			int q = i / 3;
-			int r = i % 3;
-			result[r] = q;
-			if (r==0) {
-				result[1] = q + 1 + j;
-				result[2] = q + 1 + k;
-			} else if (r==1) {
-				result[0] = q + 1 + j;
-				result[2] = q + 1 + k;
-			} else {
-				result[0] = q + 1 + j;
-				result[1] = q + 1 + k;
-			}
-		} else {
-			i = i - z3 + z1;
-			j += z1;
-			k += z1;
-			if (j < k) {
-				if (i >= j) {
-					i++;
-					if (i >= k) i++;
-				}
-			} else {
-				if (i >= k) {
-					i++;
-					if (i >= j) i++;
-				}
-			}
-			result[0] = i;
-			result[1] = j;
-			result[2] = k;
-		}
 	}
 	
 	/**
@@ -1365,5 +1201,104 @@ public final class RandomIndexer {
 		return result;
 	}
 	
+	
+	
+	private static void adjustTriple(int[] result) {
+		if (result[1] >= result[0]) {
+			result[1]++;
+			if (result[2] >= result[0]) {
+				result[2]++;
+				if (result[2] >= result[1]) result[2]++;
+			}
+		} else {
+			if (result[2] >= result[1]) {
+				result[2]++;
+				if (result[2] >= result[0]) result[2]++;
+			}
+		}
+	}
+	
+	private static void adjustSortTriple(int[] result) {
+		if (result[1] >= result[0]) {
+			result[1]++;
+		} else {
+			int temp = result[0];
+			result[0] = result[1];
+			result[1] = temp;
+		}
+		if (result[2] >= result[0]) {
+			result[2]++;
+			if (result[2] >= result[1]) {
+				result[2]++;
+			} else {
+				int temp = result[1];
+				result[1] = result[2];
+				result[2] = temp;
+			}
+		} else {
+			int temp = result[2];
+			result[2] = result[1];
+			result[1] = result[0];
+			result[0] = temp;
+		}
+	}
+	
+	private static void setAndAdjustWindowedPair(int[] result, int i, int j, final int z1, final int z2) {
+		if (i < z2) {
+			if ((i & 1) == 0) {
+				result[0] = i >> 1;
+				result[1] = result[0] + 1 + j;
+			} else {
+				result[1] = i >> 1;
+				result[0] = result[1] + 1 + j;
+			}
+		} else {
+			i -= z1;
+			j += z1;
+			if (i >= j) result[0] = i + 1;
+			else result[0] = i;
+			result[1] = j;
+		}
+	}
+	
+	
+	private static void setAndAdjustWindowedTriple(int[] result, int i, int j, int k, final int z1, final int z3) {
+		if (k >= j) {
+			k++;
+		}
+		if (i < z3) {
+			int q = i / 3;
+			int r = i % 3;
+			result[r] = q;
+			if (r==0) {
+				result[1] = q + 1 + j;
+				result[2] = q + 1 + k;
+			} else if (r==1) {
+				result[0] = q + 1 + j;
+				result[2] = q + 1 + k;
+			} else {
+				result[0] = q + 1 + j;
+				result[1] = q + 1 + k;
+			}
+		} else {
+			i = i - z3 + z1;
+			j += z1;
+			k += z1;
+			if (j < k) {
+				if (i >= j) {
+					i++;
+					if (i >= k) i++;
+				}
+			} else {
+				if (i >= k) {
+					i++;
+					if (i >= j) i++;
+				}
+			}
+			result[0] = i;
+			result[1] = j;
+			result[2] = k;
+		}
+	}
 	
 }
