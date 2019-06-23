@@ -37,7 +37,7 @@ import org.cicirello.math.rand.RandomIndexer;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.20
+ * @version 6.23.2019
  * @since 1.0
  */
 public final class Permutation implements Serializable, Iterable<Permutation>
@@ -176,8 +176,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @param p the given permutation.
 	 */
 	public Permutation(Permutation p) {
-		permutation = new int[p.permutation.length];
-		System.arraycopy(p.permutation, 0, permutation, 0, p.permutation.length);
+		permutation = p.permutation.clone();
 	}
 	
 	/**
@@ -192,14 +191,18 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 * @param length size of new permutation
 	 */
 	public Permutation(Permutation p, int length) {
-		if (length > p.permutation.length) length = p.permutation.length;
-		else if (length < 0) length = 0;
-		permutation = new int[length];
-		int k = 0;
-		for (int i = 0; i < p.permutation.length && k < length; i++) {
-			if (p.permutation[i] < length) {
-				permutation[k] = p.permutation[i];
-				k++;
+		if (length >= p.permutation.length) {
+			permutation = p.permutation.clone();
+		} else if (length <= 0) {
+			permutation = new int[0];
+		} else {
+			permutation = new int[length];
+			int k = 0;
+			for (int i = 0; i < p.permutation.length && k < length; i++) {
+				if (p.permutation[i] < length) {
+					permutation[k] = p.permutation[i];
+					k++;
+				}
 			}
 		}
 	}
@@ -565,6 +568,29 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	 */
 	public int[] toArray() {
 		return permutation.clone();
+	}
+	
+	/**
+	 * <p>Generates an array of int values from the interval [0, n) in the same order
+	 * that they occur in this Permutation.  The array that is returned is independent of
+	 * the object state (i.e., changes to its contents will not affect the Permutation).</p>
+	 * 
+	 * @param array An array to hold the result.  If array is null or if array.length is
+	 * not equal to the length of the permutation, then this method will construct a new array
+	 * for the result.
+	 * 
+	 * @return an int array containing the Permutation elements in the same order that they appear in
+	 * the Permutation.
+	 *
+	 * @since 1.5
+	 */
+	public int[] toArray(int[] array) {
+		if (array == null || array.length != permutation.length) {
+			return permutation.clone();
+		} else {
+			System.arraycopy(permutation, 0, array, 0, array.length);
+			return array;
+		}
 	}
 	
 	/**

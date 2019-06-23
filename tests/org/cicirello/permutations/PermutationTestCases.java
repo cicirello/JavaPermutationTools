@@ -300,7 +300,7 @@ public class PermutationTestCases {
 	@Test
 	public void testToArray() {
 		int[] init = {4, 2, 5, 0, 3, 1};
-		Permutation p = new Permutation(init);
+		Permutation p = new Permutation(init.clone());
 		int[] array = p.toArray();
 		assertArrayEquals("should be equal to current state", init, array);
 		for (int i = 0; i < array.length; i++) {
@@ -308,6 +308,15 @@ public class PermutationTestCases {
 			array[i] = i;
 		}
 		assertArrayEquals("should still be equal to current state", init, p.toArray());
+		
+		array = null;
+		array = p.toArray(array);
+		assertArrayEquals("should be equal to current state", init, array);
+		
+		array = new int[6];
+		int[] result = p.toArray(array);
+		assertTrue("Should use the array parameter if correct length", result == array);
+		assertArrayEquals("should be equal to current state", init, result);
 	}
 	
 	@Test
