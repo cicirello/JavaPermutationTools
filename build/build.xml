@@ -3,7 +3,7 @@
   Build file for the Java Permutation Tools (JPT) API.
   </description>
   <!-- global properties for this build -->
-  <property name="VERSION" value="1"/>
+  <property name="VERSION" value="2"/>
   <property name="junit" location="build/junit-4.12.jar"/>
   <property name="hamcrest" location="build/hamcrest-core-1.3.jar"/>
   <property name="src" location="src"/>
@@ -97,7 +97,6 @@
     <!-- Delete the ${bin} and ${dist} directory trees -->
     <delete dir="${bin}"/>
 	<delete dir="${testbin}"/>
-    <delete dir="${dist}"/>
 	<delete dir="${examplebin}"/>
 	<delete dir="${docdir}"/>
   </target>
