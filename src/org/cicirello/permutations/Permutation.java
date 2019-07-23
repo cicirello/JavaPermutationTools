@@ -557,6 +557,44 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 	}
 	
 	/**
+	 * Retrieves a range of elements from the permutation.
+	 * @param i The starting index.
+	 * @param j The ending index (inclusive).
+	 * @return An array containing the permutation elements from positions i through j, inclusive.
+	 * @throws IllegalArgumentException if j &lt; i
+	 * @throws IndexOutOfBoundsException if i is negative, or j &ge; Permutation.length()
+	 * @since 2.0
+	 */
+	public int[] get(int i, int j) {
+		if (j < i) throw new IllegalArgumentException("j must not be less than i");
+		int[] array = new int[j-i+1];
+		System.arraycopy(permutation, i, array, 0, array.length);
+		return array;
+	}
+	
+	/**
+	 * Retrieves a range of elements from the permutation.
+	 * @param i The starting index.
+	 * @param j The ending index (inclusive).
+	 * @param array An array to hold the result.  If the array is null or if its length
+	 * is not equal to the number of retrieved elements, then a new array is constructed.
+	 * @return The array containing the permutation elements from positions i through j, inclusive.
+	 * @throws IllegalArgumentException if j &lt; i
+	 * @throws IndexOutOfBoundsException if i is negative, or j &ge; Permutation.length()
+	 * @since 2.0
+	 */
+	public int[] get(int i, int j, int[] array) {
+		if (j < i) throw new IllegalArgumentException("j must not be less than i");
+		int n = j-i+1;
+		if (array == null || array.length != n) {
+			array = new int[n];
+		}
+		System.arraycopy(permutation, i, array, 0, array.length);
+		return array;
+	}
+	
+	
+	/**
 	 * Generates an array of int values from the interval [0, n) in the same order
 	 * that they occur in this Permutation.  The array that is returned is independent of
 	 * the object state (i.e., changes to its contents will not affect the Permutation).

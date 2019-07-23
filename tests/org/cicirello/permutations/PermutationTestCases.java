@@ -320,6 +320,53 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testGetRange() {
+		int[] init = {4, 2, 5, 0, 3, 1};
+		Permutation p = new Permutation(init.clone());
+		for (int i = 0; i < init.length; i++) {
+			for (int j = i; j < init.length; j++) {
+				int[] a = p.get(i, j);
+				assertEquals("length of result", j-i+1, a.length);
+				for (int k = 0; k < a.length; k++) {
+					assertEquals("Elements should be in target range of permutation", init[i+k], a[k]);
+				}
+			}
+		}
+		for (int i = 0; i < init.length; i++) {
+			for (int j = i; j < init.length; j++) {
+				int[] result = new int[j-i+1];
+				int[] a = p.get(i, j, result);
+				assertTrue("Should use the passed array", result == a);
+				assertEquals("length of result", j-i+1, a.length);
+				for (int k = 0; k < a.length; k++) {
+					assertEquals("Elements should be in target range of permutation", init[i+k], a[k]);
+				}
+			}
+		}
+		for (int i = 0; i < init.length; i++) {
+			for (int j = i; j < init.length; j++) {
+				int[] result = null;
+				int[] a = p.get(i, j, result);
+				assertEquals("length of result", j-i+1, a.length);
+				for (int k = 0; k < a.length; k++) {
+					assertEquals("Elements should be in target range of permutation", init[i+k], a[k]);
+				}
+			}
+		}
+		for (int i = 0; i < init.length; i++) {
+			for (int j = i; j < init.length; j++) {
+				int[] result = new int[j-i+2];
+				int[] a = p.get(i, j, result);
+				assertTrue("Should construct a new array if length incorrect", result != a);
+				assertEquals("length of result", j-i+1, a.length);
+				for (int k = 0; k < a.length; k++) {
+					assertEquals("Elements should be in target range of permutation", init[i+k], a[k]);
+				}
+			}
+		}
+	}
+	
+	@Test
 	public void testPermutationRemoveInsert() {
 		Permutation p = new Permutation(5);
 		for (int i = 0; i < p.length(); i++) {
