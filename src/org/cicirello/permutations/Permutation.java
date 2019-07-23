@@ -914,6 +914,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		 * @param index The index for the start of the new elements.
 		 * @param subpermutation The new elements, which are copied into the permutation beginning
 		 * at position index of the permutation.
+		 * @since 2.0
 		 */
 		protected final void set(Permutation p, int index, int[] subpermutation) {
 			System.arraycopy(subpermutation, 0, p.permutation, index, subpermutation.length);
