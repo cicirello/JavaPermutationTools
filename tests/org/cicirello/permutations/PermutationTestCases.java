@@ -185,6 +185,9 @@ public class PermutationTestCases {
 			public void testSet(Permutation p, int i, int v) {
 				set(p, i, v);
 			}
+			public void testSet(Permutation p, int i, int[] a) {
+				set(p, i, a);
+			}
 		}
 		MyMech test = new MyMech();
 		
@@ -202,6 +205,27 @@ public class PermutationTestCases {
 			} 
 			validatePermutation(p, a.length);
 			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a.length, 0);
+			test.testSet(p, 0, a.clone()); 
+			validatePermutation(p, a.length);
+			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a);
+			int[] change = a.length > 2 ? new int[] {7, 5} : new int[] {7};
+			int start = a.length > 1 ? 1 : 0;
+			test.testSet(p, start, change);
+			for (int i = 0; i < start; i++) {
+				assertEquals("elements before start should not change", a[i], p.get(i));
+			}
+			for (int i = 0; i < change.length; i++) {
+				assertEquals("checking changed elements", change[i], p.get(start+i));
+			}
+			for (int i = start + change.length; i < a.length; i++) {
+				assertEquals("elements after end should not change", a[i], p.get(i));
+			}
 		}
 	}
 	

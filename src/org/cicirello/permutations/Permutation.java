@@ -901,5 +901,22 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		protected final void set(Permutation p, int index, int value) {
 			p.permutation[index] = value;
 		}
+		
+		/**
+		 * Changes a range of permutation elements.  This method does not verify that the
+		 * change produces a valid permutation.  The caller is responsible for making a combination
+		 * of calls to this method and/or the other methods of the Permutation.Mechanic class that
+		 * together produce a valid Permutation.   
+		 * The behavior of the Permutation object may become unstable otherwise.
+		 * The caller should not return until the state of the Permutation object is again valid.
+		 *
+		 * @param p Permutation object to change.
+		 * @param index The index for the start of the new elements.
+		 * @param subpermutation The new elements, which are copied into the permutation beginning
+		 * at position index of the permutation.
+		 */
+		protected final void set(Permutation p, int index, int[] subpermutation) {
+			System.arraycopy(subpermutation, 0, p.permutation, index, subpermutation.length);
+		}
 	}
 }
