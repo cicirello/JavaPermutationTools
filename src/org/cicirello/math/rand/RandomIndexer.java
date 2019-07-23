@@ -1147,6 +1147,41 @@ public final class RandomIndexer {
 	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * All triples that satisfy the window constraint are equally likely.</p>
 	 * <p>The runtime is O(1).</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, 
+	 * and efficient (i.e., non-blocking), for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result.
+	 * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @since 2.0
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
+		if (window >= n - 1) return nextIntTriple(n, result, sort);
+		if (result == null || result.length < 3) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2);
+		int j = nextInt(window);
+		int k = nextInt(window - 1);
+		if (sort) sortSetAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		else setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
@@ -1181,6 +1216,39 @@ public final class RandomIndexer {
 	 * @param n The number of integers to choose from.
 	 * @param window The maximum difference between the integers of the triple.
 	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result.
+	 * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+	 * @param gen The source of randomness.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @since 2.0
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, SplittableRandom gen) {
+		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
+		if (result == null || result.length < 3) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2, gen);
+		int j = nextInt(window, gen);
+		int k = nextInt(window - 1, gen);
+		if (sort) sortSetAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		else setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the pair that is generated.  If result is null
 	 * or if result.length is less than 3, then this method will construct an array for the result. 
 	 * @param gen The source of randomness.
 	 * @return An array containing the triple of 
@@ -1198,6 +1266,39 @@ public final class RandomIndexer {
 		int j = nextInt(window, gen);
 		int k = nextInt(window - 1, gen);
 		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		return result;
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.</p>
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+	 * @param gen The source of randomness.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 * @since 2.0
+	 */
+	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, Random gen) {
+		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
+		if (result == null || result.length < 3) result = new int[3];
+		final int z1 = n - window;
+		final int z3 = 3*z1;
+		int i = nextInt(z3 + window - 2, gen);
+		int j = nextInt(window, gen);
+		int k = nextInt(window - 1, gen);
+		if (sort) sortSetAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+		else setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
 		return result;
 	}
 	
@@ -1298,6 +1399,42 @@ public final class RandomIndexer {
 			result[0] = i;
 			result[1] = j;
 			result[2] = k;
+		}
+	}
+	
+	private static void sortSetAndAdjustWindowedTriple(int[] result, int i, int j, int k, final int z1, final int z3) {
+		if (k >= j) {
+			k++;
+		} else {
+			int t = j;
+			j = k;
+			k = t;
+		}
+		if (i < z3) {
+			int q = i / 3;
+			result[0] = q;
+			result[1] = q + 1 + j;
+			result[2] = q + 1 + k;
+		} else {
+			i = i - z3 + z1;
+			j += z1;
+			k += z1;
+			if (i >= j) {
+				i++;
+				result[0] = j;
+				if (i >= k) {
+					i++;
+					result[1] = k;
+					result[2] = i;
+				} else {
+					result[1] = i;
+					result[2] = k;
+				}
+			} else {
+				result[0] = i;
+				result[1] = j;
+				result[2] = k;
+			}			
 		}
 	}
 	

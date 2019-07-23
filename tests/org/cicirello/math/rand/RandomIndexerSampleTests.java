@@ -1158,6 +1158,17 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertNotEquals("integers should be different", result[0], result[2]);
+				assertNotEquals("integers should be different", result[2], result[1]);
+				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
+				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
+				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
 			}
 		}
 		if (DISABLE_CHI_SQUARE_TESTS) return;
@@ -1212,6 +1223,17 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertNotEquals("integers should be different", result[0], result[2]);
+				assertNotEquals("integers should be different", result[2], result[1]);
+				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
+				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
+				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -1262,6 +1284,17 @@ public class RandomIndexerSampleTests {
 				assertNotEquals("integers should be different", result[0], result[2]);
 				assertNotEquals("integers should be different", result[2], result[1]);
 				Arrays.sort(result);
+				assertTrue("integers should be at least 0", result[0] >= 0);
+				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertNotEquals("integers should be different", result[0], result[1]);
+				assertNotEquals("integers should be different", result[0], result[2]);
+				assertNotEquals("integers should be different", result[2], result[1]);
+				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
+				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
+				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
 				assertTrue("integers should be at least 0", result[0] >= 0);
 				assertTrue("integers should be less than " + n, result[2] < n);
 				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
