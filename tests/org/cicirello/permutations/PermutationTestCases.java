@@ -426,6 +426,42 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testPermutationBlockRemoveInsert() {
+		int[] a = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		int[] a1 = {7, 0, 1, 2, 3, 4, 5, 6, 8, 9, 10};
+		int[] a2 = {0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 2};
+		int[] a3 = {7, 8, 0, 1, 2, 3, 4, 5, 6, 9, 10};
+		int[] a4 = {0, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2};
+		int[] a5 = {0, 3, 4, 5, 6, 7, 1, 2, 8, 9, 10};
+		int[] a6 = {0, 7, 8, 1, 2, 3, 4, 5, 6, 9, 10};
+		Permutation p = new Permutation(a);
+		Permutation p1 = new Permutation(a1);
+		Permutation mutant = new Permutation(p);
+		mutant.removeAndInsert(7, 1, 0);
+		assertEquals("move 1 to front", p1, mutant);
+		Permutation p2 = new Permutation(a2);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(2, 1, 10);
+		assertEquals("move 1 to end", p2, mutant);
+		Permutation p3 = new Permutation(a3);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(7, 2, 0);
+		assertEquals("move 2 to front", p3, mutant);
+		Permutation p4 = new Permutation(a4);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(1, 2, 9);
+		assertEquals("move 2 to end", p4, mutant);
+		Permutation p5 = new Permutation(a5);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(1, 2, 6);
+		assertEquals("move 2 later", p5, mutant);
+		Permutation p6 = new Permutation(a6);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(7, 2, 1);
+		assertEquals("move 2 earlier", p6, mutant);
+	}
+	
+	@Test
 	public void testPermutationReverse() {
 		Permutation p = new Permutation(10);
 		Permutation copy = new Permutation(p);
@@ -461,6 +497,99 @@ public class PermutationTestCases {
 			for (int i = 0; i < p.length(); i++) {
 				int j = (i + r) % p.length();
 				assertEquals("elements should be left rotated " + r + " places", p.get(j), copy.get(i));
+			}
+		}
+	}
+	
+	@Test
+	public void testSwap() {
+		for (int i = 2; i <= 10; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			p2.swap(0, i-1);
+			assertEquals("case: endpoint swap", p.get(0), p2.get(i-1));
+			assertEquals("case: endpoint swap", p.get(i-1), p2.get(0));
+			for (int j = 1; j < i-1; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+		}
+		for (int i = 2; i <= 10; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			p2.swap(i-1, 0);
+			assertEquals("case: endpoint swap", p.get(0), p2.get(i-1));
+			assertEquals("case: endpoint swap", p.get(i-1), p2.get(0));
+			for (int j = 1; j < i-1; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+		}
+		for (int i = 4; i <= 10; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			p2.swap(1, i-2);
+			assertEquals("case: interior swap", p.get(1), p2.get(i-2));
+			assertEquals("case: interior swap", p.get(i-2), p2.get(1));
+			for (int j = 2; j < i-2; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+			assertEquals("non swapped elements should not change", p.get(0), p2.get(0));
+			assertEquals("non swapped elements should not change", p.get(i-1), p2.get(i-1));
+		}
+		for (int i = 4; i <= 10; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			p2.swap(i-2, 1);
+			assertEquals("case: interior swap", p.get(1), p2.get(i-2));
+			assertEquals("case: interior swap", p.get(i-2), p2.get(1));
+			for (int j = 2; j < i-2; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+			assertEquals("non swapped elements should not change", p.get(0), p2.get(0));
+			assertEquals("non swapped elements should not change", p.get(i-1), p2.get(i-1));
+		}
+	}
+	
+	@Test
+	public void testSwapBlocks() {
+		int[] a = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		for (int i = 1; i < 11; i++) {
+			for (int j = 1; i+j <= 11; j++) {
+				Permutation p = new Permutation(a);
+				int b = i-1;
+				int c = 11-j;
+				p.swapBlocks(0, b, c, 10);
+				String s = "(0, " + b + ", " + c + ", 10)"; 
+				int y = 0;
+				for (int x = 11-j; x <= 10; x++, y++) {
+					assertEquals("left block of result, params="+s, a[x], p.get(y));
+				}
+				for (int x = i; x < 11-j; x++, y++) {
+					assertEquals("interior of swapped blocks, params="+s, a[x], p.get(y));
+				}
+				for (int x = 0; x < i; x++, y++) {
+					assertEquals("right block of result, params="+s, a[x], p.get(y));
+				}
+			}
+		}
+		for (int i = 1; i < 11; i++) {
+			for (int j = 1; i+j <= 9; j++) {
+				Permutation p = new Permutation(a);
+				int b = i;
+				int c = 10-j;
+				p.swapBlocks(1, b, c, 9);
+				String s = "(1, " + b + ", " + c + ", 9)"; 
+				int y = 1;
+				assertEquals("0th element should not change", a[0], p.get(0));
+				assertEquals("last element should not change", a[10], p.get(10));
+				for (int x = c; x <= 9; x++, y++) {
+					assertEquals("left block of result, params="+s, a[x], p.get(y));
+				}
+				for (int x = b+1; x < c; x++, y++) {
+					assertEquals("interior of swapped blocks, params="+s, a[x], p.get(y));
+				}
+				for (int x = 1; x <= b; x++, y++) {
+					assertEquals("right block of result, params="+s, a[x], p.get(y));
+				}
 			}
 		}
 	}

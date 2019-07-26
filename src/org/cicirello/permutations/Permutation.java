@@ -37,7 +37,7 @@ import org.cicirello.math.rand.RandomIndexer;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 6.23.2019
+ * @version 7.26.2019
  * @since 1.0
  */
 public final class Permutation implements Serializable, Iterable<Permutation>
@@ -653,6 +653,36 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 		int temp = permutation[i];
 		permutation[i] = permutation[j];
 		permutation[j] = temp;
+	}
+	
+	/**
+	 * Swaps 2 non-overlapping blocks, where a block is a subsequence.
+	 * @param a Starting index of first block.
+	 * @param b Ending index, inclusive, of first block.
+	 * @param i Starting index of second block.
+	 * @param j Ending index, inclusive, of second block.
+	 * @throws IllegalArgumentException if the following constraint is violated:
+	 * 0 &le; a &le; b &lt; i &le; j &lt; length().
+	 * @since 2.0
+	 */
+	public void swapBlocks(int a, int b, int i, int j) {
+		if (a < 0 || b < a || i <= b || j < i || j >= permutation.length) {
+			throw new IllegalArgumentException("Illegal block definition.");
+		} else if (a==b && i==j) {
+			// blocks are singletons
+			swap(a, i);
+		} else if (b+1==i) {
+			// blocks are adjacent
+			removeAndInsert(i, j-i+1, a);
+		} else {
+			int[] temp = new int[j-a+1];
+			int k = j-i+1;
+			System.arraycopy(permutation, i, temp, 0, k);
+			int m = i-b-1;
+			System.arraycopy(permutation, b+1, temp, k, m);
+			System.arraycopy(permutation, a, temp, k+m, b-a+1);
+			System.arraycopy(temp, 0, permutation, a, temp.length);
+		}
 	}
 	
 	/**
