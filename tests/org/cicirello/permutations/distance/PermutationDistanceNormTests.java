@@ -33,6 +33,14 @@ public class PermutationDistanceNormTests {
 	private final static double EPSILON = 1e-10;
 	
 	@Test
+	public void testBlockInterchangeDistance() {
+		BlockInterchangeDistance d = new BlockInterchangeDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+		}
+	}
+	
+	@Test
 	public void testAcyclicEdgeDistance() {
 		AcyclicEdgeDistance d = new AcyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {

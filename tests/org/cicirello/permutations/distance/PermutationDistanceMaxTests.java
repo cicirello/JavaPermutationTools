@@ -33,6 +33,16 @@ public class PermutationDistanceMaxTests {
 	private final static double EPSILON = 1e-10;
 	
 	@Test
+	public void testBlockInterchangeDistance() {
+		BlockInterchangeDistance d = new BlockInterchangeDistance();
+		for (int n = 0; n <= 7; n++) {
+			int expected = bruteForceComputeMax(d,n);
+			assertEquals("Failed on length: " + n, expected, d.max(n));
+			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+		}
+	}
+	
+	@Test
 	public void testAcyclicEdgeDistance() {
 		AcyclicEdgeDistance d = new AcyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
@@ -159,7 +169,7 @@ public class PermutationDistanceMaxTests {
 		}
 	}
 	
-	@Test
+	//@Test // uncomment if we implement
 	public void testEditDistance() {
 		/* // Uncomment if we implement. 
 		for (double i = 0.0; i < 1.0; i += 0.1) {
