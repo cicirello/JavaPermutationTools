@@ -35,6 +35,16 @@ public class MathFunctionsTests {
 	private static final double EPSILON = 1e-10;
 	
 	@Test
+	public void testPow() {
+		for (int i = 0; i <= 16; i++) {
+			assertEquals(Math.pow(5.0, i), MathFunctions.pow(5.0, i), EPSILON);
+		}
+		for (int i = -1; i >= -16; i--) {
+			assertEquals(Math.pow(5.0, i), MathFunctions.pow(5.0, i), EPSILON);
+		}
+	}
+	
+	@Test
 	public void testLogGamma() {
 		final int MAX = 20;
 		final int D_MAX = 35;

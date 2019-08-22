@@ -38,6 +38,27 @@ public final class MathFunctions {
 	 */
 	private MathFunctions() {}
 	
+	/**
+	 * Computes a<sup>b</sup>, where the exponent b is an integer.
+	 * This is more efficient than using {@link Math#pow} since
+	 * it exploits the integer type of the exponent.
+	 * @param a The base.
+	 * @param b The exponent.
+	 * @return a<sup>b</sup>
+	 */
+	public static double pow(double a, int b) {
+		if (b >= 0) {
+			double c = 1;
+			while (b > 0) {
+				if ((b & 1) == 1) c *= a;
+				b = b >> 1;
+				a = a * a;
+			}
+			return c;
+		} else {
+			return 1.0 / pow(a, -b);
+		} 
+	}
 	
 	/**
 	 * Implementation of the natural log of the absolute value of
@@ -62,11 +83,11 @@ public final class MathFunctions {
 				p = p + 1.0;
 				z = p - n;
 			}
-			z = n * StrictMath.sin(z * StrictMath.PI);
+			z = n * Math.sin(z * Math.PI);
 			if (z == 0.0) return Double.POSITIVE_INFINITY;
 			// ln(PI)
 			final double LOG_PI = 1.14472988584940017414;
-			return LOG_PI - StrictMath.log(z) - logGamma(n);
+			return LOG_PI - Math.log(z) - logGamma(n);
 		} else if (n < 13.0) {
 			double z = 1.0;
 			int p = 0;
@@ -83,15 +104,15 @@ public final class MathFunctions {
 				u = n + p;
 			}
 			if (z < 0.0) z = -z;
-			if (u == 2.0) return StrictMath.log(z);
+			if (u == 2.0) return Math.log(z);
 			p -= 2;
 			n = n + p; 
-			return StrictMath.log(z) + 
+			return Math.log(z) + 
 				n * evaluatePolynomial(n, POLY_APPROX_2) / evaluatePolynomial(n, POLY_APPROX_3);
 		} else {
 			// ln(sqrt(2pi))
 			final double LOG_SQRT_PI2 = 0.91893853320467274178;
-			double q = (n - 0.5) * StrictMath.log(n) - n + LOG_SQRT_PI2; 
+			double q = (n - 0.5) * Math.log(n) - n + LOG_SQRT_PI2; 
 			if (n > 1.0e8) return q;
 			double p = 1.0 / (n * n);
 			if (n >= 1000.0) {
