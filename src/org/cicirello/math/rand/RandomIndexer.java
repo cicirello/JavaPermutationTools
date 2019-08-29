@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.6.21
+ * @version 8.29.2019
  * @since 1.4
  *
  */
@@ -530,10 +530,62 @@ public final class RandomIndexer {
 		return result;
 	}
 	
+	/**
+	 * <p>Generates a random sample, without replacement, from the
+	 * set of integers in the interval [0, n).  Each of the n integers 
+	 * has a probability p of inclusion in the sample.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * source of randomness, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param p The probability that each of the n integers is included in the sample.
+	 * Must meet the following condition: 0 &le; p &le; 1.
+	 * @return An array containing the sample.
+	 * @since 2.0
+	 */
+	public static int[] sample(int n, double p) {
+		Random r = ThreadLocalRandom.current();
+		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+	}
 	
+	/**
+	 * <p>Generates a random sample, without replacement, from the
+	 * set of integers in the interval [0, n).  Each of the n integers 
+	 * has a probability p of inclusion in the sample.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * source of randomness, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param p The probability that each of the n integers is included in the sample.
+	 * Must meet the following condition: 0 &le; p &le; 1.
+	 * @param r The source of randomness.
+	 * @return An array containing the sample.
+	 * @since 2.0
+	 */
+	public static int[] sample(int n, double p, SplittableRandom r) {
+		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+	}
 	
-	
-	
+	/**
+	 * <p>Generates a random sample, without replacement, from the
+	 * set of integers in the interval [0, n).  Each of the n integers 
+	 * has a probability p of inclusion in the sample.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * source of randomness, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param p The probability that each of the n integers is included in the sample.
+	 * Must meet the following condition: 0 &le; p &le; 1.
+	 * @param r The source of randomness.
+	 * @return An array containing the sample.
+	 * @since 2.0
+	 */
+	public static int[] sample(int n, double p, Random r) {
+		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+	}
 	
 	/**
 	 * <p>Generates a random sample of k integers, without replacement, from the

@@ -52,6 +52,60 @@ public class RandomIndexerSampleTests {
 	private static final boolean DISABLE_CHI_SQUARE_TESTS = true;
 	
 	@Test
+	public void testSamplePRandom() {
+		final int TRIALS = 1000;
+		Random r = new Random(42);
+		double[] P = {0.25, 0.5, 0.75};
+		int n = 100;
+		for (double p : P) {
+			int sum = 0;
+			for (int i = 0; i < TRIALS; i++) {
+				int[] result = RandomIndexer.sample(n, p, r);
+				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				sum += result.length;
+			}
+			double ave = 1.0 * sum / TRIALS;
+			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
+		}
+	}
+	
+	@Test
+	public void testSamplePSplittable() {
+		final int TRIALS = 1000;
+		SplittableRandom r = new SplittableRandom(42);
+		double[] P = {0.25, 0.5, 0.75};
+		int n = 100;
+		for (double p : P) {
+			int sum = 0;
+			for (int i = 0; i < TRIALS; i++) {
+				int[] result = RandomIndexer.sample(n, p, r);
+				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				sum += result.length;
+			}
+			double ave = 1.0 * sum / TRIALS;
+			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
+		}
+	}
+	
+	@Test
+	public void testSamplePThreadLocal() {
+		final int TRIALS = 1000;
+		double[] P = {0.25, 0.5, 0.75};
+		int n = 100;
+		for (double p : P) {
+			int sum = 0;
+			for (int i = 0; i < TRIALS; i++) {
+				int[] result = RandomIndexer.sample(n, p);
+				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				sum += result.length;
+			}
+			// Don't do this check since we can't seed.
+			//double ave = 1.0 * sum / TRIALS;
+			//assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
+		}
+	}
+	
+	@Test
 	public void testSampleReservoir_ThreadLocalRandom() {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
@@ -369,7 +423,8 @@ public class RandomIndexerSampleTests {
 	public void testSample_ThreadLocalRandom() {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sample(n, k, null);
+				int[] result = null;
+				result = RandomIndexer.sample(n, k, result);
 				assertEquals("Length of result should be " + k, k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
@@ -1332,6 +1387,16 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 			}
 		}
+	}
+	
+	private boolean validSample(int n, int[] result) {
+		boolean[] inResult = new boolean[n];
+		for (int i = 0; i < result.length; i++) {
+			if (result[i] >= n || result[i] < 0) return false;
+			if (inResult[i]) return false;
+			inResult[i] = true;
+		}
+		return true;
 	}
 	
 	
