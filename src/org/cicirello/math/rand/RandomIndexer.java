@@ -540,13 +540,20 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param p The probability that each of the n integers is included in the sample.
-	 * Must meet the following condition: 0 &le; p &le; 1.
 	 * @return An array containing the sample.
 	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p) {
-		Random r = ThreadLocalRandom.current();
-		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		if (p <= 0) {
+			return new int[0];
+		} else if (p >= 1) {
+			int[] result = new int[n];
+			for (int i = 0; i < n; i++) result[i] = i;
+			return result;
+		} else {
+			Random r = ThreadLocalRandom.current();
+			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		}
 	}
 	
 	/**
@@ -559,13 +566,20 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param p The probability that each of the n integers is included in the sample.
-	 * Must meet the following condition: 0 &le; p &le; 1.
 	 * @param r The source of randomness.
 	 * @return An array containing the sample.
 	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p, SplittableRandom r) {
-		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		if (p <= 0) {
+			return new int[0];
+		} else if (p >= 1) {
+			int[] result = new int[n];
+			for (int i = 0; i < n; i++) result[i] = i;
+			return result;
+		} else {
+			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		}
 	}
 	
 	/**
@@ -578,13 +592,20 @@ public final class RandomIndexer {
 	 *
 	 * @param n The number of integers to choose from.
 	 * @param p The probability that each of the n integers is included in the sample.
-	 * Must meet the following condition: 0 &le; p &le; 1.
 	 * @param r The source of randomness.
 	 * @return An array containing the sample.
 	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p, Random r) {
-		return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		if (p <= 0) {
+			return new int[0];
+		} else if (p >= 1) {
+			int[] result = new int[n];
+			for (int i = 0; i < n; i++) result[i] = i;
+			return result;
+		} else {
+			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
+		}
 	}
 	
 	/**
