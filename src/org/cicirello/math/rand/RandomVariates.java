@@ -28,7 +28,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Tis utility class provides methods for generating random variates from
+ * This utility class provides methods for generating random variates from
  * different distributions.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
@@ -53,7 +53,7 @@ public final class RandomVariates {
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
 	public static int nextBinomial(int n, double p) {
-		return BinomialRandomVariates.nextBinomial(n, p, ThreadLocalRandom.current());
+		return BTPE.nextBinomial(n, p, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public final class RandomVariates {
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
 	public static int nextBinomial(int n, double p, Random r) {
-		return BinomialRandomVariates.nextBinomial(n, p, r);
+		return BTPE.nextBinomial(n, p, r);
 	}
 	
 	/**
@@ -75,6 +75,6 @@ public final class RandomVariates {
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
 	public static int nextBinomial(int n, double p, SplittableRandom r) {
-		return BinomialRandomVariates.nextBinomial(n, p, r);
+		return BTPE.nextBinomial(n, p, r);
 	}	
 }

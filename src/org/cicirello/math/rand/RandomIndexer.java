@@ -1067,8 +1067,9 @@ public final class RandomIndexer {
 		if (p >= 1) {
 			for (int i = 0; i < n; i++) result[i] = true;
 		} else if (p > 0) {
-			for (int i = 0; i < n; i++) {
-				result[i] = gen.nextDouble() < p;
+			int[] s = sample(n, p, gen);
+			for (int i = 0; i < s.length; i++) {
+				result[s[i]] = true;
 			}
 		}
 		return result;
@@ -1090,8 +1091,9 @@ public final class RandomIndexer {
 		if (p >= 1) {
 			for (int i = 0; i < n; i++) result[i] = true;
 		} else if (p > 0) {
-			for (int i = 0; i < n; i++) {
-				result[i] = gen.nextDouble() < p;
+			int[] s = sample(n, p, gen);
+			for (int i = 0; i < s.length; i++) {
+				result[s[i]] = true;
 			}
 		}
 		return result;

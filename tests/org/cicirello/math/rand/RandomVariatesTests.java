@@ -96,6 +96,7 @@ public class RandomVariatesTests {
 				int[] buckets = new int[n+1];
 				for (int i = 0; i < TRIALS; i++) {
 					int b = RandomVariates.nextBinomial(n, p, r);
+					assertTrue("Invalid result, (n, p)=("+n+", "+p+"), r="+b, b >= 0 && b <= n);
 					buckets[b]++;
 				}
 				double chi = chiSquare(buckets, dist);
