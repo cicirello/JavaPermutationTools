@@ -23,6 +23,7 @@
 package org.cicirello.sequences;
 
 import org.cicirello.math.rand.RandomIndexer;
+import org.cicirello.math.rand.RandomVariates;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -31,7 +32,7 @@ import java.util.Arrays;
  * efficiently generating random samples of array elements, without replacement.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.6.10
+ * @version 9.6.2019
  * @since 1.5
  *
  */
@@ -42,6 +43,133 @@ public final class SequenceSampler {
 	 * with a private constructor.
 	 */
 	private SequenceSampler() {};
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static byte[] sample(byte[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static char[] sample(char[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static double[] sample(double[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static float[] sample(float[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static int[] sample(int[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static long[] sample(long[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static short[] sample(short[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given String
+	 * with a specified probability of a character's inclusion in the sample.</p>
+	 *
+	 * @param source The String from which to sample.
+	 * @param p The probability that a character is included in the sample.  The expected 
+	 * sample size is source.length() * p.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static char[] sample(String source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length(), p), null);
+	}
+	
+	/**
+	 * <p>Generates a random sample, without replacement, from a given source array
+	 * with a specified probability of an element's inclusion in the sample.</p>
+	 *
+	 * @param source The array from which to sample.
+	 * @param p The probability that element is included in the sample.  The expected 
+	 * sample size is source.length * p.
+	 * @param <T> The type of array elements.
+	 * @return An array containing the sample, whose sample size is simply the length of the array.
+	 * @since 2.0
+	 */
+	public static <T> T[] sample(T[] source, double p) {
+		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
+	}
 	
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
