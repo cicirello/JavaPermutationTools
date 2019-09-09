@@ -152,6 +152,136 @@ public class RandomVariatesTests {
 		}
 	}
 	
+	@Test
+	public void testNextCauchyRandom() {
+		final int TRIALS = 8000;
+		Random r = new Random(42);
+		double[] scale = {1, 2, 4};
+		final double sqrt2 = Math.sqrt(2);
+		for (double s : scale) {
+			double[] boundaries = { -s*(sqrt2+1), -s, -s*(sqrt2-1), 0 , s*(sqrt2-1), s, s*(sqrt2+1)};
+			int[] buckets = new int[8];
+			for (int j = 0; j < TRIALS; j++) {
+				double v = RandomVariates.nextCauchy(s, r);
+				int i = 0;
+				for (; i < boundaries.length; i++) {
+					if (v < boundaries[i]) break;
+				}
+				buckets[i]++;
+			}
+			double chi = chiSquare(buckets);
+			// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
+			assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+		}
+		double median = 5.0;
+		double s = 1.0;
+		double[] boundaries = { median - s*(sqrt2+1), median - s, median - s*(sqrt2-1), median , median + s*(sqrt2-1), median + s, median + s*(sqrt2+1)};
+		int[] buckets = new int[8];
+		for (int j = 0; j < TRIALS; j++) {
+			double v = RandomVariates.nextCauchy(median, s, r);
+			int i = 0;
+			for (; i < boundaries.length; i++) {
+				if (v < boundaries[i]) break;
+			}
+			buckets[i]++;
+		}
+		double chi = chiSquare(buckets);
+		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
+		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+	}
+	
+	@Test
+	public void testNextCauchyThreadLocalRandom() {
+		// Since we cannot seed ThreadLocalRandom, this test case is
+		// not 100% replicable.  Additionally, we know that this version of
+		// the method simply calls the version that takes a Random as a parameter.
+		// Since we did test that version for goodness of fit,
+		// and since replication is not possible without a seed, we simply verify
+		// that over a large number of trials that samples are generated in each of the buckets
+		// used for the goodness of fit tests in the class Random case.
+		final int TRIALS = 800;
+		double[] scale = {1, 2, 4};
+		final double sqrt2 = Math.sqrt(2);
+		for (double s : scale) {
+			double[] boundaries = { -s*(sqrt2+1), -s, -s*(sqrt2-1), 0 , s*(sqrt2-1), s, s*(sqrt2+1)};
+			int[] buckets = new int[8];
+			for (int j = 0; j < TRIALS; j++) {
+				double v = RandomVariates.nextCauchy(s);
+				int i = 0;
+				for (; i < boundaries.length; i++) {
+					if (v < boundaries[i]) break;
+				}
+				buckets[i]++;
+			}
+			for (int i = 0; i < buckets.length; i++) {
+				assertTrue("verifying at least 1 sample in each bucket, scale="+s + " bucket="+i, buckets[i] > 0);
+			}
+		}
+		double median = 5.0;
+		double s = 1.0;
+		double[] boundaries = { median - s*(sqrt2+1), median - s, median - s*(sqrt2-1), median , median + s*(sqrt2-1), median + s, median + s*(sqrt2+1)};
+		int[] buckets = new int[8];
+		for (int j = 0; j < TRIALS; j++) {
+			double v = RandomVariates.nextCauchy(median, s);
+			int i = 0;
+			for (; i < boundaries.length; i++) {
+				if (v < boundaries[i]) break;
+			}
+			buckets[i]++;
+		}
+		for (int i = 0; i < buckets.length; i++) {
+			assertTrue("verifying at least 1 sample in each bucket, median=5 bucket="+i, buckets[i] > 0);
+		}
+	}
+	
+	@Test
+	public void testNextCauchySplittableRandom() {
+		final int TRIALS = 8000;
+		SplittableRandom r = new SplittableRandom(53);
+		double[] scale = {1, 2, 4};
+		final double sqrt2 = Math.sqrt(2);
+		for (double s : scale) {
+			double[] boundaries = { -s*(sqrt2+1), -s, -s*(sqrt2-1), 0 , s*(sqrt2-1), s, s*(sqrt2+1)};
+			int[] buckets = new int[8];
+			for (int j = 0; j < TRIALS; j++) {
+				double v = RandomVariates.nextCauchy(s, r);
+				int i = 0;
+				for (; i < boundaries.length; i++) {
+					if (v < boundaries[i]) break;
+				}
+				buckets[i]++;
+			}
+			double chi = chiSquare(buckets);
+			// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
+			assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+		}
+		double median = 5.0;
+		double s = 1.0;
+		double[] boundaries = { median - s*(sqrt2+1), median - s, median - s*(sqrt2-1), median , median + s*(sqrt2-1), median + s, median + s*(sqrt2+1)};
+		int[] buckets = new int[8];
+		for (int j = 0; j < TRIALS; j++) {
+			double v = RandomVariates.nextCauchy(median, s, r);
+			int i = 0;
+			for (; i < boundaries.length; i++) {
+				if (v < boundaries[i]) break;
+			}
+			buckets[i]++;
+		}
+		double chi = chiSquare(buckets);
+		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
+		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+	}
+	
+	private double chiSquare(int[] buckets) {
+		int n = 0;
+		int v = 0;
+		for (int i = 0; i < buckets.length; i++) {
+			n += buckets[i];
+			v += (buckets[i]*buckets[i]);
+		}
+		return v * buckets.length * 1.0 / n - n; 
+	}
+	
 	private double chiSquare(int[] buckets, double[] dist) {
 		double v = 0;
 		int n = 0;

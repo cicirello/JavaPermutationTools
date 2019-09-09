@@ -77,4 +77,117 @@ public final class RandomVariates {
 	public static int nextBinomial(int n, double p, SplittableRandom r) {
 		return BTPE.nextBinomial(n, p, r);
 	}	
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution.
+	 * @param median The median of the Cauchy.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double median, double scale) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return median + scale * StrictMath.tan(StrictMath.PI * (ThreadLocalRandom.current().nextDouble() - 0.5));
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution with median 0
+	 * and chosen scale parameter.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double scale) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return scale * StrictMath.tan(StrictMath.PI * (ThreadLocalRandom.current().nextDouble() - 0.5));
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution.
+	 * @param median The median of the Cauchy.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @param r The source of randomness.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double median, double scale, Random r) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return median + scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution with median 0
+	 * and chosen scale parameter.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @param r The source of randomness.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double scale, Random r) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution.
+	 * @param median The median of the Cauchy.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @param r The source of randomness.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double median, double scale, SplittableRandom r) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return median + scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution with median 0
+	 * and chosen scale parameter.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @param r The source of randomness.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public static double nextCauchy(double scale, SplittableRandom r) {
+		// Inverse Method:
+		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
+		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
+		// However, u will never equal 1.0 since nextDouble's
+		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
+		// on the one side but not the other.  The maximum absolute value that the call to tan
+		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
+		// well off from the min/max double values.
+		return scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+	}
+	
 }
