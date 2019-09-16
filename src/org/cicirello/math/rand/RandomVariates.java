@@ -86,14 +86,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double median, double scale) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return median + scale * StrictMath.tan(StrictMath.PI * (ThreadLocalRandom.current().nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = ThreadLocalRandom.current().nextDouble();
+		if (u == 0.5 && ThreadLocalRandom.current().nextBoolean()) {
+			u = -0.5;
+		}
+		return median + scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 	/**
@@ -104,14 +125,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double scale) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return scale * StrictMath.tan(StrictMath.PI * (ThreadLocalRandom.current().nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = ThreadLocalRandom.current().nextDouble();
+		if (u == 0.5 && ThreadLocalRandom.current().nextBoolean()) {
+			u = -0.5;
+		}
+		return scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 	/**
@@ -123,14 +165,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double median, double scale, Random r) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return median + scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = r.nextDouble();
+		if (u == 0.5 && r.nextBoolean()) {
+			u = -0.5;
+		}
+		return median + scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 	/**
@@ -142,14 +205,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double scale, Random r) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = r.nextDouble();
+		if (u == 0.5 && r.nextBoolean()) {
+			u = -0.5;
+		}
+		return scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 	/**
@@ -161,14 +245,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double median, double scale, SplittableRandom r) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return median + scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = r.nextDouble();
+		if (u == 0.5 && r.nextBoolean()) {
+			u = -0.5;
+		}
+		return median + scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 	/**
@@ -180,14 +285,35 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double scale, SplittableRandom r) {
 		// Inverse Method:
-		// I'm tempted to map u==0 to Double.NEGATIVE_INFINITY, and u==1
-		// to Double.POSTIVE_INFINITY (where u=r.nextDouble()).  
-		// However, u will never equal 1.0 since nextDouble's
-		// return is exclusive of 1.0, and it doesn't seem right to consider the special case
-		// on the one side but not the other.  The maximum absolute value that the call to tan
-		// below gives appears to be on the order of 1.6ish * 10 to the power 16, which is
-		// well off from the min/max double values.
-		return scale * StrictMath.tan(StrictMath.PI * (r.nextDouble() - 0.5));
+		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+		// where u is uniformly random from the interval [0, 1].
+		// However, since tan goes through one complete cycle every PI,
+		// we can replace it with: median + scale * tan(PI * u), going from
+		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+		// as far as generating a random Cauchy variate is concerned, but saves
+		// one arithmetic operation.  
+		//     At first glance, it may appear as if we might be
+		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+		// random numbers are generated from [0, 1), so that right endpoint will never
+		// be sampled.
+		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
+		// We could map this to the constant for infinity.  However, this would introduce
+		// a very slight bias in favor of positive results since our interval considers
+		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+		// leads to a positive result relative to the number of values that lead to negative results.
+		//     We handle this in the following way.  First, when u==0.5, we generate a 
+		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+		// map to the constants for positive and negative infinity from the Double class, we
+		// pass these along to the tan method and let it do its thing numerically, which is
+		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+		double u = r.nextDouble();
+		if (u == 0.5 && r.nextBoolean()) {
+			u = -0.5;
+		}
+		return scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
 }
