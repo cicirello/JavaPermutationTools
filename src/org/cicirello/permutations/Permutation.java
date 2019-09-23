@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.math.BigInteger;
 
 import org.cicirello.math.rand.RandomIndexer;
+import org.cicirello.util.Copyable;
 
 /**
  * Representation of a permutation of the integers from 0 to N-1, inclusive.
@@ -37,11 +38,10 @@ import org.cicirello.math.rand.RandomIndexer;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 7.26.2019
+ * @version 9.23.2019
  * @since 1.0
  */
-public final class Permutation implements Serializable, Iterable<Permutation>
-{
+public final class Permutation implements Serializable, Iterable<Permutation>, Copyable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -205,6 +205,11 @@ public final class Permutation implements Serializable, Iterable<Permutation>
 				}
 			}
 		}
+	}
+	
+	@Override
+	public Permutation copy() {
+		return new Permutation(this);
 	}
 	
 	

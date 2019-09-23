@@ -241,6 +241,18 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testPermutationCopyMethod() {
+		for (int n = 1; n <= 10; n++) {
+			for (int i = 0; i < 10; i++) {
+				Permutation p = new Permutation(n);
+				Permutation copy = p.copy();
+				assertEquals("copy should create an identical copy", p, copy);
+				assertTrue("copy should be a new object", p != copy);
+			}
+		}
+	}
+	
+	@Test
 	public void testPermutationConstructorCopyPartial() {
 		for (int n = 1; n <= 10; n++) {
 			int[] forward = new int[n];
