@@ -41,7 +41,7 @@ import org.cicirello.util.Copyable;
  * @version 9.23.2019
  * @since 1.0
  */
-public final class Permutation implements Serializable, Iterable<Permutation>, Copyable {
+public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
 	private static final long serialVersionUID = 1L;
 	
