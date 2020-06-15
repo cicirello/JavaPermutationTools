@@ -6,7 +6,7 @@ Although the replication programs are commented, to fully understand what it is 
 they compute, you will likely need to consult the relevant publications.
 
 Make sure the jar file of the library is in your classpath when
-you compile and/or run any of these. Specifically, make sure jpt1.jar is in your
+you compile and/or run any of these. Specifically, make sure jpt2.jar is in your
 classpath (or any later version--I intend to ensure later versions
 are backwards compatible).
 
@@ -56,13 +56,13 @@ in the exbin directory.  If your working directory is the root
 of the repository, then you can run the replication programs from the command line with the following:
 
 ```
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsDoubles
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsInts
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsStrings
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsStringArray
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.bict2019.BICT2019
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsDoubles
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsInts
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsStrings
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.arxiv2019may.CompareKendallTauSequenceDistAlgsStringArray
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.bict2019.BICT2019
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 ```
 
 The generated data is simply output to the console.  Simply redirect to a text file if you'd like to save the experimental data.
@@ -73,5 +73,5 @@ and depending upon your system may require increasing the heap allocation to the
 If it throws an `OutOfMemoryError`, then execute as follows (note the additional command line argument):
 
 ```
-java -Xms1g -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+java -Xms1g -cp "lib/jpt2.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 ```

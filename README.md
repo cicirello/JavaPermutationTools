@@ -70,15 +70,15 @@ in the exbin directory.  If your working directory is the root
 of the repository, then you can run these programs from the command line with the following:
 
 ```
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.AverageDistance
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
-java -cp "lib/jpt1.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
-java -cp "lib/jpt1.jar;exbin" org.cicirello.replication.bict2019.BICT2019
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.AverageDistance
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
+java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.flairs2013.Flairs2013
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+java -cp "lib/jpt2.jar;exbin" org.cicirello.replication.bict2019.BICT2019
 ```
 
 In each of the above cases, the source code includes comments explaining the example
@@ -91,7 +91,7 @@ and depending upon your system may require increasing the heap allocation to the
 If it throws an `OutOfMemoryError`, then execute as follows (note the additional command line argument):
 
 ```
-java -Xms1g -cp "lib/jpt1.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
+java -Xms1g -cp "lib/jpt2.jar;exbin" org.cicirello.replication.ieeetevc2016.FDC
 ```
 
 
