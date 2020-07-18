@@ -6,7 +6,8 @@ https://www.cicirello.org/
 
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950)
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
-![Java CI](https://github.com/cicirello/JavaPermutationTools/workflows/Java%20CI/badge.svg)
+![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)
+![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)
 
 ## How to Cite
 
