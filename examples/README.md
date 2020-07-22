@@ -14,9 +14,8 @@ Read the comments in the source code itself for a description of what they
 demonstrate, etc.
 
 Make sure the jar file of the library is in your classpath when
-you compile and/or run any of these. Specifically, make sure jpt2.jar is in your
-classpath (or any later version--I intend to ensure later versions
-are backwards compatible).
+you compile and/or run any of these. Specifically, make sure jpt-2.0.1.jar 
+is in your classpath (or any later version).
 
 ## Building Examples
 
@@ -30,10 +29,10 @@ in the exbin directory.  If your working directory is the root
 of the repository, then you can run the examples from the command line with the following:
 
 ```
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.AverageDistance
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
-java -cp "lib/jpt2.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.AverageDistance
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.TableOfDistances
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.PermutationExamples
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.SimpleDistanceExamples
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.SequenceDistanceExamples
+java -cp "dist/jpt-2.0.1.jar;exbin" org.cicirello.examples.jpt.PermutationHashCodes
 ```

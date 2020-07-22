@@ -3,14 +3,14 @@
   Build file for the Java Permutation Tools (JPT) API.
   </description>
   <!-- global properties for this build -->
-  <property name="VERSION" value="2"/>
+  <property name="VERSION" value="2.0.1"/>
   <property name="junit" location="build/junit-4.12.jar"/>
   <property name="hamcrest" location="build/hamcrest-core-1.3.jar"/>
   <property name="src" location="src"/>
   <property name="bin" location="bin"/>
   <property name="testsrc" location="tests"/>
   <property name="testbin" location="testbin"/>
-  <property name="dist" location="lib"/>
+  <property name="dist" location="dist"/>
   <property name="examples" location="examples"/>
   <property name="replication" location="replication"/>
   <property name="examplebin" location="exbin"/>
@@ -63,7 +63,7 @@
 	<!-- Create the distribution directory -->
     <mkdir dir="${dist}"/>
     <!-- Put everything in ${bin} into the jpt${VERSION}.jar file -->
-    <jar jarfile="${dist}/jpt${VERSION}.jar" basedir="${bin}"/>
+    <jar jarfile="${dist}/jpt-${VERSION}.jar" basedir="${bin}"/>
   </target>
   
   <target name="examples" depends="dist"
@@ -71,9 +71,9 @@
 	<!-- Create directory for bin of examples and replication programs -->
     <mkdir dir="${examplebin}"/>
 	<!-- Compile basic examples -->
-	<javac srcdir="${examples}" destdir="${examplebin}" classpath="${dist}/jpt${VERSION}.jar;${examples}" includeantruntime="false"/>
+	<javac srcdir="${examples}" destdir="${examplebin}" classpath="${dist}/jpt-${VERSION}.jar;${examples}" includeantruntime="false"/>
 	<!-- Compile experiment replication programs -->
-	<javac srcdir="${replication}" destdir="${examplebin}" classpath="${dist}/jpt${VERSION}.jar;${replication}" includeantruntime="false"/>
+	<javac srcdir="${replication}" destdir="${examplebin}" classpath="${dist}/jpt-${VERSION}.jar;${replication}" includeantruntime="false"/>
   </target>
   
   <target name="docs" depends="dist" 
@@ -84,7 +84,8 @@
 			doctitle="JavaPermutationTools - A Java API for computation on permutations"
 			overview="src/overview.html"
 			author="false"
-			version="false">
+			version="false"
+			additionalparam="-notimestamp">
 		<link href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="build/java-package-list" offline="true" />
 		<bottom><![CDATA[Copyright &copy; 2005-2019 Vincent A. Cicirello. <a href=\"https://www.cicirello.org/\" target=_top>https://www.cicirello.org/</a>]]></bottom>
 	</javadoc>
