@@ -10,7 +10,7 @@
   <property name="bin" location="bin"/>
   <property name="testsrc" location="tests"/>
   <property name="testbin" location="testbin"/>
-  <property name="dist" location="lib"/>
+  <property name="dist" location="dist"/>
   <property name="examples" location="examples"/>
   <property name="replication" location="replication"/>
   <property name="examplebin" location="exbin"/>
