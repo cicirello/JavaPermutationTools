@@ -6,7 +6,7 @@ https://www.cicirello.org/
 
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950)
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
-![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)
+[![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Abuild)
 ![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/releases)
 
