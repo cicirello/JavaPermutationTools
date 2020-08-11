@@ -1,0 +1,20 @@
+{
+    "license": "GPL-3.0-or-later", 
+    "upload_type": "software", 
+    "creators": [
+        {
+            "orcid": "0000-0003-1072-8559", 
+            "affiliation": "Stockton University", 
+            "name": "Vincent A. Cicirello"
+        }
+    ], 
+    "keywords": [
+		"permutations",
+		"sequences",
+		"permutation distance",
+		"permutation metric",
+		"sequence distance",
+		"string distance",
+		"edit distance"
+	]
+}
