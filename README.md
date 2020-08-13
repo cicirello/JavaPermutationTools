@@ -8,7 +8,7 @@ https://www.cicirello.org/
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
 [![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Abuild)
 [![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/blob/master/LICENSE)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases)
 
 ## How to Cite
 
