@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Automated generation of sitemap.xml via GitHub actions for the documentation website.
 * .zenodo.json file for providing metadata to Zenodo for archival purposes.
 * This ChangeLog was introduced, compiled from release notes of prior releases. The ChangeLog is likely inaccurate prior to this date, but should include the major changes.  Beginning with this release, the ChangeLog will be updated at the time of pull requests. 
+* Enabled DependaBot to keep dependencies up to date.
 
 ### Changed
+* Updated dependency versions
 
 ### Deprecated
 

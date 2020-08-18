@@ -136,21 +136,44 @@
    <description>JavaPermutationTools (JPT) is a library for 
 				computation on permutations and sequences.</description>
    <url>https://jpt.cicirello.org/</url>
-   <licenses>
+   
+	<licenses>
 	  <license>
-		<name>GNU General Public License, Version 3.0</name>
+		<name>GPL-3.0-or-later</name>
 		<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
 		<distribution>repo</distribution>
+		<comment>
+		JavaPermutationTools (JPT): A library for computation on permutations and sequences.
+		Copyright (C) 2005-2020  Vincent A. Cicirello.
+ 
+		JavaPermutationTools is free software: you can redistribute it and/or modify
+		it under the terms of the GNU General Public License as published by
+		the Free Software Foundation, either version 3 of the License, or
+		(at your option) any later version.
+
+		JavaPermutationTools is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
+
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see https://www.gnu.org/licenses/.
+		</comment>
 	  </license>
 	</licenses>
+	
 	<organization>
-		<name>Vincent A. Cicirello</name>
+		<name>Cicirello.Org</name>
 		<url>https://www.cicirello.org/</url>
-	</organization>
+	</organization>	
+	
 	<developers>
 		<developer>
-		  <name>Vincent A. Cicirello</name>
-		  <url>https://www.cicirello.org/</url>
+			<name>Vincent A. Cicirello</name>
+			<email>development@cicirello.org</email>
+			<url>https://www.cicirello.org/</url>
+			<organization>Cicirello.Org</organization>
+			<organizationUrl>https://www.cicirello.org/</organizationUrl>
 		</developer>
 	</developers>
 	
