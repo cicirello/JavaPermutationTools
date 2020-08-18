@@ -136,6 +136,7 @@
    <description>JavaPermutationTools (JPT) is a library for 
 				computation on permutations and sequences.</description>
    <url>https://jpt.cicirello.org/</url>
+   
    <licenses>
 	  <license>
 		<name>GNU General Public License, Version 3.0</name>
@@ -143,14 +144,19 @@
 		<distribution>repo</distribution>
 	  </license>
 	</licenses>
+	
 	<organization>
-		<name>Vincent A. Cicirello</name>
+		<name>Cicirello.Org</name>
 		<url>https://www.cicirello.org/</url>
-	</organization>
+	</organization>	
+	
 	<developers>
 		<developer>
-		  <name>Vincent A. Cicirello</name>
-		  <url>https://www.cicirello.org/</url>
+			<name>Vincent A. Cicirello</name>
+			<email>development@cicirello.org</email>
+			<url>https://www.cicirello.org/</url>
+			<organization>Cicirello.Org</organization>
+			<organizationUrl>https://www.cicirello.org/</organizationUrl>
 		</developer>
 	</developers>
 	
