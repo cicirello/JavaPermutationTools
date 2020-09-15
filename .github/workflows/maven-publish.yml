@@ -51,8 +51,11 @@ jobs:
         java-version: 1.8
         server-id: github 
 
+    - name: Temporary multi-pom hack
+      run: mv -f pomgh.xml pom.xml
+
     - name: Build with Maven
-      run: mvn -B package --file pomgh.xml
+      run: mvn -B package --file pom.xml
 
     - name: Update package version
       run: mvn versions:set -DnewVersion=${{ steps.get_version.outputs.VERSION }}
