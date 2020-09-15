@@ -51,9 +51,6 @@ jobs:
         java-version: 1.8
         server-id: github 
 
-    - name: Build with Maven
-      run: mvn -B package --file pomgh.xml
-
     - name: Update package version
       run: mvn versions:set -DnewVersion=${{ steps.get_version.outputs.VERSION }}
 
