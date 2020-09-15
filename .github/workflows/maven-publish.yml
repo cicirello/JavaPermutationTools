@@ -58,7 +58,7 @@ jobs:
       run: mvn versions:set -DnewVersion=${{ steps.get_version.outputs.VERSION }}
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy --file pomgh.xml
+      run: mvn deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
