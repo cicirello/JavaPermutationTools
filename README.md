@@ -21,29 +21,23 @@ If you use this library in your research, please cite the following paper:
 
 ## Overview
 
-The JavaPermutationTools (JPT) API provides Java classes that enable representing and generating 
-permutations and sequences, as well as performing computation on permutations and sequences. 
-It includes implementations of a variety of permutation distance metrics as well as distance 
-metrics on sequences (i.e., Strings, arrays, and other ordered data types). 
+The JavaPermutationTools (JPT) library provides Java classes and interfaces, etc that 
+enable representing and generating permutations and sequences, as well as performing 
+computation on permutations and sequences. It includes implementations of a variety 
+of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, 
+arrays, and other ordered data types). 
 
-JPT is organized into the following packages:
-* __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
-* __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
-* __org.cicirello.sequences__: Classes that perform a variety of operations on sequences (such as arrays, etc).
-* __org.cicirello.sequences.distance__: Collection of distance metrics on Strings and other sequences.
-* __org.cicirello.math.la__ : Linear algebra related classes.
-* __org.cicirello.math.rand__ : Classes related to efficient, or specialized, random number generation. 
-* __org.cicirello.math.stats__: Statistics related classes.
+## Repository Organization
 
-Javadoc documentation is in the /docs folder as well as at https://jpt.cicirello.org/
+The GitHub repository is organized as follows:
+* The [/build](build) directory contains an ant build file, and other resources related to building the library.
+* The [/dist](dist) directory contains the compiled jar files of the library.
+* The [/docs](docs) directory contains the javadoc documentation in a sub-directory /docs/api. The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
+* The [/examples](examples) directory contains several example programs that use the library, and which demonstrate usage of various features.
+* The [/replication](replication) directory includes source code that recreates results found in publications associated with the library.
+* The [/src](src) directory contains all of the source code.
+* The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
 
-Source code is found in the /src folder.  JUnit test classes are found in the /tests folder, which
-mirrors the package structure of /src.
-
-Compiled jar files of the library are in the /dist folder.
-
-The /examples folder includes source code to illustrate how to use the library.  The /replication
-folder includes source code that recreates results found in publications associated with the library.
 
 ## Building the Library (with ant)
 
