@@ -136,7 +136,7 @@ public class RandomVariatesTests {
 		double[] P = {0.5, 0.75};
 		for (double p : P) {
 			for (int n = 1; n <= MAX_N; n++) {
-				final double TRIALS = 1000 * (n+1); 
+				final double TRIALS = 2000 * (n+1); 
 				boolean[] generated = new boolean[n+1];
 				int count = 0;
 				for (int i = 0; i < TRIALS; i++) {
