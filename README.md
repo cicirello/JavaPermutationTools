@@ -32,12 +32,23 @@ arrays, and other ordered data types).
 The GitHub repository is organized as follows:
 * The [/build](build) directory contains an ant build file, and other resources related to building the library.
 * The [/dist](dist) directory contains the compiled jar files of the library.
-* The [/docs](docs) directory contains the javadoc documentation in a sub-directory /docs/api. The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
+* The [/docs](docs) directory contains the javadoc documentation in a sub-directory [/docs/api](docs/api). The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
 * The [/examples](examples) directory contains several example programs that use the library, and which demonstrate usage of various features.
 * The [/replication](replication) directory includes source code that recreates results found in publications associated with the library.
 * The [/src](src) directory contains all of the source code.
 * The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
 
+## Java 8
+
+The library supports Java 8 or higher, including both Oracle JDK 8 and OpenJDK 8.
+
+## Versioning Scheme
+
+The JPT uses [Semantic Versioning](https://semver.org/) with version 
+numbers of the form: MAJOR.MINOR.PATCH, where differences in MAJOR 
+correspond to incompatible API changes, differences in MINOR correspond 
+to introduction of backwards compatible new functionality, and PATCH 
+corresponds to backwards compatible bug fixes. 
 
 ## Building the Library (with ant)
 
@@ -71,6 +82,36 @@ The examples directory contains example usage of several of the classes of the A
 The replication directory additionally contains more complex examples that replicate the
 experiments from published papers that have used the library.  Those directories contain
 READMEs that provide more detail on the examples, including on running the examples.
+
+## Importing the Library from Maven Central
+
+Add this to the dependencies section of your pom.xml, replacing the version number 
+with the version you want to use (note that the library has been available in Maven
+Central since version 2.1.2).
+
+```XML
+<dependency>
+  <groupId>org.cicirello</groupId>
+  <artifactId>jpt</artifactId>
+  <version>2.1.2</version>
+</dependency>
+```
+
+## Importing the Library from Github Packages
+
+If you'd prefer to import from Github Packages, rather than Maven Central, 
+then: (1) add the dependency as indicated in previous section above, 
+and (2) add the following to the repositories section of your pom.xml:
+
+```XML
+<repository>
+  <id>github</id>
+  <name>GitHub cicirello Apache Maven Packages</name>
+  <url>https://maven.pkg.github.com/cicirello/JavaPermutationTools</url>
+  <releases><enabled>true</enabled></releases>
+  <snapshots><enabled>true</enabled></snapshots>
+</repository>
+```
 
 ## Contribute
 
