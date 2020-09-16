@@ -1,4 +1,4 @@
-# JavaPermutationTools (JPT): A Java API for computation on permutations and sequences 
+# JavaPermutationTools (JPT): A Java library for computation on permutations and sequences 
 
 Copyright (C) 2018-2020 Vincent A. Cicirello.
 
