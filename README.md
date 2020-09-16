@@ -113,6 +113,11 @@ and (2) add the following to the repositories section of your pom.xml:
 </repository>
 ```
 
+## License
+
+The JPT library is licensed under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+
 ## Contribute
 
 Report bugs, suggestions, feature requests, etc via the [issues tracker](https://github.com/cicirello/JavaPermutationTools/issues).  If you would 
