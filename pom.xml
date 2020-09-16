@@ -9,51 +9,60 @@
   <version>2.1.0</version>
   <packaging>jar</packaging>
   
-    <name>JavaPermutationTools</name>
-    <description>JavaPermutationTools (JPT) is a library for 
-	    computation on permutations and sequences.</description>
-    <url>https://jpt.cicirello.org/</url>
+  <name>JavaPermutationTools</name>
+  <description>JavaPermutationTools (JPT) is a library for 
+    computation on permutations and sequences.
+	JPT provides Java classes that enable representing and 
+	generating permutations and sequences, as well as 
+	performing computation on permutations and sequences. 
+	It includes implementations of a variety of permutation 
+	distance metrics as well as distance metrics on sequences 
+	(i.e., Strings, arrays, and other ordered data types).</description>
+  <url>https://jpt.cicirello.org/</url>
 	
-	<licenses>
-	  <license>
-		<name>GPL-3.0-or-later</name>
-		<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
-		<distribution>repo</distribution>
-		<comments>
-		JavaPermutationTools (JPT): A library for computation on permutations and sequences.
-		Copyright (C) 2005-2020  Vincent A. Cicirello.
- 
-		JavaPermutationTools is free software: you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation, either version 3 of the License, or
-		(at your option) any later version.
+  <licenses>
+  <license>
+	<name>GPL-3.0-or-later</name>
+	<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+	<distribution>repo</distribution>
+	<comments>
+	JavaPermutationTools (JPT): A library for computation on permutations and sequences.
+	Copyright (C) 2005-2020  Vincent A. Cicirello.
 
-		JavaPermutationTools is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
+	JavaPermutationTools is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-		You should have received a copy of the GNU General Public License
-		along with this program.  If not, see https://www.gnu.org/licenses/.
-		</comments>
-	  </license>
-	</licenses>
+	JavaPermutationTools is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see https://www.gnu.org/licenses/.
+	</comments>
+  </license>
+  </licenses>
 	
-	<developers>
-		<developer>
-			<name>Vincent A Cicirello</name>
-			<email>development@cicirello.org</email>
-			<url>https://www.cicirello.org/</url>
-			<organization>Cicirello.Org</organization>
-			<organizationUrl>https://www.cicirello.org/</organizationUrl>
-		</developer>
-	</developers>
-
-   	<organization>
-		<name>Cicirello.Org</name>
+  <developers>
+	<developer>
+		<name>Vincent A Cicirello</name>
+		<email>development@cicirello.org</email>
 		<url>https://www.cicirello.org/</url>
-	</organization>	
+		<organization>Cicirello.Org</organization>
+		<organizationUrl>https://www.cicirello.org/</organizationUrl>
+	</developer>
+  </developers>
+
+  <organization>
+	<name>Cicirello.Org</name>
+	<url>https://www.cicirello.org/</url>
+  </organization>	
 	
+<profiles>
+  <profile>
+  <id>ossrhDeploy</id>
     <distributionManagement>
 	<repository>
       <id>ossrh</id>
@@ -66,18 +75,53 @@
 	  <url>https://oss.sonatype.org/content/repositories/snapshots</url>
 	</snapshotRepository>
     </distributionManagement>
-      	
+	<build>
+	  <plugins>
+	    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+			<configuration>
+                <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                </gpgArguments>
+            </configuration>
+          </execution>
+        </executions>
+        </plugin>
+	  </plugins>
+	</build>
+  </profile>
+  <profile>
+  <id>githubDeploy</id>
+    <distributionManagement>
+      <repository>
+      <id>github</id>
+      <name>GitHub cicirello Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/cicirello/JavaPermutationTools</url>
+      </repository>
+    </distributionManagement>
+  </profile>
+</profiles>
 	
-	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/cicirello/JavaPermutationTools/issues</url>
-	</issueManagement>
+  <issueManagement>
+	<system>github</system>
+	<url>https://github.com/cicirello/JavaPermutationTools/issues</url>
+  </issueManagement>
 	
-	<scm>
+  <scm>
     <connection>scm:git:git://github.com/cicirello/JavaPermutationTools.git</connection>
     <developerConnection>scm:git:ssh://github.com:cicirello/JavaPermutationTools.git</developerConnection>
     <url>http://github.com/cicirello/JavaPermutationTools/tree/master</url>
-    </scm>
+  </scm>
 
   
   <dependencies>
@@ -168,26 +212,6 @@
           </includes>
         </configuration>
     </plugin>
-	<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-			<configuration>
-                <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                </gpgArguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
 	</plugins>
   </build>
   

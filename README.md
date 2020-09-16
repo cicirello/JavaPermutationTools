@@ -6,9 +6,12 @@ https://www.cicirello.org/
 
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950)
 [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095)
+
+[![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central)](https://search.maven.org/artifact/org.cicirello/jpt)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases)
+
 [![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Abuild)
 [![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/blob/master/LICENSE)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases)
 
 ## How to Cite
 
@@ -18,29 +21,34 @@ If you use this library in your research, please cite the following paper:
 
 ## Overview
 
-The JavaPermutationTools (JPT) API provides Java classes that enable representing and generating 
-permutations and sequences, as well as performing computation on permutations and sequences. 
-It includes implementations of a variety of permutation distance metrics as well as distance 
-metrics on sequences (i.e., Strings, arrays, and other ordered data types). 
+The JavaPermutationTools (JPT) library provides Java classes and interfaces, etc that 
+enable representing and generating permutations and sequences, as well as performing 
+computation on permutations and sequences. It includes implementations of a variety 
+of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, 
+arrays, and other ordered data types). 
 
-JPT is organized into the following packages:
-* __org.cicirello.permutations__: Permutation class and a class for iterating over permutations.
-* __org.cicirello.permutations.distance__: Collection of permutation distance metric implementations.
-* __org.cicirello.sequences__: Classes that perform a variety of operations on sequences (such as arrays, etc).
-* __org.cicirello.sequences.distance__: Collection of distance metrics on Strings and other sequences.
-* __org.cicirello.math.la__ : Linear algebra related classes.
-* __org.cicirello.math.rand__ : Classes related to efficient, or specialized, random number generation. 
-* __org.cicirello.math.stats__: Statistics related classes.
+## Repository Organization
 
-Javadoc documentation is in the /docs folder as well as at https://jpt.cicirello.org/
+The GitHub repository is organized as follows:
+* The [/build](build) directory contains an ant build file, and other resources related to building the library.
+* The [/dist](dist) directory contains the compiled jar files of the library.
+* The [/docs](docs) directory contains the javadoc documentation in a sub-directory [/docs/api](docs/api). The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
+* The [/examples](examples) directory contains several example programs that use the library, and which demonstrate usage of various features.
+* The [/replication](replication) directory includes source code that recreates results found in publications associated with the library.
+* The [/src](src) directory contains all of the source code.
+* The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
 
-Source code is found in the /src folder.  JUnit test classes are found in the /tests folder, which
-mirrors the package structure of /src.
+## Java 8
 
-Compiled jar files of the library are in the /dist folder.
+The library supports Java 8 or higher, including both Oracle JDK 8 and OpenJDK 8.
 
-The /examples folder includes source code to illustrate how to use the library.  The /replication
-folder includes source code that recreates results found in publications associated with the library.
+## Versioning Scheme
+
+The JPT uses [Semantic Versioning](https://semver.org/) with version 
+numbers of the form: MAJOR.MINOR.PATCH, where differences in MAJOR 
+correspond to incompatible API changes, differences in MINOR correspond 
+to introduction of backwards compatible new functionality, and PATCH 
+corresponds to backwards compatible bug fixes. 
 
 ## Building the Library (with ant)
 
@@ -74,6 +82,41 @@ The examples directory contains example usage of several of the classes of the A
 The replication directory additionally contains more complex examples that replicate the
 experiments from published papers that have used the library.  Those directories contain
 READMEs that provide more detail on the examples, including on running the examples.
+
+## Importing the Library from Maven Central
+
+Add this to the dependencies section of your pom.xml, replacing the version number 
+with the version you want to use (note that the library has been available in Maven
+Central since version 2.1.2).
+
+```XML
+<dependency>
+  <groupId>org.cicirello</groupId>
+  <artifactId>jpt</artifactId>
+  <version>2.1.2</version>
+</dependency>
+```
+
+## Importing the Library from Github Packages
+
+If you'd prefer to import from Github Packages, rather than Maven Central, 
+then: (1) add the dependency as indicated in previous section above, 
+and (2) add the following to the repositories section of your pom.xml:
+
+```XML
+<repository>
+  <id>github</id>
+  <name>GitHub cicirello Apache Maven Packages</name>
+  <url>https://maven.pkg.github.com/cicirello/JavaPermutationTools</url>
+  <releases><enabled>true</enabled></releases>
+  <snapshots><enabled>true</enabled></snapshots>
+</repository>
+```
+
+## License
+
+The JPT library is licensed under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
 
 ## Contribute
 
