@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 
+## [2.1.3] - 2020-09-16
+
+### Changed
+* Revised workflow for publishing packages to publish to both Maven Central and Github Packages using one pom.xml.
+
+
 ## [2.1.2] - 2020-09-15
 
 ### Other
