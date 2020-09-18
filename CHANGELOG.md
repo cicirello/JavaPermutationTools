@@ -8,13 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Modernized API documentation website (https://jpt.cicirello.org/) to html5 with search and no frames.
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+
+## [2.2.0] - 2020-09-18
+
+### Changed
+* Modernized API documentation website (https://jpt.cicirello.org/) to html5 with search and no frames.
 
 
 ## [2.1.3] - 2020-09-16
