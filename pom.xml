@@ -1,243 +1,259 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+					  http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
  
-  <groupId>org.cicirello</groupId>
-  <artifactId>jpt</artifactId>
-  <version>2.1.0</version>
-  <packaging>jar</packaging>
+	<groupId>org.cicirello</groupId>
+	<artifactId>jpt</artifactId>
+	<version>2.1.0</version>
+	<packaging>jar</packaging>
   
-  <name>JavaPermutationTools</name>
-  <description>JavaPermutationTools (JPT) is a library for 
-    computation on permutations and sequences.
-	JPT provides Java classes that enable representing and 
-	generating permutations and sequences, as well as 
-	performing computation on permutations and sequences. 
-	It includes implementations of a variety of permutation 
-	distance metrics as well as distance metrics on sequences 
-	(i.e., Strings, arrays, and other ordered data types).</description>
-  <url>https://jpt.cicirello.org/</url>
+	<name>JavaPermutationTools</name>
+	<description>JavaPermutationTools (JPT) is a library for 
+		computation on permutations and sequences.
+		JPT provides Java classes that enable representing and 
+		generating permutations and sequences, as well as 
+		performing computation on permutations and sequences. 
+		It includes implementations of a variety of permutation 
+		distance metrics as well as distance metrics on sequences 
+		(i.e., Strings, arrays, and other ordered data types).</description>
+	<url>https://jpt.cicirello.org/</url>
+
+	<licenses>
+		<license>
+			<name>GPL-3.0-or-later</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+			<distribution>repo</distribution>
+			<comments>
+			JavaPermutationTools (JPT): A library for computation on permutations and sequences.
+			Copyright (C) 2005-2020  Vincent A. Cicirello.
+
+			JavaPermutationTools is free software: you can redistribute it and/or modify
+			it under the terms of the GNU General Public License as published by
+			the Free Software Foundation, either version 3 of the License, or
+			(at your option) any later version.
+
+			JavaPermutationTools is distributed in the hope that it will be useful,
+			but WITHOUT ANY WARRANTY; without even the implied warranty of
+			MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+			GNU General Public License for more details.
+
+			You should have received a copy of the GNU General Public License
+			along with this program.  If not, see https://www.gnu.org/licenses/.
+			</comments>
+		</license>
+	</licenses>
 	
-  <licenses>
-  <license>
-	<name>GPL-3.0-or-later</name>
-	<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
-	<distribution>repo</distribution>
-	<comments>
-	JavaPermutationTools (JPT): A library for computation on permutations and sequences.
-	Copyright (C) 2005-2020  Vincent A. Cicirello.
+	<developers>
+		<developer>
+			<name>Vincent A Cicirello</name>
+			<email>development@cicirello.org</email>
+			<url>https://www.cicirello.org/</url>
+			<organization>Cicirello.Org</organization>
+			<organizationUrl>https://www.cicirello.org/</organizationUrl>
+		</developer>
+	</developers>
 
-	JavaPermutationTools is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	JavaPermutationTools is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see https://www.gnu.org/licenses/.
-	</comments>
-  </license>
-  </licenses>
-	
-  <developers>
-	<developer>
-		<name>Vincent A Cicirello</name>
-		<email>development@cicirello.org</email>
+	<organization>
+		<name>Cicirello.Org</name>
 		<url>https://www.cicirello.org/</url>
-		<organization>Cicirello.Org</organization>
-		<organizationUrl>https://www.cicirello.org/</organizationUrl>
-	</developer>
-  </developers>
-
-  <organization>
-	<name>Cicirello.Org</name>
-	<url>https://www.cicirello.org/</url>
-  </organization>	
+	</organization>	
 	
-<profiles>
-  <profile>
-  <id>ossrhDeploy</id>
-    <distributionManagement>
-	<repository>
-      <id>ossrh</id>
-      <name>Central Repository OSSRH</name>
-	  <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-	<snapshotRepository>
-	  <id>ossrh</id>
-	  <name>Central Repository OSSRH</name>
-	  <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-	</snapshotRepository>
-    </distributionManagement>
+	<profiles>
+		<profile>
+			<id>ossrhDeploy</id>
+			<distributionManagement>
+				<repository>
+					<id>ossrh</id>
+					<name>Central Repository OSSRH</name>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+					<snapshotRepository>
+					<id>ossrh</id>
+					<name>Central Repository OSSRH</name>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>githubDeploy</id>
+			<distributionManagement>
+				<repository>
+					<id>github</id>
+					<name>GitHub cicirello Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/cicirello/JavaPermutationTools</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+	
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/cicirello/JavaPermutationTools/issues</url>
+	</issueManagement>
+
+	<scm>
+		<connection>scm:git:git://github.com/cicirello/JavaPermutationTools.git</connection>
+		<developerConnection>scm:git:ssh://github.com:cicirello/JavaPermutationTools.git</developerConnection>
+		<url>http://github.com/cicirello/JavaPermutationTools/tree/master</url>
+	</scm>
+  
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<type>jar</type>
+			<scope>test</scope>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+  
 	<build>
-	  <plugins>
-	    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-			<configuration>
-                <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                </gpgArguments>
-            </configuration>
-          </execution>
-        </executions>
-        </plugin>
-	  </plugins>
+		<directory>${project.basedir}/dist</directory>
+		<outputDirectory>${project.basedir}/bin</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>${project.basedir}/testbin</testOutputDirectory>
+		<sourceDirectory>${project.basedir}/src</sourceDirectory>
+		<scriptSourceDirectory>${project.basedir}/src/scripts</scriptSourceDirectory>
+		<testSourceDirectory>${project.basedir}/tests</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/tests/resources</directory>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>1.8</source>
+					<additionalJOptions>
+						<additionalJOption>--no-module-directories</additionalJOption>
+					</additionalJOptions>
+					<windowtitle>JavaPermutationTools - A Java API for computation on permutations</windowtitle>
+					<doctitle>JavaPermutationTools - A Java API for computation on permutations</doctitle>
+					<author>false</author>
+					<version>false</version>
+					<overview>${project.build.sourceDirectory}/overview.html</overview>
+					<notimestamp>true</notimestamp>
+					<links>
+						<link>https://docs.oracle.com/javase/8/docs/api</link>
+					</links>
+					<bottom><![CDATA[Copyright &copy; 2005-2020 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<includes>
+						<include>**/*TestCases.java</include>
+						<include>**/*Tests.java</include>
+						<include>**/*TestCase.java</include>
+						<include>**/*Test.java</include>
+						<include>**/Test*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
-  </profile>
-  <profile>
-  <id>githubDeploy</id>
-    <distributionManagement>
-      <repository>
-      <id>github</id>
-      <name>GitHub cicirello Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/cicirello/JavaPermutationTools</url>
-      </repository>
-    </distributionManagement>
-  </profile>
-</profiles>
-	
-  <issueManagement>
-	<system>github</system>
-	<url>https://github.com/cicirello/JavaPermutationTools/issues</url>
-  </issueManagement>
-	
-  <scm>
-    <connection>scm:git:git://github.com/cicirello/JavaPermutationTools.git</connection>
-    <developerConnection>scm:git:ssh://github.com:cicirello/JavaPermutationTools.git</developerConnection>
-    <url>http://github.com/cicirello/JavaPermutationTools/tree/master</url>
-  </scm>
-
   
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13</version>
-      <type>jar</type>
-      <scope>test</scope>
-      <optional>true</optional>
-    </dependency>
-  </dependencies>
-  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
-  
-  <build>
-    <directory>${project.basedir}/dist</directory>
-    <outputDirectory>${project.basedir}/bin</outputDirectory>
-    <finalName>${project.artifactId}-${project.version}</finalName>
-    <testOutputDirectory>${project.basedir}/testbin</testOutputDirectory>
-    <sourceDirectory>${project.basedir}/src</sourceDirectory>
-    <scriptSourceDirectory>${project.basedir}/src/scripts</scriptSourceDirectory>
-    <testSourceDirectory>${project.basedir}/tests</testSourceDirectory>
-    <resources>
-      <resource>
-        <directory>${project.basedir}/src/resources</directory>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-        <directory>${project.basedir}/tests/resources</directory>
-      </testResource>
-    </testResources>
-	<plugins>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-source-plugin</artifactId>
-	  <version>3.2.1</version>
-	  <executions>
-		<execution>
-		  <id>attach-sources</id>
-		  <goals>
-			<goal>jar</goal>
-		  </goals>
-		</execution>
-	  </executions>
-	</plugin>
-	<plugin>
-	  <groupId>org.apache.maven.plugins</groupId>
-	  <artifactId>maven-javadoc-plugin</artifactId>
-	  <version>3.2.0</version>
-	  <executions>
-		<execution>
-		  <id>attach-javadocs</id>
-		  <goals>
-			<goal>jar</goal>
-		  </goals>
-		</execution>
-	  </executions>
-	  <configuration>
-          <windowtitle>JavaPermutationTools - A Java API for computation on permutations</windowtitle>
-		  <doctitle>JavaPermutationTools - A Java API for computation on permutations</doctitle>
-		  <author>false</author>
-		  <version>false</version>
-		  <overview>${project.build.sourceDirectory}/overview.html</overview>
-		  <notimestamp>true</notimestamp>
-		  <links>
-			  <link>https://docs.oracle.com/javase/8/docs/api</link>
-		  </links>
-		  <bottom><![CDATA[Copyright &copy; 2005-2020 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
-	   </configuration>
-	</plugin>
-	<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-        <configuration>
-          <includes>
-            <include>**/*TestCases.java</include>
-			<include>**/*Tests.java</include>
-			<include>**/*TestCase.java</include>
-			<include>**/*Test.java</include>
-			<include>**/Test*.java</include>
-          </includes>
-        </configuration>
-    </plugin>
-	</plugins>
-  </build>
-  
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <reportOutputDirectory>${project.basedir}/docs/api</reportOutputDirectory>
-		  <destDir>api</destDir>
-		  <outputDirectory>${project.basedir}/docs/api</outputDirectory>
-		  <windowtitle>JavaPermutationTools - A Java API for computation on permutations</windowtitle>
-		  <doctitle>JavaPermutationTools - A Java API for computation on permutations</doctitle>
-		  <author>false</author>
-		  <version>false</version>
-		  <overview>${project.build.sourceDirectory}/overview.html</overview>
-		  <notimestamp>true</notimestamp>
-		  <links>
-			  <link>https://docs.oracle.com/javase/8/docs/api</link>
-		  </links>
-		  <bottom><![CDATA[Copyright &copy; 2005-2020 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<source>1.8</source>
+					<additionalJOptions>
+						<additionalJOption>--no-module-directories</additionalJOption>
+					</additionalJOptions>
+					<reportOutputDirectory>${project.basedir}/docs/api</reportOutputDirectory>
+					<destDir>api</destDir>
+					<outputDirectory>${project.basedir}/docs/api</outputDirectory>
+					<windowtitle>JavaPermutationTools - A Java API for computation on permutations</windowtitle>
+					<doctitle>JavaPermutationTools - A Java API for computation on permutations</doctitle>
+					<author>false</author>
+					<version>false</version>
+					<overview>${project.build.sourceDirectory}/overview.html</overview>
+					<notimestamp>true</notimestamp>
+					<links>
+						<link>https://docs.oracle.com/javase/8/docs/api</link>
+					</links>
+					<bottom><![CDATA[Copyright &copy; 2005-2020 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
   
 </project>
