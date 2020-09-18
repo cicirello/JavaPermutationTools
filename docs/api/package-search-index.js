@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.cicirello.math"},{"l":"org.cicirello.math.la"},{"l":"org.cicirello.math.rand"},{"l":"org.cicirello.math.stats"},{"l":"org.cicirello.permutations"},{"l":"org.cicirello.permutations.distance"},{"l":"org.cicirello.sequences"},{"l":"org.cicirello.sequences.distance"},{"l":"org.cicirello.util"}]

@@ -4,6 +4,7 @@
   </description>
   <!-- global properties for this build -->
   <property name="VERSION" value="2.0.1"/>
+  <property name="JDKVERSION" value="1.8"/>
   <property name="junit" location="build/junit-4.12.jar"/>
   <property name="hamcrest" location="build/hamcrest-core-1.3.jar"/>
   <property name="src" location="src"/>
@@ -30,13 +31,16 @@
   <target name="compile" depends="init"
         description="compile the source">
     <!-- Compile the Java code from ${src} into ${bin} -->
-    <javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+    <javac srcdir="${src}" destdir="${bin}" includeantruntime="false" 
+		source="${JDKVERSION}" target="${JDKVERSION}">
 	<!--
 	   <compilerarg value="-Xlint:unchecked"/>
 	-->
+	<compilerarg value="-Xlint:deprecation"/>
 	</javac>
 	<!-- Compile the JUnit tests from ${testsrc} into ${testbin} -->
-	<javac srcdir="${testsrc}" destdir="${testbin}" classpath="${junit};${bin}" includeantruntime="false"/>	
+	<javac srcdir="${testsrc}" destdir="${testbin}" classpath="${junit};${bin}" 
+		includeantruntime="false" source="${JDKVERSION}" target="${JDKVERSION}"/>	
   </target>
   
   <target name="test" depends="compile"
@@ -71,9 +75,13 @@
 	<!-- Create directory for bin of examples and replication programs -->
     <mkdir dir="${examplebin}"/>
 	<!-- Compile basic examples -->
-	<javac srcdir="${examples}" destdir="${examplebin}" classpath="${dist}/jpt-${VERSION}.jar;${examples}" includeantruntime="false"/>
+	<javac srcdir="${examples}" destdir="${examplebin}"
+		classpath="${dist}/jpt-${VERSION}.jar;${examples}" includeantruntime="false" 
+		source="${JDKVERSION}" target="${JDKVERSION}"/>
 	<!-- Compile experiment replication programs -->
-	<javac srcdir="${replication}" destdir="${examplebin}" classpath="${dist}/jpt-${VERSION}.jar;${replication}" includeantruntime="false"/>
+	<javac srcdir="${replication}" destdir="${examplebin}"
+		classpath="${dist}/jpt-${VERSION}.jar;${replication}" includeantruntime="false" 
+		source="${JDKVERSION}" target="${JDKVERSION}"/>
   </target>
   
   <target name="docs" depends="dist" 
@@ -85,7 +93,8 @@
 			overview="src/overview.html"
 			author="false"
 			version="false"
-			additionalparam="-notimestamp">
+			additionalparam="-notimestamp --no-module-directories"
+			source="${JDKVERSION}">
 		<link href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="build/java-package-list" offline="true" />
 		<bottom><![CDATA[Copyright &copy; 2005-2019 Vincent A. Cicirello. <a href=\"https://www.cicirello.org/\" target=_top>https://www.cicirello.org/</a>]]></bottom>
 	</javadoc>
