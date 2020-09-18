@@ -36,6 +36,7 @@
 	<!--
 	   <compilerarg value="-Xlint:unchecked"/>
 	-->
+	<compilerarg value="-Xlint:deprecation"/>
 	</javac>
 	<!-- Compile the JUnit tests from ${testsrc} into ${testbin} -->
 	<javac srcdir="${testsrc}" destdir="${testbin}" classpath="${junit};${bin}" 

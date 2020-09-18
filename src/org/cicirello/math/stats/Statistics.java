@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2020 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,8 +27,7 @@ package org.cicirello.math.stats;
  * Utility class of basic statistics.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.19.5.16
- * @since 1.0
+ * @version 09-18-2020
  */
 public final class Statistics {
 	
@@ -308,9 +307,11 @@ public final class Statistics {
 		double term2 = varianceSample(data2)/data2.length;
 		double termSum = term1 + term2;
 		double vDenom = term1*term1/(data1.length-1) + term2*term2/(data2.length-1);
-		double v = termSum*termSum/vDenom; 		
-		result[0] = new Double((mean(data1)-mean(data2)) / Math.sqrt(termSum));
-		result[1] = new Integer((int)v);
+		double v = termSum*termSum/vDenom; 
+		Double d = (mean(data1)-mean(data2)) / Math.sqrt(termSum);
+		result[0] = d;
+		Integer i = (int)v;
+		result[1] = i;
 		return result;
 	}
 	
@@ -332,9 +333,11 @@ public final class Statistics {
 		double term2 = varianceSample(data2)/data2.length;
 		double termSum = term1 + term2;
 		double vDenom = term1*term1/(data1.length-1) + term2*term2/(data2.length-1);
-		double v = termSum*termSum/vDenom; 		
-		result[0] = new Double((mean(data1)-mean(data2)) / Math.sqrt(termSum));
-		result[1] = new Integer((int)v);
+		double v = termSum*termSum/vDenom; 	
+		Double d = (mean(data1)-mean(data2)) / Math.sqrt(termSum);
+		result[0] = d;
+		Integer i = (int)v;
+		result[1] = i;
 		return result;
 	}
 }
