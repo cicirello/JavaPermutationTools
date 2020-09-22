@@ -1,0 +1,43 @@
+<project name="JPT" default="all" basedir="..">
+  <description>Build file for the API 
+  documentation for Java Permutation Tools (JPT).
+  </description>
+	<!-- global properties for this build -->
+	<property name="JDKVERSION" value="1.8"/>
+	<property name="src" location="src"/>
+	<property name="docdir" location="docs/api"/>
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<!-- tstamp -->
+		<mkdir dir="${docdir}"/>
+	</target>
+	
+	<target name="docs" depends="init" 
+		description="generates documentation via javadoc">
+		<javadoc destdir="${docdir}"
+			sourcepath="${src}"
+			windowtitle="JavaPermutationTools - A Java API for computation on permutations"
+			doctitle="JavaPermutationTools - A Java API for computation on permutations"
+			overview="src/overview.html"
+			author="false"
+			version="false"
+			additionalparam="-notimestamp --no-module-directories"
+			source="${JDKVERSION}"
+			failonerror="true"
+			failonwarning="true">
+			<link href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="build/java-package-list" offline="true" />
+			<bottom><![CDATA[Copyright &copy; 2005-2020 Vincent A. Cicirello. <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>]]></bottom>
+		</javadoc>
+	</target>
+  
+	<target name="all" depends="docs" description="generates javadoc">
+	</target>
+  
+	<target name="clean" description="clean up">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${docdir}" includes="**/*" />
+		</delete>
+	</target>
+  
+</project>

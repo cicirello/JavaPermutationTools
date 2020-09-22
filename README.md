@@ -9,7 +9,7 @@ Website: https://jpt.cicirello.org/
 | __Publications About the Library__ | [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950) |
 | :--- | :--- |
 | __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central)](https://search.maven.org/artifact/org.cicirello/jpt) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases) [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095) |
-| __Source and Build Info__ | [![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Abuild) [![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/blob/master/LICENSE) |
+| __Source and Build Info__ | [![build](https://github.com/cicirello/JavaPermutationTools/workflows/build/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Abuild) [![docs](https://github.com/cicirello/JavaPermutationTools/workflows/docs/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions?query=workflow%3Adocs) [![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/blob/master/LICENSE) |
 
 ## How to Cite
 
