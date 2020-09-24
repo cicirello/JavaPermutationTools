@@ -20,7 +20,6 @@
  *
  */
 
-
 package org.cicirello.math.stats;
 
 /**
