@@ -27,10 +27,10 @@ jobs:
     
     - name: Tidy up the javadocs
       id: tidy
-      uses: cicirello/javadoc-cleanup@v1.0.1
+      uses: cicirello/javadoc-cleanup@v1.2.0
       with:
-        base-url-path: https://jpt.cicirello.org/
         path-to-root: docs
+        base-url-path: https://jpt.cicirello.org/
     
     - name: Log javadoc-cleanup output
       run: |
@@ -41,6 +41,15 @@ jobs:
         if [ $(git status | grep -c "**/*.html") == "0" ]; then
           git checkout .
         else
+          if [ $(git status | grep -c "**/member-search-index.*") == "1" ]; then
+            git checkout -- docs/api/member-search-index.zip
+          fi
+          if [ $(git status | grep -c "**/package-search-index.*") == "1" ]; then
+            git checkout -- docs/api/package-search-index.zip
+          fi
+          if [ $(git status | grep -c "**/type-search-index.*") == "1" ]; then
+            git checkout -- docs/api/type-search-index.zip
+          fi
           git config --global user.name 'Vincent A Cicirello'
           git config --global user.email 'cicirello@users.noreply.github.com'
           git add -A
@@ -61,7 +70,7 @@ jobs:
         echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.4.0
+      uses: peter-evans/create-pull-request@v3.4.1
       with:
         title: "Automated API website updates."
         body: > 
