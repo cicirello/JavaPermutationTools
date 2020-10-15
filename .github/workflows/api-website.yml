@@ -30,6 +30,7 @@ jobs:
       uses: cicirello/javadoc-cleanup@v1.2.0
       with:
         path-to-root: docs
+        base-url-path: https://jpt.cicirello.org/
     
     - name: Log javadoc-cleanup output
       run: |
