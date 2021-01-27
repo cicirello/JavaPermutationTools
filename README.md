@@ -31,8 +31,6 @@ The GitHub repository is organized as follows:
 * The [/build](build) directory contains an ant build file, and other resources related to building the library.
 * The [/dist](dist) directory contains the compiled jar files of the library.
 * The [/docs](docs) directory contains the javadoc documentation in a sub-directory [/docs/api](docs/api). The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
-* The [/examples](examples) directory contains several example programs that use the library, and which demonstrate usage of various features.
-* The [/replication](replication) directory includes source code that recreates results found in publications associated with the library.
 * The [/src](src) directory contains all of the source code.
 * The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
 
