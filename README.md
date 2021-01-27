@@ -74,12 +74,16 @@ testbin (for the compiled JUnit tests), dist (for the jar file of the library),
 and exbin (for the compiled example
 programs and experiment replication programs).
 
-## Running the Example Programs
+## Example Programs
 
-The examples directory contains example usage of several of the classes of the API.
-The replication directory additionally contains more complex examples that replicate the
-experiments from published papers that have used the library.  Those directories contain
-READMEs that provide more detail on the examples, including on running the examples.
+There are several example programs available in a separate 
+repository: [cicirello/jpt-examples](https://github.com/cicirello/jpt-examples). The
+examples repository contains example usage of several of the classes of the 
+library. Each of the examples contains detailed comments within the source 
+code explaining the example. Running the examples without reading the source 
+comments is not advised. Some of the example in the examples repository are
+based on the experiments from published papers that have either used the library
+directly, or which led to some of the code in the library.
 
 ## Importing the Library from Maven Central
 
