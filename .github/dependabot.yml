@@ -7,11 +7,11 @@ version: 2
 updates:
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
-    target-branch: "development"
+    target-branch: "master"
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
-    target-branch: "development"
+    target-branch: "master"
     schedule:
       interval: "daily"

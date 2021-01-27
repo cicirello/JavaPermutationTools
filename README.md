@@ -1,6 +1,6 @@
 # JavaPermutationTools (JPT): A Java library for computation on permutations and sequences 
 
-Copyright (C) 2018-2020 Vincent A. Cicirello.
+Copyright (C) 2018-2021 Vincent A. Cicirello.
 
 https://www.cicirello.org/
 
@@ -28,11 +28,9 @@ arrays, and other ordered data types).
 ## Repository Organization
 
 The GitHub repository is organized as follows:
-* The [/build](build) directory contains an ant build file, and other resources related to building the library.
-* The [/dist](dist) directory contains the compiled jar files of the library.
-* The [/docs](docs) directory contains the javadoc documentation in a sub-directory [/docs/api](docs/api). The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
-* The [/src](src) directory contains all of the source code.
+* The [/src](src) directory contains all of the source code for JavaPermutationTools.
 * The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
+* The [/docs](docs) directory contains the javadoc documentation in a sub-directory /docs/api. The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
 
 ## Java 8
 
@@ -46,31 +44,19 @@ correspond to incompatible API changes, differences in MINOR correspond
 to introduction of backwards compatible new functionality, and PATCH 
 corresponds to backwards compatible bug fixes. 
 
-## Building the Library (with ant)
+## Building the Library (with Maven)
 
-The /build directory contains an ant build file.  The build file 
-also executes the JUnit tests, and the build directory contains
-the relevant jar files for the JUnit libraries.  If you prefer, 
-you can replace these with the latest versions available
-from https://junit.org/junit4/ (just be sure to edit the property 
-fields in the build.xml to point to the locations of the JUnit jar files).
+The JavaPermutationTools library is built using Maven. The root of the
+repository contains a Maven `pom.xml`.  To build the library, 
+execute `mvn package` at the root of the repository, which
+will compile all classes, run all tests, run javadoc, and generate 
+jar files of the library, the sources, and the javadocs. All build 
+outputs will then be found in the directory `target`.
 
-To execute the build process do one of the following.  If your working 
-directory is the build directory, then simply execute
-`ant` from the command line.  If your working directory is the 
-parent of build, then execute: `ant -f build/build.xml`
-
-The default of the provided ant build file, compiles all source 
-files and all JUnit tests, executes all test cases,
-generates the jar file of the library, and compiles the example 
-programs and the experiment replication programs. The 
-build process will terminate on any test case failures.  
-
-If you use the ant build file, the build will generate the 
-following directories: bin (for the compiled Java classes),
-testbin (for the compiled JUnit tests), dist (for the jar file of the library), 
-and exbin (for the compiled example
-programs and experiment replication programs).
+To include generation of a code coverage report during the build,
+execute `mvn package -Pcoverage` at the root of the repository to 
+enable a Maven profile that executes JaCoCo during the test 
+phase. The JaCoCo report will also be found in the target directory.
 
 ## Example Programs
 
@@ -93,7 +79,7 @@ Central since version 2.1.2).
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>jpt</artifactId>
-  <version>2.1.2</version>
+  <version>2.2.0</version>
 </dependency>
 ```
 
@@ -112,6 +98,12 @@ and (2) add the following to the repositories section of your pom.xml:
   <snapshots><enabled>true</enabled></snapshots>
 </repository>
 ```
+
+## Downloading Jar Files
+
+If you don't use a dependency manager that supports importing from Maven Central,
+or if you simply prefer to download manually, prebuilt jars are also attached to 
+each [GitHub Release](https://github.com/cicirello/JavaPermutationTools).
 
 ## License
 

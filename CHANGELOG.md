@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+* Migrated build process from Ant to Maven, including GitHub workflows.
 
 
 ## [2.2.0] - 2020-09-18
