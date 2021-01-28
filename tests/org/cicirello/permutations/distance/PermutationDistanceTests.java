@@ -83,6 +83,11 @@ public class PermutationDistanceTests {
 		assertEquals("1 block interchange lengths 2,4", 1, d.distance(p, p24));
 		assertEquals("1 block interchange lengths 2,3", 1, d.distance(p23, p));
 		assertEquals("1 block interchange lengths 2,4", 1, d.distance(p24, p));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -102,6 +107,11 @@ public class PermutationDistanceTests {
 		assertEquals("intermediate distance", 2, d.distance(p1, p3));
 		p3.reverse();
 		assertEquals("reversal invariant intermediate distance", 2, d.distance(p1, p3));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -132,6 +142,11 @@ public class PermutationDistanceTests {
 			p3.rotate(1);
 			assertEquals("rotational invariant intermediate distance", 3, d.distance(p1, p3));
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -158,6 +173,11 @@ public class PermutationDistanceTests {
 		Permutation r = new Permutation(p1);
 		r.reverse();
 		assertEquals("reverse is maximal distance", 6, d.distance(p1, r));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -175,6 +195,11 @@ public class PermutationDistanceTests {
 		Permutation r = new Permutation(p1);
 		r.reverse();
 		assertEquals("reverse is maximal distance", 5, d.distance(p1, r));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -191,6 +216,11 @@ public class PermutationDistanceTests {
 				assertEquals("deviation distance", expected, d.distance(p, copy));
 			}
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -208,6 +238,11 @@ public class PermutationDistanceTests {
 				assertEquals("deviation distance", expectedD, d.distancef(p, copy), EPSILON);
 			}
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distancef(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -232,6 +267,11 @@ public class PermutationDistanceTests {
 			// Reverse of permutation should be distance 1.0 from original.
 			assertEquals("deviation distance", 1, d.distancef(p, reversed), EPSILON);
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distancef(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -248,6 +288,11 @@ public class PermutationDistanceTests {
 				assertEquals("squared deviation distance", expected, d.distance(p, copy));
 			}
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -264,6 +309,11 @@ public class PermutationDistanceTests {
 				assertEquals("Lee distance", expected, d.distance(p, copy));
 			}
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -281,6 +331,11 @@ public class PermutationDistanceTests {
 		assertEquals("maximal distance", 6, d.distance(p1,p2));
 		assertEquals("end points differ", 2, d.distance(p1,p3));
 		assertEquals("differ in interior positions", 2, d.distance(p1,p4));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -302,6 +357,11 @@ public class PermutationDistanceTests {
 		assertEquals("end points switched", 1, d.distance(p1,p3));
 		assertEquals("one swap different", 1, d.distance(p1,p4));
 		assertEquals("two permutation cycles", 4, d.distance(p1,p5));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
@@ -324,6 +384,11 @@ public class PermutationDistanceTests {
 		for (Permutation q : p) {
 			assertEquals("checking consistence with naive implementation", naiveKendalTau(p,q), d.distance(p,q));
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	private int naiveKendalTau(Permutation p1, Permutation p2) {
@@ -373,6 +438,11 @@ public class PermutationDistanceTests {
 			// Should correspond if they are both correct.
 			assertEquals("equiv of edit with 0.5 cost removes and inserts", edit.distancef(p,q), d.distancef(p,q), EPSILON);
 		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
 	}
 	
 	@Test
