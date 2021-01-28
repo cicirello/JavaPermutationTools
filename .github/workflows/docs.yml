@@ -2,11 +2,14 @@ name: docs
 
 on:
   push:
-    branches: [ development ]
+    branches: [ master ]
+    paths: [ '**.java' ]
+  pull_request:
+    branches: [ master ]
     paths: [ '**.java' ]
 
 jobs:
-  api-website:
+  docs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the repo
@@ -18,38 +21,29 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    
-    - name: Clean docs
-      run: ant -noinput -buildfile build/builddocs.xml clean
 
-    - name: Build docs with Ant
-      run: ant -noinput -buildfile build/builddocs.xml
-    
+    - name: Build docs with Maven
+      run: mvn javadoc:javadoc
+
+    - name: Copy to Documentation Website Location
+      run: |
+        rm -rf docs/api
+        cp -rf target/site/apidocs/. docs/api	
+
     - name: Tidy up the javadocs
       id: tidy
       uses: cicirello/javadoc-cleanup@v1.2.0
       with:
-        path-to-root: docs
         base-url-path: https://jpt.cicirello.org/
-    
+        path-to-root: docs
+
     - name: Log javadoc-cleanup output
       run: |
         echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
-    
+
     - name: Commit documentation changes
       run: |
-        if [ $(git status | grep -c "**/*.html") == "0" ]; then
-          git checkout .
-        else
-          if [ $(git status | grep -c "**/member-search-index.*") == "1" ]; then
-            git checkout -- docs/api/member-search-index.zip
-          fi
-          if [ $(git status | grep -c "**/package-search-index.*") == "1" ]; then
-            git checkout -- docs/api/package-search-index.zip
-          fi
-          if [ $(git status | grep -c "**/type-search-index.*") == "1" ]; then
-            git checkout -- docs/api/type-search-index.zip
-          fi
+        if [[ `git status --porcelain` ]]; then
           git config --global user.name 'Vincent A Cicirello'
           git config --global user.email 'cicirello@users.noreply.github.com'
           git add -A
@@ -70,7 +64,8 @@ jobs:
         echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3.4.1
+      if: ${{ github.event_name == 'push' }}
+      uses: peter-evans/create-pull-request@v3.7.0
       with:
         title: "Automated API website updates."
         body: > 
@@ -83,5 +78,5 @@ jobs:
         commit-message: "Automated API documentation website updates."
         author: Vincent A Cicirello <cicirello@users.noreply.github.com>
         committer: Vincent A Cicirello <cicirello@users.noreply.github.com>
+        branch: create-pull-request/docs
         delete-branch: true
-

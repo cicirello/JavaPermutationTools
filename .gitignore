@@ -1,3 +1,9 @@
 bin/
 exbin/
 testbin/
+target/
+member-search-index.zip
+type-search-index.zip
+package-search-index.zip
+module-search-index.zip
+tag-search-index.zip
