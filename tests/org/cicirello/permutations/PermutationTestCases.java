@@ -25,6 +25,7 @@ import java.util.SplittableRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.math.BigInteger;
+import java.util.NoSuchElementException;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -749,6 +750,22 @@ public class PermutationTestCases {
 			}
 			assertEquals("Should iterate over all permutations of given length", fact, count);
 		}
+		final PermutationIterator iter = new PermutationIterator(4);
+		fact = 24;
+		boolean[] found = new boolean[fact];
+		int count = 0;
+		while (iter.hasNext()) {
+			Permutation p = iter.next();
+			int permID = p.toInteger();
+			assertFalse("should not give same permutation more than once", found[permID]);
+			found[permID] = true;
+			count++;
+		}
+		assertEquals("Should iterate over all permutations of given length", fact, count);
+		NoSuchElementException thrown = assertThrows( 
+			NoSuchElementException.class,
+			() -> iter.next()
+		);
 	}
 	
 	@Test
