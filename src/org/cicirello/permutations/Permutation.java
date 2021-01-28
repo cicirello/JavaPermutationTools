@@ -827,8 +827,11 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	@Override
 	public String toString() {
 		String permS = "";
-		for (int i : permutation) {
-			permS += (i + " ");   
+		if (permutation.length > 0) {
+			permS += permutation[0];
+			for (int i = 1; i < permutation.length; i++) {
+				permS += " " + permutation[i];
+			}
 		}
 		return permS;
 	}
