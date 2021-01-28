@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,8 +27,7 @@ import org.cicirello.permutations.Permutation;
  * normalizing the distance to the interval [0,1], but where the base distance is an integer value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.2.5
+ * @version 1.28.2021
  */
 public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermutationDistanceMeasurerDouble {
 	
@@ -38,7 +37,6 @@ public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermuta
 	 *
 	 * @param length Permutation length.
 	 * @return the maximum distance between a pair of permutations of the specified length.
-	 * @since 1.2.5
 	 */
 	int max(int length);
 }

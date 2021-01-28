@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -44,8 +44,7 @@ import org.cicirello.permutations.Permutation;
  * The 6th Metaheuristics International Conference, August, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12  
- * @since 1.0
+ * @version 1.28.2021
  * 
  */
 public final class SquaredDeviationDistance extends AbstractPermutationDistanceMeasurer {
@@ -55,26 +54,22 @@ public final class SquaredDeviationDistance extends AbstractPermutationDistanceM
 	 */
 	public SquaredDeviationDistance() {}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	 public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		int distancePoints = 0;
-		int L1 = p1.length();
 		  
 		int[] invP2 = p2.getInverse(); 
 		  
-		for (int i = 0; i < L1; i++) {
+		for (int i = 0; i < invP2.length; i++) {
 			int dev = invP2[p1.get(i)]-i;
 			distancePoints += (dev*dev);
 		}
 		return distancePoints;  
 	  }
 	  
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

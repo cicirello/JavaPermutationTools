@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -57,8 +57,7 @@ import org.cicirello.permutations.Permutation;
  * Communications of the ACM, 20(5):350-353, May, 1977.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12 
- * @since 1.0
+ * @version 1.28.2021
  *
  */
 public final class ReinsertionDistance extends AbstractPermutationDistanceMeasurer {
@@ -68,17 +67,14 @@ public final class ReinsertionDistance extends AbstractPermutationDistanceMeasur
 	 */
 	public ReinsertionDistance() {}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		return p1.length() - lcs(p1,p2);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;
@@ -87,7 +83,7 @@ public final class ReinsertionDistance extends AbstractPermutationDistanceMeasur
 	
 	// This version runs in O(n lg n)
 	private int lcs(Permutation p1, Permutation p2) {
-		int n = p1.length();
+		final int n = p1.length();
 		int[] inv = p2.getInverse();
 		int[] match = new int[n];
 		int[] thresh = new int[n+1];
@@ -110,7 +106,7 @@ public final class ReinsertionDistance extends AbstractPermutationDistanceMeasur
 	
 	private int binSearch(int[] array, int value, int low, int high) {
 		if (high == low) return low;
-		int mid = (high+low) >> 1;
+		final int mid = (high+low) >> 1;
 		if (value <= array[mid] && value > array[mid-1]) {
 			return mid;
 		} else if (value > array[mid]) {

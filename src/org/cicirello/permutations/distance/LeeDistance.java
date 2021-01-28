@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -43,8 +43,7 @@ import org.cicirello.permutations.Permutation;
  * C. Lee, "Some properties of nonbinary error-correcting codes," in IRE Transactions on Information Theory, vol. 4, no. 2, pp. 77-82, June 1958.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.0
+ * @version 1.28.2021
  * 
  */
 public final class LeeDistance extends AbstractPermutationDistanceMeasurer {
@@ -54,28 +53,24 @@ public final class LeeDistance extends AbstractPermutationDistanceMeasurer {
 	 */
 	public LeeDistance() {}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		int L1 = p1.length();
-		if (L1 <= 1) return 0;
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
+		if (p1.length() <= 1) return 0;
 		int distancePoints = 0;
 		int[] invP1 = p1.getInverse();
 		int[] invP2 = p2.getInverse();
 	  
-		for (int i = 0; i < L1; i++) {
+		for (int i = 0; i < invP1.length; i++) {
 			int dev = Math.abs(invP1[i]-invP2[i]);
-			distancePoints += Math.min(dev, L1 - dev);
+			distancePoints += Math.min(dev, invP1.length - dev);
 		}
 	  
 		return distancePoints;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

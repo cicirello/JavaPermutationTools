@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2015-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -47,8 +47,7 @@ import org.cicirello.permutations.Permutation;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 1.19.6.12
-* @since 1.0
+* @version 1.28.2021
 */
 public final class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 
@@ -107,26 +106,17 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		}
 	}
 
-
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		int n = p1.length();
-		if (p2.length() != n || n != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
+		if (p2.length() != p1.length() || p1.length() != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
 		int[] inv1 = p1.getInverse();
-		int[] r2 = new int[n];
-		for (int i = 0; i < n; i++) {
+		int[] r2 = new int[inv1.length];
+		for (int i = 0; i < inv1.length; i++) {
 			r2[i] = inv1[p2.get(i)];
 		}
 		return dist[(new Permutation(r2)).toInteger()];
 	}	
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

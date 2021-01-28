@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,31 +27,21 @@ import org.cicirello.permutations.Permutation;
  * where distance is an integer value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.0
+ * @version 1.28.2021
  *
  */
 abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, NormalizedPermutationDistanceMeasurer {
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final double distancef(Permutation p1, Permutation p2) {
 		return distance(p1,p2);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final double maxf(int length) {
 		return max(length);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final double normalizedDistance(Permutation p1, Permutation p2) {
 		int m = max(p1.length());

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2014, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2014, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -40,8 +40,7 @@ import org.cicirello.permutations.Permutation;
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.0
+ * @version 1.28.2021
  */
 public final class InterchangeDistance extends AbstractPermutationDistanceMeasurer {
 	
@@ -50,17 +49,15 @@ public final class InterchangeDistance extends AbstractPermutationDistanceMeasur
 	 */
 	public InterchangeDistance() {}
 	
-    /**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int distance(Permutation p1, Permutation p2)
-	{
+    @Override
+	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 	    int numSwaps = 0;
 	    int length = p1.length();
         boolean[] used = new boolean[length];
-        for (int k = 0; k < length; k++)
-        {
+        for (int k = 0; k < length; k++) {
             if (p1.get(k) == p2.get(k)) used[p1.get(k)] = true;   
         }
         int i = 0;
@@ -91,9 +88,6 @@ public final class InterchangeDistance extends AbstractPermutationDistanceMeasur
         return numSwaps;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

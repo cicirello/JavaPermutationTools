@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -53,8 +53,7 @@ import org.cicirello.permutations.Permutation;
  * in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.0
+ * @version 1.28.2021
  */
 public final class EditDistance implements PermutationDistanceMeasurerDouble 
 {
@@ -86,7 +85,11 @@ public final class EditDistance implements PermutationDistanceMeasurerDouble
 	}
   
 	/**
-	 * {@inheritDoc}
+	 * Measures the distance between two permutations.
+	 * 
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 
 	 */
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
