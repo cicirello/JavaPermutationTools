@@ -487,6 +487,12 @@ public class PermutationDistanceTests {
 				assertEquals("equiv of 2.25 reinsertion", 2.25*reinsert.distancef(p1,p2), d.distancef(p1,p2), EPSILON);
 			}
 		}
+		
+		// Different length case
+		d = new EditDistance(1.0, 9.0, 9.0);
+		int[] first = { 0, 1, 2 };
+		int[] second = { 0, 1, 2, 3 };
+		assertEquals(1.0, d.distancef(new Permutation(first), new Permutation(second)), EPSILON);
 	}
 	
 	
