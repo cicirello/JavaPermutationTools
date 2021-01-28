@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 * Moved the example programs to a new repository. They were previously found in directories examples and replication, both of which have been removed. All of the examples are now located in the repository: https://github.com/cicirello/jpt-examples.
+* Removed jars of the library from the repo. These have been available from Maven Central, GitHub Packages, and GitHub Releases, for quite some time. No need to store in repo, and it is inefficient to do so.
 
 ### Fixed
 
