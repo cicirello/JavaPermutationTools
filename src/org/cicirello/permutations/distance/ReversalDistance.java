@@ -56,10 +56,10 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 	private int maxd;
 
 	/**
-	 * Construct the distance measure.  Default handles permutations of length n=10
+	 * Construct the distance measure. Default handles permutations of length n=5.
 	 */
 	public ReversalDistance() {
-		this(10);
+		this(5);
 	}
 	
 	/**
