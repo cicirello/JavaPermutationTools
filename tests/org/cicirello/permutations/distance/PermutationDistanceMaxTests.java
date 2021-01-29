@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -31,6 +31,36 @@ import org.cicirello.permutations.*;
 public class PermutationDistanceMaxTests {
 	
 	private final static double EPSILON = 1e-10;
+	
+	@Test
+	public void testReversalDistance() {
+		ReversalDistance d = new ReversalDistance(0);
+		assertEquals(0, d.max(0));
+		d = new ReversalDistance(1);
+		assertEquals(0, d.max(1));
+		d = new ReversalDistance(2);
+		assertEquals(1, d.max(2));
+		d = new ReversalDistance(3);
+		assertEquals(2, d.max(3));
+		d = new ReversalDistance(4);
+		assertEquals(3, d.max(4));
+		
+		final ReversalDistance df = d;
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> df.max(7)
+		);
+	}
+	
+	@Test
+	public void testScrambleDistance() {
+		ScrambleDistance d = new ScrambleDistance();
+		assertEquals(0, d.max(0));
+		assertEquals(0, d.max(1));
+		for (int n = 2; n <= 10; n++) {
+			assertEquals(1, d.max(n));
+		}
+	}
 	
 	@Test
 	public void testBlockInterchangeDistance() {

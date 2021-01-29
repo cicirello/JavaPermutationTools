@@ -33,6 +33,55 @@ public class PermutationDistanceTests {
 	private final static double EPSILON = 1e-10;
 	
 	@Test
+	public void testReversalDistance() {
+		ReversalDistance d4 = new ReversalDistance(4);
+		int[] a4 = {0, 1, 2, 3};
+		int[] a4_2 = {1, 0, 3, 2};
+		Permutation p4 = new Permutation(a4);
+		Permutation p4_2 = new Permutation(a4_2);
+		assertEquals(2, d4.distance(p4,p4_2));
+		ReversalDistance d5 = new ReversalDistance(5);
+		int[] a5 = {0, 1, 4, 2, 3};
+		int[] a5_2 = {1, 0, 4, 3, 2};
+		Permutation p5 = new Permutation(a5);
+		Permutation p5_2 = new Permutation(a5_2);
+		assertEquals(2, d5.distance(p5,p5_2));
+		
+		ReversalDistance d = new ReversalDistance();
+		assertEquals(2, d.distance(p5,p5_2));
+		assertEquals(4, d.max(5));
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d5.distance(new Permutation(5), new Permutation(6))
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d5.distance(new Permutation(6), new Permutation(6))
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new ReversalDistance(-1)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new ReversalDistance(13)
+		);
+	}
+	
+	@Test
+	public void testScrambleDistance() {
+		ScrambleDistance d = new ScrambleDistance();
+		identicalPermutations(d);
+		for (int i = 2; i <= 10; i++) {
+			Permutation p1 = new Permutation(i);
+			Permutation p2 = new Permutation(p1);
+			p2.scramble(true);
+			assertEquals(1, d.distance(p1,p2));
+		}
+	}
+	
+	@Test
 	public void testBlockInterchangeDistance() {
 		BlockInterchangeDistance d = new BlockInterchangeDistance();
 		identicalPermutations(d);
