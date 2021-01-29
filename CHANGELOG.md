@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 * Bug in Permutation.toString which was inserting an extra space at end.
 * Added validation checking for all permutation distance measures validating same length permutations (except for EditDistance which can handle that case).
+* Bug in ReversalDistance.max in case when permutation length is 2, and also added missing parameter validation.
 
 ### CI/CD
 * Migrated build process from Ant to Maven, including GitHub workflows.

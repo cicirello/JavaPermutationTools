@@ -47,12 +47,12 @@ import org.cicirello.permutations.Permutation;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 1.28.2021
+* @version 1.29.2021
 */
 public final class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 
 	private byte[] dist;
-	private int PERM_LENGTH;
+	private final int PERM_LENGTH;
 	private int maxd;
 
 	/**
@@ -72,6 +72,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		if (n > 12 || n < 0) throw new IllegalArgumentException("Requires 0 <= n <= 12.");
 		PERM_LENGTH = n;
 		int fact = 1;
+		maxd = 0;
 		for (int i = 2; i <= n; i++) fact *= i;
 		dist = new byte[fact];
 		Permutation p = new Permutation(n,0);
@@ -81,6 +82,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 				int v = p.toInteger();
 				p.reverse(i,j);
 				dist[v] = 1;
+				maxd = 1;
 			}
 		}
 		int visited = n * (n-1) / 2 + 1;
@@ -106,6 +108,14 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if length of the permutations
+	 * is not equal to the
+	 * the permutation length for which this was configured at time
+	 * of construction.
+	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
 		if (p2.length() != p1.length() || p1.length() != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
@@ -117,9 +127,18 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		return dist[(new Permutation(r2)).toInteger()];
 	}	
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if length is not equal to the
+	 * the permutation length for which this was configured at time
+	 * of construction.
+	 */
 	@Override
 	public int max(int length) {
-		if (length <= 1) return 0;
+		if (PERM_LENGTH != length) {
+			throw new IllegalArgumentException("This distance measurer was not configured for length: " + length);
+		}
 		return maxd;
 	}
 	
