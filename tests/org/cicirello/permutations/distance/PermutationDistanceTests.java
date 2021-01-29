@@ -33,6 +33,196 @@ public class PermutationDistanceTests {
 	private final static double EPSILON = 1e-10;
 	
 	@Test
+	public void testCyclicReversalIndependentDistance() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		CyclicReversalIndependentDistance d = new CyclicReversalIndependentDistance(em);
+		int[] original =  { 0, 1, 2, 3, 4 };
+		int[] different = { 3, 4, 0, 2, 1 };
+		
+		Permutation p = new Permutation(original);
+		Permutation[] rotated = new Permutation[original.length];
+		Permutation[] reversed = new Permutation[original.length];
+		rotated[0] = new Permutation(original);
+		for (int i = 1; i < rotated.length; i++) {
+			rotated[i] = new Permutation(original);
+			rotated[i].rotate(i);
+		}
+		for (int i = 0; i < reversed.length; i++) {
+			reversed[i] = new Permutation(rotated[i]);
+			reversed[i].reverse();
+		}
+		for (int i = 0; i < rotated.length; i++) {
+			assertEquals(0, d.distance(p, rotated[i]));
+			assertEquals(0, d.distance(p, reversed[i]));
+			assertEquals(0, d.distancef(p, rotated[i]), EPSILON);
+			assertEquals(0, d.distancef(p, reversed[i]), EPSILON);
+		}
+		rotated[0] = new Permutation(different);
+		for (int i = 1; i < rotated.length; i++) {
+			rotated[i] = new Permutation(different);
+			rotated[i].rotate(i);
+		}
+		for (int i = 0; i < reversed.length; i++) {
+			reversed[i] = new Permutation(rotated[i]);
+			reversed[i].reverse();
+		}
+		for (int i = 0; i < rotated.length; i++) {
+			assertEquals(2, d.distance(p, rotated[i]));
+			assertEquals(2, d.distance(p, reversed[i]));
+			assertEquals(2, d.distancef(p, rotated[i]), EPSILON);
+			assertEquals(2, d.distancef(p, reversed[i]), EPSILON);
+		}
+	}
+	
+	@Test
+	public void testCyclicReversalIndependentDistanceDouble() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		CyclicReversalIndependentDistanceDouble d = new CyclicReversalIndependentDistanceDouble(em);
+		int[] original =  { 0, 1, 2, 3, 4 };
+		int[] different = { 3, 4, 0, 2, 1 };
+		
+		Permutation p = new Permutation(original);
+		Permutation[] rotated = new Permutation[original.length];
+		Permutation[] reversed = new Permutation[original.length];
+		rotated[0] = new Permutation(original);
+		for (int i = 1; i < rotated.length; i++) {
+			rotated[i] = new Permutation(original);
+			rotated[i].rotate(i);
+		}
+		for (int i = 0; i < reversed.length; i++) {
+			reversed[i] = new Permutation(rotated[i]);
+			reversed[i].reverse();
+		}
+		for (int i = 0; i < rotated.length; i++) {
+			assertEquals(0, d.distancef(p, rotated[i]), EPSILON);
+			assertEquals(0, d.distancef(p, reversed[i]), EPSILON);
+		}
+		rotated[0] = new Permutation(different);
+		for (int i = 1; i < rotated.length; i++) {
+			rotated[i] = new Permutation(different);
+			rotated[i].rotate(i);
+		}
+		for (int i = 0; i < reversed.length; i++) {
+			reversed[i] = new Permutation(rotated[i]);
+			reversed[i].reverse();
+		}
+		for (int i = 0; i < rotated.length; i++) {
+			assertEquals(2, d.distancef(p, rotated[i]), EPSILON);
+			assertEquals(2, d.distancef(p, reversed[i]), EPSILON);
+		}
+	}
+	
+	@Test
+	public void testCyclicIndependentDistance() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		CyclicIndependentDistance d = new CyclicIndependentDistance(em);
+		int[] original = { 0, 1, 2, 3 };
+		int[] different = {0, 2, 1, 3 };
+		Permutation p1 = new Permutation(original);
+		Permutation p2 = new Permutation(original);
+		Permutation pd = new Permutation(different);
+		Permutation pr1 = new Permutation(p1);
+		pr1.rotate(1);
+		Permutation pr2 = new Permutation(p1);
+		pr1.rotate(2);
+		Permutation pr3 = new Permutation(p1);
+		pr1.rotate(3);
+		assertEquals(0, d.distance(p1, p2));
+		assertEquals(0, d.distance(p1, pr1));
+		assertEquals(0, d.distance(p1, pr2));
+		assertEquals(0, d.distance(p1, pr3));
+		assertEquals(2, d.distance(pd, p2));
+		assertEquals(2, d.distance(pd, pr1));
+		assertEquals(2, d.distance(pd, pr2));
+		assertEquals(2, d.distance(pd, pr3));
+
+		assertEquals(0, d.distancef(p1, p2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr1), EPSILON);
+		assertEquals(0, d.distancef(p1, pr2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr3), EPSILON);
+		assertEquals(2, d.distancef(pd, p2), EPSILON);
+		assertEquals(2, d.distancef(pd, pr1), EPSILON);
+		assertEquals(2, d.distancef(pd, pr2), EPSILON);
+		assertEquals(2, d.distancef(pd, pr3), EPSILON);
+	}
+	
+	@Test
+	public void testCyclicIndependentDistanceDouble() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		CyclicIndependentDistanceDouble d = new CyclicIndependentDistanceDouble(em);
+		int[] original = { 0, 1, 2, 3 };
+		int[] different = {0, 2, 1, 3 };
+		Permutation p1 = new Permutation(original);
+		Permutation p2 = new Permutation(original);
+		Permutation pd = new Permutation(different);
+		Permutation pr1 = new Permutation(p1);
+		pr1.rotate(1);
+		Permutation pr2 = new Permutation(p1);
+		pr1.rotate(2);
+		Permutation pr3 = new Permutation(p1);
+		pr1.rotate(3);
+		assertEquals(0, d.distancef(p1, p2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr1), EPSILON);
+		assertEquals(0, d.distancef(p1, pr2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr3), EPSILON);
+		assertEquals(2, d.distancef(pd, p2), EPSILON);
+		assertEquals(2, d.distancef(pd, pr1), EPSILON);
+		assertEquals(2, d.distancef(pd, pr2), EPSILON);
+		assertEquals(2, d.distancef(pd, pr3), EPSILON);
+	}
+	
+	@Test
+	public void testReversalIndependentDistance() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		ReversalIndependentDistance d = new ReversalIndependentDistance(em);
+		int[] original = { 0, 1, 2, 3, 4, 5, 6 };
+		int[] other    = { 0, 5, 4, 3, 2, 1, 6 };
+		int[] other2   = { 6, 1, 2, 3, 4, 5, 0 };
+		int[] reversed = { 6, 5, 4, 3, 2, 1, 0 };
+		Permutation p1 = new Permutation(original);
+		Permutation p2 = new Permutation(original);
+		Permutation pr = new Permutation(reversed);
+		Permutation p4to2 = new Permutation(other);
+		Permutation p2to4 = new Permutation(other2);
+		assertEquals(0, d.distance(p1, p2));
+		assertEquals(0, d.distance(p1, pr));
+		assertEquals(0, d.distance(pr, p2));
+		assertEquals(2, d.distance(p1, p4to2));
+		assertEquals(2, d.distance(p4to2, p1));
+		assertEquals(2, d.distance(p1, p2to4));
+		assertEquals(2, d.distance(p2to4, p1));
+		assertEquals(0, d.distancef(p1, p2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr), EPSILON);
+		assertEquals(0, d.distancef(pr, p2), EPSILON);
+		assertEquals(2, d.distancef(p1, p4to2), EPSILON);
+		assertEquals(2, d.distancef(p4to2, p1), EPSILON);
+		assertEquals(2, d.distancef(p1, p2to4), EPSILON);
+		assertEquals(2, d.distancef(p2to4, p1), EPSILON);	
+	}
+	
+	@Test
+	public void testReversalIndependentDistanceDouble() {
+		ExactMatchDistance em = new ExactMatchDistance();
+		ReversalIndependentDistanceDouble d = new ReversalIndependentDistanceDouble(em);
+		int[] original = { 0, 1, 2, 3, 4, 5, 6 };
+		int[] other    = { 0, 5, 4, 3, 2, 1, 6 };
+		int[] other2   = { 6, 1, 2, 3, 4, 5, 0 };
+		int[] reversed = { 6, 5, 4, 3, 2, 1, 0 };
+		Permutation p1 = new Permutation(original);
+		Permutation p2 = new Permutation(original);
+		Permutation pr = new Permutation(reversed);
+		Permutation p4to2 = new Permutation(other);
+		Permutation p2to4 = new Permutation(other2);
+		assertEquals(0, d.distancef(p1, p2), EPSILON);
+		assertEquals(0, d.distancef(p1, pr), EPSILON);
+		assertEquals(0, d.distancef(pr, p2), EPSILON);
+		assertEquals(2, d.distancef(p1, p4to2), EPSILON);
+		assertEquals(2, d.distancef(p4to2, p1), EPSILON);
+		assertEquals(2, d.distancef(p1, p2to4), EPSILON);
+		assertEquals(2, d.distancef(p2to4, p1), EPSILON);	
+	}
+	
+	@Test
 	public void testReversalDistance() {
 		ReversalDistance d4 = new ReversalDistance(4);
 		int[] a4 = {0, 1, 2, 3};
@@ -467,6 +657,7 @@ public class PermutationDistanceTests {
 			copy.reverse();
 			int expected = n-1;
 			assertEquals("maximal distance", expected, d.distance(p,copy));
+			assertEquals("maximal distance", expected, d.distance(copy,p));
 		}
 		int[] a1 = {0, 1, 2, 3, 4, 5};
 		int[] a2 = {0, 4, 2, 3, 1, 5};
@@ -480,13 +671,14 @@ public class PermutationDistanceTests {
 		assertEquals("all but 3 on longest common subsequence", 3, d.distance(p1,p3));
 		assertEquals("all but 3 on longest common subsequence", 3, d.distance(p1,p4));
 		
-		Permutation p = new Permutation(6);
+		Permutation p = new Permutation(5);
 		EditDistance edit = new EditDistance();
 		for (Permutation q : p) {
 			// NOTE: If this assertion fails, problem is either in ReinsertionDistance or EditDistance
 			// Should correspond if they are both correct.
 			assertEquals("equiv of edit with 0.5 cost removes and inserts", edit.distancef(p,q), d.distancef(p,q), EPSILON);
-		}
+			assertEquals("equiv of edit with 0.5 cost removes and inserts", edit.distancef(q,p), d.distancef(q,p), EPSILON);
+		}	
 		
 		IllegalArgumentException thrown = assertThrows( 
 			IllegalArgumentException.class,
