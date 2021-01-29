@@ -32,6 +32,11 @@ import org.cicirello.permutations.Permutation;
  */
 abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, NormalizedPermutationDistanceMeasurer {
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public final double distancef(Permutation p1, Permutation p2) {
 		return distance(p1,p2);
@@ -42,6 +47,11 @@ abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanc
 		return max(length);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public final double normalizedDistance(Permutation p1, Permutation p2) {
 		int m = max(p1.length());

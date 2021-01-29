@@ -76,6 +76,11 @@ public final class DeviationDistanceNormalized2005 implements PermutationDistanc
 		devDistance = new DeviationDistance();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
 		if (p1.length() != p2.length()) {
@@ -91,6 +96,11 @@ public final class DeviationDistanceNormalized2005 implements PermutationDistanc
 		return 1.0;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public double normalizedDistance(Permutation p1, Permutation p2) {
 		return distancef(p1,p2); 

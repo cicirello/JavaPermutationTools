@@ -42,6 +42,11 @@ public final class ExactMatchDistance extends AbstractPermutationDistanceMeasure
 	 */
 	public ExactMatchDistance() {}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
 		if (p1.length() != p2.length()) {

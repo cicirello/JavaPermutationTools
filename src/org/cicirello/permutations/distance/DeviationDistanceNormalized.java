@@ -62,6 +62,11 @@ public final class DeviationDistanceNormalized implements PermutationDistanceMea
 		devDistance = new DeviationDistance();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public double distancef(Permutation p1, Permutation p2) {
 		if (p1.length() != p2.length()) {
@@ -77,6 +82,11 @@ public final class DeviationDistanceNormalized implements PermutationDistanceMea
 		return (length * length - (length & 1)) / (2.0 * (length-1));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
 	@Override
 	public double normalizedDistance(Permutation p1, Permutation p2) {
 		double m = maxf(p1.length());

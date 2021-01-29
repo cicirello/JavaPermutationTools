@@ -111,6 +111,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 	/**
 	 * {@inheritDoc}
 	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 * @throws IllegalArgumentException if length of the permutations
 	 * is not equal to the
 	 * the permutation length for which this was configured at time
