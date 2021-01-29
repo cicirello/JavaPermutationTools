@@ -88,7 +88,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		int visited = n * (n-1) / 2 + 1;
 		int start = 1;
 		for (byte d = 1; visited < fact; d++) {
-			for ( ; start < fact && dist[start] != 0 && dist[start] < d; start++);
+			for ( ; dist[start] != 0 && dist[start] < d; start++);
 			for (int e = start; e < fact; e++) {
 				if (dist[e] == d) {
 					p = new Permutation(n, e);
