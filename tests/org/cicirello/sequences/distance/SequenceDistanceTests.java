@@ -877,6 +877,37 @@ public class SequenceDistanceTests {
 	}
 	
 	@Test
+	public void testKendallTauSequenceDistance_HashTableBaseClass() {
+		class TestHT extends KendallTauSequenceDistance.BaseHT {
+			TestHT(int min) {
+				super(32, min);
+			}
+		}
+		for (int n = 1; n <= 32; n *= 2) {
+			TestHT ht = new TestHT(n);
+			assertEquals(n, ht.minSize);
+			assertEquals(n-1, ht.mask);
+		}
+		TestHT ht = new TestHT(3);
+		assertEquals(4, ht.minSize);
+		for (int n = 5; n < 8; n++) {
+			ht = new TestHT(n);
+			assertEquals(8, ht.minSize);
+			assertEquals(7, ht.mask);
+		}
+		for (int n = 9; n < 16; n++) {
+			ht = new TestHT(n);
+			assertEquals(16, ht.minSize);
+			assertEquals(15, ht.mask);
+		}
+		for (int n = 17; n <= 64; n++) {
+			ht = new TestHT(n);
+			assertEquals(32, ht.minSize);
+			assertEquals(31, ht.mask);
+		}
+	}
+	
+	@Test
 	public void testKendallTauDistanceExceptionsDiffElements() {
 		final KendallTauSequenceDistance d = new KendallTauSequenceDistance();
 		helperKendallTauDistanceExceptionsDiffElements(d);

@@ -813,12 +813,11 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	}
 	
 	static class BaseHT {
-		private final int MAX_SIZE;
 		protected final int mask;
 		protected final int minSize;
 		
 		BaseHT(int maxSize, int minSize) {
-			MAX_SIZE = maxSize;
+			final int MAX_SIZE = maxSize;
 			if (minSize > MAX_SIZE) {
 				minSize = MAX_SIZE;
 				mask = minSize - 1;
