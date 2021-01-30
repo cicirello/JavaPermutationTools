@@ -958,6 +958,17 @@ public class SequenceDistanceTests {
 			IllegalArgumentException.class,
 			() -> d.distance(bool1, bool2)
 		);
+		final String diffCounts1 = "ababa";
+		final String diffCounts2 = "babab";
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(diffCounts1, diffCounts2)
+		);
+		final String diffCounts3 = "aaaab";
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(diffCounts1, diffCounts3)
+		);
 	}
 	
 	@Test
