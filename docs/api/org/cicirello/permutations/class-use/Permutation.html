@@ -391,9 +391,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">ScrambleDistance.</span><code><span class="memberNameLink"><a href="../distance/ScrambleDistance.html#distance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distance</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
         <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two permutations.</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
@@ -408,7 +406,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><span class="typeNameLabel">CyclicIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/CyclicIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations, with cyclic independence:
+ distance = min_{i in [0,N)} distance(p1,rotate(p2,i))</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -425,7 +424,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><span class="typeNameLabel">CyclicReversalIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/CyclicReversalIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
+ distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -458,7 +458,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><span class="typeNameLabel">EditDistance.</span><code><span class="memberNameLink"><a href="../distance/EditDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -474,7 +474,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><span class="typeNameLabel">ReversalIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/ReversalIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations, with reversal independence:
+ distance = min { distance(p1,p2), distance(p1,reverse(p2)) }</div>
 </td>
 </tr>
 <tr class="rowColor">
