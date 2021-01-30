@@ -4,7 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-01-28
+## [Unreleased] - 2021-01-30
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### CI/CD
+
+
+## [2.3.0] - 2021-01-30
 
 ### Added
 * Test cases added to improve test coverage.
@@ -12,8 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Modified API documentation website (https://jpt.cicirello.org/) to improve browsing on mobile devices.
 * Minor optimizations in Permutation class.
-
-### Deprecated
 
 ### Removed
 * Moved the example programs to a new repository. They were previously found in directories examples and replication, both of which have been removed. All of the examples are now located in the repository: https://github.com/cicirello/jpt-examples.
