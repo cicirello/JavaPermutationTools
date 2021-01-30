@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -72,13 +72,12 @@ import java.util.Iterator;
  * assumes permutations of the integers from 0 to N-1.</p>
  *
  * <p>This distance metric, and both algorithms, is first described in the paper:<br>
- * V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2019arXiv.html" target=_top>"Kendall Tau
+ * V.A. Cicirello, <a href="https://www.cicirello.org/publications/eai.13-7-2018.163925.pdf" target=_top>"Kendall Tau
  * Sequence Distance: Extending Kendall Tau from Ranks to Sequences,"</a> 
- * arXiv preprint arXiv:1905.02752 [cs.DM], May 2019.</p>
+ * Industrial Networks and Intelligent Systems, 7(23), Article e1, April 2020.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 1.30.2021
  */
 public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
 	
@@ -111,8 +110,6 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	 * algorithm may be desirable if the cost to compare objects is significantly less than the
 	 * cost to hash objects, or if the objects are of a class that implements Comparable but
 	 * which does not provide an implementation of hashCode.</p>
-	 *
-	 * @since 1.2.3
 	 *
 	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
 	 */
@@ -411,7 +408,7 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	}
 	
 	private int relabelElementsWithHash(float[] s1, float[] s2, int[][] relabeling) {
-		DoubleHT labelMap = new DoubleHT((int)(1.334 * relabeling.length)+2);
+		FloatHT labelMap = new FloatHT((int)(1.334 * relabeling.length)+2);
 		int current = -1;
 		for (int i = 0; i < relabeling.length; i++) {
 			if (!labelMap.containsKey(s1[i])) {
@@ -815,13 +812,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class IntHT {
+	static class BaseHT {
+		protected final int mask;
+		protected final int minSize;
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x40000000;
-		private int mask;
-		
-		IntHT(int minSize) {
+		BaseHT(int maxSize, int minSize) {
+			final int MAX_SIZE = maxSize;
 			if (minSize > MAX_SIZE) {
 				minSize = MAX_SIZE;
 				mask = minSize - 1;
@@ -835,6 +831,16 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 				mask = minSize;
 				minSize++;
 			}
+			this.minSize = minSize;
+		}
+	}
+	
+	private static final class IntHT extends BaseHT {
+		
+		private final Node[] table;
+		
+		IntHT(int min) {
+			super(0x40000000, min);
 			table = new Node[minSize];
 		}
 		
@@ -875,26 +881,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class LongHT {
+	private static final class LongHT extends BaseHT {
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x40000000;
-		private int mask;
+		private final Node[] table;
 		
-		LongHT(int minSize) {
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
+		LongHT(int min) {
+			super(0x40000000, min);
 			table = new Node[minSize];
 		}
 		
@@ -936,26 +928,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class ShortHT {
+	private static final class ShortHT extends BaseHT {
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x10000;
-		private int mask;
+		private final Node[] table;
 		
-		ShortHT(int minSize) {
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
+		ShortHT(int min) {
+			super(0x10000, min);
 			table = new Node[minSize];
 		}
 		
@@ -996,26 +974,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class CharHT {
+	private static final class CharHT extends BaseHT {
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x10000;
-		private int mask;
+		private final Node[] table;
 		
-		CharHT(int minSize) {
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
+		CharHT(int min) {
+			super(0x10000, min);
 			table = new Node[minSize];
 		}
 		
@@ -1056,26 +1020,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class DoubleHT {
+	private static final class DoubleHT extends BaseHT {
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x40000000;
-		private int mask;
+		private final Node[] table;
 		
-		DoubleHT(int minSize) {
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
+		DoubleHT(int min) {
+			super(0x40000000, min);
 			table = new Node[minSize];
 		}
 		
@@ -1118,26 +1068,12 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 		}
 	}
 	
-	private static final class FloatHT {
+	private static final class FloatHT extends BaseHT {
 		
-		private Node[] table;
-		private static final int MAX_SIZE = 0x40000000;
-		private int mask;
+		private final Node[] table;
 		
-		FloatHT(int minSize) {
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
+		FloatHT(int min) {
+			super(0x40000000, min);
 			table = new Node[minSize];
 		}
 		

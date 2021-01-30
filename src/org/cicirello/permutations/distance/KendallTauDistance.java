@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2015, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -48,8 +48,7 @@ import java.util.Arrays;
  * M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12
- * @since 1.0
+ * @version 1.28.2021
  * 
  */
 public final class KendallTauDistance extends AbstractPermutationDistanceMeasurer {
@@ -61,26 +60,26 @@ public final class KendallTauDistance extends AbstractPermutationDistanceMeasure
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		
-		int n = p2.length();
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		
 		// use inverse of p1 as a relabeling
 		int[] invP1 = p1.getInverse();
 		
 		// relabel array copy of p2
-		int[] arrayP2 = new int[n];
-		for (int i = 0; i < n; i++) {
+		int[] arrayP2 = new int[invP1.length];
+		for (int i = 0; i < arrayP2.length; i++) {
 			arrayP2[i] = invP1[p2.get(i)];
 		}
 		return countInversions(arrayP2);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

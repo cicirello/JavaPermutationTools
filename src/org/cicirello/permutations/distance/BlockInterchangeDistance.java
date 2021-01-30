@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -40,8 +40,7 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n), where n is the permutation length.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 7.26.19
- * @since 2.0
+ * @version 1.28.2021
  */
 public class BlockInterchangeDistance extends AbstractPermutationDistanceMeasurer {
 	
@@ -52,9 +51,14 @@ public class BlockInterchangeDistance extends AbstractPermutationDistanceMeasure
 	
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		int[] inv2 = p2.getInverse();
 		int[] p = new int[inv2.length+2];
 		int[] inv = new int[p.length];
@@ -81,9 +85,6 @@ public class BlockInterchangeDistance extends AbstractPermutationDistanceMeasure
 		return (p1.length()+1-cycles)/2;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		return length >> 1;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2015-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -47,20 +47,19 @@ import org.cicirello.permutations.Permutation;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 1.19.6.12
-* @since 1.0
+* @version 1.29.2021
 */
 public final class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 
 	private byte[] dist;
-	private int PERM_LENGTH;
+	private final int PERM_LENGTH;
 	private int maxd;
 
 	/**
-	 * Construct the distance measure.  Default handles permutations of length n=10
+	 * Construct the distance measure. Default handles permutations of length n=5.
 	 */
 	public ReversalDistance() {
-		this(10);
+		this(5);
 	}
 	
 	/**
@@ -73,6 +72,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		if (n > 12 || n < 0) throw new IllegalArgumentException("Requires 0 <= n <= 12.");
 		PERM_LENGTH = n;
 		int fact = 1;
+		maxd = 0;
 		for (int i = 2; i <= n; i++) fact *= i;
 		dist = new byte[fact];
 		Permutation p = new Permutation(n,0);
@@ -82,12 +82,13 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 				int v = p.toInteger();
 				p.reverse(i,j);
 				dist[v] = 1;
+				maxd = 1;
 			}
 		}
 		int visited = n * (n-1) / 2 + 1;
 		int start = 1;
 		for (byte d = 1; visited < fact; d++) {
-			for ( ; start < fact && dist[start] != 0 && dist[start] < d; start++);
+			for ( ; dist[start] != 0 && dist[start] < d; start++);
 			for (int e = start; e < fact; e++) {
 				if (dist[e] == d) {
 					p = new Permutation(n, e);
@@ -107,18 +108,21 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		}
 	}
 
-
-
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 * @throws IllegalArgumentException if length of the permutations
+	 * is not equal to the
+	 * the permutation length for which this was configured at time
+	 * of construction.
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
-		int n = p1.length();
-		if (p2.length() != n || n != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
+		if (p2.length() != p1.length() || p1.length() != PERM_LENGTH) throw new IllegalArgumentException("This distance measurer is configured for permutations of length " + PERM_LENGTH + " only.");
 		int[] inv1 = p1.getInverse();
-		int[] r2 = new int[n];
-		for (int i = 0; i < n; i++) {
+		int[] r2 = new int[inv1.length];
+		for (int i = 0; i < inv1.length; i++) {
 			r2[i] = inv1[p2.get(i)];
 		}
 		return dist[(new Permutation(r2)).toInteger()];
@@ -126,10 +130,16 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 	
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if length is not equal to the
+	 * the permutation length for which this was configured at time
+	 * of construction.
 	 */
 	@Override
 	public int max(int length) {
-		if (length <= 1) return 0;
+		if (PERM_LENGTH != length) {
+			throw new IllegalArgumentException("This distance measurer was not configured for length: " + length);
+		}
 		return maxd;
 	}
 	

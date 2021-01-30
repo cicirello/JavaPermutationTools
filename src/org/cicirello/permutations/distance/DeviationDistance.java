@@ -1,5 +1,5 @@
 /*
- * Copyright 2008, 2010, 2014, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2008, 2010, 2014, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -42,8 +42,7 @@ import org.cicirello.permutations.Permutation;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12  
- * @since 1.0
+ * @version 1.28.2021
  * 
  */
 public final class DeviationDistance extends AbstractPermutationDistanceMeasurer {
@@ -55,23 +54,24 @@ public final class DeviationDistance extends AbstractPermutationDistanceMeasurer
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
+		
 		int distancePoints = 0;
-		int L1 = p1.length();
-			  
 		int[] invP2 = p2.getInverse(); 
 			  
-		for (int i = 0; i < L1; i++) {
+		for (int i = 0; i < invP2.length; i++) {
 			distancePoints += Math.abs(invP2[p1.get(i)]-i);
 		}
 		return distancePoints;  
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

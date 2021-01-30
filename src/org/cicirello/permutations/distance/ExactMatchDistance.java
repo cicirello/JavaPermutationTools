@@ -1,5 +1,5 @@
 /*
- * Copyright 2008, 2010, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2008, 2010, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,8 +33,7 @@ import org.cicirello.permutations.Permutation;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12  
- * @since 1.0
+ * @version 1.28.2021
  */
 public final class ExactMatchDistance extends AbstractPermutationDistanceMeasurer {
   
@@ -45,12 +44,16 @@ public final class ExactMatchDistance extends AbstractPermutationDistanceMeasure
 	
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		int misMatchPoints = 0;
-		int L = p1.length();
-		for (int i = 0; i < L; i++) {
+		for (int i = 0; i < p1.length(); i++) {
 			if (p1.get(i) != p2.get(i)) {
 				misMatchPoints++;
 			}
@@ -58,9 +61,6 @@ public final class ExactMatchDistance extends AbstractPermutationDistanceMeasure
 		return misMatchPoints; 
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

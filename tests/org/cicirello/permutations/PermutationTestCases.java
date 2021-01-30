@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -25,6 +25,7 @@ import java.util.SplittableRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.math.BigInteger;
+import java.util.NoSuchElementException;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -155,13 +156,41 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testToIntegerExceptions() {
+		UnsupportedOperationException thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> (new Permutation(13)).toInteger()
+		);
+	}
+	
+	@Test
 	public void testPermutationConstructorFromArray() {
 		int[][] arrays = { { 0 }, { 1, 0 }, { 1, 0, 2 }, { 3, 1, 2, 0 } };
+		String[] str = {"0", "1 0", "1 0 2", "3 1 2 0"};
+		int s = 0;
 		for (int[] a : arrays) {
 			Permutation p = new Permutation(a.clone());
 			validatePermutation(p, a.length);
 			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+			assertEquals(str[s], p.toString());
+			s++;
 		}
+		assertEquals("", (new Permutation(0)).toString());
+		final int[] negative = { 1, 4, -1, 0, 3};
+		final int[] tooHigh = { 1, 4, 5, 0, 3};
+		final int[] duplicate = { 1, 4, 2, 1, 3};
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new Permutation(negative)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new Permutation(tooHigh)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new Permutation(duplicate)
+		);
 	}
 	
 	@Test
@@ -173,6 +202,26 @@ public class PermutationTestCases {
 			validatePermutation(p, a.length);
 			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
 		}
+		final int[] negative = { 1, 4, -1, 0, 3};
+		final int[] tooHigh = { 1, 4, 5, 0, 3};
+		final int[] duplicate = { 1, 4, 2, 1, 3};
+		final int[] tooLong = { 1, 2, 4, 5, 0, 3};
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(5)).set(negative)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(5)).set(tooHigh)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(5)).set(duplicate)
+		);
+		assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(5)).set(tooLong)
+		);
 	}
 	
 	@Test
@@ -236,6 +285,7 @@ public class PermutationTestCases {
 				Permutation p = new Permutation(n);
 				Permutation copy = new Permutation(p);
 				assertEquals("copy should create an identical copy", p, copy);
+				assertEquals(p.hashCode(), copy.hashCode());
 			}
 		}
 	}
@@ -248,8 +298,17 @@ public class PermutationTestCases {
 				Permutation copy = p.copy();
 				assertEquals("copy should create an identical copy", p, copy);
 				assertTrue("copy should be a new object", p != copy);
+				assertEquals(p.hashCode(), copy.hashCode());
 			}
 		}
+	}
+	
+	@Test
+	public void testPermutationEqualsSpecialCases() {
+		Permutation p = new Permutation(5);
+		assertTrue(p.equals(p));
+		assertFalse(p.equals(null));
+		assertFalse(p.equals("hello"));
 	}
 	
 	@Test
@@ -353,6 +412,12 @@ public class PermutationTestCases {
 		int[] result = p.toArray(array);
 		assertTrue("Should use the array parameter if correct length", result == array);
 		assertArrayEquals("should be equal to current state", init, result);
+		
+		array = new int[7];
+		result = null;
+		result = p.toArray(array);
+		assertFalse("Should construct new array if the array parameter wrong length", result == array);
+		assertArrayEquals("should be equal to current state", init, result);
 	}
 	
 	@Test
@@ -400,6 +465,14 @@ public class PermutationTestCases {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(3)).get(1,0)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(3)).get(1,0, null)
+		);
 	}
 	
 	@Test
@@ -407,7 +480,6 @@ public class PermutationTestCases {
 		Permutation p = new Permutation(5);
 		for (int i = 0; i < p.length(); i++) {
 			for (int j = 0; j < p.length(); j++) {
-				if (i==j) continue;
 				Permutation copy = new Permutation(p);
 				copy.removeAndInsert(i, j);
 				if (i < j) {
@@ -421,7 +493,7 @@ public class PermutationTestCases {
 					for (int k = j+1; k < p.length(); k++) {
 						assertEquals("elements after insertion point should not change", p.get(k), copy.get(k));
 					}
-				} else {
+				} else if (i > j) {
 					for (int k = 0; k < j; k++) {
 						assertEquals("elements before insertion point should not change", p.get(k), copy.get(k));
 					}
@@ -432,6 +504,8 @@ public class PermutationTestCases {
 					for (int k = i+1; k < p.length(); k++) {
 						assertEquals("elements after removal point should not change", p.get(k), copy.get(k));
 					}
+				} else {
+					assertEquals(p, copy);
 				}
 			}
 		}
@@ -471,6 +545,13 @@ public class PermutationTestCases {
 		mutant = new Permutation(p);
 		mutant.removeAndInsert(7, 2, 1);
 		assertEquals("move 2 earlier", p6, mutant);
+		
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(1, 0, 3);
+		assertEquals(p, mutant);
+		mutant = new Permutation(p);
+		mutant.removeAndInsert(1, 3, 1);
+		assertEquals(p, mutant);
 	}
 	
 	@Test
@@ -496,6 +577,19 @@ public class PermutationTestCases {
 				for (int i = k+1; i < p.length(); i++) {
 					assertEquals("elements after should not change", p.get(i), copy.get(i));
 				}
+				copy = new Permutation(p);
+				copy.reverse(k, j);
+				for (int i = 0; i < j; i++) {
+					assertEquals("elements before should not change", p.get(i), copy.get(i));
+				}
+				shift = 0;
+				for (int i = j; i <= k; i++) {
+					assertEquals("elements should be reversed", p.get(i), copy.get(k-shift));
+					shift++;
+				}
+				for (int i = k+1; i < p.length(); i++) {
+					assertEquals("elements after should not change", p.get(i), copy.get(i));
+				}
 			}
 		}
 	}
@@ -511,11 +605,20 @@ public class PermutationTestCases {
 				assertEquals("elements should be left rotated " + r + " places", p.get(j), copy.get(i));
 			}
 		}
+		Permutation copy = new Permutation(p);
+		copy.rotate(p.length());
+		assertEquals(p, copy);
+		copy = new Permutation(p);
+		copy.rotate(-1);
+		for (int i = 1; i < p.length(); i++) {
+			assertEquals("elements should be RIGHT rotated 1 place", p.get(i-1), copy.get(i));
+		}
+		assertEquals("elements should be RIGHT rotated 1 place", p.get(p.length()-1), copy.get(0));
 	}
 	
 	@Test
 	public void testSwap() {
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			Permutation p = new Permutation(i);
 			Permutation p2 = new Permutation(p);
 			p2.swap(0, i-1);
@@ -525,7 +628,7 @@ public class PermutationTestCases {
 				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
 			}
 		}
-		for (int i = 2; i <= 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			Permutation p = new Permutation(i);
 			Permutation p2 = new Permutation(p);
 			p2.swap(i-1, 0);
@@ -604,6 +707,26 @@ public class PermutationTestCases {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(10)).swapBlocks(-1, 3, 5, 7)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(10)).swapBlocks(3, 2, 5, 7)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(10)).swapBlocks(1, 3, 3, 7)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(10)).swapBlocks(1, 3, 7, 6)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> (new Permutation(10)).swapBlocks(1, 3, 5, 10)
+		);
 	}
 	
 	@Test
@@ -627,6 +750,22 @@ public class PermutationTestCases {
 			}
 			assertEquals("Should iterate over all permutations of given length", fact, count);
 		}
+		final PermutationIterator iter = new PermutationIterator(4);
+		fact = 24;
+		boolean[] found = new boolean[fact];
+		int count = 0;
+		while (iter.hasNext()) {
+			Permutation p = iter.next();
+			int permID = p.toInteger();
+			assertFalse("should not give same permutation more than once", found[permID]);
+			found[permID] = true;
+			count++;
+		}
+		assertEquals("Should iterate over all permutations of given length", fact, count);
+		NoSuchElementException thrown = assertThrows( 
+			NoSuchElementException.class,
+			() -> iter.next()
+		);
 	}
 	
 	@Test
@@ -645,6 +784,12 @@ public class PermutationTestCases {
 				original = new Permutation(p);
 				p.scramble(r2);
 				validatePermutation(p, i);
+				p.scramble(false);
+				validatePermutation(p, i);
+				p.scramble(r1, false);
+				validatePermutation(p, i);
+				p.scramble(r2, false);
+				validatePermutation(p, i);
 				original = new Permutation(p);
 				p.scramble(true);
 				validatePermutation(p, i);
@@ -658,6 +803,73 @@ public class PermutationTestCases {
 				validatePermutation(p, i);
 				if (i > 1) assertNotEquals(original, p);
 			}
+		}
+	}
+	
+	@Test
+	public void testScrambleFromItoJ() {
+		Random r1 = new Random();
+		SplittableRandom r2 = new SplittableRandom();
+		for (int n = 4; n < 8; n++) {
+			Permutation p = new Permutation(n);
+			Permutation original = new Permutation(p);
+			p.scramble(1, n-2);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
+			original = new Permutation(p);
+			p.scramble(1, n-2, r1);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
+			original = new Permutation(p);
+			p.scramble(1, n-2, r2);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
+			original = new Permutation(p);
+			p.scramble(0, n-1);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			original = new Permutation(p);
+			p.scramble(0, n-1, r1);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			original = new Permutation(p);
+			p.scramble(0, n-1, r2);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			original = new Permutation(p);
+			p.scramble(1, 1, r2);
+			assertEquals(original, p);
+			original = new Permutation(p);
+			p.scramble(1, 1, r1);
+			assertEquals(original, p);
+			original = new Permutation(p);
+			p.scramble(1, 1);
+			assertEquals(original, p);
+			
+			original = new Permutation(p);
+			p.scramble(n-2, 1);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
+			original = new Permutation(p);
+			p.scramble(n-2, 1, r1);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
+			original = new Permutation(p);
+			p.scramble(n-2, 1, r2);
+			validatePermutation(p, n);
+			if (n > 1) assertNotEquals(original, p);
+			assertEquals(original.get(0), p.get(0));
+			assertEquals(original.get(n-1), p.get(n-1));
 		}
 	}
 	

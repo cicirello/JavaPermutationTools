@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, 2014, 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2010, 2014, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -44,8 +44,7 @@ import org.cicirello.permutations.Permutation;
  * INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.12 
- * @since 1.0
+ * @version 1.28.2021
  */
 public final class RTypeDistance extends AbstractPermutationDistanceMeasurer {
 	
@@ -56,28 +55,28 @@ public final class RTypeDistance extends AbstractPermutationDistanceMeasurer {
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	@Override
 	public int distance(Permutation p1, Permutation p2) {
+		if (p1.length() != p2.length()) {
+			throw new IllegalArgumentException("Permutations must be the same length");
+		}
 		int countNonSharedEdges = 0;
-		int L1 = p1.length();
-		int L2 = p2.length();
-		if (L1==L2 && L1==0) return 0;
-		int[] successors2 = new int[L2];
-		for (int i = 0; i < L2 - 1; i++) {
+		if (p2.length()==0) return 0;
+		int[] successors2 = new int[p2.length()];
+		for (int i = 0; i < successors2.length - 1; i++) {
 			successors2[p2.get(i)] = p2.get(i+1);
 		}
-		successors2[p2.get(L2-1)] = -1;
+		successors2[p2.get(successors2.length-1)] = -1;
 		
-		for (int i = 0; i < L1 - 1; i++) {
+		for (int i = 0; i < successors2.length - 1; i++) {
 			if (p1.get(i+1) != successors2[p1.get(i)]) countNonSharedEdges++;
 		}
 		return countNonSharedEdges;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;

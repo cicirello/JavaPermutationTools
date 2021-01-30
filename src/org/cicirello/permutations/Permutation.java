@@ -1,5 +1,5 @@
 /*
- * Copyright 2005, 2010, 2014-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005, 2010, 2014-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -38,8 +38,7 @@ import org.cicirello.util.Copyable;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 9.23.2019
- * @since 1.0
+ * @version 1.28.2021
  */
 public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
@@ -777,7 +776,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 			System.arraycopy(permutation, j, temp, 0, i-j);
 			System.arraycopy(permutation, i, permutation, j, size);
 			System.arraycopy(temp, 0, permutation, j+size, i-j);
-		} else if (i < j) {
+		} else { // Condition is implied by above: if (i < j)
 			int[] temp = new int[size];
 			System.arraycopy(permutation, i, temp, 0, size);
 			System.arraycopy(permutation, i+size, permutation, i, j-i);
@@ -828,8 +827,11 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	@Override
 	public String toString() {
 		String permS = "";
-		for (int i : permutation) {
-			permS += (i + " ");   
+		if (permutation.length > 0) {
+			permS += permutation[0];
+			for (int i = 1; i < permutation.length; i++) {
+				permS += " " + permutation[i];
+			}
 		}
 		return permS;
 	}
