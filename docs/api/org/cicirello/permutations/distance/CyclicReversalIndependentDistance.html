@@ -208,7 +208,8 @@ implements <a href="PermutationDistanceMeasurer.html" title="interface in org.ci
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
+ distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 </td>
 </tr>
 </table>
@@ -278,6 +279,8 @@ implements <a href="PermutationDistanceMeasurer.html" title="interface in org.ci
 <dd><code>p2</code> - second permutation</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>distance between p1 and p2</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - if p1.length() is not equal to p2.length().</dd>
 </dl>
 </li>
 </ul>
@@ -289,7 +292,8 @@ implements <a href="PermutationDistanceMeasurer.html" title="interface in org.ci
 <h4>distancef</h4>
 <pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
                               <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</pre>
-<div class="block">Measures the distance between two permutations</div>
+<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
+ distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></code></dd>
@@ -298,6 +302,8 @@ implements <a href="PermutationDistanceMeasurer.html" title="interface in org.ci
 <dd><code>p2</code> - second permutation</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>distance between p1 and p2</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - if p1.length() is not equal to p2.length().</dd>
 </dl>
 </li>
 </ul>
