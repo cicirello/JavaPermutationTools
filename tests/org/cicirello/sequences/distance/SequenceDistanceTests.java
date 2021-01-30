@@ -358,6 +358,80 @@ public class SequenceDistanceTests {
 	}
 	
 	@Test
+	public void testEditDistanceExceptions() {
+		final EditDistance d = new EditDistance(1.5, 1.5, 1.5);
+		UnsupportedOperationException thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new int[1], new int[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new long[1], new long[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new short[1], new short[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new byte[1], new byte[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new double[1], new double[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new float[1], new float[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new boolean[1], new boolean[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new char[1], new char[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new String[1], new String[1])
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance(new ArrayList<String>(), new ArrayList<String>())
+		);
+		thrown = assertThrows( 
+			UnsupportedOperationException.class,
+			() -> d.distance("a", "a")
+		);
+		
+		IllegalArgumentException illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(-1, 0, 0)
+		);
+		illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(0, -1, 0)
+		);
+		illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(0, 0, -1)
+		);
+		illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(-0.01, 0, 0)
+		);
+		illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(0, -0.01, 0)
+		);
+		illegal = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EditDistance(0, 0, -0.01)
+		);
+	}
+	
+	@Test
 	public void testEditDistance() {
 		EditDistance d = new EditDistance(1, 2, 10);
 		identicalSequences(d);
@@ -574,6 +648,12 @@ public class SequenceDistanceTests {
 			assertEquals(45, d.distance(b1,b2));
 			assertEquals(45.0, d.distancef(b1,b2), EPSILON);
 		}
+		EditDistance dist1 = new EditDistance(1.1, 2.0, 2.0);
+		EditDistance dist2 = new EditDistance(2.0, 1.1, 2.0);
+		EditDistance dist3 = new EditDistance(2.0, 2.0, 1.1);
+		assertEquals(1.1, dist1.distancef("a", "ab"), EPSILON);
+		assertEquals(1.1, dist2.distancef("ab", "a"), EPSILON);
+		assertEquals(1.1, dist3.distancef("a", "b"), EPSILON);
 	}
 	
 	@Test
