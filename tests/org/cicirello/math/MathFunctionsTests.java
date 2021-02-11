@@ -82,4 +82,20 @@ public class MathFunctionsTests {
 		assertEquals(logGammaOf2000, MathFunctions.logGamma(2000), EPSILON);
 	}
 	
+	@Test
+	public void testLogGammaExtremes() {
+		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(Double.POSITIVE_INFINITY), EPSILON);
+		assertEquals(Double.NEGATIVE_INFINITY, MathFunctions.logGamma(Double.NEGATIVE_INFINITY), EPSILON);
+		final double HUGE = 2.556348e305;
+		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(HUGE), EPSILON);
+		assertEquals(Double.NEGATIVE_INFINITY, MathFunctions.logGamma(-HUGE), EPSILON);
+		assertEquals(Math.log(2.4163319638582305e-38), MathFunctions.logGamma(-34.1), EPSILON);
+		assertEquals(Math.log(1.3299204362846542e-39), MathFunctions.logGamma(-34.6), EPSILON);
+		assertEquals(1.0e8*(Math.log(1.0e8 + 0.5)-1)+0.4189385332, MathFunctions.logGamma(1.0e8 + 0.5), EPSILON);
+		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(0), EPSILON);
+		assertEquals(Math.log(1.329340388179137), MathFunctions.logGamma(2.5), EPSILON);
+		assertEquals(Math.log(0.94530872048294), MathFunctions.logGamma(-2.5), EPSILON);
+		
+	}
+	
 }
