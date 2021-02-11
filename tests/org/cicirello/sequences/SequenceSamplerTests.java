@@ -428,6 +428,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final int[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		int[] target = new int[4];
+		int[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new int[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -564,6 +577,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final long[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		long[] target = new long[4];
+		long[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new long[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -701,6 +727,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final short[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		short[] target = new short[4];
+		short[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new short[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -837,6 +876,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final byte[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		byte[] target = new byte[4];
+		byte[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new byte[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -973,6 +1025,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final char[] source = { '2', '4', '6', '8' };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		char[] target = new char[4];
+		char[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new char[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -1109,6 +1174,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final double[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		double[] target = new double[4];
+		double[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new double[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -1245,6 +1323,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final float[] source = { 2, 4, 6, 8 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		float[] target = new float[4];
+		float[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new float[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -1390,6 +1481,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(sSame, k, null), k);
 			}
 		}
+		final String source = "abcd";
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		char[] target = new char[4];
+		char[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new char[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
@@ -1529,6 +1633,19 @@ public class SequenceSamplerTests {
 				validateSample(allSame, SequenceSampler.sampleInsertion(allSame, k, null), k);
 			}
 		}
+		final String[] source = { "2", "4", "6", "8" };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> SequenceSampler.sampleInsertion(source, 5, null)
+		);
+		String[] target = new String[4];
+		String[] result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target == result);
+		target = new String[3];
+		result = SequenceSampler.sampleInsertion(source, 4, target);
+		assertEquals(4, result.length);
+		assertTrue(target != result);
 	}
 	
 	@Test
