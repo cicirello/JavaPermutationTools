@@ -59,22 +59,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if the bound is not positive
 	 */
 	public static int nextInt(int bound) {
-		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
-		//Commented out lines handle bound that is a power of 2 as a special case
-		//Seems to only marginally speed computation in special case while adding to cost of
-		//general case.
-		//int b1 = bound - 1;
-		//if ((bound & b1) == 0) return ThreadLocalRandom.current().nextInt() & b1;
-		long product = (long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound;
-		int low31 = (int)product & 0x7fffffff;
-		if (low31 < bound) {
-			int threshold = (0x80000000-bound) % bound;
-			while (low31 < threshold) {
-				product = (long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound;
-				low31 = (int)product & 0x7fffffff;
-			}
-		}
-		return (int)(product >> 31);
+		return nextInt(bound, ThreadLocalRandom.current());
 	}
 	
 	/**
