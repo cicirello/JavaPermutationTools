@@ -92,13 +92,13 @@ public class MathFunctionsTests {
 		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(HUGE), EPSILON);
 		assertEquals(Double.NEGATIVE_INFINITY, MathFunctions.logGamma(-HUGE), EPSILON);
 		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(TOO_NEGATIVE), EPSILON);
+		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(-35.0), EPSILON);
 		assertEquals(Math.log(2.4163319638582305e-38), MathFunctions.logGamma(-34.1), EPSILON);
 		assertEquals(Math.log(1.3299204362846542e-39), MathFunctions.logGamma(-34.6), EPSILON);
 		assertEquals(1.0e8*(Math.log(1.0e8 + 0.5)-1)+0.4189385332, MathFunctions.logGamma(1.0e8 + 0.5), EPSILON);
 		assertEquals(Double.POSITIVE_INFINITY, MathFunctions.logGamma(0), EPSILON);
 		assertEquals(Math.log(1.329340388179137), MathFunctions.logGamma(2.5), EPSILON);
 		assertEquals(Math.log(0.94530872048294), MathFunctions.logGamma(-2.5), EPSILON);
-		
 	}
 	
 }
