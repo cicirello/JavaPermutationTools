@@ -81,7 +81,7 @@ public final class MathFunctions {
 				return Double.POSITIVE_INFINITY;
 			}
 			n = -n; 
-			double p = ((int)n);
+			double p = ((long)n);
 			if (p == n) return Double.POSITIVE_INFINITY;
 			double z = n - p;
 			if (z > 0.5) {
