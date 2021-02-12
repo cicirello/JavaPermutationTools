@@ -119,6 +119,10 @@ public class RandomIndexerSampleTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleReservoir(1, 2, null)
+		);
 	}
 	
 	@Test
@@ -189,6 +193,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH, countH <= 10);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleReservoir(1, 2, null, gen)
+		);
 	}
 	
 	@Test
@@ -259,6 +267,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH, countH <= 10);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleReservoir(1, 2, null, gen)
+		);
 	}
 	
 	@Test
@@ -275,6 +287,10 @@ public class RandomIndexerSampleTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.samplePool(1, 2, null)
+		);
 	}
 	
 	@Test
@@ -346,6 +362,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.samplePool(1, 2, null, gen)
+		);
 	}
 	
 	@Test
@@ -417,6 +437,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.samplePool(1, 2, null, gen)
+		);
 	}
 	
 	@Test
@@ -900,6 +924,10 @@ public class RandomIndexerSampleTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleInsertion(1, 2, null)
+		);
 	}
 	
 	@Test
@@ -971,6 +999,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleInsertion(1, 2, null, gen)
+		);
 	}
 	
 	@Test
@@ -1042,6 +1074,10 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.sampleInsertion(1, 2, null, gen)
+		);
 	}
 	
 	@Test
