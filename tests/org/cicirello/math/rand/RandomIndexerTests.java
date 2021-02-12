@@ -385,6 +385,42 @@ public class RandomIndexerTests {
 	}
 	
 	@Test
+	public void testRandIntLargeBound_Splittable() {
+		SplittableRandom r = new SplittableRandom(42);
+		final int N = 5;
+		final int HIGH_BOUND = 0x40000001;
+		int[] v = new int[N];
+		for (int i = 0; i < N; i++) {
+			int value = RandomIndexer.nextInt(HIGH_BOUND, r);
+			assertTrue(value < HIGH_BOUND);
+			v[i] = value;
+			for (int j = i-1; j >= 0; j--) {
+				// Note that a failure here might be OK, but unlikely 
+				// due to small number of random samples from large bound.
+				assertNotEquals(v[j], value);
+			}
+		}
+	}
+	
+	@Test
+	public void testRandIntLargeBound_Random() {
+		Random r = new Random(42);
+		final int N = 5;
+		final int HIGH_BOUND = 0x40000001;
+		int[] v = new int[N];
+		for (int i = 0; i < N; i++) {
+			int value = RandomIndexer.nextInt(HIGH_BOUND, r);
+			assertTrue(value < HIGH_BOUND);
+			v[i] = value;
+			for (int j = i-1; j >= 0; j--) {
+				// Note that a failure here might be OK, but unlikely 
+				// due to small number of random samples from large bound.
+				assertNotEquals(v[j], value);
+			}
+		}
+	}
+	
+	@Test
 	public void testRandBiasedInt_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 20;
 		for (int i = 1; i <= 13; i++) {
@@ -438,6 +474,34 @@ public class RandomIndexerTests {
 				}
 			}
 		}
+	}
+	
+	@Test
+	public void testExceptions() {
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0, new SplittableRandom())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0, new Random())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0, new SplittableRandom())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0, new Random())
+		);
 	}
 	
 	
