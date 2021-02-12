@@ -89,7 +89,8 @@ public final class MathFunctions {
 				z = p - n;
 			}
 			z = n * Math.sin(z * Math.PI);
-			if (z == 0.0) return Double.POSITIVE_INFINITY;
+			// This check doesn't seem to be necessary given addition of first check in block.
+			// if (z == 0.0) return Double.POSITIVE_INFINITY;
 			// ln(PI)
 			final double LOG_PI = 1.14472988584940017414;
 			return LOG_PI - Math.log(z) - logGamma(n);
