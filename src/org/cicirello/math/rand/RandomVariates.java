@@ -85,7 +85,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale) {
-		return median + internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current()));
+		return median + internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current(), ThreadLocalRandom.current().nextDouble()));
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale) {
-		return internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current()));
+		return internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current(), ThreadLocalRandom.current().nextDouble()));
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale, Random r) {
-		return median + internalNextCauchy(scale, internalNextTransformedU(r));
+		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -117,7 +117,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale, Random r) {
-		return internalNextCauchy(scale, internalNextTransformedU(r));
+		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale, SplittableRandom r) {
-		return median + internalNextCauchy(scale, internalNextTransformedU(r));
+		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -139,7 +139,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale, SplittableRandom r) {
-		return internalNextCauchy(scale, internalNextTransformedU(r));
+		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/*
@@ -183,16 +183,14 @@ public final class RandomVariates {
 	/*
 	 * package-private to facilitate testing.
 	 */
-	static double internalNextTransformedU(Random r) {
-		double u = r.nextDouble();
+	static double internalNextTransformedU(Random r, double u) {
 		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
 	}
 	
 	/*
 	 * package-private to facilitate testing.
 	 */
-	static double internalNextTransformedU(SplittableRandom r) {
-		double u = r.nextDouble();
+	static double internalNextTransformedU(SplittableRandom r, double u) {
 		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
 	}
 }
