@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Refactored the RandomVariates.nextCauchy methods to remove redundancy.
 * Refactored org.cicirello.math.rand.BTPE to remove redundancy.
 * Refactored RandomIndexer.nextInt methods to remove redundancy.
+* Minor optimizations to RandomIndexer.sample methods.
 
 ### Deprecated
 

@@ -615,7 +615,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, ThreadLocalRandom.current());
 			else return samplePool(n, k, result, ThreadLocalRandom.current());
 		} else return sampleReservoir(n, k, result, ThreadLocalRandom.current());
@@ -641,7 +641,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
@@ -667,7 +667,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
