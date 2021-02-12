@@ -35,6 +35,8 @@ import org.cicirello.math.MathFunctions;
  */
 public class RandomVariatesTests {
 	
+	private static double EPSILON = 1e-10;
+	
 	@Test
 	public void testNextBinomialSplittable() {
 		SplittableRandom r = new SplittableRandom(42);
@@ -270,6 +272,33 @@ public class RandomVariatesTests {
 		double chi = chiSquare(buckets);
 		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
 		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+	}
+	
+	@Test
+	public void testNextCauchyHelpersEdgeCase() {
+		SplittableRandom r = new SplittableRandom(53);
+		boolean foundPositive = false;
+		boolean foundNegative = false;
+		for (int i = 0; i < 4; i++) {
+			double u = RandomVariates.internalNextTransformedU(r, 0.5);
+			assertEquals(0.5, Math.abs(u), 0.0);
+			if (u > 0) foundPositive = true;
+			else foundNegative = true;
+		}
+		assertTrue(foundPositive);
+		assertTrue(foundNegative);
+		
+		Random r2 = new Random(53);
+		foundPositive = false;
+		foundNegative = false;
+		for (int i = 0; i < 4; i++) {
+			double u = RandomVariates.internalNextTransformedU(r2, 0.5);
+			assertEquals(0.5, Math.abs(u), 0.0);
+			if (u > 0) foundPositive = true;
+			else foundNegative = true;
+		}
+		assertTrue(foundPositive);
+		assertTrue(foundNegative);
 	}
 	
 	private double chiSquare(int[] buckets) {
