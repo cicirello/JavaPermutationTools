@@ -67,6 +67,10 @@ public class RandomIndexerSampleTests {
 			double ave = 1.0 * sum / TRIALS;
 			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
 		}
+		int[] result = RandomIndexer.sample(4, 0.0, r);
+		assertEquals(0, result.length);
+		result = RandomIndexer.sample(4, 1.0, r);
+		assertEquals(4, result.length);
 	}
 	
 	@Test
@@ -85,6 +89,10 @@ public class RandomIndexerSampleTests {
 			double ave = 1.0 * sum / TRIALS;
 			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
 		}
+		int[] result = RandomIndexer.sample(4, 0.0, r);
+		assertEquals(0, result.length);
+		result = RandomIndexer.sample(4, 1.0, r);
+		assertEquals(4, result.length);
 	}
 	
 	@Test
@@ -103,6 +111,10 @@ public class RandomIndexerSampleTests {
 			//double ave = 1.0 * sum / TRIALS;
 			//assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
 		}
+		int[] result = RandomIndexer.sample(4, 0.0);
+		assertEquals(0, result.length);
+		result = RandomIndexer.sample(4, 1.0);
+		assertEquals(4, result.length);
 	}
 	
 	@Test
@@ -197,6 +209,12 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.sampleReservoir(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.sampleReservoir(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.sampleReservoir(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -271,6 +289,12 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.sampleReservoir(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.sampleReservoir(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.sampleReservoir(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -366,6 +390,12 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.samplePool(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.samplePool(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.samplePool(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -441,11 +471,17 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.samplePool(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.samplePool(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.samplePool(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
 	public void testSample_ThreadLocalRandom() {
-		for (int n = 1; n <= 6; n++) {
+		for (int n = 1; n <= 7; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = null;
 				result = RandomIndexer.sample(n, k, result);
@@ -1003,6 +1039,12 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.sampleInsertion(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.sampleInsertion(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.sampleInsertion(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -1078,6 +1120,12 @@ public class RandomIndexerSampleTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.sampleInsertion(1, 2, null, gen)
 		);
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.sampleInsertion(5, 2, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.sampleInsertion(5, 3, expected, gen);
+		assertTrue(expected != actual);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
