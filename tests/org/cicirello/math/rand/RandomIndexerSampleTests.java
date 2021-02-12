@@ -654,6 +654,13 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be less than " + n, result[0] < n);
 			}
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextIntPair(5, expected);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntPair(5, new int[1]);
+		assertEquals(2, actual.length);
+		
 		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 2; n <= 6; n++) {
 			int countH = 0;
@@ -688,6 +695,13 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be less than " + n, result[2] < n);
 			}
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2]);
+		assertEquals(3, actual.length);
+		
 		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 3; n <= 6; n++) {
 			int countH = 0;
@@ -724,6 +738,13 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be less than " + n, result[2] < n);
 			}
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected, false);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2], false);
+		assertEquals(3, actual.length);
+		
 		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 3; n <= 6; n++) {
 			int countH = 0;
@@ -774,6 +795,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2], gen);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -809,6 +836,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected, false, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2], false, gen);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -843,6 +876,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2], gen);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -878,6 +917,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[3];
+		int[] actual = RandomIndexer.nextIntTriple(5, expected, false, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntTriple(5, new int[2], false, gen);
+		assertEquals(3, actual.length);
 	}
 	
 	@Test
@@ -911,6 +956,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextIntPair(5, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntPair(5, new int[1], gen);
+		assertEquals(2, actual.length);
 	}
 	
 	@Test
@@ -944,6 +995,12 @@ public class RandomIndexerSampleTests {
 			}
 			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextIntPair(5, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextIntPair(5, new int[1], gen);
+		assertEquals(2, actual.length);
 	}
 	
 	@Test
