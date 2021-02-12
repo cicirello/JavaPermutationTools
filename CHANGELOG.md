@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Minor optimizations to ReversalDistance and ReinsertionDistance.
+* Refactored the RandomVariates.nextCauchy methods to remove redundancy.
 
 ### Deprecated
 
