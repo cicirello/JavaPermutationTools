@@ -127,6 +127,34 @@ public class RandomVariatesTests {
 	}
 	
 	@Test
+	public void testNextBinomialLargeN_Splittable() {
+		SplittableRandom r = new SplittableRandom(42);
+		final int N = 1000;
+		for (int i = 0; i < 5; i++) {
+			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
+			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
+			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
+			assertTrue(b01 >= 0 && b01 <= N);
+			assertTrue(b25 >= 0 && b25 <= N);
+			assertTrue(b50 >= 0 && b50 <= N);
+		}
+	}
+	
+	@Test
+	public void testNextBinomialLargeN_Random() {
+		Random r = new Random(42);
+		final int N = 2000;
+		for (int i = 0; i < 5; i++) {
+			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
+			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
+			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
+			assertTrue(b01 >= 0 && b01 <= N);
+			assertTrue(b25 >= 0 && b25 <= N);
+			assertTrue(b50 >= 0 && b50 <= N);
+		}
+	}
+	
+	@Test
 	public void testNextBinomialThreadLocal() {
 		// Since we cannot seed ThreadLocalRandom, this test case is
 		// not 100% replicable.  Additionally, we know that this version of
