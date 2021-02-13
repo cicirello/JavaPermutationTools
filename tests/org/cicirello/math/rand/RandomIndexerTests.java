@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -298,6 +298,32 @@ public class RandomIndexerTests {
 			}
 			double chi = chiSquare(buckets, pa);
 			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+		}
+	}
+	
+	@Test
+	public void testArrayMaskBoundaryCases() {
+		SplittableRandom r1 = new SplittableRandom(42);
+		boolean[] mask = RandomIndexer.arrayMask(10, 1.0, r1);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertTrue(mask[i]);
+		}
+		mask = RandomIndexer.arrayMask(10, 0.0, r1);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertFalse(mask[i]);
+		}
+		Random r2 = new Random(42);
+		mask = RandomIndexer.arrayMask(10, 1.0, r2);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertTrue(mask[i]);
+		}
+		mask = RandomIndexer.arrayMask(10, 0.0, r2);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertFalse(mask[i]);
 		}
 	}
 	

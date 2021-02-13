@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-02-12
+## [Unreleased] - 2021-02-13
 
 ### Added
-* Test cases added to improve test coverage.
 
 ### Changed
 * Minor optimizations to ReversalDistance and ReinsertionDistance.
@@ -24,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed large magnitude negative input case in MathFunctions.logGamma.
 
 ### CI/CD
+* Test cases added to improve test coverage.
 
 
 ## [2.3.0] - 2021-01-30
