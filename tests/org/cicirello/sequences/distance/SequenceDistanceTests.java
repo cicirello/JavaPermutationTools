@@ -436,6 +436,9 @@ public class SequenceDistanceTests {
 		EditDistance d = new EditDistance(1, 2, 10);
 		identicalSequences(d);
 		identicalSequencesD(d);
+		d = new EditDistance(1.0, 2.0, 10.0);
+		identicalSequences(d);
+		identicalSequencesD(d);
 		d = new EditDistance(2, 1, 10);
 		identicalSequences(d);
 		identicalSequencesD(d);
