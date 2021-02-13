@@ -1205,6 +1205,13 @@ public class RandomIndexerSampleTests {
 				assertTrue("integers should be within window w="+w, result[1]-result[0] <= w);
 			}
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextWindowedIntPair(5, 1, expected);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextWindowedIntPair(5, 1, new int[1]);
+		assertEquals(2, actual.length);
+		
 		if (DISABLE_CHI_SQUARE_TESTS) return;
 		for (int n = 2; n <= 7; n++) {
 			for (int w = 1; w < n; w++) {
@@ -1285,6 +1292,12 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 			}
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextWindowedIntPair(5, 1, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextWindowedIntPair(5, 1, new int[1], gen);
+		assertEquals(2, actual.length);
 	}
 	
 	@Test
@@ -1336,6 +1349,12 @@ public class RandomIndexerSampleTests {
 				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
 			}
 		}
+		
+		int[] expected = new int[2];
+		int[] actual = RandomIndexer.nextWindowedIntPair(5, 1, expected, gen);
+		assertTrue(expected == actual);
+		actual = RandomIndexer.nextWindowedIntPair(5, 1, new int[1], gen);
+		assertEquals(2, actual.length);
 	}
 	
 	@Test
