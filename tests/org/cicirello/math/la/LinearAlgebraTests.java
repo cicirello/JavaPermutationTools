@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -47,6 +47,10 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.transposeSquareMatrixInline(new int[1][2])
+		);
 	}
 	
 	@Test
@@ -62,6 +66,10 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.transposeSquareMatrixInline(new double[1][2])
+		);
 	}
 	
 	@Test
@@ -97,6 +105,26 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new int[1][2], new int[2][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new int[1][2], new int[1][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new int[1][1], new int[1][1], new int[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new int[1][1], new int[1][1], new int[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new int[0][0], new int[0][0], new int[1][2])
+		);
 	}
 	
 	@Test
@@ -114,7 +142,7 @@ public class LinearAlgebraTests {
 					}
 				}
 				c = null;
-				c = MatrixOps.sum(a,b,null);
+				c = MatrixOps.sum(a,b);
 				assertEquals("result rows",n, c.length);
 				if (n > 0) assertEquals("result cols", m, c[0].length);
 				for (int i = 0; i < n; i++) {
@@ -132,6 +160,26 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][2], new double[2][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][2], new double[1][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[0][0], new double[0][0], new double[1][2])
+		);
 	}
 	
 	@Test
@@ -151,7 +199,7 @@ public class LinearAlgebraTests {
 					}
 				}
 				c = null;
-				c = MatrixOps.difference(a,b,null);
+				c = MatrixOps.difference(a,b);
 				assertEquals("result rows",n, c.length);
 				if (n > 0) assertEquals("result cols", m, c[0].length);
 				k = 1;
@@ -173,6 +221,26 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new int[1][2], new int[2][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new int[1][2], new int[1][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new int[1][1], new int[1][1], new int[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new int[1][1], new int[1][1], new int[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new int[0][0], new int[0][0], new int[1][2])
+		);
 	}
 	
 	@Test
@@ -192,7 +260,7 @@ public class LinearAlgebraTests {
 					}
 				}
 				c = null;
-				c = MatrixOps.difference(a,b,null);
+				c = MatrixOps.difference(a,b);
 				assertEquals("result rows",n, c.length);
 				if (n > 0) assertEquals("result cols", m, c[0].length);
 				k = 1;
@@ -214,6 +282,26 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new double[1][2], new double[2][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new double[1][2], new double[1][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new double[1][1], new double[1][1], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new double[1][1], new double[1][1], new double[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.difference(new double[0][0], new double[0][0], new double[1][2])
+		);
 	}
 	
 	@Test
@@ -390,6 +478,30 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[1][2], new int[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[0][1], new int[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[1][1], new int[0][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[1][1], new int[1][1], new int[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[1][1], new int[1][1], new int[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new int[0][0], new int[0][0], new int[1][2])
+		);
 	}
 	
 	@Test
@@ -435,6 +547,30 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[1][2], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[0][1], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[1][1], new double[0][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[1][1], new double[1][1], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[1][1], new double[1][1], new double[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.product(new double[0][0], new double[0][0], new double[1][2])
+		);
 	}
 	
 	@Test
