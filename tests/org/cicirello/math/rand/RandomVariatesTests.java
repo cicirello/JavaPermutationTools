@@ -130,7 +130,7 @@ public class RandomVariatesTests {
 	public void testNextBinomialLargeN_Splittable() {
 		SplittableRandom r = new SplittableRandom(42);
 		final int N = 1000;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 20; i++) {
 			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
 			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
 			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
@@ -143,8 +143,8 @@ public class RandomVariatesTests {
 	@Test
 	public void testNextBinomialLargeN_Random() {
 		Random r = new Random(42);
-		final int N = 2000;
-		for (int i = 0; i < 5; i++) {
+		final int N = 3000;
+		for (int i = 0; i < 20; i++) {
 			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
 			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
 			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
