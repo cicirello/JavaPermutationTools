@@ -622,6 +622,13 @@ public class LinearAlgebraTests {
 	}
 	
 	@Test
+	public void testJacobiTooManyIterations() {
+		double[][] A = getSymmetric(5);
+		JacobiDiagonalization jd = new JacobiDiagonalization(A);
+		assertFalse(jd.compute(1));
+	}
+	
+	@Test
 	public void testJacobiInt() {
 		for (int n = 1; n <= 5; n++) {
 			int[][] Aint = getDiagonalInt(n);
