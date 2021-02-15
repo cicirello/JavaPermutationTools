@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -168,6 +168,10 @@ public class StatisticsTests {
 			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
 			assertEquals("covariance of X with itself", 3*4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
 		}	
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> Statistics.covariance(new int[3], new int[4])
+		);
 	}
 	
 	@Test
@@ -192,7 +196,11 @@ public class StatisticsTests {
 			// assumes variance method already tested... uses it in expected result
 			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
 			assertEquals("covariance of X with itself", 3.3*1.4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
-		}	
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> Statistics.covariance(new double[3], new double[4])
+		);		
 	}
 	
 	
@@ -218,6 +226,12 @@ public class StatisticsTests {
 			}
 			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
 		}
+		int[] x = { 2, 2, 2 };
+		int[] y = { 2, 1, 3 };
+		assertEquals(0.0, Statistics.correlation(x, y), 0.0);
+		assertEquals(0.0, Statistics.correlation(y, x), 0.0);
+		int[] z = { 4, 1, 1 };
+		assertEquals(0.0, Statistics.correlation(y, z), 0.0);
 	}
 	
 	@Test
@@ -242,9 +256,116 @@ public class StatisticsTests {
 			}
 			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
 		}
+		double[] x = { 2, 2, 2 };
+		double[] y = { 2, 1, 3 };
+		assertEquals(0.0, Statistics.correlation(x, y), 0.0);
+		assertEquals(0.0, Statistics.correlation(y, x), 0.0);
+		double[] z = { 4, 1, 1 };
+		assertEquals(0.0, Statistics.correlation(y, z), 0.0);
 	}
 	
+	@Test
+	public void testCorrelationMatrixOfInts() {
+		int[][] data = {
+			{2, 1, 3},
+			{6, 3, 9},
+			{4, 1, 1},
+			{2, 3, 1},
+			{4, 6, 2}
+		};
+		double[][] M = Statistics.correlationMatrix(data);
+		assertEquals(data.length, M.length);
+		assertEquals(data.length, M[0].length);
+		double[][] expected = {
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{0.0, 0.0, 1.0, 0.0, 0.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0}
+		};
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M.length; j++) {
+				assertEquals(expected[i][j], M[i][j], EPSILON);
+			}
+		}
+	}
 	
+	@Test
+	public void testCorrelationMatrixOfDoubles() {
+		double[][] data = {
+			{2, 1, 3},
+			{6, 3, 9},
+			{4, 1, 1},
+			{2, 3, 1},
+			{4, 6, 2}
+		};
+		double[][] M = Statistics.correlationMatrix(data);
+		assertEquals(data.length, M.length);
+		assertEquals(data.length, M[0].length);
+		double[][] expected = {
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{0.0, 0.0, 1.0, 0.0, 0.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0}
+		};
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M.length; j++) {
+				assertEquals(expected[i][j], M[i][j], EPSILON);
+			}
+		}
+	}
 	
+	@Test
+	public void testWelchsTTestDoubles() {
+		double[] a1 = {27.5, 21.0, 19.0, 23.6, 17.0, 17.9, 
+			16.9, 20.1, 21.9, 22.6, 23.1, 19.6, 19.0, 21.7, 21.4};
+		double[] a2 = {27.1, 22.0, 20.8, 23.4, 23.4, 23.5, 
+			25.8, 22.0, 24.8, 20.2, 21.9, 22.1, 22.9, 20.5, 24.4};
+		assertEquals(-2.46, Statistics.tTestUnequalVariances(a1, a2), 0.01);
+		assertEquals(2.46, Statistics.tTestUnequalVariances(a2, a1), 0.01);
+		double[] b1 = {17.2, 20.9, 22.6, 18.1, 21.7, 21.4, 23.5, 24.2, 14.7, 21.8};
+		double[] b2 = {21.5, 22.8, 21.0, 23.0, 21.6, 23.6, 22.5, 20.7, 23.4, 21.8, 
+			20.7, 21.7, 21.5, 22.5, 23.6, 21.5, 22.5, 23.5, 21.5, 21.8};
+		assertEquals(-1.57, Statistics.tTestUnequalVariances(b1, b2), 0.01);
+		assertEquals(1.57, Statistics.tTestUnequalVariances(b2, b1), 0.01);
+		
+		Number[] result = Statistics.tTestWelch(a1, a2);
+		assertEquals(-2.46, (Double)result[0], 0.01);
+		assertEquals(24, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(a2, a1);
+		assertEquals(2.46, (Double)result[0], 0.01);
+		assertEquals(24, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b1, b2);
+		assertEquals(-1.57, (Double)result[0], 0.01);
+		assertEquals(9, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b2, b1);
+		assertEquals(1.57, (Double)result[0], 0.01);
+		assertEquals(9, ((Integer)result[1]).intValue());
+	}
 	
+	@Test
+	public void testWelchsTTestInts() {
+		int[] a1 = {2, 4, 7, 1, 8, 10, 11, 6, 2, 9, 1, 23, 12, 0, 7};
+		int[] a2 = {17, 2, 8, 19, 12, 4, 2, 0, 22, 7, 7, 1, 9, 12, 13};
+		assertEquals(-0.9173, Statistics.tTestUnequalVariances(a1, a2), 0.0001);
+		assertEquals(0.9173, Statistics.tTestUnequalVariances(a2, a1), 0.0001);
+		int[] b1 = {2, 4, 7, 1, 8, 10, 11, 6, 2, 9};
+		int[] b2 = {17, 2, 8, 19, 12, 4, 2, 0, 22, 7, 7, 1, 9, 12, 13, 0, 14, 1, 6, 30};
+		assertEquals(-1.5369, Statistics.tTestUnequalVariances(b1, b2), 0.0001);
+		assertEquals(1.5369, Statistics.tTestUnequalVariances(b2, b1), 0.0001);
+		
+		Number[] result = Statistics.tTestWelch(a1, a2);
+		assertEquals(-0.9173, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(a2, a1);
+		assertEquals(0.9173, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b1, b2);
+		assertEquals(-1.5369, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b2, b1);
+		assertEquals(1.5369, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+	}
 }
