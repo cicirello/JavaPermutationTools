@@ -575,7 +575,7 @@ public class LinearAlgebraTests {
 	
 	@Test
 	public void testJacobi() {
-		for (int n = 1; n <= 100; n++) {
+		for (int n = 1; n <= 10; n++) {
 			double[][] A = getDiagonal(n);
 			JacobiDiagonalization jd = new JacobiDiagonalization(A);
 			assertNull(jd.eigenvectors());
@@ -615,6 +615,60 @@ public class LinearAlgebraTests {
 				}
 			}
 		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new JacobiDiagonalization(new double[2][3])
+		);
+	}
+	
+	@Test
+	public void testJacobiInt() {
+		for (int n = 1; n <= 5; n++) {
+			int[][] Aint = getDiagonalInt(n);
+			double[][] A = toDoubleMatrix(Aint, true);
+			JacobiDiagonalization jd = new JacobiDiagonalization(Aint);
+			assertNull(jd.eigenvectors());
+			assertNull(jd.eigenvalues());
+			assertTrue(jd.compute(JacobiDiagonalization.EPSILON));
+			double[][] P = jd.eigenvectors();
+			double[] eig = jd.eigenvalues();
+			double[][] lambda = new double[eig.length][eig.length];
+			for (int i = 0; i < lambda.length; i++) {
+				lambda[i][i] = eig[i];
+			}
+			double[][] left = MatrixOps.product(A, P);
+			double[][] right = MatrixOps.product(P, lambda);
+			assertEquals(left.length, right.length);
+			assertEquals(left[0].length, right[0].length);
+			for (int i = 0; i < left.length; i++) {
+				assertArrayEquals("diagonal already", left[i], right[i], JacobiDiagonalization.EPSILON);
+			}
+			if (n <= 5) {
+				Aint = getSymmetricInt(n);
+				A = toDoubleMatrix(Aint, false);
+				jd = new JacobiDiagonalization(A);
+				assertNull("eigvectors should be null", jd.eigenvectors());
+				assertNull("eigvalues should be null", jd.eigenvalues());
+				assertTrue("should converge", jd.compute(JacobiDiagonalization.MAX_ITERATIONS/10));
+				P = jd.eigenvectors();
+				eig = jd.eigenvalues();
+				lambda = new double[eig.length][eig.length];
+				for (int i = 0; i < lambda.length; i++) {
+					lambda[i][i] = eig[i];
+				}
+				left = MatrixOps.product(A, P);
+				right = MatrixOps.product(P, lambda);
+				assertEquals(left.length, right.length);
+				assertEquals(left[0].length, right[0].length);
+				for (int i = 0; i < left.length; i++) {
+					assertArrayEquals("symmetric: " + n, left[i], right[i], 10*n*JacobiDiagonalization.EPSILON);
+				}
+			}
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new JacobiDiagonalization(new int[2][3])
+		);
 	}
 	
 	private double[][] getSymmetric(int n) {
@@ -629,11 +683,46 @@ public class LinearAlgebraTests {
 		return A;
 	}
 	
+	private int[][] getSymmetricInt(int n) {
+		int[][] A = new int[n][n];
+		Random gen = new Random(42);
+		for (int i = 0; i < n; i++) {
+			A[i][i] = gen.nextInt(2)+1;
+			for (int j = i+1; j < n; j++) {
+				A[i][j] = A[j][i] = gen.nextInt(2)+1;
+			}
+		}
+		return A;
+	}
+	
 	private double[][] getDiagonal(int n) {
 		double[][] A = new double[n][n];
 		Random gen = new Random(42);
 		for (int i = 0; i < n; i++) {
 			A[i][i] = 99*gen.nextDouble() + 1;
+		}
+		return A;
+	}
+	
+	private int[][] getDiagonalInt(int n) {
+		int[][] A = new int[n][n];
+		Random gen = new Random(42);
+		for (int i = 0; i < n; i++) {
+			A[i][i] = gen.nextInt(99) + 1;
+		}
+		return A;
+	}
+	
+	private double[][] toDoubleMatrix(int[][] M, boolean diag) {
+		double[][] A = new double[M.length][M[0].length];
+		for (int i = 0; i < A.length; i++) {
+			if (diag) {
+				A[i][i] = M[i][i];
+			} else {
+				for (int j = 0; j < A[i].length; j++) {
+					A[i][j] = M[i][j];
+				}
+			}
 		}
 		return A;
 	}
