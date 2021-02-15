@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -168,6 +168,10 @@ public class StatisticsTests {
 			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
 			assertEquals("covariance of X with itself", 3*4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
 		}	
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> Statistics.covariance(new int[3], new int[4])
+		);
 	}
 	
 	@Test
@@ -192,7 +196,11 @@ public class StatisticsTests {
 			// assumes variance method already tested... uses it in expected result
 			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
 			assertEquals("covariance of X with itself", 3.3*1.4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
-		}	
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> Statistics.covariance(new double[3], new double[4])
+		);		
 	}
 	
 	
@@ -218,6 +226,12 @@ public class StatisticsTests {
 			}
 			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
 		}
+		int[] x = { 2, 2, 2 };
+		int[] y = { 2, 1, 3 };
+		assertEquals(0.0, Statistics.correlation(x, y), 0.0);
+		assertEquals(0.0, Statistics.correlation(y, x), 0.0);
+		int[] z = { 4, 1, 1 };
+		assertEquals(0.0, Statistics.correlation(y, z), 0.0);
 	}
 	
 	@Test
@@ -242,9 +256,63 @@ public class StatisticsTests {
 			}
 			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
 		}
+		double[] x = { 2, 2, 2 };
+		double[] y = { 2, 1, 3 };
+		assertEquals(0.0, Statistics.correlation(x, y), 0.0);
+		assertEquals(0.0, Statistics.correlation(y, x), 0.0);
+		double[] z = { 4, 1, 1 };
+		assertEquals(0.0, Statistics.correlation(y, z), 0.0);
 	}
 	
+	@Test
+	public void testCorrelationMatrixOfInts() {
+		int[][] data = {
+			{2, 1, 3},
+			{6, 3, 9},
+			{4, 1, 1},
+			{2, 3, 1},
+			{4, 6, 2}
+		};
+		double[][] M = Statistics.correlationMatrix(data);
+		assertEquals(data.length, M.length);
+		assertEquals(data.length, M[0].length);
+		double[][] expected = {
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{0.0, 0.0, 1.0, 0.0, 0.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0}
+		};
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M.length; j++) {
+				assertEquals(expected[i][j], M[i][j], EPSILON);
+			}
+		}
+	}
 	
-	
-	
+	@Test
+	public void testCorrelationMatrixOfDoubles() {
+		double[][] data = {
+			{2, 1, 3},
+			{6, 3, 9},
+			{4, 1, 1},
+			{2, 3, 1},
+			{4, 6, 2}
+		};
+		double[][] M = Statistics.correlationMatrix(data);
+		assertEquals(data.length, M.length);
+		assertEquals(data.length, M[0].length);
+		double[][] expected = {
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{1.0, 1.0, 0.0, -1.0, -1.0},
+			{0.0, 0.0, 1.0, 0.0, 0.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0},
+			{-1.0, -1.0, 0.0, 1.0, 1.0}
+		};
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M.length; j++) {
+				assertEquals(expected[i][j], M[i][j], EPSILON);
+			}
+		}
+	}
 }
