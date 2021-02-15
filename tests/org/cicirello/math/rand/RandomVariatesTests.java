@@ -130,28 +130,48 @@ public class RandomVariatesTests {
 	public void testNextBinomialLargeN_Splittable() {
 		SplittableRandom r = new SplittableRandom(42);
 		final int N = 1000;
-		for (int i = 0; i < 20; i++) {
+		final int K = 20;
+		int t01 = 0;
+		int t25 = 0;
+		int t50 = 0;
+		for (int i = 0; i < K; i++) {
 			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
 			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
 			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
 			assertTrue(b01 >= 0 && b01 <= N);
 			assertTrue(b25 >= 0 && b25 <= N);
 			assertTrue(b50 >= 0 && b50 <= N);
+			t01 += b01;
+			t25 += b25;
+			t50 += b50;
 		}
+		assertTrue(Math.abs(N*0.5 - 1.0*t50/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.25 - 1.0*t25/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.01 - 1.0*t01/K) <= N*0.125);
 	}
 	
 	@Test
 	public void testNextBinomialLargeN_Random() {
 		Random r = new Random(42);
 		final int N = 3000;
-		for (int i = 0; i < 20; i++) {
+		final int K = 20;
+		int t01 = 0;
+		int t25 = 0;
+		int t50 = 0;
+		for (int i = 0; i < K; i++) {
 			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
 			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
 			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
 			assertTrue(b01 >= 0 && b01 <= N);
 			assertTrue(b25 >= 0 && b25 <= N);
 			assertTrue(b50 >= 0 && b50 <= N);
+			t01 += b01;
+			t25 += b25;
+			t50 += b50;
 		}
+		assertTrue(Math.abs(N*0.5 - 1.0*t50/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.25 - 1.0*t25/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.01 - 1.0*t01/K) <= N*0.125);
 	}
 	
 	@Test
