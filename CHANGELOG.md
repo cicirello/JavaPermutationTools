@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed but in JacobiDiagonalization in case when default epsilon is not used.
 
 ### CI/CD
-* Added test cases added to improve test coverage to 100%.
+* Added test cases to improve test coverage to 100%.
 
 
 ## [2.3.0] - 2021-01-30
