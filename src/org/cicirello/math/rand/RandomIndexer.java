@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,8 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 8.29.2019
- * @since 1.4
+ * @version 2.13.2021
  *
  */
 public final class RandomIndexer {
@@ -59,22 +58,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if the bound is not positive
 	 */
 	public static int nextInt(int bound) {
-		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
-		//Commented out lines handle bound that is a power of 2 as a special case
-		//Seems to only marginally speed computation in special case while adding to cost of
-		//general case.
-		//int b1 = bound - 1;
-		//if ((bound & b1) == 0) return ThreadLocalRandom.current().nextInt() & b1;
-		long product = (long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound;
-		int low31 = (int)product & 0x7fffffff;
-		if (low31 < bound) {
-			int threshold = (0x80000000-bound) % bound;
-			while (low31 < threshold) {
-				product = (long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound;
-				low31 = (int)product & 0x7fffffff;
-			}
-		}
-		return (int)(product >> 31);
+		return nextInt(bound, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -544,16 +528,7 @@ public final class RandomIndexer {
 	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p) {
-		if (p <= 0) {
-			return new int[0];
-		} else if (p >= 1) {
-			int[] result = new int[n];
-			for (int i = 0; i < n; i++) result[i] = i;
-			return result;
-		} else {
-			Random r = ThreadLocalRandom.current();
-			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
-		}
+		return sample(n, p, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -630,7 +605,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, ThreadLocalRandom.current());
 			else return samplePool(n, k, result, ThreadLocalRandom.current());
 		} else return sampleReservoir(n, k, result, ThreadLocalRandom.current());
@@ -656,7 +631,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result, SplittableRandom gen) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
@@ -682,7 +657,7 @@ public final class RandomIndexer {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public static int[] sample(int n, int k, int[] result, Random gen) {
-		if (2 * k < n) {
+		if (k + k < n) {
 			if (k * k < n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
@@ -705,13 +680,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result) {
-		if (result == null || result.length < 2) result = new int[2];
-		result[0] = nextInt(n);
-		result[1] = nextInt(n-1);
-		if (result[1] >= result[0]) {
-			result[1]++;
-		} 
-		return result;
+		return nextIntPair(n, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -780,12 +749,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result) {
-		if (result == null || result.length < 3) result = new int[3];
-		result[0] = nextInt(n);
-		result[1] = nextInt(n-1);
-		result[2] = nextInt(n-2);
-		adjustTriple(result);
-		return result;
+		return nextIntTriple(n, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -806,13 +770,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort) {
-		if (result == null || result.length < 3) result = new int[3];
-		result[0] = nextInt(n);
-		result[1] = nextInt(n-1);
-		result[2] = nextInt(n-2);
-		if (sort) adjustSortTriple(result);
-		else adjustTriple(result);
-		return result;
+		return nextIntTriple(n, result, sort, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -976,16 +934,7 @@ public final class RandomIndexer {
 	 * @return An array of n boolean values, exactly k of which are equal to true.
 	 */
 	public static boolean[] arrayMask(int n, int k) {
-		boolean[] result = new boolean[n];
-		if (k >= n) {
-			for (int i = 0; i < n; i++) result[i] = true;
-		} else if (k > 0) {
-			int[] indexes = sample(n, k, null, ThreadLocalRandom.current());
-			for (int i = 0; i < k; i++) {
-				result[indexes[i]] = true;
-			}
-		}
-		return result;
+		return arrayMask(n, k, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1120,14 +1069,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result) {
-		if (window >= n - 1) return nextIntPair(n, result);
-		if (result == null || result.length < 2) result = new int[2];
-		final int z1 = n - window;
-		final int z2 = 2*z1;
-		int i = nextInt(z2 + window - 1);
-		int j = nextInt(window);
-		setAndAdjustWindowedPair(result, i, j, z1, z2);
-		return result;
+		return nextWindowedIntPair(n, window, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1150,7 +1092,7 @@ public final class RandomIndexer {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
 		if (result == null || result.length < 2) result = new int[2];
 		final int z1 = n - window;
-		final int z2 = 2*z1;
+		final int z2 = z1 + z1;
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
 		setAndAdjustWindowedPair(result, i, j, z1, z2);
@@ -1177,7 +1119,7 @@ public final class RandomIndexer {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
 		if (result == null || result.length < 2) result = new int[2];
 		final int z1 = n - window;
-		final int z2 = 2*z1;
+		final int z2 = z1 + z1;
 		int i = nextInt(z2 + window - 1, gen);
 		int j = nextInt(window, gen);
 		setAndAdjustWindowedPair(result, i, j, z1, z2);
@@ -1205,15 +1147,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result) {
-		if (window >= n - 1) return nextIntTriple(n, result);
-		if (result == null || result.length < 3) result = new int[3];
-		final int z1 = n - window;
-		final int z3 = 3*z1;
-		int i = nextInt(z3 + window - 2);
-		int j = nextInt(window);
-		int k = nextInt(window - 1);
-		setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
-		return result;
+		return nextWindowedIntTriple(n, window, result, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1239,16 +1173,7 @@ public final class RandomIndexer {
 	 * @since 2.0
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
-		if (window >= n - 1) return nextIntTriple(n, result, sort);
-		if (result == null || result.length < 3) result = new int[3];
-		final int z1 = n - window;
-		final int z3 = 3*z1;
-		int i = nextInt(z3 + window - 2);
-		int j = nextInt(window);
-		int k = nextInt(window - 1);
-		if (sort) sortSetAndAdjustWindowedTriple(result, i, j, k, z1, z3);
-		else setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
-		return result;
+		return nextWindowedIntTriple(n, window, result, sort, ThreadLocalRandom.current());
 	}
 	
 	/**

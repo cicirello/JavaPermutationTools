@@ -101,10 +101,15 @@ public final class ReinsertionDistance extends AbstractPermutationDistanceMeasur
 		for (int i = 0; i < n; i++) {
 			int j = match[i];
 			int k = binSearch(thresh, j, 0, maxK+1);
-			if (j < thresh[k]) {
-				thresh[k] = j;
-				if (k > maxK) maxK = k;
-			}
+			// This check is unnecessary in permutation case.
+			// Keep in comments since in the implemented algorithm 
+			// for the general case for strings (i.e., repeated elements).
+			// For permutations, j will never equal thresh[k], and in general
+			// will never be greater than thresh[k].
+			//if (j < thresh[k]) { 
+			thresh[k] = j;
+			if (k > maxK) maxK = k;
+			//}
 		}
 		return maxK;
 	}

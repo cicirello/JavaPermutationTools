@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -26,8 +26,7 @@ package org.cicirello.math;
  * MathFunctions is a class of utility methods that implement various mathematical functions.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 8.22.2019
- * @since 2.0
+ * @version 2.12.2021
  *
  */
 public final class MathFunctions {
@@ -75,8 +74,14 @@ public final class MathFunctions {
 			// input parameter is too large to calculate function
 			return Double.NEGATIVE_INFINITY;
 		} else if (n < -34.0) {
+			if (n < -4.5035996273704955e15) {
+				// inputs lower than this are essentially negative integers
+				// due to precision of floating-point numbers.
+				// This is the smallest negative double with an ulp less than 1.
+				return Double.POSITIVE_INFINITY;
+			}
 			n = -n; 
-			double p = ((int)n);
+			double p = ((long)n);
 			if (p == n) return Double.POSITIVE_INFINITY;
 			double z = n - p;
 			if (z > 0.5) {
@@ -84,7 +89,8 @@ public final class MathFunctions {
 				z = p - n;
 			}
 			z = n * Math.sin(z * Math.PI);
-			if (z == 0.0) return Double.POSITIVE_INFINITY;
+			// This check doesn't seem to be necessary given addition of first check in block.
+			// if (z == 0.0) return Double.POSITIVE_INFINITY;
 			// ln(PI)
 			final double LOG_PI = 1.14472988584940017414;
 			return LOG_PI - Math.log(z) - logGamma(n);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -302,6 +302,32 @@ public class RandomIndexerTests {
 	}
 	
 	@Test
+	public void testArrayMaskBoundaryCases() {
+		SplittableRandom r1 = new SplittableRandom(42);
+		boolean[] mask = RandomIndexer.arrayMask(10, 1.0, r1);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertTrue(mask[i]);
+		}
+		mask = RandomIndexer.arrayMask(10, 0.0, r1);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertFalse(mask[i]);
+		}
+		Random r2 = new Random(42);
+		mask = RandomIndexer.arrayMask(10, 1.0, r2);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertTrue(mask[i]);
+		}
+		mask = RandomIndexer.arrayMask(10, 0.0, r2);
+		assertEquals(10, mask.length);
+		for (int i = 0; i < mask.length; i++) {
+			assertFalse(mask[i]);
+		}
+	}
+	
+	@Test
 	public void testRandInt_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 100;
 		double[] limit95 = {
@@ -385,6 +411,42 @@ public class RandomIndexerTests {
 	}
 	
 	@Test
+	public void testRandIntLargeBound_Splittable() {
+		SplittableRandom r = new SplittableRandom(42);
+		final int N = 5;
+		final int HIGH_BOUND = 0x40000001;
+		int[] v = new int[N];
+		for (int i = 0; i < N; i++) {
+			int value = RandomIndexer.nextInt(HIGH_BOUND, r);
+			assertTrue(value < HIGH_BOUND);
+			v[i] = value;
+			for (int j = i-1; j >= 0; j--) {
+				// Note that a failure here might be OK, but unlikely 
+				// due to small number of random samples from large bound.
+				assertNotEquals(v[j], value);
+			}
+		}
+	}
+	
+	@Test
+	public void testRandIntLargeBound_Random() {
+		Random r = new Random(42);
+		final int N = 5;
+		final int HIGH_BOUND = 0x40000001;
+		int[] v = new int[N];
+		for (int i = 0; i < N; i++) {
+			int value = RandomIndexer.nextInt(HIGH_BOUND, r);
+			assertTrue(value < HIGH_BOUND);
+			v[i] = value;
+			for (int j = i-1; j >= 0; j--) {
+				// Note that a failure here might be OK, but unlikely 
+				// due to small number of random samples from large bound.
+				assertNotEquals(v[j], value);
+			}
+		}
+	}
+	
+	@Test
 	public void testRandBiasedInt_ThreadLocalRandom() {
 		final int REPS_PER_BUCKET = 20;
 		for (int i = 1; i <= 13; i++) {
@@ -438,6 +500,34 @@ public class RandomIndexerTests {
 				}
 			}
 		}
+	}
+	
+	@Test
+	public void testExceptions() {
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0, new SplittableRandom())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextInt(0, new Random())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0, new SplittableRandom())
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> RandomIndexer.nextBiasedInt(0, new Random())
+		);
 	}
 	
 	

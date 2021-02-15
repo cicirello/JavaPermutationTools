@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -47,9 +47,7 @@ import java.util.Random;
  * one instance of BTPE per thread using ThreadLocal.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 9.4.2019
- * @since 2.0
- *
+ * @version 2.12.2021
  */
 final class BTPE {
 	
@@ -61,14 +59,7 @@ final class BTPE {
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
 	public static int nextBinomial(int n, double p, Random generator) {
-		BTPE btpe = tl.get();
-		if (btpe == null) {
-			btpe = new BTPE(n, p);
-			tl.set(btpe);
-		} else if (btpe.n != n || btpe.p != p) {
-			btpe.init(n, p);
-		}
-		return btpe.next(generator);
+		return threadLocalInstance(n, p).next(generator);
 	}
 	
 	/**
@@ -79,6 +70,18 @@ final class BTPE {
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
 	public static int nextBinomial(int n, double p, SplittableRandom generator) {
+		return threadLocalInstance(n, p).next(generator);
+	}
+	
+	// We cache constants until n or p changes.  We use ThreadLocal for
+	// cache so that we are thread safe.  Each thread has its own cache.
+	private static final ThreadLocal<BTPE> tl = new ThreadLocal<BTPE>();
+	
+	/*
+	 * Private helper to handle getting the thread local instance of BTPE,
+	 * initializing if necessary, and generating if it doesn't already exist.
+	 */
+	private static BTPE threadLocalInstance(int n, double p) {
 		BTPE btpe = tl.get();
 		if (btpe == null) {
 			btpe = new BTPE(n, p);
@@ -86,12 +89,8 @@ final class BTPE {
 		} else if (btpe.n != n || btpe.p != p) {
 			btpe.init(n, p);
 		}
-		return btpe.next(generator);
+		return btpe;
 	}
-	
-	// We cache constants until n or p changes.  We use ThreadLocal for
-	// cache so that we are thread safe.  Each thread has its own cache.
-	private static final ThreadLocal<BTPE> tl = new ThreadLocal<BTPE>();
 	
 	// Variables for caching constants that only change when n or p changes.
 	// Constant cache for BTPE and simple inverse based approach

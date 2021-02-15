@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,8 +27,7 @@ package org.cicirello.math.la;
  * represented as 2-D Java arrays.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>  
- * @version 1.19.5.16
- * @since 1.3
+ * @version 2.13.2021
  */
 public final class MatrixOps {
 	
@@ -38,7 +37,8 @@ public final class MatrixOps {
 	/**
 	 * Transpose a square matrix inline.
 	 * @param matrix the matrix to transpose, with result replacing contents of matrix.
-	 * @return The matrix is returned for convenience for passing to other methods requiring a matrix as parameter.  It is the same
+	 * @return The matrix is returned for convenience for passing to other 
+	 * methods requiring a matrix as parameter.  It is the same
 	 *         object reference that was passed as a parameter.
 	 */
 	public static int[][] transposeSquareMatrixInline(int[][] matrix) {
@@ -237,7 +237,7 @@ public final class MatrixOps {
 	public static int[][] product(int[][] A, int[][] B, int[][] C) {
 		if (A.length == 0 && B.length > 0 || A.length > 0 && B.length == 0) {
 			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
-		} else if (A.length == 0 && B.length == 0) {
+		} else if (A.length == 0) {
 			if (C==null) return new int[0][0];
 			else if (C.length==0) return C;
 			else throw new IllegalArgumentException("C's dimensions are inconsistent with A and B.");
@@ -269,7 +269,7 @@ public final class MatrixOps {
 	public static double[][] product(double[][] A, double[][] B, double[][] C) {
 		if (A.length == 0 && B.length > 0 || A.length > 0 && B.length == 0) {
 			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
-		} else if (A.length == 0 && B.length == 0) {
+		} else if (A.length == 0) {
 			if (C==null) return new double[0][0];
 			else if (C.length==0) return C;
 			else throw new IllegalArgumentException("C's dimensions are inconsistent with A and B.");

@@ -85,36 +85,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = ThreadLocalRandom.current().nextDouble();
-		if (u == 0.5 && ThreadLocalRandom.current().nextBoolean()) {
-			u = -0.5;
-		}
-		return median + scale * StrictMath.tan(StrictMath.PI * u);
+		return median + internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current(), ThreadLocalRandom.current().nextDouble()));
 	}
 	
 	/**
@@ -124,36 +95,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = ThreadLocalRandom.current().nextDouble();
-		if (u == 0.5 && ThreadLocalRandom.current().nextBoolean()) {
-			u = -0.5;
-		}
-		return scale * StrictMath.tan(StrictMath.PI * u);
+		return internalNextCauchy(scale, internalNextTransformedU(ThreadLocalRandom.current(), ThreadLocalRandom.current().nextDouble()));
 	}
 	
 	/**
@@ -164,36 +106,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale, Random r) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = r.nextDouble();
-		if (u == 0.5 && r.nextBoolean()) {
-			u = -0.5;
-		}
-		return median + scale * StrictMath.tan(StrictMath.PI * u);
+		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -204,36 +117,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale, Random r) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = r.nextDouble();
-		if (u == 0.5 && r.nextBoolean()) {
-			u = -0.5;
-		}
-		return scale * StrictMath.tan(StrictMath.PI * u);
+		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -244,36 +128,7 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double median, double scale, SplittableRandom r) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = r.nextDouble();
-		if (u == 0.5 && r.nextBoolean()) {
-			u = -0.5;
-		}
-		return median + scale * StrictMath.tan(StrictMath.PI * u);
+		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
 	/**
@@ -284,36 +139,58 @@ public final class RandomVariates {
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
 	public static double nextCauchy(double scale, SplittableRandom r) {
-		// Inverse Method:
-		//      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
-		// where u is uniformly random from the interval [0, 1].
-		// However, since tan goes through one complete cycle every PI,
-		// we can replace it with: median + scale * tan(PI * u), going from
-		// 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
-		// as far as generating a random Cauchy variate is concerned, but saves
-		// one arithmetic operation.  
-		//     At first glance, it may appear as if we might be
-		// doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
-		// random numbers are generated from [0, 1), so that right endpoint will never
-		// be sampled.
-		//     We have one special case to consider.  When u==0.5, we have tan(PI/2),
-		// which is undefined.  In the limit, however, tan(PI/2) is infinity.
-		// We could map this to the constant for infinity.  However, this would introduce
-		// a very slight bias in favor of positive results since our interval considers
-		// from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
-		// comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
-		// is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
-		// leads to a positive result relative to the number of values that lead to negative results.
-		//     We handle this in the following way.  First, when u==0.5, we generate a 
-		// random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
-		// map to the constants for positive and negative infinity from the Double class, we
-		// pass these along to the tan method and let it do its thing numerically, which is
-		// a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
-		double u = r.nextDouble();
-		if (u == 0.5 && r.nextBoolean()) {
-			u = -0.5;
-		}
+		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
+	}
+	
+	/*
+	 * INTERNAL METHODS FOR nextCauchy start here.
+	 *
+	 * Inverse Method:
+	 *      Mathematically, it should be: median + scale * tan(PI * (u - 0.5)),
+	 * where u is uniformly random from the interval [0, 1].
+	 * However, since tan goes through one complete cycle every PI,
+	 * we can replace it with: median + scale * tan(PI * u), going from
+	 * 0 to PI, rather than from -PI/2 to PI/2.  This is equivalent
+	 * as far as generating a random Cauchy variate is concerned, but saves
+	 * one arithmetic operation.  
+	 *     At first glance, it may appear as if we might be
+	 * doubly sampling u == 0 since tan(0)==tan(PI), however, our uniform
+	 * random numbers are generated from [0, 1), so that right endpoint will never
+	 * be sampled.
+	 *     We have one special case to consider.  When u==0.5, we have tan(PI/2),
+	 * which is undefined.  In the limit, however, tan(PI/2) is infinity.
+	 * We could map this to the constant for infinity.  However, this would introduce
+	 * a very slight bias in favor of positive results since our interval considers
+	 * from tan(0) through tan(PI-epsilon), which doesn't include tan(-PI/2), though it 
+	 * comes close since tan(PI/2+epsilon)==tan(-PI/2+epsilon).  In the limit, tan(-PI/2)
+	 * is -infinity.  So mapping tan(PI/2) to infinity would result in one extra value that
+	 * leads to a positive result relative to the number of values that lead to negative results.
+	 *     We handle this in the following way.  First, when u==0.5, we generate a 
+	 * random boolean to control whether u==0.5 means PI/2 or -PI/2.  Second, rather than
+	 * map to the constants for positive and negative infinity from the Double class, we
+	 * pass these along to the tan method and let it do its thing numerically, which is
+	 * a value around 1.6ish * 10 to the power 16 (and negative of that in the case of -PI/2).
+	 *
+	 */
+	 
+	/*
+	 * package-private to facilitate testing.
+	 */
+	static double internalNextCauchy(double scale, double u) {
 		return scale * StrictMath.tan(StrictMath.PI * u);
 	}
 	
+	/*
+	 * package-private to facilitate testing.
+	 */
+	static double internalNextTransformedU(Random r, double u) {
+		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
+	}
+	
+	/*
+	 * package-private to facilitate testing.
+	 */
+	static double internalNextTransformedU(SplittableRandom r, double u) {
+		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
+	}
 }

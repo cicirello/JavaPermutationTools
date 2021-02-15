@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -34,6 +34,8 @@ import org.cicirello.math.MathFunctions;
  * JUnit 4 tests for the methods of the RandomVariates class.
  */
 public class RandomVariatesTests {
+	
+	private static double EPSILON = 1e-10;
 	
 	@Test
 	public void testNextBinomialSplittable() {
@@ -122,6 +124,54 @@ public class RandomVariatesTests {
 				assertTrue("n="+n+" p="+p+ " chi="+chi, chi <= critV);
 			}
 		}
+	}
+	
+	@Test
+	public void testNextBinomialLargeN_Splittable() {
+		SplittableRandom r = new SplittableRandom(42);
+		final int N = 1000;
+		final int K = 20;
+		int t01 = 0;
+		int t25 = 0;
+		int t50 = 0;
+		for (int i = 0; i < K; i++) {
+			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
+			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
+			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
+			assertTrue(b01 >= 0 && b01 <= N);
+			assertTrue(b25 >= 0 && b25 <= N);
+			assertTrue(b50 >= 0 && b50 <= N);
+			t01 += b01;
+			t25 += b25;
+			t50 += b50;
+		}
+		assertTrue(Math.abs(N*0.5 - 1.0*t50/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.25 - 1.0*t25/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.01 - 1.0*t01/K) <= N*0.125);
+	}
+	
+	@Test
+	public void testNextBinomialLargeN_Random() {
+		Random r = new Random(42);
+		final int N = 3000;
+		final int K = 20;
+		int t01 = 0;
+		int t25 = 0;
+		int t50 = 0;
+		for (int i = 0; i < K; i++) {
+			int b01 = RandomVariates.nextBinomial(N, 0.01, r);
+			int b25 = RandomVariates.nextBinomial(N, 0.25, r);
+			int b50 = RandomVariates.nextBinomial(N, 0.5, r);
+			assertTrue(b01 >= 0 && b01 <= N);
+			assertTrue(b25 >= 0 && b25 <= N);
+			assertTrue(b50 >= 0 && b50 <= N);
+			t01 += b01;
+			t25 += b25;
+			t50 += b50;
+		}
+		assertTrue(Math.abs(N*0.5 - 1.0*t50/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.25 - 1.0*t25/K) <= N*0.125);
+		assertTrue(Math.abs(N*0.01 - 1.0*t01/K) <= N*0.125);
 	}
 	
 	@Test
@@ -270,6 +320,33 @@ public class RandomVariatesTests {
 		double chi = chiSquare(buckets);
 		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
 		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+	}
+	
+	@Test
+	public void testNextCauchyHelpersEdgeCase() {
+		SplittableRandom r = new SplittableRandom(53);
+		boolean foundPositive = false;
+		boolean foundNegative = false;
+		for (int i = 0; i < 4; i++) {
+			double u = RandomVariates.internalNextTransformedU(r, 0.5);
+			assertEquals(0.5, Math.abs(u), 0.0);
+			if (u > 0) foundPositive = true;
+			else foundNegative = true;
+		}
+		assertTrue(foundPositive);
+		assertTrue(foundNegative);
+		
+		Random r2 = new Random(53);
+		foundPositive = false;
+		foundNegative = false;
+		for (int i = 0; i < 4; i++) {
+			double u = RandomVariates.internalNextTransformedU(r2, 0.5);
+			assertEquals(0.5, Math.abs(u), 0.0);
+			if (u > 0) foundPositive = true;
+			else foundNegative = true;
+		}
+		assertTrue(foundPositive);
+		assertTrue(foundNegative);
 	}
 	
 	private double chiSquare(int[] buckets) {

@@ -21,6 +21,7 @@
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
+import java.util.Arrays;
 
 /**
 * Reversal Distance:
@@ -47,7 +48,7 @@ import org.cicirello.permutations.Permutation;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 1.29.2021
+* @version 2.11.2021
 */
 public final class ReversalDistance extends AbstractPermutationDistanceMeasurer {
 
@@ -75,6 +76,8 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		maxd = 0;
 		for (int i = 2; i <= n; i++) fact *= i;
 		dist = new byte[fact];
+		final byte BYTE_MAX = 0x7f;
+		Arrays.fill(dist, BYTE_MAX);
 		Permutation p = new Permutation(n,0);
 		for (int i = 0; i < n-1; i++) {
 			for (int j = i+1; j < n; j++) {
@@ -88,7 +91,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 		int visited = n * (n-1) / 2 + 1;
 		int start = 1;
 		for (byte d = 1; visited < fact; d++) {
-			for ( ; dist[start] != 0 && dist[start] < d; start++);
+			for ( ; dist[start] < d; start++);
 			for (int e = start; e < fact; e++) {
 				if (dist[e] == d) {
 					p = new Permutation(n, e);
@@ -97,7 +100,7 @@ public final class ReversalDistance extends AbstractPermutationDistanceMeasurer 
 							p.reverse(i,j);
 							int v = p.toInteger();
 							p.reverse(i,j);
-							if (v > 0 && dist[v]==0) {
+							if (v > 0 && dist[v]==BYTE_MAX) {
 								maxd = dist[v] = (byte)(d + 1);
 								visited++;
 							}

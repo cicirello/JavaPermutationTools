@@ -4,19 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-02-05
+## [Unreleased] - 2021-02-13
 
 ### Added
 
 ### Changed
+* Minor optimizations to ReversalDistance and ReinsertionDistance.
+* Refactored the RandomVariates.nextCauchy methods to remove redundancy.
+* Refactored org.cicirello.math.rand.BTPE to remove redundancy.
+* Refactored various methods of RandomIndexer to remove redundancy.
+* Minor optimizations to RandomIndexer.sample methods.
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+* Fixed large magnitude negative input case in MathFunctions.logGamma.
 
 ### CI/CD
+* Test cases added to improve test coverage.
 
 
 ## [2.3.0] - 2021-01-30

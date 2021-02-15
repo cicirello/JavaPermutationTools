@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -26,8 +26,7 @@ package org.cicirello.math.la;
  * This class uses Jacobi iteration to compute the eigenvalues and eigenvectors of a symmetric matrix, provided as a 2-D Java array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>  
- * @version 1.18.7.1
- * @since 1.3
+ * @version 2.15.2021
  */
 public class JacobiDiagonalization {
 	
@@ -150,7 +149,7 @@ public class JacobiDiagonalization {
 			for (int j = 0; j < N; j++) {
 				if (i==j) continue;
 				double absAij = Math.abs(a[i][j]);
-				if (absAij > 0 && absAij < EPSILON) {
+				if (absAij > 0 && absAij < epsilon) {
 					// zero out any small entries
 					absAij = a[i][j] = 0.0;
 				}
@@ -175,11 +174,13 @@ public class JacobiDiagonalization {
 			}
 			return true;
 		}
+		/* This appears to be an impossibility, so I'm removing it.
 		// If a_pq is small, simply set entry to 0 and don't rotate.
 		if (a_pq < epsilon) {
 			a[p][q] = 0;
 			return false;
 		}
+		*/
 		// compute some values
 		double f = -a_pq;
 		double g = 0.5*(a[p][p]-a[q][q]);
