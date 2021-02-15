@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 * Fixed large magnitude negative input case in MathFunctions.logGamma.
+* Fixed but in JacobiDiagonalization in case when default epsilon is not used.
 
 ### CI/CD
 * Test cases added to improve test coverage.
