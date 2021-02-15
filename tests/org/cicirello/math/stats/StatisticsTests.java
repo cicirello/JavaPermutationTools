@@ -343,4 +343,29 @@ public class StatisticsTests {
 		assertEquals(1.57, (Double)result[0], 0.01);
 		assertEquals(9, ((Integer)result[1]).intValue());
 	}
+	
+	@Test
+	public void testWelchsTTestInts() {
+		int[] a1 = {2, 4, 7, 1, 8, 10, 11, 6, 2, 9, 1, 23, 12, 0, 7};
+		int[] a2 = {17, 2, 8, 19, 12, 4, 2, 0, 22, 7, 7, 1, 9, 12, 13};
+		assertEquals(-0.9173, Statistics.tTestUnequalVariances(a1, a2), 0.0001);
+		assertEquals(0.9173, Statistics.tTestUnequalVariances(a2, a1), 0.0001);
+		int[] b1 = {2, 4, 7, 1, 8, 10, 11, 6, 2, 9};
+		int[] b2 = {17, 2, 8, 19, 12, 4, 2, 0, 22, 7, 7, 1, 9, 12, 13, 0, 14, 1, 6, 30};
+		assertEquals(-1.5369, Statistics.tTestUnequalVariances(b1, b2), 0.0001);
+		assertEquals(1.5369, Statistics.tTestUnequalVariances(b2, b1), 0.0001);
+		
+		Number[] result = Statistics.tTestWelch(a1, a2);
+		assertEquals(-0.9173, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(a2, a1);
+		assertEquals(0.9173, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b1, b2);
+		assertEquals(-1.5369, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+		result = Statistics.tTestWelch(b2, b1);
+		assertEquals(1.5369, (Double)result[0], 0.0001);
+		assertEquals(27, ((Integer)result[1]).intValue());
+	}
 }
