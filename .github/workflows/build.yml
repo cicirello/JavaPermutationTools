@@ -23,9 +23,10 @@ jobs:
 
     - name: Generate Jacoco Badge
       id: jacoco
-      uses: cicirello/jacoco-badge-generator@v2.0.0
+      uses: cicirello/jacoco-badge-generator@development
       with:
         generate-branches-badge: true
+        badges-directory: badges
 
     - name: Log coverage percentage
       run: |
