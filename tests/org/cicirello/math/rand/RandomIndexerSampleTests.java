@@ -1439,6 +1439,17 @@ public class RandomIndexerSampleTests {
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
 		
+		// Make sure sorting covers all cases:
+		{
+			for (int i = 0; i < 15; i++) {
+				int[] result = RandomIndexer.nextWindowedIntTriple(3, 2, null, true, gen);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals(0, result[0]);
+				assertEquals(1, result[1]);
+				assertEquals(2, result[2]);
+			}
+		}
+		
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
