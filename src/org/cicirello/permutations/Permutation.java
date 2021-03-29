@@ -649,6 +649,30 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	}
 	
 	/**
+	 * Creates a permutation cycle from a sequence of permutation
+	 * indexes. Let p1 be the permutation before the call to cycle,
+	 * and let p2 be the permutation after the call to cycle.  For i
+	 * from 1 to indexes.length - 1, 
+	 * p2.get(indexes[i-1])==p1.get(indexes[i]); 
+	 * and p2.get(indexes[indexes.length - 1])==p1.get(indexes[0]).
+	 * Note that passing an array containing two indexes to this method
+	 * is equivalent to a {@link #swap}, and passing fewer than 2 indexes
+	 * does nothing.
+	 * @param indexes an array of indexes into the permutation.
+	 * @throws ArrayIndexOutOfBoundsException if there exists any indexes[i]
+	 * &ge; this.length() or indexes[i] &lt; 0.
+	 */
+	public void cycle(int[] indexes) {
+		if (indexes.length > 1) {
+			int temp = permutation[indexes[0]];
+			for (int i = 1; i < indexes.length; i++) {
+				permutation[indexes[i-1]] = permutation[indexes[i]];
+			}
+			permutation[indexes[indexes.length-1]] = temp;
+		}
+	}
+	
+	/**
 	 * Swaps 2 non-overlapping blocks, where a block is a subsequence.
 	 * @param a Starting index of first block.
 	 * @param b Ending index, inclusive, of first block.
