@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-03-29
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### CI/CD
+
+
+## [2.5.0] - 2021-03-29
+
+### Added
 * New methods added to the Permutation class.
     * The cycle method creates a permutation cycle.
     * Multiple variations of a scramble(int[] indexes) method that 
@@ -17,12 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Minor code improvements in Permutation class (e.g., refactoring to 
   reduce duplicated code, and some minor code optimizations).
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 ### CI/CD
 * Started using CodeQL code scanning on all push/pull-request events.
