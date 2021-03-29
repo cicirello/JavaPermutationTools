@@ -542,6 +542,75 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	}
 	
 	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes, SplittableRandom r) {
+		if (indexes.length > 1) {
+			boolean changed = false;
+			for (int j = indexes.length-1; j > 1; j--) {
+				int i = RandomIndexer.nextInt(j+1, r);
+				if (i != j) {
+					swap(indexes[i],indexes[j]);
+					changed = true;
+				}
+			}
+			if (!changed || r.nextBoolean()) {
+				swap(indexes[0],indexes[1]);
+			}
+		}
+	}
+	
+	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes, Random r) {
+		if (indexes.length > 1) {
+			boolean changed = false;
+			for (int j = indexes.length-1; j > 1; j--) {
+				int i = RandomIndexer.nextInt(j+1, r);
+				if (i != j) {
+					swap(indexes[i],indexes[j]);
+					changed = true;
+				}
+			}
+			if (!changed || r.nextBoolean()) {
+				swap(indexes[0],indexes[1]);
+			}
+		}
+	}
+	
+	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes) {
+		scramble(indexes, ThreadLocalRandom.current());
+	}
+	
+	/**
 	 * Retrieves the i'th integer of the permutation.
 	 * @param i the index of the integer to retrieve.
 	 * (precondition: 0 &le; i &lt; length())

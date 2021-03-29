@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * New methods added to the Permutation class.
     * The cycle method creates a permutation cycle.
+    * Multiple variations of a scramble(int[] indexes) method that 
+      randomizes the elements indicated by the array of indexes. The
+      variations of this method correspond to the different random number
+      generators supported by the library.
 
 ### Changed
 
