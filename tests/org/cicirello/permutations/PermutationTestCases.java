@@ -617,8 +617,304 @@ public class PermutationTestCases {
 	}
 	
 	@Test
+	public void testCycle() {
+		// 2-cycles
+		int[] indexes = new int[2];
+		for (int i = 1; i <= 5; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			indexes[0] = 0;
+			indexes[1] = i-1;
+			p2.cycle(indexes);
+			assertEquals("case: endpoint swap", p.get(0), p2.get(i-1));
+			assertEquals("case: endpoint swap", p.get(i-1), p2.get(0));
+			for (int j = 1; j < i-1; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+		}
+		for (int i = 1; i <= 5; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			indexes[1] = 0;
+			indexes[0] = i-1;
+			p2.cycle(indexes);
+			assertEquals("case: endpoint swap", p.get(0), p2.get(i-1));
+			assertEquals("case: endpoint swap", p.get(i-1), p2.get(0));
+			for (int j = 1; j < i-1; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+		}
+		for (int i = 4; i <= 6; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			indexes[0] = (i-1)/2;
+			indexes[1] = indexes[0]+1;
+			p2.cycle(indexes);
+			assertEquals("case: interior swap", p.get(indexes[0]), p2.get(indexes[1]));
+			assertEquals("case: interior swap", p.get(indexes[1]), p2.get(indexes[0]));
+			for (int j = 0; j < indexes[0]; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+			for (int j = indexes[1]+1; j < i; j++) {
+				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
+			}
+		}
+		// 3-cycles
+		indexes = new int[3];
+		for (int i = 3; i <= 6; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			indexes[0] = 0;
+			indexes[1] = i/2;
+			indexes[2] = i-1;
+			boolean[] inCycle = new boolean[i];
+			inCycle[indexes[0]] = inCycle[indexes[1]] = inCycle[indexes[2]] = true;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+			p2 = new Permutation(p);
+			indexes[0] = 0;
+			indexes[1] = i-1;
+			indexes[2] = i/2;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+			p2 = new Permutation(p);
+			indexes[0] = i/2;
+			indexes[1] = 0;
+			indexes[2] = i-1;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+			p2 = new Permutation(p);
+			indexes[0] = i/2;
+			indexes[1] = i-1;
+			indexes[2] = 0;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+			p2 = new Permutation(p);
+			indexes[0] = i-1;
+			indexes[1] = 0;
+			indexes[2] = i/2;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+			p2 = new Permutation(p);
+			indexes[0] = i-1;
+			indexes[1] = i/2;
+			indexes[2] = 0;
+			p2.cycle(indexes);
+			assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
+			assertEquals(p.get(indexes[2]), p2.get(indexes[1]));
+			assertEquals(p.get(indexes[0]), p2.get(indexes[2]));
+			for (int j = 0; j < i; j++) {
+				// verify that non-cycle positions didn't change
+				if (!inCycle[j]) {
+					assertEquals(p.get(j), p2.get(j));
+				}
+			}
+		}
+		// 1 cycle and 0-cycle
+		int[] indexes1 = {0};
+		int[] indexes0 = {};
+		for (int i = 1; i <= 4; i++) {
+			Permutation p = new Permutation(i);
+			Permutation p2 = new Permutation(p);
+			p2.cycle(indexes1);
+			assertEquals(p, p2);
+			p2.cycle(indexes0);
+			assertEquals(p, p2);
+		}
+	}
+	
+	@Test
+	public void testNoncontiguousScramble() {
+		Random r1 = new Random(42);
+		SplittableRandom r2 = new SplittableRandom(42);
+		// Verify does nothing if permutation length < 2.
+		Permutation p = new Permutation(1);
+		int[] indexes = {0};
+		for (int i = 0; i < 5; i++) {
+			p.scramble(indexes, r2);
+			assertEquals(0, p.get(0));
+			p.scramble(indexes, r1);
+			assertEquals(0, p.get(0));
+			p.scramble(indexes);
+			assertEquals(0, p.get(0));
+		}
+		// 2 indexes
+		indexes = new int[2];
+		for (int n = 2; n <= 5; n++) {
+			indexes[0] = n-1;
+			indexes[1] = 0;
+			boolean[] shouldChange = new boolean[n];
+			shouldChange[indexes[0]] = shouldChange[indexes[1]] = true;
+			p = new Permutation(n, 0);
+			Permutation p0 = new Permutation(p);
+			p.scramble(indexes, r2);
+			assertEquals(0, p.get(n-1));
+			assertEquals(n-1, p.get(0));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes, r1);
+			assertEquals(0, p.get(n-1));
+			assertEquals(n-1, p.get(0));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes);
+			assertEquals(0, p.get(n-1));
+			assertEquals(n-1, p.get(0));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+		}
+		for (int n = 4; n <= 6; n++) {
+			indexes[0] = (n-1)/2;
+			indexes[1] = indexes[0]+1;
+			boolean[] shouldChange = new boolean[n];
+			shouldChange[indexes[0]] = shouldChange[indexes[1]] = true;
+			p = new Permutation(n, 0);
+			Permutation p0 = new Permutation(p);
+			p.scramble(indexes, r2);
+			assertEquals(p0.get(indexes[1]), p.get(indexes[0]));
+			assertEquals(p0.get(indexes[0]), p.get(indexes[1]));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes, r1);
+			assertEquals(p0.get(indexes[1]), p.get(indexes[0]));
+			assertEquals(p0.get(indexes[0]), p.get(indexes[1]));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes);
+			assertEquals(p0.get(indexes[1]), p.get(indexes[0]));
+			assertEquals(p0.get(indexes[0]), p.get(indexes[1]));
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				}
+			}
+		}
+		// 3 indexes
+		indexes = new int[3];
+		for (int n = 3; n <= 8; n++) {
+			indexes[0] = n-1;
+			indexes[1] = 0;
+			indexes[2] = n/2;
+			boolean[] shouldChange = new boolean[n];
+			shouldChange[indexes[0]] = shouldChange[indexes[1]] = shouldChange[indexes[2]] = true;
+			p = new Permutation(n, 0);
+			Permutation p0 = new Permutation(p);
+			p.scramble(indexes, r2);
+			assertTrue(p0.get(indexes[0])!=p.get(indexes[0])
+				|| p0.get(indexes[1])!=p.get(indexes[1])
+				|| p0.get(indexes[2])!=p.get(indexes[2])
+			);
+			int[] foundInScramble = new int[n];
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				} else {
+					foundInScramble[p.get(i)]++;
+					foundInScramble[p0.get(i)]--;
+				}
+			}
+			for (int i = 0; i < n; i++) {
+				assertEquals(0, foundInScramble[i]);
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes, r1);
+			assertTrue(p0.get(indexes[0])!=p.get(indexes[0])
+				|| p0.get(indexes[1])!=p.get(indexes[1])
+				|| p0.get(indexes[2])!=p.get(indexes[2])
+			);
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				} else {
+					foundInScramble[p.get(i)]++;
+					foundInScramble[p0.get(i)]--;
+				}
+			}
+			for (int i = 0; i < n; i++) {
+				assertEquals(0, foundInScramble[i]);
+			}
+			p = new Permutation(n, 0);
+			p.scramble(indexes);
+			assertTrue(p0.get(indexes[0])!=p.get(indexes[0])
+				|| p0.get(indexes[1])!=p.get(indexes[1])
+				|| p0.get(indexes[2])!=p.get(indexes[2])
+			);
+			for (int i = 0; i < n; i++) {
+				if (!shouldChange[i]) {
+					assertEquals(p0.get(i), p.get(i));
+				} else {
+					foundInScramble[p.get(i)]++;
+					foundInScramble[p0.get(i)]--;
+				}
+			}
+			for (int i = 0; i < n; i++) {
+				assertEquals(0, foundInScramble[i]);
+			}
+		}
+	}
+	
+	@Test
 	public void testSwap() {
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 5; i++) {
 			Permutation p = new Permutation(i);
 			Permutation p2 = new Permutation(p);
 			p2.swap(0, i-1);
@@ -628,7 +924,7 @@ public class PermutationTestCases {
 				assertEquals("non swapped elements should not change", p.get(j), p2.get(j));
 			}
 		}
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 5; i++) {
 			Permutation p = new Permutation(i);
 			Permutation p2 = new Permutation(p);
 			p2.swap(i-1, 0);

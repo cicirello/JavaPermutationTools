@@ -1136,6 +1136,7 @@ public class SequenceDistanceTests {
 		KendallTauSequenceDistance d = new KendallTauSequenceDistance(true);
 		identicalSequences(d);
 		helperForKendallTauCases(d);
+		helperForKendallTauBooleans(d);
 	}
 	
 	@Test
@@ -1143,6 +1144,21 @@ public class SequenceDistanceTests {
 		KendallTauSequenceDistance d = new KendallTauSequenceDistance(false);
 		identicalSequences(d);
 		helperForKendallTauCases(d);
+		helperForKendallTauBooleans(d);
+	}
+	
+	private void helperForKendallTauBooleans(KendallTauSequenceDistance d) {
+		boolean[] allFalse1 = new boolean[5];
+		boolean[] allFalse2 = new boolean[5];
+		boolean[] allTrue1 = { true, true, true, true, true };
+		boolean[] allTrue2 = { true, true, true, true, true };
+		assertEquals(0, d.distance(allFalse1, allFalse2));
+		assertEquals(0, d.distance(allTrue1, allTrue2));
+		boolean[] allButOne1 = { true, true, true, true, false };
+		boolean[] allButOne2 = { false, true, true, true, true };
+		assertEquals(4, d.distance(allButOne1, allButOne2));
+		assertEquals(0, d.distance(allButOne1, allButOne1));
+		assertEquals(0, d.distance(allButOne2, allButOne2));
 	}
 	
 	private void helperForKendallTauCases(KendallTauSequenceDistance d) {

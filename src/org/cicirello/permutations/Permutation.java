@@ -38,7 +38,7 @@ import org.cicirello.util.Copyable;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 1.28.2021
+ * @version 3.29.2021
  */
 public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
@@ -117,7 +117,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	*
 	* @param n The length of the permutation.
 	* @param value The integer value of the permutation in the interval: 0..(n!-1).
-	* @since 1.2.5
 	*/
 	public Permutation(int n, BigInteger value) {
 		permutation = new int[n];
@@ -250,7 +249,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	* the runtime is dominated by the cost of the primitive operations: O(N^2).</p>
 	*
 	* @return a mixed radix representation of the permutation
-	* @since 1.2.5
 	*/
 	public BigInteger toBigInteger() {
 		int N = permutation.length;
@@ -291,7 +289,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 *
 	 * @return The inverse of the permutation, such that for all i,
 	 * this.get(i) == j iff inverse.get(j) == i. 
-	 * @since 1.3
 	 */
 	public Permutation getInversePermutation() {
 		return new Permutation(getInverse(), false);
@@ -301,7 +298,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * Inverts the Permutation, such that if p1 is the Permutation immediately
 	 * prior to the call to invert, and if p2 is the Permutation immediately after
 	 * the call to invert, then p1.get(i) == j iff p2.get(j) == i, for all i, j.
-	 * @since 1.3
 	 */
 	public void invert() {
 		int[] inverse = getInverse();
@@ -314,22 +310,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * the source of efficient random number generation.
 	 */
 	public void scramble() {
-		if (permutation.length > 0) {
-			// Since we're scrambling entire permutation, just generate a new
-			// permutation of integers in [0, n).
-			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
-			// last complete paragraph.
-			permutation[0] = 0;
-			for (int i = 1; i < permutation.length; i++) {
-				int j = RandomIndexer.nextInt(i+1);
-				if (j == i) {
-					permutation[i] = i;
-				} else {
-					permutation[i] = permutation[j];
-					permutation[j] = i;
-				}			
-			}
-		}
+		scramble(ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -385,24 +366,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * 
 	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
 	 * guarantees that the result is a different permutation than it was originally.
-	 * @since 1.4
 	 */
 	public void scramble(boolean guaranteeDifferent) {
-		if (guaranteeDifferent) {
-			boolean changed = false;
-			for (int i = permutation.length - 1; i > 1; i--) {
-				int j = RandomIndexer.nextInt(i+1);
-				if (i != j) {
-					swap(i,j);
-					changed = true;
-				}
-			}
-			if (permutation.length > 1 && (!changed || ThreadLocalRandom.current().nextBoolean())) {
-				swap(0,1);
-			}
-		} else {
-			scramble();
-		}
+		scramble(ThreadLocalRandom.current(), guaranteeDifferent);
 	}
 	
 	/**
@@ -411,7 +377,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param r a source of randomness.
 	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
 	 * guarantees that the result is a different permutation than it was originally.
-	 * @since 1.4
 	 */
 	public void scramble(Random r, boolean guaranteeDifferent) {
 		if (guaranteeDifferent) {
@@ -437,7 +402,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param r a source of randomness.
 	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
 	 * guarantees that the result is a different permutation than it was originally.
-	 * @since 1.4
 	 */
 	public void scramble(SplittableRandom r, boolean guaranteeDifferent) {
 		if (guaranteeDifferent) {
@@ -469,23 +433,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void scramble(int i, int j) {
-		if (i==j) { return; }
-		if (i > j) {
-			int temp = i;
-			i = j;
-			j = temp;
-		}
-		boolean changed = false;
-		for (int k = j; k > i + 1; k--) {
-			int l = i + RandomIndexer.nextInt(k-i+1);
-			if (l != k) {
-				swap(l,k);
-				changed = true;
-			}
-		}
-		if (!changed || ThreadLocalRandom.current().nextBoolean()) {
-			swap(i,i+1);
-		}
+		scramble(i, j, ThreadLocalRandom.current());
 	}
 		
 	/**
@@ -549,6 +497,74 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	}
 	
 	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes, SplittableRandom r) {
+		if (indexes.length > 1) {
+			boolean changed = false;
+			for (int j = indexes.length-1; j > 1; j--) {
+				int i = RandomIndexer.nextInt(j+1, r);
+				if (i != j) {
+					swap(indexes[i],indexes[j]);
+					changed = true;
+				}
+			}
+			if (!changed || r.nextBoolean()) {
+				swap(indexes[0],indexes[1]);
+			}
+		}
+	}
+	
+	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @param r source of randomness
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes, Random r) {
+		if (indexes.length > 1) {
+			boolean changed = false;
+			for (int j = indexes.length-1; j > 1; j--) {
+				int i = RandomIndexer.nextInt(j+1, r);
+				if (i != j) {
+					swap(indexes[i],indexes[j]);
+					changed = true;
+				}
+			}
+			if (!changed || r.nextBoolean()) {
+				swap(indexes[0],indexes[1]);
+			}
+		}
+	}
+	
+	/**
+	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
+	 * are at least 2 different indexes passed to this method, it is guaranteed to 
+	 * change the Permutation.
+	 * @param indexes An array of indexes into the permutation. This method assumes
+	 * that the indexes are valid indexes into the permutation.  That is, it assumes
+	 * that 0 &le; indexes[i] &lt; this.length().
+	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
+	 * greater than or equal to this.length().
+	 */
+	public void scramble(int[] indexes) {
+		scramble(indexes, ThreadLocalRandom.current());
+	}
+	
+	/**
 	 * Retrieves the i'th integer of the permutation.
 	 * @param i the index of the integer to retrieve.
 	 * (precondition: 0 &le; i &lt; length())
@@ -567,7 +583,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @return An array containing the permutation elements from positions i through j, inclusive.
 	 * @throws IllegalArgumentException if j &lt; i
 	 * @throws IndexOutOfBoundsException if i is negative, or j &ge; Permutation.length()
-	 * @since 2.0
 	 */
 	public int[] get(int i, int j) {
 		if (j < i) throw new IllegalArgumentException("j must not be less than i");
@@ -585,7 +600,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @return The array containing the permutation elements from positions i through j, inclusive.
 	 * @throws IllegalArgumentException if j &lt; i
 	 * @throws IndexOutOfBoundsException if i is negative, or j &ge; Permutation.length()
-	 * @since 2.0
 	 */
 	public int[] get(int i, int j, int[] array) {
 		if (j < i) throw new IllegalArgumentException("j must not be less than i");
@@ -606,7 +620,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @return an int array containing the Permutation elements in the same order that they appear in
 	 * the Permutation.
 	 *
-	 * @since 1.3
 	 */
 	public int[] toArray() {
 		return permutation.clone();
@@ -624,7 +637,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @return an int array containing the Permutation elements in the same order that they appear in
 	 * the Permutation.
 	 *
-	 * @since 1.5
 	 */
 	public int[] toArray(int[] array) {
 		if (array == null || array.length != permutation.length) {
@@ -653,10 +665,33 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void swap(int i, int j) {
-		if (i==j) return;
 		int temp = permutation[i];
 		permutation[i] = permutation[j];
 		permutation[j] = temp;
+	}
+	
+	/**
+	 * Creates a permutation cycle from a sequence of permutation
+	 * indexes. Let p1 be the permutation before the call to cycle,
+	 * and let p2 be the permutation after the call to cycle.  For i
+	 * from 1 to indexes.length - 1, 
+	 * p2.get(indexes[i-1])==p1.get(indexes[i]); 
+	 * and p2.get(indexes[indexes.length - 1])==p1.get(indexes[0]).
+	 * Note that passing an array containing two indexes to this method
+	 * is equivalent to a {@link #swap}, and passing fewer than 2 indexes
+	 * does nothing.
+	 * @param indexes an array of indexes into the permutation.
+	 * @throws ArrayIndexOutOfBoundsException if there exists any indexes[i]
+	 * &ge; this.length() or indexes[i] &lt; 0.
+	 */
+	public void cycle(int[] indexes) {
+		if (indexes.length > 1) {
+			int temp = permutation[indexes[0]];
+			for (int i = 1; i < indexes.length; i++) {
+				permutation[indexes[i-1]] = permutation[indexes[i]];
+			}
+			permutation[indexes[indexes.length-1]] = temp;
+		}
 	}
 	
 	/**
@@ -667,7 +702,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param j Ending index, inclusive, of second block.
 	 * @throws IllegalArgumentException if the following constraint is violated:
 	 * 0 &le; a &le; b &lt; i &le; j &lt; length().
-	 * @since 2.0
 	 */
 	public void swapBlocks(int a, int b, int i, int j) {
 		if (a < 0 || b < a || i <= b || j < i || j >= permutation.length) {
@@ -789,9 +823,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 *
 	 * @param p An array of integers. Each of the integers in the interval [0, p.length) 
 	 * must occur exactly one time each.
-	 * @throws IllegalArgumentException if p either contains duplicates, or contains any negative elements, 
-	 *         or contains any elements equal or greater than p.length.
-	 * @since 1.2.5
+	 * @throws IllegalArgumentException if p either contains duplicates, 
+	 * or contains any negative elements, 
+	 * or contains any elements equal or greater than p.length.
 	 */
 	public void set(int[] p) {
 		if (p.length != permutation.length) {
@@ -807,12 +841,14 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	}
 	
 	/**
-	 * Returns an Iterator over all Permutations the length of this Permutation.  Iteration begins at this Permutation.
+	 * Returns an Iterator over all Permutations the 
+	 * length of this Permutation.  Iteration begins at this Permutation.
 	 * This Iterator does not iterate over the integers within the Permutation.
-	 * If you do need to iterate over all permutations of a given length, then this method is much more efficient than
-	 * using the {@link #Permutation(int,int)} constructor repeatedly incrementing the value passed for the second parameter.
+	 * If you do need to iterate over all permutations 
+	 * of a given length, then this method is much more efficient than
+	 * using the {@link #Permutation(int,int)} constructor 
+	 * repeatedly incrementing the value passed for the second parameter.
 	 * 
-	 * @since 1.2
 	 * @return an Iterator
 	 */
 	@Override
@@ -898,8 +934,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
 	 *
 	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
-	 * @version 1.19.5.13
-	 * @since 1.3
+	 * @version 3.29.2021
 	 */
 	public static class Mechanic {
 		
@@ -951,7 +986,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 		 * @param index The index for the start of the new elements.
 		 * @param subpermutation The new elements, which are copied into the permutation beginning
 		 * at position index of the permutation.
-		 * @since 2.0
 		 */
 		protected final void set(Permutation p, int index, int[] subpermutation) {
 			System.arraycopy(subpermutation, 0, p.permutation, index, subpermutation.length);
