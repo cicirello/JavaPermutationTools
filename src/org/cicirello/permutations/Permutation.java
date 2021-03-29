@@ -310,22 +310,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * the source of efficient random number generation.
 	 */
 	public void scramble() {
-		if (permutation.length > 0) {
-			// Since we're scrambling entire permutation, just generate a new
-			// permutation of integers in [0, n).
-			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
-			// last complete paragraph.
-			permutation[0] = 0;
-			for (int i = 1; i < permutation.length; i++) {
-				int j = RandomIndexer.nextInt(i+1);
-				if (j == i) {
-					permutation[i] = i;
-				} else {
-					permutation[i] = permutation[j];
-					permutation[j] = i;
-				}			
-			}
-		}
+		scramble(ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -383,21 +368,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * guarantees that the result is a different permutation than it was originally.
 	 */
 	public void scramble(boolean guaranteeDifferent) {
-		if (guaranteeDifferent) {
-			boolean changed = false;
-			for (int i = permutation.length - 1; i > 1; i--) {
-				int j = RandomIndexer.nextInt(i+1);
-				if (i != j) {
-					swap(i,j);
-					changed = true;
-				}
-			}
-			if (permutation.length > 1 && (!changed || ThreadLocalRandom.current().nextBoolean())) {
-				swap(0,1);
-			}
-		} else {
-			scramble();
-		}
+		scramble(ThreadLocalRandom.current(), guaranteeDifferent);
 	}
 	
 	/**
