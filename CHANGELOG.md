@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       generators supported by the library.
 
 ### Changed
+* Minor code improvements in Permutation class (e.g., refactoring to 
+  reduce duplicated code, and some minor code optimizations).
 
 ### Deprecated
 
