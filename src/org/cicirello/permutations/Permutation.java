@@ -557,7 +557,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param indexes An array of indexes into the permutation. This method assumes
 	 * that the indexes are valid indexes into the permutation.  That is, it assumes
 	 * that 0 &le; indexes[i] &lt; this.length().
-	 * @param r source of randomness
 	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
 	 * greater than or equal to this.length().
 	 */
