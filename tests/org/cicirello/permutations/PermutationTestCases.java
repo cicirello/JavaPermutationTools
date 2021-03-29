@@ -850,7 +850,7 @@ public class PermutationTestCases {
 		}
 		// 3 indexes
 		indexes = new int[3];
-		for (int n = 3; n <= 6; n++) {
+		for (int n = 3; n <= 8; n++) {
 			indexes[0] = n-1;
 			indexes[1] = 0;
 			indexes[2] = n/2;

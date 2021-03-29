@@ -1441,7 +1441,7 @@ public class RandomIndexerSampleTests {
 		
 		// Make sure sorting covers all cases:
 		{
-			for (int i = 0; i < 15; i++) {
+			for (int i = 0; i < 18; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(3, 2, null, true, gen);
 				assertEquals("Length of result should be 3", 3, result.length);
 				assertEquals(0, result[0]);
