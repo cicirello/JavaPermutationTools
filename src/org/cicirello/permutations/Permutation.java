@@ -433,23 +433,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void scramble(int i, int j) {
-		if (i==j) { return; }
-		if (i > j) {
-			int temp = i;
-			i = j;
-			j = temp;
-		}
-		boolean changed = false;
-		for (int k = j; k > i + 1; k--) {
-			int l = i + RandomIndexer.nextInt(k-i+1);
-			if (l != k) {
-				swap(l,k);
-				changed = true;
-			}
-		}
-		if (!changed || ThreadLocalRandom.current().nextBoolean()) {
-			swap(i,i+1);
-		}
+		scramble(i, j, ThreadLocalRandom.current());
 	}
 		
 	/**
@@ -682,7 +666,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * or if either i or j are greater than or equal to length()
 	 */
 	public void swap(int i, int j) {
-		if (i==j) return;
 		int temp = permutation[i];
 		permutation[i] = permutation[j];
 		permutation[j] = temp;
