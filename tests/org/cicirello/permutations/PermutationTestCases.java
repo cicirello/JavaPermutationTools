@@ -237,6 +237,9 @@ public class PermutationTestCases {
 			public void testSet(Permutation p, int i, int[] a) {
 				set(p, i, a);
 			}
+			public void testSet(Permutation p, int[] s, int from, int to, int numElements) {
+				set(p, s, from, to, numElements);
+			}
 		}
 		MyMech test = new MyMech();
 		
@@ -273,6 +276,42 @@ public class PermutationTestCases {
 				assertEquals("checking changed elements", change[i], p.get(start+i));
 			}
 			for (int i = start + change.length; i < a.length; i++) {
+				assertEquals("elements after end should not change", a[i], p.get(i));
+			}
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a.length, 0);
+			test.testSet(p, a.clone(), 0, 0, a.length); 
+			validatePermutation(p, a.length);
+			for (int i = 0; i < a.length; i++) assertEquals("elements should be in same order", a[i], p.get(i));
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a);
+			int[] change = a.length > 2 ? new int[] {7, 5} : new int[] {7};
+			int start = a.length > 1 ? 1 : 0;
+			test.testSet(p, change, 0, start, change.length);
+			for (int i = 0; i < start; i++) {
+				assertEquals("elements before start should not change", a[i], p.get(i));
+			}
+			for (int i = 0; i < change.length; i++) {
+				assertEquals("checking changed elements", change[i], p.get(start+i));
+			}
+			for (int i = start + change.length; i < a.length; i++) {
+				assertEquals("elements after end should not change", a[i], p.get(i));
+			}
+		}
+		for (int[] a : arrays) {
+			Permutation p = new Permutation(a);
+			int[] change = a.length > 2 ? new int[] {9, 9, 7, 5, 9, 9} : new int[] {9, 9, 7, 9, 9};
+			int start = a.length > 1 ? 1 : 0;
+			test.testSet(p, change, 2, start, change.length - 4);
+			for (int i = 0; i < start; i++) {
+				assertEquals("elements before start should not change", a[i], p.get(i));
+			}
+			for (int i = 2; i < change.length-2; i++) {
+				assertEquals("checking changed elements", change[i], p.get(start+i-2));
+			}
+			for (int i = start + change.length - 4; i < a.length; i++) {
 				assertEquals("elements after end should not change", a[i], p.get(i));
 			}
 		}
