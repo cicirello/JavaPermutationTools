@@ -38,7 +38,7 @@ import org.cicirello.util.Copyable;
  * manipulate permutations in a variety of ways.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 3.29.2021
+ * @version 3.31.2021
  */
 public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
@@ -934,7 +934,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
 	 *
 	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
-	 * @version 3.29.2021
+	 * @version 3.31.2021
 	 */
 	public static class Mechanic {
 		
@@ -989,6 +989,25 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 		 */
 		protected final void set(Permutation p, int index, int[] subpermutation) {
 			System.arraycopy(subpermutation, 0, p.permutation, index, subpermutation.length);
+		}
+		
+		/**
+		 * Changes a range of permutation elements.  This method does not verify that the
+		 * change produces a valid permutation.  The caller is responsible for making a combination
+		 * of calls to this method and/or the other methods of the Permutation.Mechanic class that
+		 * together produce a valid Permutation.   
+		 * The behavior of the Permutation object may become unstable otherwise.
+		 * The caller should not return until the state of the Permutation object is again valid.
+		 *
+		 * @param p Permutation object to change.
+		 * @param source An array to copy elements from.
+		 * @param fromIndex An index into source where copying begins, e.g., the first element
+		 * copied is source[fromIndex].
+		 * @param toIndex An index into the Permutation p, where the elements will be copied to.
+		 * @param numElementsToSet The number of elements to copy from source to p. 
+		 */
+		protected final void set(Permutation p, int[] source, int fromIndex, int toIndex, int numElementsToSet) {
+			System.arraycopy(source, fromIndex, p.permutation, toIndex, numElementsToSet);
 		}
 	}
 }
