@@ -1439,14 +1439,32 @@ public class RandomIndexerSampleTests {
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
 		
-		// Make sure sorting covers all cases:
+		
 		{
-			for (int i = 0; i < 30; i++) {
+			// Make sure sorting covers all cases:
+			// This part of the test aims to fully cover the
+			// helper method: sortSetAndAdjustWindowedTriple
+			
+			// This is the easy path through the method, even one sample
+			// should be sufficient with n=3 and w=2.
+			for (int i = 0; i < 3; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(3, 2, null, true, gen);
 				assertEquals("Length of result should be 3", 3, result.length);
 				assertEquals(0, result[0]);
 				assertEquals(1, result[1]);
 				assertEquals(2, result[2]);
+			}
+			
+			// With n=100 and w=n-1, approximately 97% of the following samples should
+			// go through the alternate path from above. That alternate path has
+			// 6 potential subpaths, all approximately equally likely.
+			int n = 100;
+			int w = n-1;
+			for (int i = 0; i < 30; i++) {
+				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertTrue(result[0] < result[1]);
+				assertTrue(result[1] < result[2]);
 			}
 		}
 		
