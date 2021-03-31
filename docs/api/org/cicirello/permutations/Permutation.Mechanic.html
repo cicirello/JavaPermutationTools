@@ -30,7 +30,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -226,6 +226,17 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(org.cicirello.permutations.Permutation,int%5B%5D,int,int,int)">set</a></span>&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
+   int[]&nbsp;source,
+   int&nbsp;fromIndex,
+   int&nbsp;toIndex,
+   int&nbsp;numElementsToSet)</code></th>
+<td class="colLast">
+<div class="block">Changes a range of permutation elements.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(org.cicirello.permutations.Permutation,int,int)">set</a></span>&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
    int&nbsp;index,
    int&nbsp;value)</code></th>
@@ -233,7 +244,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Changes the integer in one specific location of a Permutation.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(org.cicirello.permutations.Permutation,int,int%5B%5D)">set</a></span>&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
    int&nbsp;index,
@@ -333,7 +344,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <a id="set(org.cicirello.permutations.Permutation,int,int[])">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>set</h4>
 <pre class="methodSignature">protected final&nbsp;void&nbsp;set&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
@@ -351,6 +362,34 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dd><code>index</code> - The index for the start of the new elements.</dd>
 <dd><code>subpermutation</code> - The new elements, which are copied into the permutation beginning
  at position index of the permutation.</dd>
+</dl>
+</li>
+</ul>
+<a id="set(org.cicirello.permutations.Permutation,int[],int,int,int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>set</h4>
+<pre class="methodSignature">protected final&nbsp;void&nbsp;set&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
+                         int[]&nbsp;source,
+                         int&nbsp;fromIndex,
+                         int&nbsp;toIndex,
+                         int&nbsp;numElementsToSet)</pre>
+<div class="block">Changes a range of permutation elements.  This method does not verify that the
+ change produces a valid permutation.  The caller is responsible for making a combination
+ of calls to this method and/or the other methods of the Permutation.Mechanic class that
+ together produce a valid Permutation.   
+ The behavior of the Permutation object may become unstable otherwise.
+ The caller should not return until the state of the Permutation object is again valid.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p</code> - Permutation object to change.</dd>
+<dd><code>source</code> - An array to copy elements from.</dd>
+<dd><code>fromIndex</code> - An index into source where copying begins, e.g., the first element
+ copied is source[fromIndex].</dd>
+<dd><code>toIndex</code> - An index into the Permutation p, where the elements will be copied to.</dd>
+<dd><code>numElementsToSet</code> - The number of elements to copy from source to p.</dd>
 </dl>
 </li>
 </ul>
