@@ -1455,10 +1455,10 @@ public class RandomIndexerSampleTests {
 				assertEquals(2, result[2]);
 			}
 			
-			// With n=100 and w=n-1, approximately 97% of the following samples should
+			// With n=1000 and w=n-1, approximately 99.7% of the following samples should
 			// go through the alternate path from above. That alternate path has
-			// 6 potential subpaths, all approximately equally likely.
-			int n = 100;
+			// 3 potential subpaths, all approximately equally likely.
+			int n = 1000;
 			int w = n-1;
 			for (int i = 0; i < 30; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
