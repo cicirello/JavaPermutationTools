@@ -1466,6 +1466,14 @@ public class RandomIndexerSampleTests {
 				assertTrue(result[0] < result[1]);
 				assertTrue(result[1] < result[2]);
 			}
+			n = 10000;
+			w = n-1;
+			for (int i = 0; i < 30; i++) {
+				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+				assertEquals("Length of result should be 3", 3, result.length);
+				assertTrue(result[0] < result[1]);
+				assertTrue(result[1] < result[2]);
+			}
 		}
 		
 		for (int n = 3; n <= 10; n++) {
