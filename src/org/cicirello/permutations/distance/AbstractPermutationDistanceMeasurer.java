@@ -32,11 +32,6 @@ import org.cicirello.permutations.Permutation;
  */
 abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, NormalizedPermutationDistanceMeasurer {
 	
-	@Override
-	public final double maxf(int length) {
-		return max(length);
-	}
-	
 	/**
 	 * {@inheritDoc}
 	 *
