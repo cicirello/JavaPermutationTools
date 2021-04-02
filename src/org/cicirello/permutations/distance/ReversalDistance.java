@@ -48,9 +48,9 @@ import java.util.Arrays;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 2.11.2021
+* @version 4.2.2021
 */
-public final class ReversalDistance extends AbstractPermutationDistanceMeasurer {
+public final class ReversalDistance implements NormalizedPermutationDistanceMeasurer {
 
 	private byte[] dist;
 	private final int PERM_LENGTH;

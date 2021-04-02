@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -52,10 +52,9 @@ import java.util.List;
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 4.2.2021
  */
-public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
+public class EditDistance implements SequenceDistanceMeasurer {
 	
 	private final int insert_i;
 	private final int delete_i;
@@ -394,9 +393,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return distance(s1.toArray(), s2.toArray());
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(int[] s1, int[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -420,9 +416,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(long[] s1, long[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -446,9 +439,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(short[] s1, short[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -472,9 +462,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(byte[] s1, byte[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -498,9 +485,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(char[] s1, char[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -524,9 +508,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(boolean[] s1, boolean[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -550,9 +531,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(double[] s1, double[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -576,9 +554,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(float[] s1, float[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -602,9 +577,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(String s1, String s2) {
 		double[][] D = new double[s1.length() + 1][s2.length() + 1];
@@ -628,9 +600,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length()][s2.length()];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public double distancef(Object[] s1, Object[] s2) {
 		double[][] D = new double[s1.length + 1][s2.length + 1];
@@ -654,9 +623,6 @@ public class EditDistance implements SequenceDistanceMeasurer, SequenceDistanceM
 		return D[s1.length][s2.length];
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public final <T> double distancef(List<T> s1, List<T> s2) {
 		return distancef(s1.toArray(), s2.toArray());

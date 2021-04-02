@@ -77,9 +77,9 @@ import java.util.Iterator;
  * Industrial Networks and Intelligent Systems, 7(23), Article e1, April 2020.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.30.2021
+ * @version 4.2.2021
  */
-public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMeasurer {
+public final class KendallTauSequenceDistance implements SequenceDistanceMeasurer {
 	
 	private final boolean USE_HASHMAP;
 	
@@ -283,6 +283,8 @@ public final class KendallTauSequenceDistance extends AbstractSequenceDistanceMe
 	
 	/**
 	 * {@inheritDoc}
+	 * @throws IllegalArgumentException if s1.size() is not equal to s2.size(), or if they contain
+	 * different elements.
 	 */
 	@Override
 	public <T> int distance(List<T> s1, List<T> s2) {

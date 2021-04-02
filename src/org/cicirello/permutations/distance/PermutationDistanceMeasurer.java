@@ -26,7 +26,7 @@ import org.cicirello.permutations.Permutation;
  * Implement this interface, PermutationDistanceMeasurer, to define a distance metric for permutations.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  */
 public interface PermutationDistanceMeasurer extends PermutationDistanceMeasurerDouble
 {
@@ -39,4 +39,14 @@ public interface PermutationDistanceMeasurer extends PermutationDistanceMeasurer
 	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	int distance(Permutation p1, Permutation p2);
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
+	@Override
+	default double distancef(Permutation p1, Permutation p2) {
+		return distance(p1,p2);
+	}
 }

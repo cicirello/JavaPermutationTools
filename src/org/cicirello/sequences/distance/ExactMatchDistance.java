@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -44,19 +44,15 @@ import java.util.Iterator;
  * S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 4.2.2021
  */
-public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
+public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.
 	 */
 	public ExactMatchDistance() {}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(int[] s1, int[] s2) {
 		int n = s1.length;
@@ -75,9 +71,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(long[] s1, long[] s2) {
 		int n = s1.length;
@@ -96,9 +89,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(short[] s1, short[] s2) {
 		int n = s1.length;
@@ -117,9 +107,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(byte[] s1, byte[] s2) {
 		int n = s1.length;
@@ -138,9 +125,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(char[] s1, char[] s2) {
 		int n = s1.length;
@@ -159,9 +143,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(boolean[] s1, boolean[] s2) {
 		int n = s1.length;
@@ -180,9 +161,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(double[] s1, double[] s2) {
 		int n = s1.length;
@@ -201,9 +179,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(float[] s1, float[] s2) {
 		int n = s1.length;
@@ -222,9 +197,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(String s1, String s2) {
 		int n = s1.length();
@@ -243,9 +215,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int distance(Object[] s1, Object[] s2) {
 		int n = s1.length;
@@ -264,9 +233,6 @@ public final class ExactMatchDistance extends AbstractSequenceDistanceMeasurer {
 		return cost;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public <T> int distance(List<T> s1, List<T> s2) {
 		int n = s1.size();

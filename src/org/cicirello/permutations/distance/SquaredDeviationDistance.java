@@ -44,10 +44,10 @@ import org.cicirello.permutations.Permutation;
  * The 6th Metaheuristics International Conference, August, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  * 
  */
-public final class SquaredDeviationDistance extends AbstractPermutationDistanceMeasurer {
+public final class SquaredDeviationDistance implements NormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.

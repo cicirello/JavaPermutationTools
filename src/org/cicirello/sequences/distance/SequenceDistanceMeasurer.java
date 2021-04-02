@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,20 +23,32 @@ package org.cicirello.sequences.distance;
 import java.util.List;
 
 /**
- * <p>Implement this interface, SequenceDistanceMeasurer, to define a distance metric for sequences.  A sequence may have duplicate elements, unlike
- * a Permutation which must have unique elements.  Some SequenceDistanceMeasurers may require the pair of sequences to be the same length, while
- * others do not have that requirement.  Some SequenceDistanceMeasurers may require the pair of sequences to contain the same set of elements, while
- * others do not have that requirement.  Implementations of this interface compute distances that are integer valued.</p>
+ * <p>Implement this interface, SequenceDistanceMeasurer, to define 
+ * a distance metric for sequences.  A sequence may have duplicate elements, unlike
+ * a Permutation which must have unique elements.  Some SequenceDistanceMeasurers 
+ * may require the pair of sequences to be the same length, while
+ * others do not have that requirement.  Some SequenceDistanceMeasurers may 
+ * require the pair of sequences to contain the same set of elements, while
+ * others do not have that requirement.  Implementations of this interface 
+ * compute distances that are integer valued.</p>
  *
- * <p>If your sequences are guaranteed not to contain duplicates, and the pair is guaranteed to contain the same set of elements, and are of the same length,
- * then consider instead using the classes that implement the {@link org.cicirello.permutations.distance.PermutationDistanceMeasurer PermutationDistanceMeasurer}
- * interface.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
+ * <p>This interface extends the {@link SequenceDistanceMeasurerDouble} interface,
+ * providing default implementations of all of that superinterface's distancef methods
+ * by delegating the behavior to the various distance methods. In this way,
+ * implementers of SequenceDistanceMeasurer should not have a reason to implement
+ * the distancef methods of {@link SequenceDistanceMeasurerDouble}.</p>
+ *
+ * <p>If your sequences are guaranteed not to contain duplicates, and the 
+ * pair is guaranteed to contain the same set of elements, and are of the same length,
+ * then consider instead using the classes that implement 
+ * the {@link org.cicirello.permutations.distance.PermutationDistanceMeasurer PermutationDistanceMeasurer}
+ * interface.  Those classes are specifically for distance between 
+ * permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 4.2.2021
  */
-public interface SequenceDistanceMeasurer {
+public interface SequenceDistanceMeasurer extends SequenceDistanceMeasurerDouble {
 	
 	/**
 	 * Measures the distance between two arrays.
@@ -117,7 +129,6 @@ public interface SequenceDistanceMeasurer {
 	 * The objects in the arrays must be of a class that has overridden the
 	 * Object.equals method.
 	 *
-	 * @since 1.2.3
 	 * @param s1 First array.
 	 * @param s2 Second array.
 	 * @return distance between s1 and s2
@@ -129,12 +140,69 @@ public interface SequenceDistanceMeasurer {
 	 * The objects in the lists must be of a class that has overridden the
 	 * Object.equals method.
 	 *
-	 * @since 1.5
 	 * @param s1 First list.
 	 * @param s2 Second list.
 	 * @param <T> Type of List elements.
 	 * @return distance between s1 and s2
 	 */
 	<T> int distance(List<T> s1, List<T> s2);
+	
+	// Default implementations of superinterface methods,
+	// delegating behavior of distancef methods to distance methods.
+	
+	@Override
+	default double distancef(long[] s1, long[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(int[] s1, int[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(short[] s1, short[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(byte[] s1, byte[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(char[] s1, char[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(double[] s1, double[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(float[] s1, float[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(boolean[] s1, boolean[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(String s1, String s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default double distancef(Object[] s1, Object[] s2) {
+		return distance(s1, s2);
+	}
+	
+	@Override
+	default <T> double distancef(List<T> s1, List<T> s2) {
+		return distance(s1, s2);
+	}
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,8 +33,7 @@ import java.util.List;
  * interface.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 4.2.2021
  */
 public interface SequenceDistanceMeasurerDouble {
 	
@@ -117,7 +116,6 @@ public interface SequenceDistanceMeasurerDouble {
 	 * The objects in the arrays must be of a class that has overridden the
 	 * Object.equals method.
 	 *
-	 * @since 1.2.3
 	 * @param s1 First array.
 	 * @param s2 Second array.
 	 * @return distance between s1 and s2
@@ -129,7 +127,6 @@ public interface SequenceDistanceMeasurerDouble {
 	 * The objects in the lists must be of a class that has overridden the
 	 * Object.equals method.
 	 *
-	 * @since 1.5
 	 * @param s1 First list.
 	 * @param s2 Second list.
 	 * @param <T> Type of List elements.

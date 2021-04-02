@@ -27,9 +27,9 @@ import org.cicirello.permutations.Permutation;
  * normalizing the distance to the interval [0,1], but where the base distance is an integer value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  */
-public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermutationDistanceMeasurerDouble {
+public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermutationDistanceMeasurerDouble, PermutationDistanceMeasurer {
 	
 	/**
 	 * Computes the maximum possible distance between permutations
@@ -39,4 +39,21 @@ public interface NormalizedPermutationDistanceMeasurer extends NormalizedPermuta
 	 * @return the maximum distance between a pair of permutations of the specified length.
 	 */
 	int max(int length);
+	
+	@Override
+	default double maxf(int length) {
+		return max(length);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
+	@Override
+	default double normalizedDistance(Permutation p1, Permutation p2) {
+		int m = max(p1.length());
+		if (m==0) return 0;
+		return distance(p1,p2) / ((double)m);
+	}
 }
