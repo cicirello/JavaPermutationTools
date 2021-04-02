@@ -32,7 +32,7 @@ import org.cicirello.permutations.Permutation;
  * the constructor.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  *  
  */
 public final class CyclicIndependentDistance implements PermutationDistanceMeasurer {
@@ -68,19 +68,4 @@ public final class CyclicIndependentDistance implements PermutationDistanceMeasu
 		}
 		return result;
 	}
-	
-	/**
-	 * Measures the distance between two permutations, with cyclic independence:
-	 * distance = min_{i in [0,N)} distance(p1,rotate(p2,i))
-	 * 
-	 * @param p1 first permutation
-	 * @param p2 second permutation 
-	 * @return distance between p1 and p2 
-	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
-	 */
-	@Override
-	public final double distancef(Permutation p1, Permutation p2) {
-		return distance(p1,p2);
-	}
-	
 }

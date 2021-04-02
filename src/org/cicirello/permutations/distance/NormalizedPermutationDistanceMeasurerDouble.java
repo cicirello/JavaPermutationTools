@@ -27,19 +27,9 @@ import org.cicirello.permutations.Permutation;
  * normalizing the distance to the interval [0,1].
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  */
-public interface NormalizedPermutationDistanceMeasurerDouble {
-	
-	/**
-	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
-	 * 
-	 * @param p1 first permutation
-	 * @param p2 second permutation 
-	 * @return distance between p1 and p2 normalized to the interval [0.0, 1.0] 
-	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
-	 */
-	double normalizedDistance(Permutation p1, Permutation p2);
+public interface NormalizedPermutationDistanceMeasurerDouble extends PermutationDistanceMeasurerDouble {
 	
 	/**
 	 * Computes the maximum possible distance between permutations
@@ -49,4 +39,18 @@ public interface NormalizedPermutationDistanceMeasurerDouble {
 	 * @return the maximum distance between a pair of permutations of the specified length.
 	 */
 	double maxf(int length);
+	
+	/**
+	 * <p>Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</p>
+	 * 
+	 * @param p1 first permutation
+	 * @param p2 second permutation 
+	 * @return distance between p1 and p2 normalized to the interval [0.0, 1.0] 
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
+	default double normalizedDistance(Permutation p1, Permutation p2) {
+		double m = maxf(p1.length());
+		if (m==0) return 0;
+		return distancef(p1,p2) / m;
+	}
 }

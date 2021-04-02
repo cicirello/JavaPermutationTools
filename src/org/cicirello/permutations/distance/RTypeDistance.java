@@ -44,9 +44,9 @@ import org.cicirello.permutations.Permutation;
  * INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  */
-public final class RTypeDistance extends AbstractPermutationDistanceMeasurer {
+public final class RTypeDistance implements NormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.

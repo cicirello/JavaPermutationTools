@@ -30,17 +30,6 @@ import org.cicirello.permutations.Permutation;
  * @version 4.2.2021
  *
  */
-abstract class AbstractPermutationDistanceMeasurer implements PermutationDistanceMeasurer, NormalizedPermutationDistanceMeasurer {
+abstract class AbstractPermutationDistanceMeasurer implements NormalizedPermutationDistanceMeasurer {
 	
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
-	 */
-	@Override
-	public final double normalizedDistance(Permutation p1, Permutation p2) {
-		int m = max(p1.length());
-		if (m==0) return 0;
-		return 1.0 * distance(p1,p2) / m;
-	}
 }

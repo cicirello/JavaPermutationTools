@@ -43,10 +43,10 @@ import org.cicirello.permutations.Permutation;
  * C. Lee, "Some properties of nonbinary error-correcting codes," in IRE Transactions on Information Theory, vol. 4, no. 2, pp. 77-82, June 1958.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  * 
  */
-public final class LeeDistance extends AbstractPermutationDistanceMeasurer {
+public final class LeeDistance implements NormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.

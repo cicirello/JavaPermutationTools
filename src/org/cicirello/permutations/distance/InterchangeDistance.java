@@ -40,9 +40,9 @@ import org.cicirello.permutations.Permutation;
  * IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
+ * @version 4.2.2021
  */
-public final class InterchangeDistance extends AbstractPermutationDistanceMeasurer {
+public final class InterchangeDistance implements NormalizedPermutationDistanceMeasurer {
 	
 	/**
 	 * Constructs the distance measurer as specified in the class documentation.
