@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-04-02
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### CI/CD
+
+
+## [2.6.0] - 2021-04-02
+
+### Added
 * Added the `Permutation.Mechanic.set(Permutation, int[], int, int, int)` method.
 
 ### Changed
@@ -23,14 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   non-breaking change, as the only thing removed was a package-private abstract class, and the
   changes to interfaces were done in such a way that all inherited methods have default 
   implementations.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### CI/CD
 
 
 ## [2.5.0] - 2021-03-29
