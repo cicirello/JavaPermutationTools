@@ -30,7 +30,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,7 +140,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public final class <span class="typeNameLabel">ExactMatchDistance</span>
-extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
+extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
+implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></pre>
 <div class="block"><p>ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
  sequence (or string) positions where the two sequences differ. 
  This class supports comparison of Java String objects,
@@ -290,94 +291,6 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="block">Measures the distance between two lists of objects.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(boolean%5B%5D,boolean%5B%5D)">distancef</a></span>&#8203;(boolean[]&nbsp;s1,
-         boolean[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(byte%5B%5D,byte%5B%5D)">distancef</a></span>&#8203;(byte[]&nbsp;s1,
-         byte[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(char%5B%5D,char%5B%5D)">distancef</a></span>&#8203;(char[]&nbsp;s1,
-         char[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(double%5B%5D,double%5B%5D)">distancef</a></span>&#8203;(double[]&nbsp;s1,
-         double[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(float%5B%5D,float%5B%5D)">distancef</a></span>&#8203;(float[]&nbsp;s1,
-         float[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(int%5B%5D,int%5B%5D)">distancef</a></span>&#8203;(int[]&nbsp;s1,
-         int[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(long%5B%5D,long%5B%5D)">distancef</a></span>&#8203;(long[]&nbsp;s1,
-         long[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(short%5B%5D,short%5B%5D)">distancef</a></span>&#8203;(short[]&nbsp;s1,
-         short[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays.</div>
-</td>
-</tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distancef</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s1,
-         <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two arrays of objects.</div>
-</td>
-</tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(java.lang.String,java.lang.String)">distancef</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s1,
-         <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two Strings.</div>
-</td>
-</tr>
-<tr id="i21" class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(java.util.List,java.util.List)">distancef</a></span>&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s1,
-         <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two lists of objects.</div>
-</td>
-</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -385,6 +298,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
 <code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.org.cicirello.sequences.distance.SequenceDistanceMeasurer">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;org.cicirello.sequences.distance.<a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></h3>
+<code><a href="SequenceDistanceMeasurer.html#distancef(boolean%5B%5D,boolean%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(byte%5B%5D,byte%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(char%5B%5D,char%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(double%5B%5D,double%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(float%5B%5D,float%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(int%5B%5D,int%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(long%5B%5D,long%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(short%5B%5D,short%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(java.lang.String,java.lang.String)">distancef</a>, <a href="SequenceDistanceMeasurer.html#distancef(java.util.List,java.util.List)">distancef</a></code></li>
 </ul>
 </li>
 </ul>
@@ -430,8 +350,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(int[]&nbsp;s1,
                     int[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(int%5B%5D,int%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(int%5B%5D,int%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -448,8 +371,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(long[]&nbsp;s1,
                     long[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(long%5B%5D,long%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(long%5B%5D,long%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -466,8 +392,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(short[]&nbsp;s1,
                     short[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(short%5B%5D,short%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(short%5B%5D,short%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -484,8 +413,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(byte[]&nbsp;s1,
                     byte[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(byte%5B%5D,byte%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(byte%5B%5D,byte%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -502,8 +434,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(char[]&nbsp;s1,
                     char[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(char%5B%5D,char%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(char%5B%5D,char%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -520,8 +455,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(boolean[]&nbsp;s1,
                     boolean[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(boolean%5B%5D,boolean%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(boolean%5B%5D,boolean%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -538,8 +476,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(double[]&nbsp;s1,
                     double[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(double%5B%5D,double%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(double%5B%5D,double%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -556,8 +497,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(float[]&nbsp;s1,
                     float[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(float%5B%5D,float%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(float%5B%5D,float%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -574,8 +518,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s1,
                     <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(java.lang.String,java.lang.String)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two Strings.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(java.lang.String,java.lang.String)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First String.</dd>
 <dd><code>s2</code> - Second String.</dd>
@@ -592,10 +539,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;distance&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s1,
                     <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two arrays of objects.
  The objects in the arrays must be of a class that has overridden the
  Object.equals method.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>s1</code> - First array.</dd>
 <dd><code>s2</code> - Second array.</dd>
@@ -607,241 +557,18 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <a id="distance(java.util.List,java.util.List)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>distance</h4>
 <pre class="methodSignature">public&nbsp;&lt;T&gt;&nbsp;int&nbsp;distance&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s1,
                         <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s2)</pre>
-<div class="block">Measures the distance between two lists of objects.
- The objects in the lists must be of a class that has overridden the
- Object.equals method.</div>
-<dl>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - Type of List elements.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First list.</dd>
-<dd><code>s2</code> - Second list.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(long[],long[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(long[]&nbsp;s1,
-                              long[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(long%5B%5D,long%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(int[],int[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(int[]&nbsp;s1,
-                              int[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(int%5B%5D,int%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(short[],short[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(short[]&nbsp;s1,
-                              short[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(short%5B%5D,short%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(byte[],byte[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(byte[]&nbsp;s1,
-                              byte[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(byte%5B%5D,byte%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(char[],char[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(char[]&nbsp;s1,
-                              char[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(char%5B%5D,char%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(double[],double[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(double[]&nbsp;s1,
-                              double[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(double%5B%5D,double%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(float[],float[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(float[]&nbsp;s1,
-                              float[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(float%5B%5D,float%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(boolean[],boolean[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(boolean[]&nbsp;s1,
-                              boolean[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(boolean%5B%5D,boolean%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(java.lang.String,java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s1,
-                              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;s2)</pre>
-<div class="block">Measures the distance between two Strings.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.String,java.lang.String)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First String.</dd>
-<dd><code>s2</code> - Second String.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(java.lang.Object[],java.lang.Object[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;double&nbsp;distancef&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s1,
-                              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>[]&nbsp;s2)</pre>
-<div class="block">Measures the distance between two arrays of objects.
- The objects in the arrays must be of a class that has overridden the
- Object.equals method.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>s1</code> - First array.</dd>
-<dd><code>s2</code> - Second array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>distance between s1 and s2</dd>
-</dl>
-</li>
-</ul>
-<a id="distancef(java.util.List,java.util.List)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>distancef</h4>
-<pre class="methodSignature">public final&nbsp;&lt;T&gt;&nbsp;double&nbsp;distancef&#8203;(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s1,
-                                  <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util" class="externalLink">List</a>&lt;T&gt;&nbsp;s2)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(java.util.List,java.util.List)">SequenceDistanceMeasurer</a></code></span></div>
 <div class="block">Measures the distance between two lists of objects.
  The objects in the lists must be of a class that has overridden the
  Object.equals method.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.util.List,java.util.List)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
+<dd><code><a href="SequenceDistanceMeasurer.html#distance(java.util.List,java.util.List)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - Type of List elements.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
