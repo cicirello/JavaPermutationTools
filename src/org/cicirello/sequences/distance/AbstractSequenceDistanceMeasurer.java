@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -33,96 +33,8 @@ import java.util.List;
  * class.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.19.6.10
- * @since 1.1
+ * @version 4.2.2021
  */
 abstract class AbstractSequenceDistanceMeasurer implements SequenceDistanceMeasurer, SequenceDistanceMeasurerDouble {
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(long[] s1, long[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(int[] s1, int[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(short[] s1, short[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(byte[] s1, byte[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(char[] s1, char[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(double[] s1, double[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(float[] s1, float[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(boolean[] s1, boolean[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(String s1, String s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final double distancef(Object[] s1, Object[] s2) {
-		return distance(s1, s2);
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final <T> double distancef(List<T> s1, List<T> s2) {
-		return distance(s1, s2);
-	}
 }
