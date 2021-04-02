@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Added the `Permutation.Mechanic.set(Permutation, int[], int, int, int)` method.
 
 ### Changed
+* Refactored the SequenceDistanceMeasurer and SequenceDistanceMeasurerDouble interfaces 
+  into a hierarchy, eliminated an abstract base class made obsolete by that change, and
+  changed all sequence distances in the library to use the new hierarchy. This is a non-breaking
+  change, as the only thing removed was a package-private abstract class, and the
+  change to the SequenceDistanceMeasurer interface was done in such a way that all inherited
+  methods have default implementations.
 
 ### Deprecated
 
