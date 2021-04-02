@@ -39,4 +39,14 @@ public interface PermutationDistanceMeasurer extends PermutationDistanceMeasurer
 	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
 	 */
 	int distance(Permutation p1, Permutation p2);
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws IllegalArgumentException if p1.length() is not equal to p2.length().
+	 */
+	@Override
+	default double distancef(Permutation p1, Permutation p2) {
+		return distance(p1,p2);
+	}
 }
