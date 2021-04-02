@@ -30,8 +30,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var data = {"i0":6,"i1":18};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -131,6 +131,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></code></dd>
 </dl>
 <dl>
+<dt>All Known Subinterfaces:</dt>
+<dd><code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="AcyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance">AcyclicEdgeDistance</a></code>, <code><a href="BlockInterchangeDistance.html" title="class in org.cicirello.permutations.distance">BlockInterchangeDistance</a></code>, <code><a href="CyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance">CyclicEdgeDistance</a></code>, <code><a href="CyclicIndependentDistance.html" title="class in org.cicirello.permutations.distance">CyclicIndependentDistance</a></code>, <code><a href="CyclicReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">CyclicReversalIndependentDistance</a></code>, <code><a href="CyclicRTypeDistance.html" title="class in org.cicirello.permutations.distance">CyclicRTypeDistance</a></code>, <code><a href="DeviationDistance.html" title="class in org.cicirello.permutations.distance">DeviationDistance</a></code>, <code><a href="ExactMatchDistance.html" title="class in org.cicirello.permutations.distance">ExactMatchDistance</a></code>, <code><a href="InterchangeDistance.html" title="class in org.cicirello.permutations.distance">InterchangeDistance</a></code>, <code><a href="KendallTauDistance.html" title="class in org.cicirello.permutations.distance">KendallTauDistance</a></code>, <code><a href="LeeDistance.html" title="class in org.cicirello.permutations.distance">LeeDistance</a></code>, <code><a href="ReinsertionDistance.html" title="class in org.cicirello.permutations.distance">ReinsertionDistance</a></code>, <code><a href="ReversalDistance.html" title="class in org.cicirello.permutations.distance">ReversalDistance</a></code>, <code><a href="ReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistance</a></code>, <code><a href="RTypeDistance.html" title="class in org.cicirello.permutations.distance">RTypeDistance</a></code>, <code><a href="ScrambleDistance.html" title="class in org.cicirello.permutations.distance">ScrambleDistance</a></code>, <code><a href="SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance">SquaredDeviationDistance</a></code></dd>
 </dl>
@@ -152,7 +156,7 @@ extends <a href="PermutationDistanceMeasurerDouble.html" title="interface in org
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
@@ -166,14 +170,15 @@ extends <a href="PermutationDistanceMeasurerDouble.html" title="interface in org
 <div class="block">Measures the distance between two permutations.</div>
 </td>
 </tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>default double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
+         <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
+<td class="colLast">
+<div class="block">Measures the distance between two permutations</div>
+</td>
+</tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.org.cicirello.permutations.distance.PermutationDistanceMeasurerDouble">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;org.cicirello.permutations.distance.<a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></h3>
-<code><a href="PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></code></li>
-</ul>
 </li>
 </ul>
 </section>
@@ -193,13 +198,35 @@ extends <a href="PermutationDistanceMeasurerDouble.html" title="interface in org
 <a id="distance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>distance</h4>
 <pre class="methodSignature">int&nbsp;distance&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
              <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</pre>
 <div class="block">Measures the distance between two permutations.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p1</code> - first permutation</dd>
+<dd><code>p2</code> - second permutation</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>distance between p1 and p2</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - if p1.length() is not equal to p2.length().</dd>
+</dl>
+</li>
+</ul>
+<a id="distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>distancef</h4>
+<pre class="methodSignature">default&nbsp;double&nbsp;distancef&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
+                         <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</pre>
+<div class="block">Measures the distance between two permutations</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>p1</code> - first permutation</dd>
 <dd><code>p2</code> - second permutation</dd>

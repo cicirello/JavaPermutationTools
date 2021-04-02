@@ -415,29 +415,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">CyclicIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/CyclicIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
-         <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two permutations, with cyclic independence:
- distance = min_{i in [0,N)} distance(p1,rotate(p2,i))</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">CyclicIndependentDistanceDouble.</span><code><span class="memberNameLink"><a href="../distance/CyclicIndependentDistanceDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
 <div class="block">Measures the distance between two permutations, with cyclic independence:
  distance = min_{i in [0,N)} distance(p1,rotate(p2,i))</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">CyclicReversalIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/CyclicReversalIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
-         <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
- distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -474,8 +456,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">PermutationDistanceMeasurerDouble.</span><code><span class="memberNameLink"><a href="../distance/PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
+<td class="colFirst"><code>default double</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">PermutationDistanceMeasurer.</span><code><span class="memberNameLink"><a href="../distance/PermutationDistanceMeasurer.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
 <div class="block">Measures the distance between two permutations</div>
@@ -483,11 +465,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">ReversalIndependentDistance.</span><code><span class="memberNameLink"><a href="../distance/ReversalIndependentDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
+<th class="colSecond" scope="row"><span class="typeNameLabel">PermutationDistanceMeasurerDouble.</span><code><span class="memberNameLink"><a href="../distance/PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
          <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
-<div class="block">Measures the distance between two permutations, with reversal independence:
- distance = min { distance(p1,p2), distance(p1,reverse(p2)) }</div>
+<div class="block">Measures the distance between two permutations</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -501,22 +482,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><span class="typeNameLabel">DeviationDistanceNormalized.</span><code><span class="memberNameLink"><a href="../distance/DeviationDistanceNormalized.html#normalizedDistance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">normalizedDistance</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
-                  <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
-<td class="colLast">
-<div class="block">Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">DeviationDistanceNormalized2005.</span><code><span class="memberNameLink"><a href="../distance/DeviationDistanceNormalized2005.html#normalizedDistance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">normalizedDistance</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
                   <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
 <div class="block">Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>default double</code></td>
+<th class="colSecond" scope="row"><span class="typeNameLabel">NormalizedPermutationDistanceMeasurer.</span><code><span class="memberNameLink"><a href="../distance/NormalizedPermutationDistanceMeasurer.html#normalizedDistance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">normalizedDistance</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
+                  <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
+<td class="colLast">
+<div class="block">Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</div>
+</td>
+</tr>
 <tr class="altColor">
-<td class="colFirst"><code>double</code></td>
+<td class="colFirst"><code>default double</code></td>
 <th class="colSecond" scope="row"><span class="typeNameLabel">NormalizedPermutationDistanceMeasurerDouble.</span><code><span class="memberNameLink"><a href="../distance/NormalizedPermutationDistanceMeasurerDouble.html#normalizedDistance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">normalizedDistance</a></span>&#8203;(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
                   <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></th>
 <td class="colLast">
