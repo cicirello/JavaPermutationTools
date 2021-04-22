@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,7 +22,6 @@
  
  /**
  * This package includes classes and interfaces that serve some useful utility purpose. 
- * @version 9.23.2019
- * @since 2.0
+ * @version 4.22.2021
  */
 package org.cicirello.util;
