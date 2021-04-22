@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -24,11 +24,9 @@ package org.cicirello.util;
 /**
  * A simple interface for objects that can be copied.
  *
- * @since 2.0
- *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 9.25.2019
+ * @version 4.22.2021
  */
 public interface Copyable<T extends Copyable<T>> {
 	
