@@ -48,7 +48,7 @@ import java.util.Arrays;
  * M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @version 5.13.2021
  * 
  */
 public final class KendallTauDistance implements NormalizedPermutationDistanceMeasurer {
@@ -83,7 +83,7 @@ public final class KendallTauDistance implements NormalizedPermutationDistanceMe
 	@Override
 	public int max(int length) {
 		if (length <= 1) return 0;
-		return length*(length - 1)>>1;
+		return (length*(length - 1))>>1;
 	}
 	
 	private int countInversions(int[] array) {

@@ -26,7 +26,7 @@ package org.cicirello.math;
  * MathFunctions is a class of utility methods that implement various mathematical functions.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 2.12.2021
+ * @version 5.13.2021
  *
  */
 public final class MathFunctions {
@@ -92,7 +92,7 @@ public final class MathFunctions {
 			// This check doesn't seem to be necessary given addition of first check in block.
 			// if (z == 0.0) return Double.POSITIVE_INFINITY;
 			// ln(PI)
-			final double LOG_PI = 1.14472988584940017414;
+			final double LOG_PI = 1.1447298858494002;
 			return LOG_PI - Math.log(z) - logGamma(n);
 		} else if (n < 13.0) {
 			double z = 1.0;
@@ -117,13 +117,13 @@ public final class MathFunctions {
 				n * evaluatePolynomial(n, POLY_APPROX_2) / evaluatePolynomial(n, POLY_APPROX_3);
 		} else {
 			// ln(sqrt(2pi))
-			final double LOG_SQRT_PI2 = 0.91893853320467274178;
+			final double LOG_SQRT_PI2 = 0.9189385332046727;
 			double q = (n - 0.5) * Math.log(n) - n + LOG_SQRT_PI2; 
 			if (n > 1.0e8) return q;
 			double p = 1.0 / (n * n);
 			if (n >= 1000.0) {
-				q = q + ((7.9365079365079365079365e-4 * p - 2.7777777777777777777778e-3) 
-					* p + 0.0833333333333333333333) / n;
+				q = q + ((7.936507936507937E-4 * p - 0.002777777777777778) 
+					* p + 0.08333333333333333) / n;
 			} else {
 				q += evaluatePolynomial(p, STIRLING_EXPANSION_LN_GAMMA) / n;
 			}
@@ -142,21 +142,22 @@ public final class MathFunctions {
 	}
 	
 	private static final double[] STIRLING_EXPANSION_LN_GAMMA = {
-		8.11614167470508450300E-4, -5.95061904284301438324E-4,
-		7.93650340457716943945E-4, -2.77777777730099687205E-3,
-		8.33333333333331927722E-2
+		8.116141674705085E-4, -5.950619042843014E-4,
+		7.936503404577169E-4, -0.002777777777300997,
+		0.08333333333333319
 	};
 
 	private static final double[] POLY_APPROX_2 = {
-		-1.37825152569120859100E3, -3.88016315134637840924E4,
-		-3.31612992738871184744E5, -1.16237097492762307383E6,
-		-1.72173700820839662146E6, -8.53555664245765465627E5
+		-1378.2515256912086, -38801.631513463784,
+		-331612.9927388712, -1162370.974927623,
+		-1721737.0082083966, -853555.6642457654
 	};
 
 	private static final double[] POLY_APPROX_3 = {
-		1.0, -3.51815701436523470549E2, -1.70642106651881159223E4,
-		-2.20528590553854454839E5, -1.13933444367982507207E6,
-		-2.53252307177582951285E6, -2.01889141433532773231E6
+		1.0, 
+		-351.81570143652345, -17064.210665188115,
+		-220528.59055385445, -1139334.4436798252,
+		-2532523.0717758294, -2018891.4143353277,
 	};
 	
 	// HELPERS FOR logGamma END HERE

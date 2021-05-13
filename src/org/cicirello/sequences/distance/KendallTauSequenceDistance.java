@@ -20,7 +20,6 @@
  */
 package org.cicirello.sequences.distance;
 
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -77,7 +76,7 @@ import java.util.Iterator;
  * Industrial Networks and Intelligent Systems, 7(23), Article e1, April 2020.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @version 5.13.2021
  */
 public final class KendallTauSequenceDistance implements SequenceDistanceMeasurer {
 	
