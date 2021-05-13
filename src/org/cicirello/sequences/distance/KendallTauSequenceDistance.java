@@ -331,7 +331,6 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		return buckets;
 	}
 	
-	@SuppressWarnings("null")
 	private int relabelElementsWithHash(Object[] s1, Object[] s2, int[][] relabeling) {
 		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(1.334 * relabeling.length)+2);
 		int current = -1;
@@ -351,7 +350,6 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		return current+1;
 	}
 	
-	@SuppressWarnings("null")
 	private <T> int relabelElementsWithHash(List<T> s1, List<T> s2, int[][] relabeling) {
 		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(1.334 * relabeling.length)+2);
 		int current = -1;
