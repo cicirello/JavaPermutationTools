@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -26,7 +26,7 @@ package org.cicirello.math.stats;
  * Utility class of basic statistics.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 09-18-2020
+ * @version 5.13.2021
  */
 public final class Statistics {
 	
@@ -39,11 +39,9 @@ public final class Statistics {
 	 * @return the mean of the data.
 	 */
 	public static double mean(int[] data) {
-		double mean = 0;
 		int sum = 0;
 		for (int e : data) sum = sum + e;
-		mean = 1.0 * sum / data.length;
-		return mean;
+		return 1.0 * sum / data.length;
 	}
 	
 	/**
