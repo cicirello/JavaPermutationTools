@@ -27,7 +27,7 @@ package org.cicirello.math.la;
  * represented as 2-D Java arrays.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>  
- * @version 2.13.2021
+ * @version 5.13.2021
  */
 public final class MatrixOps {
 	
@@ -235,7 +235,7 @@ public final class MatrixOps {
 	 * @return A reference to the C matrix.
 	 */
 	public static int[][] product(int[][] A, int[][] B, int[][] C) {
-		if (A.length == 0 && B.length > 0 || A.length > 0 && B.length == 0) {
+		if ((A.length == 0 && B.length > 0) || (A.length > 0 && B.length == 0)) {
 			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
 		} else if (A.length == 0) {
 			if (C==null) return new int[0][0];
@@ -267,7 +267,7 @@ public final class MatrixOps {
 	 * @return A reference to the C matrix.
 	 */
 	public static double[][] product(double[][] A, double[][] B, double[][] C) {
-		if (A.length == 0 && B.length > 0 || A.length > 0 && B.length == 0) {
+		if ((A.length == 0 && B.length > 0) || (A.length > 0 && B.length == 0)) {
 			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
 		} else if (A.length == 0) {
 			if (C==null) return new double[0][0];

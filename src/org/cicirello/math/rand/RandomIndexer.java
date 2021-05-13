@@ -33,7 +33,7 @@ import java.util.SplittableRandom;
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 2.13.2021
+ * @version 5.13.2021
  *
  */
 public final class RandomIndexer {
@@ -152,7 +152,7 @@ public final class RandomIndexer {
 	 */
 	public static int nextBiasedInt(int bound) {
 		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
-		return (int)((long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound >> 31);
+		return (int)(((long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound) >> 31);
 	}
 	
 	/**
@@ -178,7 +178,7 @@ public final class RandomIndexer {
 	 */
 	public static int nextBiasedInt(int bound, SplittableRandom gen) {
 		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
-		return (int)((long)(gen.nextInt() & 0x7fffffff) * (long)bound >> 31);
+		return (int)(((long)(gen.nextInt() & 0x7fffffff) * (long)bound) >> 31);
 	}
 	
 	/**
@@ -211,7 +211,7 @@ public final class RandomIndexer {
 	 */
 	public static int nextBiasedInt(int bound, Random gen) {
 		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
-		return (int)((long)(gen.nextInt() & 0x7fffffff) * (long)bound >> 31);
+		return (int)(((long)(gen.nextInt() & 0x7fffffff) * (long)bound) >> 31);
 	}
 	
 	
