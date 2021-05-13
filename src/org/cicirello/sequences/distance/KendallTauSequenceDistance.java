@@ -77,7 +77,7 @@ import java.util.Iterator;
  * Industrial Networks and Intelligent Systems, 7(23), Article e1, April 2020.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @version 5.13.2021
  */
 public final class KendallTauSequenceDistance implements SequenceDistanceMeasurer {
 	
@@ -333,6 +333,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	}
 	
 	private int relabelElementsWithHash(Object[] s1, Object[] s2, int[][] relabeling) {
+		@SuppressWarnings("NULL_DEREFERENCE")
 		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(1.334 * relabeling.length)+2);
 		int current = -1;
 		for (int i = 0; i < relabeling.length; i++) {
@@ -352,6 +353,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	}
 	
 	private <T> int relabelElementsWithHash(List<T> s1, List<T> s2, int[][] relabeling) {
+		@SuppressWarnings("NULL_DEREFERENCE")
 		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(1.334 * relabeling.length)+2);
 		int current = -1;
 		for (T e : s1) {
