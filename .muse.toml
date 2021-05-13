@@ -1,0 +1,21 @@
+# don't run eslint... it is for js and will detect false positives 
+# in javadoc directories.
+
+disableTools = ["eslint"]
+
+# Ignore warnings not relevant to this specific project:
+#
+# 1) FindSecBugs identifies our use of ThreadLocalRandom as predictable.
+# We make extensive use of this class for randomness. Our use of randomness 
+# in this library is NOT at all security related, and rather, we simply need 
+# a fast pseudorandom number generator since we need to generate large 
+# numbers of random numbers. So ignore predictable random warnings. 
+
+ignore = ["PREDICTABLE_RANDOM"]
+
+# Ignore results from these directories
+
+ignoreFiles = """
+docs/api/jquery/
+tests/
+"""
