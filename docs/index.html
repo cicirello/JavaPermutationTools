@@ -5,32 +5,43 @@
 <link rel="canonical" href="https://jpt.cicirello.org/">
 <link itemprop="url" href="https://jpt.cicirello.org/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="title" content="JavaPermutationTools - A Java API for computation on permutations and sequences">
-<meta itemprop="name" content="JavaPermutationTools - A Java API for computation on permutations and sequences">
-<meta name="description" content="JavaPermutationTools - A Java API for computation on permutations and sequences - The API includes a variety of 
+<meta name="title" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
+<meta itemprop="name" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
+<meta name="description" content="JavaPermutationTools - A Java library for computation on permutations and sequences - The JPT library includes a variety of 
 permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
-<meta itemprop="description" content="JavaPermutationTools - A Java API for computation on permutations and sequences - The API includes a variety of 
+<meta itemprop="description" content="JavaPermutationTools - A Java library for computation on permutations and sequences - The JPT library includes a variety of 
 permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
-<title>JavaPermutationTools - A Java API for computation on permutations and sequences</title>
+<title>JavaPermutationTools - A Java library for computation on permutations and sequences</title>
 <style>
-article { display: block; }
-body { font-family: Arial, Helvetica, sans-serif; }
-article li { margin-bottom: 8px; margin-top: 8px; }
+header, nav, footer, article, aside, section { display: block; }
+footer { clear: both; }
+body { background-color: #f6f0bb; font-family: Arial, Helvetica, sans-serif; }
+aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin-bottom: 5px; padding: 8px; }
+h1, h2, h3, h4, h5, h6, strong { color: #862d2d; }
+a { color: #4CAF50; }
+a:visited { color:#862d2d; }
 nav ul { list-style-type: none; margin: 0px; padding: 0; overflow: hidden; }
 nav li { float: left; margin-right: 8px; }
-nav li a { display: block; background-color: white; border: 2px solid black; text-decoration: none; text-align: center; color: black; border-radius: 12px; padding: 6px 12px; }
-nav li a:hover { background-color: black; color: white; }
+nav li a { display: block; background-color: #f6f0bb; border: 2px solid #4CAF50; text-decoration: none; text-align: center; color: #666; border-radius: 12px; padding: 6px 12px;}
+nav li a:visited { color: #666; }
+nav li a:hover:not(.active) { background-color: #305030; color: white; }
+nav li a.active { background-color: #4CAF50; }
+article li { margin-bottom: 8px; margin-top: 8px; }
+.publist li { margin-bottom: 16px; }
+.publist ul { margin-bottom: 32px; }
 section li { margin-bottom: 16px; }
 section ul { margin-bottom: 32px; }
-footer { border-top: 2px dotted black; }
+#copyright { text-align: center; color: #862d2d; }
 </style>
 </head>
 <body>
 <article itemprop="mainEntity" itemscope itemtype="http://schema.org/SoftwareSourceCode">
 <header>
-<h1 itemprop="name">JavaPermutationTools</h1>
-<h2 itemprop="headline">A Java API for computation on permutations and sequences</h2>
-<h3 itemprop="author copyrightHolder" itemscope itemtype="http://schema.org/Person"><a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent A. Cicirello</span></a></h3>
+<h1 itemprop="name">
+<a href=".">
+<img src="images/jpt.svg" alt="JavaPermutationTools - A Java library for computation on permutations and sequences" width="1280" height="640" style="max-width:100%;height:auto">
+</a>
+</h1>
 <nav>
 <ul>
 <li><a itemprop="codeRepository" href="https://github.com/cicirello/JavaPermutationTools">Source code</a></li>
@@ -40,32 +51,32 @@ footer { border-top: 2px dotted black; }
 </nav>
 </header>
 <section>
-<h3>About the JavaPermutationTools (JPT) API</h3>
-<p itemprop="description">The JavaPermutationTools (JPT) API provides <span itemprop="programmingLanguage">Java</span> classes 
-that enable representing and generating permutations and sequences, 
-as well as performing computation on permutations and sequences.  This current release consists
-of implementations of a variety of permutation distance metrics as well as distance metrics on sequences (i.e., 
-Strings, arrays, and other ordered data types).  More computation on 
-permutations and sequences will be added later.</p>
-<p>The <a href="https://github.com/cicirello/JavaPermutationTools">JPT source code repository</a> is hosted on GitHub;
-and is licensed under the <a itemprop="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License Version 3 (GPLv3)</a>.
-The <span itemprop="hasPart" itemscope itemtype="http://schema.org/APIReference"><a itemprop="url" href="/api/">API documentation</a> of <span itemprop="name headline">JavaPermutationTools</span></span> can be found on this site.</p>
-<p>JPT is organized into the following packages:</p>
-<ul>
-<li>org.cicirello.permutations: Permutation class and a Permutation Iterator.</li>
-<li>org.cicirello.permutations.distance: Collection of permutation distance metric implementations.</li>
-<li>org.cicirello.sequences: Classes that perform a variety of operations on sequences (such as arrays, etc).</li>
-<li>org.cicirello.sequences.distance: Collection of distance metrics on Strings and other sequences.</li>
-<li>org.cicirello.math.la: Linear algebra related classes.</li>
-<li>org.cicirello.math.rand: Classes related to efficient, or specialized, random number generation.</li>
-<li>org.cicirello.math.stats: Statistics related classes.</li>
-</ul>
-<p>In addition to the source code, the repository contains a folder of example programs that show basic usage of the API, as well as
-a folder of replication programs that reproduce results found in published papers.  There are also JUnit test cases.</p> 
+<h3>About the JavaPermutationTools (JPT) Library</h3>
+<p itemprop="description">JavaPermutationTools (JPT) is a <span itemprop="programmingLanguage">Java</span> 
+library for representing and generating permutations and sequences, as well as performing 
+computation on permutations and sequences. This includes implementations of a variety of 
+permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, 
+and other ordered data types).</p>
+<p>The <a href="https://github.com/cicirello/JavaPermutationTools">JPT source 
+code repository</a> is hosted on GitHub; and is licensed under 
+the <a itemprop="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU 
+General Public License Version 3 (GPLv3)</a>. The <span itemprop="hasPart" itemscope itemtype="http://schema.org/APIReference"><a itemprop="url" href="api/">API documentation</a> of <span itemprop="name headline">JavaPermutationTools</span></span> is found on this site.
+The library is regularly published 
+to <a href="https://search.maven.org/artifact/org.cicirello/jpt">Maven Central</a>, 
+from which it is easily imported into software projects using Maven and other 
+commonly used build tools.</p>
+<p>Additionally, there is a 
+GitHub <a href="https://github.com/cicirello/jpt-examples">repository of example programs</a> that 
+show basic usage of the JPT library, as well as replication programs that 
+reproduce results found in published papers.</p> 
+<p itemprop="author copyrightHolder" itemscope itemtype="http://schema.org/Person">The JPT library
+originated as part of the research 
+of <a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent 
+A. Cicirello</span></a>.</p>
 </section>
 <section>
 <h3>How to Cite</h3>
-<p>If you use this API in your research, please cite the following article which describes the library:</p>
+<p>If you use JPT in your research, please cite the following article which describes the library:</p>
 <ul>
 <li>Vincent A. Cicirello. 
 <a href="https://www.cicirello.org/publications/cicirello2018joss.html">JavaPermutationTools: A Java Library of Permutation Distance Metrics</a>.
@@ -73,7 +84,7 @@ a folder of replication programs that reproduce results found in published paper
 <a href="https://www.cicirello.org/publications/cicirello2018joss.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2018joss.bib">[BIB]</a> <a href="https://doi.org/10.21105/joss.00950">[DOI]</a></li>
 </ul>
 </section>
-<section>
+<section class="publist">
 <h3>Related Publications</h3>
 <p>The following papers, most of which are related to fitness landscape analysis, used this API.  Programs for replicating the data from these papers can be found in the replication directory.  In order to fully understand the data generated by the programs in the replication directory, you may need to consult these papers:</p>
 <ul>
@@ -103,9 +114,9 @@ In <i>Proceedings of the Twenty-Sixth International Florida Artificial Intellige
 <a href="https://www.cicirello.org/publications/cicirello-FLAIRS2013.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2013flairs.bib">[BIB]</a> <a href="http://www.aaai.org/ocs/index.php/FLAIRS/FLAIRS13/paper/view/5841">[PUB]</a></li>
 </ul> 
 </section>
-<footer>
-<small>Copyright &copy; 2005-<span itemprop="copyrightYear">2019</span> Vincent A. Cicirello.</small>
-</footer>
 </article>
+<footer>
+<div id="copyright"><small>Copyright &copy; 2005-<span itemprop="copyrightYear">2021</span> Vincent A. Cicirello.</small></div>
+</footer>
 </body>
 </html>
