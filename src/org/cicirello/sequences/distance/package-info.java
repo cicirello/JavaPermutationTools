@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,7 +22,6 @@
  
  /**
  * Implementations of distance measures for general sequences of various forms, including Strings, arrays of primitive types, arrays of objects, etc. 
- * @version 2.18.8.24
- * @since 1.1
+ * @version 5.24.2021
  */
 package org.cicirello.sequences.distance;
