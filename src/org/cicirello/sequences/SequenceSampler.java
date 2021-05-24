@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -32,9 +32,7 @@ import java.util.Arrays;
  * efficiently generating random samples of array elements, without replacement.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 9.6.2019
- * @since 1.5
- *
+ * @version 5.24.2021
  */
 public final class SequenceSampler {
 	
