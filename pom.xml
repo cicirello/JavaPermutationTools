@@ -236,8 +236,8 @@
 					<additionalJOptions>
 						<additionalJOption>--no-module-directories</additionalJOption>
 					</additionalJOptions>
-					<windowtitle>JavaPermutationTools - A Java API for computation on permutations</windowtitle>
-					<doctitle>JavaPermutationTools - A Java API for computation on permutations</doctitle>
+					<windowtitle>JavaPermutationTools - A Java library for computation on permutations</windowtitle>
+					<doctitle>JavaPermutationTools - A Java library for computation on permutations</doctitle>
 					<author>false</author>
 					<version>false</version>
 					<nosince>true</nosince>
