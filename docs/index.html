@@ -34,7 +34,7 @@ article li { margin-bottom: 8px; margin-top: 8px; }
 section li { margin-bottom: 16px; }
 section ul { margin-bottom: 32px; }
 #copyright { text-align: center; color: #862d2d; }
-#logo {max-width: 1280px;}
+#logo #backup-logo {max-width: 1280px;}
 amp-img.contain img { object-fit: contain; }
 .badge-height { position: relative; width: 100%; height: 20px;}
 </style>
@@ -101,7 +101,27 @@ amp-img.contain img { object-fit: contain; }
 <div itemscope>
 <h1>
 <a href=".">
-<amp-img id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject" src="images/jpt.png" alt="JavaPermutationTools - A Java library for computation on permutations and sequences" width="1280" height="640" layout="responsive"></amp-img>
+<amp-img id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject" 
+  src="images/jpt.webp" 
+  alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
+  width="1280" 
+  height="640" 
+  layout="responsive"
+  srcset="images/jpt.webp 1280w,
+          images/jpt640.webp 640w,
+		  images/jpt320.webp 320w">
+  <amp-img id="backup-logo"  
+    fallback
+    src="images/jpt.png" 
+    alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
+    width="1280" 
+    height="640" 
+    layout="responsive"
+    srcset="images/jpt.png 1280w,
+            images/jpt640.png 640w,
+		    images/jpt320.png 320w">
+  </amp-img>
+</amp-img>
 </a>
 </h1>
 <nav>
