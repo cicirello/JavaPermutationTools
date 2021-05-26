@@ -3,10 +3,10 @@ name: docs
 on:
   push:
     branches: [ master ]
-    paths: [ '**.java' ]
+    paths: [ '**.java', '.github/workflows/docs.yml' ]
   pull_request:
     branches: [ master ]
-    paths: [ '**.java' ]
+    paths: [ '**.java', '.github/workflows/docs.yml' ]
   workflow_dispatch:
 
 jobs:
@@ -38,6 +38,8 @@ jobs:
       with:
         base-url-path: https://jpt.cicirello.org/
         path-to-root: docs
+        user-defined-block: |
+          <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
 
     - name: Log javadoc-cleanup output
       run: |
