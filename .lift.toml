@@ -20,4 +20,5 @@ ignore = ["PREDICTABLE_RANDOM"]
 ignoreFiles = """
 docs/api/jquery/
 tests/
+*.js
 """
