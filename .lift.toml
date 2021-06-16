@@ -5,6 +5,9 @@ build = "mvn"
 
 disableTools = ["eslint"]
 
+# Enable PMD, which is disabled by default.
+customTools = [ "https://help.sonatype.com/lift/files/78578763/78578764/1/1623180860953/pmd.sh rulesets/java/quickstart.xml" ]
+
 # Ignore warnings not relevant to this specific project:
 #
 # 1) FindSecBugs identifies our use of ThreadLocalRandom as predictable.
