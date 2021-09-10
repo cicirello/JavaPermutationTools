@@ -1,4 +1,5 @@
 {
+    "title": "JavaPermutationTools: A Java library for computation on permutations and sequences", 
     "license": "GPL-3.0-or-later", 
     "upload_type": "software", 
     "creators": [
@@ -16,5 +17,16 @@
 		"sequence distance",
 		"string distance",
 		"edit distance"
-	]
+	],
+    "related_identifiers": [
+        {
+            "scheme": "doi",
+            "identifier": "10.21105/joss.00950",
+            "relation": "isDocumentedBy",
+            "resource_type": {
+                "type": "publication",
+                "subtype": "article"
+            }
+        }
+    ]
 }
