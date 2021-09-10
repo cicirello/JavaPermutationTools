@@ -19,6 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 
+## [2.6.3] - 2021-09-10
+
+### Other
+* Configured a CITATION.cff file in repository. This release is
+  strictly to confirm correct integration with Zenodo. There are
+  no actual changes or additions, etc to the library itself.
+
+
 ## [2.6.2] - 2021-09-10
 
 ### Other
