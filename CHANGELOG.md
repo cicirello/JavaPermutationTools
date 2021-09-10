@@ -27,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   no actual changes or additions, etc to the library itself.
 
 
-
 ## [2.6.4] - 2021-09-10
 
 ### Other
