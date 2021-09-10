@@ -23,7 +23,7 @@
             "scheme": "doi",
             "identifier": "10.21105/joss.00950",
             "relation": "isDocumentedBy",
-            "resource_type": "article"
+            "resource_type": "publication"
         }
     ]
 }
