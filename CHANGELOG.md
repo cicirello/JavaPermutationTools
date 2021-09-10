@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-05-13
+## [Unreleased] - 2021-09-10
 
 ### Added
 
@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+
+
+## [2.6.2] - 2021-09-10
+
+### Other
+* Configured a CITATION.cff file in repository. This release is
+  strictly to confirm correct integration with Zenodo. There are
+  no actual changes or additions, etc to the library itself.
 
 
 ## [2.6.1] - 2021-05-13
