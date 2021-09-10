@@ -1,0 +1,26 @@
+# YAML 1.2
+---
+cff-version: "1.1.0"
+message: "If you use this software, please cite it using these metadata."
+authors: 
+- family-names: "Cicirello"
+  given-names: "Vincent A"
+  orcid: "https://orcid.org/0000-0003-1072-8559"
+title: "JavaPermutationTools"
+doi: "10.5281/zenodo.1478192"
+license: "GPL-3.0-or-later"
+url: "https://github.com/cicirello/JavaPermutationTools"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Cicirello"
+    given-names: "Vincent A"
+    orcid: "https://orcid.org/0000-0003-1072-8559"
+  doi: "10.21105/joss.00950"
+  journal: "Journal of Open Source Software"
+  start: 950
+  title: "JavaPermutationTools: A Java Library of Permutation Distance Metrics"
+  issue: 31
+  volume: 3
+  year: 2018
+...
