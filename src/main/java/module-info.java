@@ -49,4 +49,5 @@ module org.cicirello.jpt {
 	exports org.cicirello.permutations.distance;
 	exports org.cicirello.sequences;
 	exports org.cicirello.sequences.distance;
+	requires org.cicirello.rho_mu;
 }
