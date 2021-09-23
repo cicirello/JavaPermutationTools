@@ -6,7 +6,7 @@
  
 	<groupId>org.cicirello</groupId>
 	<artifactId>jpt</artifactId>
-	<version>2.2.0</version>
+	<version>3.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>JavaPermutationTools</name>
@@ -181,19 +181,6 @@
 	</properties>
   
 	<build>
-		<sourceDirectory>${project.basedir}/src</sourceDirectory>
-		<scriptSourceDirectory>${project.basedir}/src/scripts</scriptSourceDirectory>
-		<testSourceDirectory>${project.basedir}/tests</testSourceDirectory>
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/resources</directory>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/tests/resources</directory>
-			</testResource>
-		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
