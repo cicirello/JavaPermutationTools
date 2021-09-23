@@ -222,7 +222,6 @@
 					<author>false</author>
 					<version>false</version>
 					<nosince>true</nosince>
-					<overview>${project.build.sourceDirectory}/overview.html</overview>
 					<notimestamp>true</notimestamp>
 					<bottom><![CDATA[Copyright &copy; 2005-2021 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
