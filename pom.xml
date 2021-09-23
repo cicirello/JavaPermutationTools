@@ -176,8 +176,7 @@
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
   
 	<build>
@@ -187,8 +186,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<release>11</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -217,12 +215,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<source>1.8</source>
 					<failOnWarnings>true</failOnWarnings>
 					<failOnError>true</failOnError>
-					<additionalJOptions>
-						<additionalJOption>--no-module-directories</additionalJOption>
-					</additionalJOptions>
 					<windowtitle>JavaPermutationTools - A Java library for computation on permutations</windowtitle>
 					<doctitle>JavaPermutationTools - A Java library for computation on permutations</doctitle>
 					<author>false</author>
@@ -230,9 +224,6 @@
 					<nosince>true</nosince>
 					<overview>${project.build.sourceDirectory}/overview.html</overview>
 					<notimestamp>true</notimestamp>
-					<links>
-						<link>https://docs.oracle.com/javase/8/docs/api</link>
-					</links>
 					<bottom><![CDATA[Copyright &copy; 2005-2021 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
 			</plugin>
