@@ -205,6 +205,10 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 		}
 	}
 	
+	/**
+	 * Creates an identical copy of this object.
+	 * @return an identical copy of this object
+	 */
 	@Override
 	public Permutation copy() {
 		return new Permutation(this);

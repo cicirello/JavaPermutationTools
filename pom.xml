@@ -177,6 +177,11 @@
 			<artifactId>rho-mu</artifactId>
 			<version>1.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.cicirello</groupId>
+			<artifactId>core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
   
 	<properties>
@@ -230,6 +235,7 @@
 					<notimestamp>true</notimestamp>
 					<links>
 						<link>https://rho-mu.cicirello.org/api</link>
+						<link>https://core.cicirello.org/api</link>
 					</links>
 					<bottom><![CDATA[Copyright &copy; 2005-2021 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
