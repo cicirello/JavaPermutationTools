@@ -187,10 +187,33 @@ for the equivalent):</p>
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;org.cicirello&lt;/groupId&gt;
   &lt;artifactId&gt;jpt&lt;/artifactId&gt;
-  &lt;version&gt;2.6.1&lt;/version&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>Just replace the version number with your desired version of the library.</p>
+</section>
+<section>
+<h3>Java Modules</h3>
+<p>The library provides a Java module, org.cicirello.jpt. To use in your project, add the 
+following to your module-info.java:</p>
+<pre><code>
+module your.module.name.here {
+    requires org.cicirello.jpt;
+}
+</code></pre>
+<p>This module includes the org.cicirello.permutations and org.cicirello.sequences
+packages as well as their subpackages. See the <a href="https://jpt.cicirello.org/api">API documentation</a> 
+for details.</p>
+<p>Beginning with version 3.0.0, randomization and other math utilities, and some
+generic utilities, have been moved to a pair of new 
+libraries <a href="https://rho-mu.cicirello.org/">&rho;&mu;</a>
+and <a href="https://core.cicirello.org/">org.cicirello.core</a>, which are
+now dependencies of JavaPermutationTools. Your dependency manager (see previous section)
+will handle downloading these for you.</p>
+<p>To ease the transition of users of the library who may have been relying on those
+utilities, we have configured the module-info.java for the org.cicirello.jpt module to
+require these transitively so that your application should only need to
+require org.cicirello.jpt to access the functionality of those new modules.</p>
 </section>
 <section>
 <h3>Semantic Versioning</h3>
