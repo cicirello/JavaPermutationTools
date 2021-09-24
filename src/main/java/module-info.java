@@ -49,6 +49,14 @@ module org.cicirello.jpt {
 	exports org.cicirello.permutations.distance;
 	exports org.cicirello.sequences;
 	exports org.cicirello.sequences.distance;
-	requires org.cicirello.rho_mu;
-	requires org.cicirello.core;
+	
+	// Specified transitive on these to minimize the impact
+	// of the introduction of modules on users' existing code
+	// that might assume access to the classes/interfaces from these
+	// modules. Strictly speaking, these do not need to be transitive
+	// for jpt because jpt's public interface does not depend on anything
+	// in these (e.g., no objects of any classes from these modules are
+	// returned or expected as parameters).
+	requires transitive org.cicirello.rho_mu;
+	requires transitive org.cicirello.core;
 }
