@@ -6,7 +6,7 @@
  
 	<groupId>org.cicirello</groupId>
 	<artifactId>jpt</artifactId>
-	<version>2.2.0</version>
+	<version>3.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>JavaPermutationTools</name>
@@ -172,36 +172,31 @@
 			<scope>test</scope>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>org.cicirello</groupId>
+			<artifactId>rho-mu</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cicirello</groupId>
+			<artifactId>core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
   
 	<build>
-		<sourceDirectory>${project.basedir}/src</sourceDirectory>
-		<scriptSourceDirectory>${project.basedir}/src/scripts</scriptSourceDirectory>
-		<testSourceDirectory>${project.basedir}/tests</testSourceDirectory>
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/resources</directory>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/tests/resources</directory>
-			</testResource>
-		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<release>11</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -230,21 +225,17 @@
 					</execution>
 				</executions>
 				<configuration>
-					<source>1.8</source>
 					<failOnWarnings>true</failOnWarnings>
 					<failOnError>true</failOnError>
-					<additionalJOptions>
-						<additionalJOption>--no-module-directories</additionalJOption>
-					</additionalJOptions>
 					<windowtitle>JavaPermutationTools - A Java library for computation on permutations</windowtitle>
 					<doctitle>JavaPermutationTools - A Java library for computation on permutations</doctitle>
 					<author>false</author>
 					<version>false</version>
 					<nosince>true</nosince>
-					<overview>${project.build.sourceDirectory}/overview.html</overview>
 					<notimestamp>true</notimestamp>
 					<links>
-						<link>https://docs.oracle.com/javase/8/docs/api</link>
+						<link>https://rho-mu.cicirello.org/api</link>
+						<link>https://core.cicirello.org/api</link>
 					</links>
 					<bottom><![CDATA[Copyright &copy; 2005-2021 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
@@ -262,6 +253,43 @@
 						<include>**/Test*.java</include>
 					</includes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.4</version>
+				<configuration>
+					<shadedArtifactAttached>true</shadedArtifactAttached>
+					<shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>module-info.class</exclude>
+							</excludes>
+						</filter>
+						<filter>
+							<artifact>org.cicirello:core</artifact>
+							<excludes>
+								<exclude>META-INF/MANIFEST.MF</exclude>
+							</excludes>
+						</filter>
+						<filter>
+							<artifact>org.cicirello:rho-mu</artifact>
+							<excludes>
+								<exclude>META-INF/MANIFEST.MF</exclude>
+							</excludes>
+						</filter>
+					</filters>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>  

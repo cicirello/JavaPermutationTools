@@ -7,6 +7,8 @@ Copyright (C) 2018-2021 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://jpt.cicirello.org/
 
+API documentation: https://jpt.cicirello.org/api
+
 | __Publications About the Library__ | [![DOI](http://joss.theoj.org/papers/10.21105/joss.00950/status.svg)](https://doi.org/10.21105/joss.00950) |
 | :--- | :--- |
 | __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/org.cicirello/jpt) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases) |
@@ -29,16 +31,13 @@ computation on permutations and sequences. It includes implementations of a vari
 of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, 
 arrays, and other ordered data types). 
 
-## Repository Organization
+## Java 11+
 
-The GitHub repository is organized as follows:
-* The [/src](src) directory contains all of the source code for JavaPermutationTools.
-* The [/tests](tests) directory contains JUnit test cases for all functionality of the library.
-* The [/docs](docs) directory contains the javadoc documentation in a sub-directory /docs/api. The /docs directory is also the location of the website for the project hosted via GitHub pages at https://jpt.cicirello.org/.
+Beginning with version 3.0.0, the library supports Java 11+. Our development process 
+utilizes OpenJDK 11, and all jar files released via Maven Central, GitHub Packages, 
+and GitHub Releases are built with a Java 11 target.
 
-## Java 8
-
-The library supports Java 8 or higher, including both Oracle JDK 8 and OpenJDK 8.
+Versions prior to 3.0.0 previously required Java 8+.
 
 ## Versioning Scheme
 
@@ -73,17 +72,53 @@ comments is not advised. Some of the example in the examples repository are
 based on the experiments from published papers that have either used the library
 directly, or which led to some of the code in the library.
 
+## Java Modules
+
+This library provides a Java module, `org.cicirello.jpt`. To use in your project,
+add the following to your `module-info.java`:
+
+```Java
+module your.module.name.here {
+	requires org.cicirello.jpt;
+}
+```
+
+This module includes the `org.cicirello.permutations` and `org.cicirello.sequences`
+packages as well as their subpackages. See the [API documentation](https://jpt.cicirello.org/api) 
+for details.
+
+Beginning with version 3.0.0, randomization and other math utilities, and some
+generic utilities, have been
+moved to a pair of new libraries [&rho;&mu;](https://github.com/cicirello/rho-mu)
+and [org.cicirello.core](https://github.com/cicirello/core), which are
+now dependencies of JavaPermutationTools. Your dependency manager (see next section)
+will handle downloading these for you. 
+
+To ease the transition of users of the library who may have been relying on those
+utilities, we have configured the `module-info.java` for the `org.cicirello.jpt` module to
+require these transitively so that your application should only need to
+require `org.cicirello.jpt` to access the functionality of those new modules.
+However, it is possible that you __may__ actually need the following to access
+some of that functionality, such as the RandomIndexer class, or other math or utility classes:
+
+```Java
+module your.module.name.here {
+	requires org.cicirello.jpt;
+	requires org.cicirello.rho_mu;
+	requires org.cicirello.core;
+}
+```
+
 ## Importing the Library from Maven Central
 
 Add this to the dependencies section of your pom.xml, replacing the version number 
-with the version you want to use (note that the library has been available in Maven
-Central since version 2.1.2).
+with the version you want to use.
 
 ```XML
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>jpt</artifactId>
-  <version>2.6.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
@@ -109,13 +144,20 @@ If you don't use a dependency manager that supports importing from Maven Central
 or if you simply prefer to download manually, prebuilt jars are also attached to 
 each [GitHub Release](https://github.com/cicirello/JavaPermutationTools).
 
+In addition to the regular jar of the library, we also regularly publish a
+`jar-with-dependencies`. The `jar-with-dependencies` is built for a Java 11 target,
+but does not contain any module declarations (unlike the regular jar file which does).
+Therefore, the `jar-with-dependencies` should be used on the classpath. 
+
 ## License
 
 The JPT library is licensed under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-
 ## Contribute
 
-Report bugs, suggestions, feature requests, etc via the [issues tracker](https://github.com/cicirello/JavaPermutationTools/issues).  If you would 
-like to directly contribute new code, you may also fork the repository, 
-and create pull requests.
+If you would like to contribute in any way, such 
+as reporting bugs, suggesting new functionality, or code contributions 
+such as bug fixes or implementations of new functionality, then start 
+by reading the [contribution guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md).
+This project has adopted 
+the [Contributor Covenant Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md).
