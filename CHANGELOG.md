@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-09-10
+## [Unreleased] - 2021-09-24
 
 ### Added
 
@@ -17,6 +17,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### CI/CD
+
+
+## [3.0.0] - 2021-09-24
+
+### Changed
+* Minimum supported Java version is now Java 11+.
+* The library now uses Java modules, providing the
+  module `org.cicirello.jpt`, which includes the
+  existing packages `org.cicirello.permutations` and
+  `org.cicirello.sequences`, as well as their
+  subpackages.
+* The randomization and other math utilities, previously
+  contained in the package `org.cicirello.math` and its
+  subpackages have been moved to a new library
+  [&rho;&mu;](https://rho-mu.cicirello.org), within a module
+  `org.cicirello.rho_mu`. That module is now a dependency
+  of jpt, declared with a `requires transitive` to ease the
+  transition for existing users of JPT (they should only 
+  need a `requires org.cicirello.jpt` to get access to
+  that functionality as well).
+* Similar to the above, the package `org.cicirello.util`
+  has been moved out of JPT to a new library
+  [org.cicirello.core](https://core.cicirello.org), within 
+  a module `org.cicirello.core`. The package name of
+  `org.cicirello.util` has been kept. This new module is
+  now a dependency of JPT. And just as in the case with the
+  math and randomization utilities, JPT declares the module
+  requires with `requires transitive` to ease the transition
+  of existing users.
+* We will now also publish a `jar-with-dependencies` for those
+  users of the library who do not use a dependency manager. This
+  fat jar contains the library and all dependencies. This fat
+  jar is not modularized (unlike the regular jar), as Java 
+  only allows a single module per jar. However, it is still 
+  built for a Java 11 target.
 
 
 ## [2.6.5] - 2021-09-10
