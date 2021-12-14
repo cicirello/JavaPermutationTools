@@ -19,7 +19,7 @@ disableTools = ["eslint"]
 # a fast pseudorandom number generator since we need to generate large 
 # numbers of random numbers. So ignore predictable random warnings. 
 
-ignore = ["PREDICTABLE_RANDOM"]
+ignoreRules = ["PREDICTABLE_RANDOM"]
 
 # Ignore results from these directories
 
