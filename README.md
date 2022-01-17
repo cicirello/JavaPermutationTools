@@ -3,7 +3,7 @@
 [<img alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
      src="docs/images/jpt.png" width="640">](#javapermutationtools-jpt-a-java-library-for-computation-on-permutations-and-sequences)
 
-Copyright (C) 2018-2021 [Vincent A. Cicirello](https://www.cicirello.org/).
+Copyright (C) 2018-2022 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://jpt.cicirello.org/
 
@@ -14,6 +14,7 @@ API documentation: https://jpt.cicirello.org/api
 | __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/org.cicirello/jpt) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/JavaPermutationTools?logo=GitHub)](https://github.com/cicirello/JavaPermutationTools/releases) |
 | __Build Status__ | [![build](https://github.com/cicirello/JavaPermutationTools/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions/workflows/build.yml) [![docs](https://github.com/cicirello/JavaPermutationTools/actions/workflows/docs.yml/badge.svg)](https://jpt.cicirello.org/api/) [![CodeQL](https://github.com/cicirello/JavaPermutationTools/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/JavaPermutationTools/actions/workflows/codeql-analysis.yml) |
 | __JaCoCo Test Coverage__ | [![coverage](../badges/jacoco.svg)](https://github.com/cicirello/JavaPermutationTools/actions/workflows/build.yml) [![branch coverage](../badges/branches.svg)](https://github.com/cicirello/JavaPermutationTools/actions/workflows/build.yml) |
+| __Security__ | [![Snyk security score](https://snyk-widget.herokuapp.com/badge/mvn/org.cicirello/jpt/badge.svg)](https://snyk.io/vuln/maven%3Aorg.cicirello%3Ajpt) [![Snyk Known Vulnerabilities](https://snyk.io/test/github/cicirello/JavaPermutationTools/badge.svg)](https://snyk.io/test/github/cicirello/JavaPermutationTools) |
 | __DOI__ | [![DOI](https://zenodo.org/badge/139182095.svg)](https://zenodo.org/badge/latestdoi/139182095) |
 | __License__ | [![GitHub](https://img.shields.io/github/license/cicirello/JavaPermutationTools)](https://github.com/cicirello/JavaPermutationTools/blob/master/LICENSE) | 
 
