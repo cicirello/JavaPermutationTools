@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"org.cicirello.jpt","l":"org.cicirello.permutations"},{"m":"org.cicirello.jpt","l":"org.cicirello.permutations.distance"},{"m":"org.cicirello.jpt","l":"org.cicirello.sequences"},{"m":"org.cicirello.jpt","l":"org.cicirello.sequences.distance"}]
