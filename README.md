@@ -1,7 +1,7 @@
 # JavaPermutationTools (JPT): A Java library for computation on permutations and sequences 
 
 [<img alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
-     src="docs/images/jpt.png" width="640">](#javapermutationtools-jpt-a-java-library-for-computation-on-permutations-and-sequences)
+     src="../gh-pages/images/jpt.png" width="640">](#javapermutationtools-jpt-a-java-library-for-computation-on-permutations-and-sequences)
 
 Copyright (C) 2018-2022 [Vincent A. Cicirello](https://www.cicirello.org/).
 
