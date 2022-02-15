@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,17 +17,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 package org.cicirello.sequences;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import org.cicirello.math.stats.Statistics;
 
 /**
- * JUnit 4 tests for the SequenceSampler class.
+ * JUnit tests for the SequenceSampler class.
  */
 public class SequenceSamplerTests {
 	
@@ -69,7 +68,7 @@ public class SequenceSamplerTests {
 				double t = Math.abs(sqrt*(Statistics.mean(L) - n*p)/stDev);
 				double crit = TTEST_NUM_SAMPLES == 101 ? CRITICAL_VALUE_995 : CRITICAL_VALUE_995_INF;
 				System.out.println("t="+t);
-				assertTrue("t test for sample size, t="+t, t < crit);
+				assertTrue(t < crit, "t test for sample size, t="+t);
 			}
 		}
 	}
@@ -1678,7 +1677,7 @@ public class SequenceSamplerTests {
 	// validate (array, sample, k) methods
 	
 	private void validateSample(int[] array, int[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Integer, Integer> counts = new HashMap<Integer, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1698,7 +1697,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(long[] array, long[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Long, Integer> counts = new HashMap<Long, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1718,7 +1717,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(short[] array, short[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Short, Integer> counts = new HashMap<Short, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1738,7 +1737,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(byte[] array, byte[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Byte, Integer> counts = new HashMap<Byte, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1758,7 +1757,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(char[] array, char[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Character, Integer> counts = new HashMap<Character, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1778,7 +1777,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(double[] array, double[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Double, Integer> counts = new HashMap<Double, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1798,7 +1797,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(float[] array, float[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<Float, Integer> counts = new HashMap<Float, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
@@ -1818,7 +1817,7 @@ public class SequenceSamplerTests {
 	}
 	
 	private void validateSample(String[] array, String[] sample, int k) {
-		assertEquals("sample size", k, sample.length);
+		assertEquals(k, sample.length);
 		HashMap<String, Integer> counts = new HashMap<String, Integer>();
 		for (int i = 0; i < array.length; i++) {
 			if (counts.containsKey(array[i])) {
