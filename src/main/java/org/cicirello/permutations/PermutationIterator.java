@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,7 +17,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package org.cicirello.permutations;
@@ -33,7 +32,6 @@ import java.util.NoSuchElementException;
  * modify the returned Permutation without risk of interfering with the operation of the Iterator.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 5.24.2021
  */
 public class PermutationIterator implements Iterator<Permutation> {
 	
@@ -67,7 +65,8 @@ public class PermutationIterator implements Iterator<Permutation> {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * Checks if this PermutationIterator has more Permutations.
+	 * @return true if and only if this PermutationIterator has more Permutations to iterate over.
 	 */
 	@Override
 	public boolean hasNext() {
@@ -75,7 +74,9 @@ public class PermutationIterator implements Iterator<Permutation> {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * Gets the Permutation for the next iteration.
+	 * @return The Permutation for the next iteration.
+	 * @throws NoSuchElementException if hasNext() is false 
 	 */
 	@Override
 	public Permutation next() {
