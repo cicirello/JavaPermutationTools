@@ -604,6 +604,69 @@ public class PermutationDistanceTests {
 	}
 	
 	@Test
+	public void testWeightedKendallTauDistance_WeightsAllOneCase() {
+		for (int n = 2; n <= 10; n++) {
+			double[] weights = new double[n];
+			for (int i = 0; i < n; i++) {
+				weights[i] = 1;
+			}
+			WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+			assertEquals(n, d.supportedLength());
+			Permutation p = new Permutation(n);
+			Permutation copy = new Permutation(p);
+			assertEquals(0.0, d.distancef(p, copy), 1E-10);
+			//maximal distance is permutation reversed
+			copy.reverse();
+			double expected = n*(n-1)/2;
+			assertEquals(expected, d.distancef(p,copy));
+			copy.reverse();
+			copy.swap(0,n-1);
+			expected = 2*n-3;
+			assertEquals(expected, d.distancef(p,copy), 1E-10);
+		}
+		final WeightedKendallTauDistance d = new WeightedKendallTauDistance(new double[] {1, 1, 1, 1, 1, 1});
+		Permutation p = new Permutation(6);
+		for (Permutation q : p) {
+			assertEquals(naiveKendalTau(p,q), d.distancef(p,q), 1E-10);
+		}
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distancef(new Permutation(5), new Permutation(6))
+		);
+		assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distancef(new Permutation(6), new Permutation(5))
+		);
+	}
+	
+	@Test
+	public void testWeightedKendallTauDistance() {
+		double[] weights = {8, 2, 10, 20, 5, 1};
+		int[] p1 = { 5, 2, 0, 3, 1, 4};
+		WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+		assertEquals(0.0, d.distancef(new Permutation(p1), new Permutation(p1)), 1E-10);
+		int[] p2 = { 4, 2, 0, 3, 1, 5 };
+		double expected = 41*5 + 40;
+		assertEquals(expected, d.distancef(new Permutation(p1), new Permutation(p2)), 1E-10);
+		int[] p3 = { 5, 2, 0, 1, 3, 4};
+		expected = 40;
+		assertEquals(expected, d.distancef(new Permutation(p1), new Permutation(p3)), 1E-10);
+	}
+	
+	@Test
+	public void testWeightedKendallTauDistanceReversed() {
+		double[] weights = {8, 2, 10, 20, 5, 1};
+		WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+		int[] perm = { 5, 2, 0, 3, 1, 4};
+		Permutation p1 = new Permutation(perm);
+		Permutation p2 = new Permutation(p1);
+		p2.reverse();
+		double expected = 45.0 + 40.0*5 + 20*20 + 10*10 + 8*2;
+		assertEquals(expected, d.distancef(new Permutation(p1), new Permutation(p2)), 1E-10);
+	}
+	
+	@Test
 	public void testKendallTauDistance() {
 		KendallTauDistance d = new KendallTauDistance();
 		identicalPermutations(d);

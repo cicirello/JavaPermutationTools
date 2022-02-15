@@ -24,6 +24,7 @@ package org.cicirello.permutations.distance;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.cicirello.permutations.*;
+import java.util.SplittableRandom;
 
 /**
  * JUnit tests for the normalizedDistance method of various classes that implement permutation distance metrics.
@@ -133,6 +134,19 @@ public class PermutationDistanceNormTests {
 		KendallTauDistance d = new KendallTauDistance();
 		for (int n = 0; n <= 7; n++) {
 			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
+		}
+	}
+	
+	@Test
+	public void testWeightedKendallTauDistance() {
+		SplittableRandom gen = new SplittableRandom(42);
+		for (int n = 0; n <= 6; n++) {
+			double[] weights = new double[n];
+			for (int i = 0; i < n; i++) {
+				weights[i] = 5 + 15*gen.nextDouble();
+			}
+			WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	

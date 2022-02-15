@@ -187,6 +187,30 @@ public class PermutationDistanceMaxTests {
 		}
 	}
 	
+	@Test
+	public void testWeightedKendallTauDistance() {
+		for (int n = 0; n <= 7; n++) {
+			double[] weights = new double[n];
+			for (int i = 0; i < n; i++) {
+				weights[i] = 1;
+			}
+			WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+			double expected = n*(n-1)/2;
+			assertEquals(expected, d.maxf(n), EPSILON, "Failed on length: " + n);
+			
+			for (int i = 0; i < n; i++) {
+				weights[i] = 2;
+			}
+			d = new WeightedKendallTauDistance(weights);
+			expected *= 4;
+			assertEquals(expected, d.maxf(n), EPSILON, "Failed on length: " + n);
+		}
+		double[] weights = { 5, 10, 2, 0, 8, 3 };
+		WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+		double expected = 25*3 + 17*8 + 15*2 + 50;
+		assertEquals(expected, d.maxf(weights.length), EPSILON);
+	}
+	
 		
 	@Test
 	public void testReinsertionDistance() {
