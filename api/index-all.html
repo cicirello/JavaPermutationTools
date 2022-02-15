@@ -97,7 +97,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -571,6 +571,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Measures the distance between two permutations, with reversal independence:
  distance = min { distance(p1,p2), distance(p1,reverse(p2)) }</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef(Permutation, Permutation)</a></span> - Method in class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></dt>
+<dd>
+<div class="block">Measures the distance between two permutations</div>
+</dd>
 </dl>
 <a id="I:E">
 <!--   -->
@@ -661,6 +665,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Uses Java's Arrays class's method for generating a hashCode from an array of ints.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html#hasNext()">hasNext()</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></dt>
+<dd>
+<div class="block">Checks if this PermutationIterator has more Permutations.</div>
+</dd>
 </dl>
 <a id="I:I">
 <!--   -->
@@ -694,7 +701,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">KendallTauDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Kendall Tau Distance:</div>
+<div class="block">Kendall Tau distance is sometimes also known as bubble sort distance, as it is
+ the number of adjacent swaps necessary to transform one permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html#%3Cinit%3E()">KendallTauDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html" title="class in org.cicirello.permutations.distance">KendallTauDistance</a></dt>
 <dd>
@@ -793,6 +801,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Computes the maximum possible distance between permutations
  of a specified length.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html#maxf(int)">maxf(int)</a></span> - Method in class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></dt>
+<dd>
+<div class="block">Computes the maximum possible distance between permutations
+ of a specified length.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#%3Cinit%3E()">Mechanic()</a></span> - Constructor for class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
 <div class="block">The default constructor can only be called by subclasses.</div>
@@ -804,6 +817,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">N</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html#next()">next()</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></dt>
+<dd>
+<div class="block">Gets the Permutation for the next iteration.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html#normalizedDistance(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">normalizedDistance(Permutation, Permutation)</a></span> - Method in class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html" title="class in org.cicirello.permutations.distance">DeviationDistanceNormalized2005</a></dt>
 <dd>
 <div class="block">Measures the distance between two permutations, normalized to the interval [0.0, 1.0].</div>
@@ -1329,6 +1345,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Constructs the distance measurer as specified in the class documentation.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html#supportedLength()">supportedLength()</a></span> - Method in class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></dt>
+<dd>
+<div class="block">Gets the length of permutations supported by this instance of
+ WeightedKendallTauDistance, which is equal to the length of the
+ array of weights passed to the constructor.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html#swap(int,int)">swap(int, int)</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></dt>
 <dd>
 <div class="block">Swaps 2 integers in the permutation.</div>
@@ -1366,7 +1388,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Creates a String representing the permutation.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a id="I:W">
+<!--   -->
+</a>
+<h2 class="title">W</h2>
+<dl>
+<dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">WeightedKendallTauDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
+<dd>
+<div class="block">This class implements the weighted Kendall tau distance.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html#%3Cinit%3E(double%5B%5D)">WeightedKendallTauDistance(double[])</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></dt>
+<dd>
+<div class="block">Constructs an instance of the WeightedKendallTauDistance.</div>
+</dd>
+</dl>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">

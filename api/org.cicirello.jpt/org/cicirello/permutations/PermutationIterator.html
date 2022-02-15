@@ -201,10 +201,16 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasNext()">hasNext</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Checks if this PermutationIterator has more Permutations.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#next()">next</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Gets the Permutation for the next iteration.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -286,9 +292,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <li class="blockList">
 <h4>hasNext</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;hasNext()</pre>
+<div class="block">Checks if this PermutationIterator has more Permutations.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true#hasNext()" title="class or interface in java.util" class="externalLink">hasNext</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if and only if this PermutationIterator has more Permutations to iterate over.</dd>
 </dl>
 </li>
 </ul>
@@ -299,9 +308,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <li class="blockList">
 <h4>next</h4>
 <pre class="methodSignature">public&nbsp;<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;next()</pre>
+<div class="block">Gets the Permutation for the next iteration.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true#next()" title="class or interface in java.util" class="externalLink">next</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Iterator.html?is-external=true" title="class or interface in java.util" class="externalLink">Iterator</a>&lt;<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Permutation for the next iteration.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util" class="externalLink">NoSuchElementException</a></code> - if hasNext() is false</dd>
 </dl>
 </li>
 </ul>
