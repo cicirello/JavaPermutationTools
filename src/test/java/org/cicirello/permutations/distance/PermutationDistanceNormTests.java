@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -21,12 +21,12 @@
  */
 package org.cicirello.permutations.distance;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import org.cicirello.permutations.*;
 
 /**
- * JUnit 4 tests for the normalizedDistance method of various classes that implement permutation distance metrics.
+ * JUnit tests for the normalizedDistance method of various classes that implement permutation distance metrics.
  */
 public class PermutationDistanceNormTests {
 	
@@ -36,7 +36,7 @@ public class PermutationDistanceNormTests {
 	public void testBlockInterchangeDistance() {
 		BlockInterchangeDistance d = new BlockInterchangeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class PermutationDistanceNormTests {
 	public void testAcyclicEdgeDistance() {
 		AcyclicEdgeDistance d = new AcyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class PermutationDistanceNormTests {
 	public void testCyclicEdgeDistance() {
 		CyclicEdgeDistance d = new CyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=3 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=3 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class PermutationDistanceNormTests {
 	public void testCyclicRTypeDistance() {
 		CyclicRTypeDistance d = new CyclicRTypeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=2 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class PermutationDistanceNormTests {
 	public void testRTypeDistance() {
 		RTypeDistance d = new RTypeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class PermutationDistanceNormTests {
 	public void testDeviationDistance() {
 		DeviationDistance d = new DeviationDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class PermutationDistanceNormTests {
 	public void testDeviationDistanceNormalized() {
 		DeviationDistanceNormalized d = new DeviationDistanceNormalized();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -92,7 +92,7 @@ public class PermutationDistanceNormTests {
 	public void testDeviationDistanceNormalized2005() {
 		DeviationDistanceNormalized2005 d = new DeviationDistanceNormalized2005();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMaxD(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class PermutationDistanceNormTests {
 	public void testSquaredDeviationDistance() {
 		SquaredDeviationDistance d = new SquaredDeviationDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class PermutationDistanceNormTests {
 	public void testLeeDistance() {
 		LeeDistance d = new LeeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -116,7 +116,7 @@ public class PermutationDistanceNormTests {
 	public void testExactMatchDistance() {
 		ExactMatchDistance d = new ExactMatchDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -124,7 +124,7 @@ public class PermutationDistanceNormTests {
 	public void testInterchangeDistance() {
 		InterchangeDistance d = new InterchangeDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -132,7 +132,7 @@ public class PermutationDistanceNormTests {
 	public void testKendallTauDistance() {
 		KendallTauDistance d = new KendallTauDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -141,7 +141,7 @@ public class PermutationDistanceNormTests {
 	public void testReinsertionDistance() {
 		ReinsertionDistance d = new ReinsertionDistance();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON);
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	

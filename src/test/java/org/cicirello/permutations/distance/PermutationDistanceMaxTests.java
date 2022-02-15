@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,16 +17,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 package org.cicirello.permutations.distance;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import org.cicirello.permutations.*;
 
 /**
- * JUnit 4 tests for the max method of various classes that implement permutation distance metrics.
+ * JUnit tests for the max method of various classes that implement permutation distance metrics.
  */
 public class PermutationDistanceMaxTests {
 	
@@ -67,8 +66,8 @@ public class PermutationDistanceMaxTests {
 		BlockInterchangeDistance d = new BlockInterchangeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -77,8 +76,8 @@ public class PermutationDistanceMaxTests {
 		AcyclicEdgeDistance d = new AcyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -87,8 +86,8 @@ public class PermutationDistanceMaxTests {
 		CyclicEdgeDistance d = new CyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -97,8 +96,8 @@ public class PermutationDistanceMaxTests {
 		CyclicRTypeDistance d = new CyclicRTypeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -107,8 +106,8 @@ public class PermutationDistanceMaxTests {
 		RTypeDistance d = new RTypeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -117,8 +116,8 @@ public class PermutationDistanceMaxTests {
 		DeviationDistance d = new DeviationDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -126,7 +125,7 @@ public class PermutationDistanceMaxTests {
 	public void testDeviationDistanceNormalized() {
 		DeviationDistanceNormalized d = new DeviationDistanceNormalized();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON);
+			assertEquals(bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -134,7 +133,7 @@ public class PermutationDistanceMaxTests {
 	public void testDeviationDistanceNormalized2005() {
 		DeviationDistanceNormalized2005 d = new DeviationDistanceNormalized2005();
 		for (int n = 0; n <= 7; n++) {
-			assertEquals("Failed on length: " + n, bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON);
+			assertEquals(bruteForceComputeMaxD(d,n), d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -143,8 +142,8 @@ public class PermutationDistanceMaxTests {
 		SquaredDeviationDistance d = new SquaredDeviationDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -153,8 +152,8 @@ public class PermutationDistanceMaxTests {
 		LeeDistance d = new LeeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -163,8 +162,8 @@ public class PermutationDistanceMaxTests {
 		ExactMatchDistance d = new ExactMatchDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -173,8 +172,8 @@ public class PermutationDistanceMaxTests {
 		InterchangeDistance d = new InterchangeDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -183,8 +182,8 @@ public class PermutationDistanceMaxTests {
 		KendallTauDistance d = new KendallTauDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
@@ -194,8 +193,8 @@ public class PermutationDistanceMaxTests {
 		ReinsertionDistance d = new ReinsertionDistance();
 		for (int n = 0; n <= 7; n++) {
 			int expected = bruteForceComputeMax(d,n);
-			assertEquals("Failed on length: " + n, expected, d.max(n));
-			assertEquals("Failed on length: " + n, 1.0*expected, d.maxf(n), EPSILON);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
 		}
 	}
 	
