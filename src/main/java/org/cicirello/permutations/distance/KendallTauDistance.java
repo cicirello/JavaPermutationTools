@@ -1,5 +1,5 @@
 /*
- * Copyright 2014, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2014, 2015, 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -24,8 +24,6 @@ import org.cicirello.permutations.Permutation;
 import java.util.Arrays;
 
 /**
- * Kendall Tau Distance:
- *
  * <p>Kendall Tau distance is sometimes also known as bubble sort distance, as it is
  * the number of adjacent swaps necessary to transform one permutation into the other.</p>
  *
@@ -47,9 +45,8 @@ import java.util.Arrays;
  * <p>Kendall Tau distance originally described in:<br>
  * M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p>
  * 
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 5.13.2021
- * 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class KendallTauDistance implements NormalizedPermutationDistanceMeasurer {
 	
