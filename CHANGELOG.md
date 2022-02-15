@@ -9,15 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Bumped dependency rho-mu to 1.2.0
-* Bumped dependency org.cicirello.core to 1.1.0
-* Migrated test cases to JUnit 5 (specifically JUnit Jupiter 5.8.2).
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### CI/CD
+
+### Other
+
+
+## [3.1.0] - 2022-02-15
+
+### Added
+* WeightedKendallTauDistance: an implementation of a weighted version of Kendall tau distance
+
+### Changed
+* Bumped dependency rho-mu to 1.2.0
+* Bumped dependency org.cicirello.core to 1.1.0
+* Migrated test cases to JUnit 5 (specifically JUnit Jupiter 5.8.2).
 
 ### CI/CD
 * Automated commenting of test coverage percentages on pull requests.
