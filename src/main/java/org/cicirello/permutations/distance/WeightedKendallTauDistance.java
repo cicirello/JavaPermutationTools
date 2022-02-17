@@ -130,17 +130,18 @@ public final class WeightedKendallTauDistance implements NormalizedPermutationDi
 		int j = 0;
 		int k = first;
 		double weightedCount = 0;
+		double leftWeights = 0;
+		for (int x = 0; x < left.length; x++) {
+			leftWeights += w[left[x]];
+		}
 		while (i < left.length && j < right.length) {
 			if (left[i] < right[j]) {
+				leftWeights -= w[left[i]];
 				array[k] = left[i];
 				i++;
 				k++;
 			} else {
 				// inversions
-				double leftWeights = 0;
-				for (int x = i; x < left.length; x++) {
-					leftWeights += w[left[x]];
-				}
 				weightedCount += w[right[j]] * leftWeights;
 				array[k] = right[j];
 				j++;
