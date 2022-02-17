@@ -1,5 +1,6 @@
 /*
- * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences.
+ * Copyright (C) 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -76,7 +77,6 @@ import java.util.Iterator;
  * Industrial Networks and Intelligent Systems, 7(23), Article e1, April 2020.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 5.13.2021
  */
 public final class KendallTauSequenceDistance implements SequenceDistanceMeasurer {
 	
@@ -128,7 +128,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -176,7 +176,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -192,7 +192,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -208,7 +208,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -224,7 +224,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -240,7 +240,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -256,7 +256,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		int numLabels = relabelElements(s1,s2,relabeling);		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -277,7 +277,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	/**
@@ -296,7 +296,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
-		return countInversions(mapping);
+		return countInversions(mapping, 0, mapping.length-1);
 	}
 	
 	private int[] mapElements(Bucket[][] buckets, int seqLength) {
@@ -752,15 +752,21 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	}
 	
 	// assumes all unique elements
-	private int countInversions(int[] array) {
-		if (array.length <= 1) return 0;
-		int m = array.length / 2;
-		int[] left = Arrays.copyOfRange(array, 0, m);
-		int[] right = Arrays.copyOfRange(array, m, array.length);
-		int count = countInversions(left) + countInversions(right);
+	private int countInversions(int[] array, int first, int last) {
+		if (last <= first) {
+			return 0;
+		}
+		int m = (first + last) >> 1;
+		return countInversions(array, first, m) + countInversions(array, m+1, last) + merge(array, first, m+1, last+1);
+	}
+	
+	private int merge(int[] array, int first, int midPlus, int lastPlus) {
+		int[] left = Arrays.copyOfRange(array, first, midPlus);
+		int[] right = Arrays.copyOfRange(array, midPlus, lastPlus);
 		int i = 0;
 		int j = 0;
-		int k = 0;
+		int k = first;
+		int count = 0;
 		while (i < left.length && j < right.length) {
 			if (left[i] <= right[j]) {
 				array[k] = left[i];
@@ -786,6 +792,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		}
 		return count;
 	}
+	
 	
 	// internal data structures below
 	

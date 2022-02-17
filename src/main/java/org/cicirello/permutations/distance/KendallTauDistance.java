@@ -1,5 +1,6 @@
 /*
- * Copyright 2014, 2015, 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences.
+ * Copyright (C) 2014, 2015, 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -74,7 +75,7 @@ public final class KendallTauDistance implements NormalizedPermutationDistanceMe
 		for (int i = 0; i < arrayP2.length; i++) {
 			arrayP2[i] = invP1[p2.get(i)];
 		}
-		return countInversions(arrayP2);
+		return countInversions(arrayP2, 0, arrayP2.length-1);
 	}
 	
 	@Override
@@ -83,15 +84,21 @@ public final class KendallTauDistance implements NormalizedPermutationDistanceMe
 		return (length*(length - 1))>>1;
 	}
 	
-	private int countInversions(int[] array) {
-		if (array.length <= 1) return 0;
-		int m = array.length >> 1;
-		int[] left = Arrays.copyOfRange(array, 0, m);
-		int[] right = Arrays.copyOfRange(array, m, array.length);
-		int count = countInversions(left) + countInversions(right);
+	private int countInversions(int[] array, int first, int last) {
+		if (last <= first) {
+			return 0;
+		}
+		int m = (first + last) >> 1;
+		return countInversions(array, first, m) + countInversions(array, m+1, last) + merge(array, first, m+1, last+1);
+	}
+	
+	private int merge(int[] array, int first, int midPlus, int lastPlus) {
+		int[] left = Arrays.copyOfRange(array, first, midPlus);
+		int[] right = Arrays.copyOfRange(array, midPlus, lastPlus);
 		int i = 0;
 		int j = 0;
-		int k = 0;
+		int k = first;
+		int count = 0;
 		while (i < left.length && j < right.length) {
 			if (left[i] < right[j]) {
 				array[k] = left[i];
@@ -117,5 +124,4 @@ public final class KendallTauDistance implements NormalizedPermutationDistanceMe
 		}
 		return count;
 	}
-	
 }

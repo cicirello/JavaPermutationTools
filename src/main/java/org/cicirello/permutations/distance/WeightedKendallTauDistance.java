@@ -100,7 +100,7 @@ public final class WeightedKendallTauDistance implements NormalizedPermutationDi
 			w[arrayP2[i]] = weights[p2.get(i)];
 		}
 		
-		return countWeightedInversions(arrayP2, w);
+		return countWeightedInversions(arrayP2, w, 0, arrayP2.length-1);
 	}
 	
 	/**
@@ -115,26 +115,33 @@ public final class WeightedKendallTauDistance implements NormalizedPermutationDi
 		return maxDistance;
 	}
 	
-	private double countWeightedInversions(int[] array, double[] w) {
-		if (array.length <= 1) return 0;
-		int m = array.length >> 1;
-		int[] left = Arrays.copyOfRange(array, 0, m);
-		int[] right = Arrays.copyOfRange(array, m, array.length);
-		double weightedCount = countWeightedInversions(left, w) + countWeightedInversions(right, w);
+	private double countWeightedInversions(int[] array, double[] w, int first, int last) {
+		if (last <= first) {
+			return 0;
+		}
+		int m = (first + last) >> 1;
+		return countWeightedInversions(array, w, first, m) + countWeightedInversions(array, w, m+1, last) + merge(array, w, first, m+1, last+1);
+	}
+	
+	private double merge(int[] array, double[] w, int first, int midPlus, int lastPlus) {
+		int[] left = Arrays.copyOfRange(array, first, midPlus);
+		int[] right = Arrays.copyOfRange(array, midPlus, lastPlus);
 		int i = 0;
 		int j = 0;
-		int k = 0;
+		int k = first;
+		double weightedCount = 0;
+		double leftWeights = 0;
+		for (int x = 0; x < left.length; x++) {
+			leftWeights += w[left[x]];
+		}
 		while (i < left.length && j < right.length) {
 			if (left[i] < right[j]) {
+				leftWeights -= w[left[i]];
 				array[k] = left[i];
 				i++;
 				k++;
 			} else {
 				// inversions
-				double leftWeights = 0;
-				for (int x = i; x < left.length; x++) {
-					leftWeights += w[left[x]];
-				}
 				weightedCount += w[right[j]] * leftWeights;
 				array[k] = right[j];
 				j++;
