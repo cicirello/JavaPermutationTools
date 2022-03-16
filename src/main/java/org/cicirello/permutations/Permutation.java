@@ -1,5 +1,6 @@
 /*
- * Copyright 2005, 2010, 2014-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005, 2010, 2014-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,7 +18,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 package org.cicirello.permutations;
 
@@ -37,8 +37,8 @@ import org.cicirello.util.Copyable;
  * This class provides the functionality to generate random permutations, and to
  * manipulate permutations in a variety of ways.
  * 
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 3.31.2021
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
@@ -937,8 +937,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * a public method of Subclass can similarly, temporarily, create a non-functioning Permutation.  However,
 	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
 	 *
-	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
-	 * @version 3.31.2021
+	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+	 * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
 	 */
 	public static class Mechanic {
 		
