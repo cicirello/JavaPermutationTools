@@ -104,11 +104,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/AcyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">AcyclicEdgeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Acyclic Edge Distance:</div>
+<div class="block">Acyclic edge distance treats the permutations as if they represent sets of edges, and counts
+ the number of edges that differ.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/AcyclicEdgeDistance.html#%3Cinit%3E()">AcyclicEdgeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/AcyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance">AcyclicEdgeDistance</a></dt>
 <dd>
 <div class="block">Constructs the distance measurer as specified in the class documentation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html#apply(int%5B%5D)">apply(int[])</a></span> - Method in interface org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></dt>
+<dd>
+<div class="block">Applies an operator on the raw representation of
+ a Permutation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html#apply(int%5B%5D,int%5B%5D)">apply(int[], int[])</a></span> - Method in interface org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></dt>
+<dd>
+<div class="block">Applies an operator on the raw representations of
+ a pair of Permutations.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html#apply(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)">apply(PermutationBinaryOperator, Permutation)</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></dt>
+<dd>
+<div class="block">Applies a custom binary operator on a pair of Permutation objects.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html#apply(org.cicirello.permutations.PermutationUnaryOperator)">apply(PermutationUnaryOperator)</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></dt>
+<dd>
+<div class="block">Applies a custom unary operator on a Permutation object.</div>
 </dd>
 </dl>
 <a id="I:B">
@@ -118,7 +137,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/BlockInterchangeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">BlockInterchangeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Block Interchange Distance:</div>
+<div class="block">Block Interchange Distance is the minimum number of block interchanges 
+ necessary to transform one permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/BlockInterchangeDistance.html#%3Cinit%3E()">BlockInterchangeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/BlockInterchangeDistance.html" title="class in org.cicirello.permutations.distance">BlockInterchangeDistance</a></dt>
 <dd>
@@ -141,7 +161,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">CyclicEdgeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Cyclic Edge Distance:</div>
+<div class="block">Cyclic edge distance treats the permutations as if they represent sets of edges, and counts
+ the number of edges that differ.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicEdgeDistance.html#%3Cinit%3E()">CyclicEdgeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance">CyclicEdgeDistance</a></dt>
 <dd>
@@ -185,7 +206,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicRTypeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">CyclicRTypeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Cyclic RType Distance:</div>
+<div class="block">Cyclic RType distance treats the permutations as if they represent sets of directed edges, and counts
+ the number of edges that differ.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicRTypeDistance.html#%3Cinit%3E()">CyclicRTypeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicRTypeDistance.html" title="class in org.cicirello.permutations.distance">CyclicRTypeDistance</a></dt>
 <dd>
@@ -199,7 +221,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">DeviationDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Deviation Distance:</div>
+<div class="block">Deviation distance is the sum of the positional deviation of the permutation elements.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistance.html#%3Cinit%3E()">DeviationDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistance.html" title="class in org.cicirello.permutations.distance">DeviationDistance</a></dt>
 <dd>
@@ -207,7 +229,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">DeviationDistanceNormalized</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Normalized Deviation Distance:</div>
+<div class="block">Normalized Deviation distance is the sum of the positional deviation of the permutation elements
+ divided by N-1 (where N is the length of the permutation).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized.html#%3Cinit%3E()">DeviationDistanceNormalized()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized.html" title="class in org.cicirello.permutations.distance">DeviationDistanceNormalized</a></dt>
 <dd>
@@ -215,7 +238,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">DeviationDistanceNormalized2005</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Normalized Deviation Distance:</div>
+<div class="block">The original version of Normalized Deviation distance (Ronald, 1998) is the 
+ sum of the positional deviation of the permutation elements
+ divided by N-1 (where N is the length of the permutation).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html#%3Cinit%3E()">DeviationDistanceNormalized2005()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html" title="class in org.cicirello.permutations.distance">DeviationDistanceNormalized2005</a></dt>
 <dd>
@@ -583,7 +608,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/EditDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">EditDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Edit Distance:</div>
+<div class="block">This is an implementation of Wagner and Fischer's dynamic programming algorithm for computing string edit distance,
+ but adapted to permutations rather than general strings.</div>
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/sequences/distance/EditDistance.html" title="class in org.cicirello.sequences.distance"><span class="typeNameLink">EditDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/sequences/distance/package-summary.html">org.cicirello.sequences.distance</a></dt>
 <dd>
@@ -613,7 +639,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ExactMatchDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">ExactMatchDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Exact Match Distance:</div>
+<div class="block">Exact Match distance is an extension of Hamming distance but to non-binary strings, in this case, permutations.</div>
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/sequences/distance/ExactMatchDistance.html" title="class in org.cicirello.sequences.distance"><span class="typeNameLink">ExactMatchDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/sequences/distance/package-summary.html">org.cicirello.sequences.distance</a></dt>
 <dd>
@@ -676,7 +702,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">InterchangeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Interchange Distance:</div>
+<div class="block">Interchange distance is the minimum number of swaps necessary to transform one
+ permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html#%3Cinit%3E()">InterchangeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html" title="class in org.cicirello.permutations.distance">InterchangeDistance</a></dt>
 <dd>
@@ -729,7 +756,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">LeeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Lee Distance:</div>
+<div class="block">Lee Distance is closely related to deviation distance.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html#%3Cinit%3E()">LeeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html" title="class in org.cicirello.permutations.distance">LeeDistance</a></dt>
 <dd>
@@ -808,6 +835,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#%3Cinit%3E()">Mechanic()</a></span> - Constructor for class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">The default constructor can only be called by subclasses.</div>
 </dd>
 </dl>
@@ -866,7 +894,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/sequences/distance/package-summary.html">org.cicirello.sequences.distance</a> - package org.cicirello.sequences.distance</dt>
 <dd>
-<div class="block">Implementations of distance measures for general sequences of various forms, including Strings, arrays of primitive types, arrays of objects, etc.</div>
+<div class="block">Implementations of distance measures for general sequences of various forms, 
+ including Strings, arrays of primitive types, arrays of objects, etc.</div>
 </dd>
 </dl>
 <a id="I:P">
@@ -916,9 +945,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations"><span class="typeNameLink">Permutation.Mechanic</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/package-summary.html">org.cicirello.permutations</a></dt>
 <dd>
-<div class="block">The Permutation.Mechanic class provides a means of adding application-specific
- operations on Permutations without the need to directly alter the Permutation
- class.</div>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">This class will be removed in the next major release, 4.0.0, and you should instead
+    use the functionality provided by the <a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html#apply(org.cicirello.permutations.PermutationUnaryOperator)"><code>Permutation.apply(PermutationUnaryOperator)</code></a> and
+    <a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html#apply(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)"><code>Permutation.apply(PermutationBinaryOperator,Permutation)</code></a> methods, and the related
+    <a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> and <a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationBinaryOperator</code></a> interfaces.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations"><span class="typeNameLink">PermutationBinaryOperator</span></a> - Interface in <a href="org.cicirello.jpt/org/cicirello/permutations/package-summary.html">org.cicirello.permutations</a></dt>
+<dd>
+<div class="block">A functional interface for defining custom binary operators on Permutations.</div>
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance"><span class="typeNameLink">PermutationDistanceMeasurer</span></a> - Interface in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
@@ -941,6 +977,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Initializes a PermutationIterator to iterate over all permutations the same length as a given permutation.</div>
 </dd>
+<dt><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><span class="typeNameLink">PermutationUnaryOperator</span></a> - Interface in <a href="org.cicirello.jpt/org/cicirello/permutations/package-summary.html">org.cicirello.permutations</a></dt>
+<dd>
+<div class="block">A functional interface for defining custom unary operators on Permutations.</div>
+</dd>
 </dl>
 <a id="I:R">
 <!--   -->
@@ -949,7 +989,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">ReinsertionDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Reinsertion Distance:</div>
+<div class="block">Reinsertion distance is the count of the number of removal/reinsertion operations
+ needed to transform one permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html#%3Cinit%3E()">ReinsertionDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html" title="class in org.cicirello.permutations.distance">ReinsertionDistance</a></dt>
 <dd>
@@ -967,7 +1008,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">ReversalDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Reversal Distance:</div>
+<div class="block">Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
+ permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html#%3Cinit%3E()">ReversalDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html" title="class in org.cicirello.permutations.distance">ReversalDistance</a></dt>
 <dd>
@@ -1009,7 +1051,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">RTypeDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">RType Distance:</div>
+<div class="block">RType distance treats the permutations as if they represent sets of directed edges, and counts
+ the number of edges that differ.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html#%3Cinit%3E()">RTypeDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html" title="class in org.cicirello.permutations.distance">RTypeDistance</a></dt>
 <dd>
@@ -1296,7 +1339,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">ScrambleDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Scramble Distance:</div>
+<div class="block">Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html#%3Cinit%3E()">ScrambleDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html" title="class in org.cicirello.permutations.distance">ScrambleDistance</a></dt>
 <dd>
@@ -1309,7 +1352,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><span class="typeNameLink">SequenceDistanceMeasurerDouble</span></a> - Interface in <a href="org.cicirello.jpt/org/cicirello/sequences/distance/package-summary.html">org.cicirello.sequences.distance</a></dt>
 <dd>
-<div class="block">Implement this interface, SequenceDistanceMeasurerDouble, to define a distance metric for sequences.</div>
+<div class="block">Implement this interface, SequenceDistanceMeasurerDouble, to define 
+ a distance metric for sequences.</div>
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/sequences/SequenceSampler.html" title="class in org.cicirello.sequences"><span class="typeNameLink">SequenceSampler</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/sequences/package-summary.html">org.cicirello.sequences</a></dt>
 <dd>
@@ -1322,24 +1366,28 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#set(org.cicirello.permutations.Permutation,int%5B%5D)">set(Permutation, int[])</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the state of the Permutation according to the contents 
  of an array of int values.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#set(org.cicirello.permutations.Permutation,int%5B%5D,int,int,int)">set(Permutation, int[], int, int, int)</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#set(org.cicirello.permutations.Permutation,int,int)">set(Permutation, int, int)</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the integer in one specific location of a Permutation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html#set(org.cicirello.permutations.Permutation,int,int%5B%5D)">set(Permutation, int, int[])</a></span> - Method in class org.cicirello.permutations.<a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></dt>
 <dd>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.</div>
 </dd>
 <dt><a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance"><span class="typeNameLink">SquaredDeviationDistance</span></a> - Class in <a href="org.cicirello.jpt/org/cicirello/permutations/distance/package-summary.html">org.cicirello.permutations.distance</a></dt>
 <dd>
-<div class="block">Squared Deviation Distance:</div>
+<div class="block">Squared Deviation distance is the sum of the squares of the positional deviations of the permutation elements.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html#%3Cinit%3E()">SquaredDeviationDistance()</a></span> - Constructor for class org.cicirello.permutations.distance.<a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance">SquaredDeviationDistance</a></dt>
 <dd>

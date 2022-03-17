@@ -110,6 +110,29 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
+<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Interface</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<th class="colFirst" scope="row"><a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></th>
+<td class="colLast">
+<div class="block">A functional interface for defining custom binary operators on Permutations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colFirst" scope="row"><a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></th>
+<td class="colLast">
+<div class="block">A functional interface for defining custom unary operators on Permutations.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList">
+<table class="typeSummary">
 <caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
@@ -124,10 +147,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="rowColor">
 <th class="colFirst" scope="row"><a href="Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></th>
-<td class="colLast">
-<div class="block">The Permutation.Mechanic class provides a means of adding application-specific
- operations on Permutations without the need to directly alter the Permutation
- class.</div>
+<td class="colLast">Deprecated.
+<div class="deprecationComment">This class will be removed in the next major release, 4.0.0, and you should instead
+    use the functionality provided by the <a href="Permutation.html#apply(org.cicirello.permutations.PermutationUnaryOperator)"><code>Permutation.apply(PermutationUnaryOperator)</code></a> and
+    <a href="Permutation.html#apply(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)"><code>Permutation.apply(PermutationBinaryOperator,Permutation)</code></a> methods, and the related
+    <a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> and <a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationBinaryOperator</code></a> interfaces.</div>
 </td>
 </tr>
 <tr class="altColor">

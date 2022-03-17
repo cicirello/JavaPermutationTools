@@ -31,8 +31,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":42,"i1":42,"i2":42,"i3":42};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -141,8 +141,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a></dd>
 </dl>
 <hr>
-<pre>public static class <span class="typeNameLabel">Permutation.Mechanic</span>
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang" class="externalLink">@Deprecated</a>
+public static class <span class="typeNameLabel">Permutation.Mechanic</span>
 extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">This class will be removed in the next major release, 4.0.0, and you should instead
+    use the functionality provided by the <a href="Permutation.html#apply(org.cicirello.permutations.PermutationUnaryOperator)"><code>Permutation.apply(PermutationUnaryOperator)</code></a> and
+    <a href="Permutation.html#apply(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)"><code>Permutation.apply(PermutationBinaryOperator,Permutation)</code></a> methods, and the related
+    <a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> and <a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationBinaryOperator</code></a> interfaces.</div>
+</div>
 <div class="block"><p>The Permutation.Mechanic class provides a means of adding application-specific
  operations on Permutations without the need to directly alter the Permutation
  class.  It is similar to a Visitor from the Visitor pattern.</p>
@@ -196,6 +203,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <td class="colFirst"><code>protected </code></td>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Mechanic</a></span>()</code></th>
 <td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">The default constructor can only be called by subclasses.</div>
 </td>
 </tr>
@@ -211,7 +219,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
@@ -222,6 +230,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(org.cicirello.permutations.Permutation,int%5B%5D)">set</a></span>&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
    int[]&nbsp;permutation)</code></th>
 <td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the state of the Permutation according to the contents 
  of an array of int values.</div>
 </td>
@@ -234,6 +243,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
    int&nbsp;toIndex,
    int&nbsp;numElementsToSet)</code></th>
 <td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.</div>
 </td>
 </tr>
@@ -243,6 +253,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
    int&nbsp;index,
    int&nbsp;value)</code></th>
 <td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the integer in one specific location of a Permutation.</div>
 </td>
 </tr>
@@ -252,6 +263,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
    int&nbsp;index,
    int[]&nbsp;subpermutation)</code></th>
 <td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.</div>
 </td>
 </tr>
@@ -286,6 +298,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <li class="blockList">
 <h4>Mechanic</h4>
 <pre>protected&nbsp;Mechanic()</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">The default constructor can only be called by subclasses.</div>
 </li>
 </ul>
@@ -307,6 +320,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <h4>set</h4>
 <pre class="methodSignature">protected final&nbsp;void&nbsp;set&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
                          int[]&nbsp;permutation)</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the state of the Permutation according to the contents 
  of an array of int values.  The caller of this method is responsible
  to ensure that the array is the same length as the Permutation,
@@ -330,6 +344,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <pre class="methodSignature">protected final&nbsp;void&nbsp;set&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
                          int&nbsp;index,
                          int&nbsp;value)</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes the integer in one specific location of a Permutation.  Individual calls
  to this method will, in most cases, produce an invalid Permutation.  The caller
  is responsible for making a combination of calls to this method that together produce
@@ -352,6 +367,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
 <pre class="methodSignature">protected final&nbsp;void&nbsp;set&#8203;(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p,
                          int&nbsp;index,
                          int[]&nbsp;subpermutation)</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.  This method does not verify that the
  change produces a valid permutation.  The caller is responsible for making a combination
  of calls to this method and/or the other methods of the Permutation.Mechanic class that
@@ -378,6 +394,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/ja
                          int&nbsp;fromIndex,
                          int&nbsp;toIndex,
                          int&nbsp;numElementsToSet)</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Changes a range of permutation elements.  This method does not verify that the
  change produces a valid permutation.  The caller is responsible for making a combination
  of calls to this method and/or the other methods of the Permutation.Mechanic class that
