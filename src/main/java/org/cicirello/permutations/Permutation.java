@@ -959,10 +959,15 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * a public method of Subclass can similarly, temporarily, create a non-functioning Permutation.  However,
 	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
 	 *
+	 * @deprecated This class will be removed in the next major release, 4.0.0, and you should instead
+	 *    use the functionality provided by the {@link Permutation#apply(PermutationUnaryOperator)} and
+	 *    {@link Permutation#apply(PermutationBinaryOperator,Permutation)} methods, and the related
+	 *    {@link PermutationUnaryOperator} and {@link PermutationBinaryOperator} interfaces.
+	 *
 	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
 	 * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
 	 */
-	public static class Mechanic {
+	@Deprecated public static class Mechanic {
 		
 		/**
 		 * The default constructor can only be called by subclasses.
