@@ -19,11 +19,32 @@
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+package org.cicirello.permutations;
+
 /**
- * Classes that perform a variety of operations on sequences (such as arrays, etc).
+ * A functional interface for defining custom binary operators on Permutations.
+ * See the {@link Permutation#apply(PermutationBinaryOperator,Permutation)} method.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
-package org.cicirello.sequences;
+@FunctionalInterface
+public interface PermutationBinaryOperator {
+	
+	/**
+	 * Applies an operator on the raw representations of
+	 * a pair of Permutations. Implementers of this interface are responsible
+	 * for ensuring that the apply method maintains valid
+	 * permutations of the integers in {0, 1, ..., rawPermutation1.length - 1 },
+	 * and likewise for rawPermutation2.
+	 *
+	 * @param rawPermutation1 A reference to the raw array of ints underlying a
+	 * Permutation object. Changes to this array will directly change the Permutation
+	 * object that encapsulates it.
+	 *
+	 * @param rawPermutation2 A reference to the raw array of ints underlying a
+	 * Permutation object. Changes to this array will directly change the Permutation
+	 * object that encapsulates it.
+	 */
+	void apply(int[] rawPermutation1, int[] rawPermutation2);
+}

@@ -1,5 +1,6 @@
 /*
- * Copyright 2014, 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,8 +23,6 @@ package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
 /**
- * Lee Distance:
- *
  * <p>Lee Distance is closely related to deviation distance.  However, Lee Distance considers the
  * permutation to be a cyclic structure when computing positional deviations.  That is, an element's
  * deviation between permutations is the minimum of its deviation to the right or to the left (wrapping
@@ -43,7 +42,6 @@ import org.cicirello.permutations.Permutation;
  * C. Lee, "Some properties of nonbinary error-correcting codes," in IRE Transactions on Information Theory, vol. 4, no. 2, pp. 77-82, June 1958.</p>
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
  * 
  */
 public final class LeeDistance implements NormalizedPermutationDistanceMeasurer {

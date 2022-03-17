@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-02-17
+## [Unreleased] - 2022-03-17
 
 ### Added
 
@@ -19,6 +19,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [3.2.0] - 2022-03-17
+
+### Added
+* PermutationUnaryOperator and PermutationBinaryOperator functional interfaces for the purpose
+  of specifying custom operations on Permutation objects.
+* Permutation.apply methods, one for each of the two new PermutationUnaryOperator 
+  and PermutationBinaryOperator interfaces, for applying such custom Permutation operators.
+
+### Changed
+* Various improvements to the documentation.
+
+### Deprecated
+* The Permutation.Mechanic nested class, which will be removed in the next 
+  major release 4.0.0. The new Permutation.apply methods should be used instead.
 
 
 ## [3.1.1] - 2022-02-17

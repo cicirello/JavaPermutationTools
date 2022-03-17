@@ -1,7 +1,6 @@
 /*
- * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
- *
- * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
+ * JavaPermutationTools - A Java library for computation on permutations.
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -17,14 +16,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
 
 /**
- * Normalized Deviation Distance:
- *
  * <p>The original version of Normalized Deviation distance (Ronald, 1998) is the 
  * sum of the positional deviation of the permutation elements
  * divided by N-1 (where N is the length of the permutation).
@@ -62,7 +60,6 @@ import org.cicirello.permutations.Permutation;
  * management," in Proc. of MIC2005, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021  
  * 
  */
 public final class DeviationDistanceNormalized2005 implements NormalizedPermutationDistanceMeasurerDouble  {

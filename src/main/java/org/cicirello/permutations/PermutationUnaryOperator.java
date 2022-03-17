@@ -19,12 +19,27 @@
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+package org.cicirello.permutations;
+
 /**
- * Implementations of distance measures for general sequences of various forms, 
- * including Strings, arrays of primitive types, arrays of objects, etc. 
+ * A functional interface for defining custom unary operators on Permutations.
+ * See the {@link Permutation#apply(PermutationUnaryOperator)} method.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
- * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
-package org.cicirello.sequences.distance;
+@FunctionalInterface
+public interface PermutationUnaryOperator {
+	
+	/**
+	 * Applies an operator on the raw representation of
+	 * a Permutation. Implementers of this interface are responsible
+	 * for ensuring that the apply method maintains a valid
+	 * permutation of the integers in {0, 1, ..., rawPermutation.length - 1 }.
+	 *
+	 * @param rawPermutation A reference to the raw array of ints underlying a
+	 * Permutation object. Changes to this array will directly change the Permutation
+	 * object that encapsulates it.
+	 */
+	void apply(int[] rawPermutation);
+}

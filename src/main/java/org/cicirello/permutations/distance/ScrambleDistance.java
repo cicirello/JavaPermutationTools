@@ -1,5 +1,6 @@
 /*
- * Copyright 2016-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,8 +23,6 @@ package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
 /**
- * Scramble Distance:
- *
  * <p>Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.
  * This was implemented for a very specific purpose, and unlikely to be subsequently useful.</p>
  *
@@ -32,7 +31,6 @@ import org.cicirello.permutations.Permutation;
  * <p>Runtime: O(n), where n is the permutation length.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
  */
 public final class ScrambleDistance implements NormalizedPermutationDistanceMeasurer {
 	

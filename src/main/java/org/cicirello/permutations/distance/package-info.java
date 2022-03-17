@@ -1,5 +1,6 @@
 /*
- * Copyright 2008, 2010, 2014-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -19,9 +20,10 @@
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
  */
  
- /**
+/**
  * Implementations of a variety of permutation distance measures. 
- * @version 1.18.7.17
- * @since 1.0
+ *
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 package org.cicirello.permutations.distance;

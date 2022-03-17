@@ -1,5 +1,6 @@
 /*
- * Copyright 2010, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,7 +28,6 @@ import org.cicirello.permutations.Permutation;
  * where the distance is a floating-point value.
  * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 1.28.2021
  */
 public interface PermutationDistanceMeasurerDouble {
 	/**

@@ -1,5 +1,6 @@
 /*
- * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -41,6 +42,35 @@ public class PermutationTestCases {
 	// Note: This doesn't disable those tests for the constructors/scramble methods
 	// that use a source of randomness that is seedable.
 	private static final boolean disableChiSquareTests = true;
+	
+	@Test
+	public void testUnaryOperator() {
+		Permutation p = new Permutation(10);
+		p.apply(perm -> { for (int i = 0; i < perm.length; i++) { perm[i] = i; }});
+		for (int i = 0; i < 10; i++) {
+			assertEquals(i, p.get(i));
+		}
+		p.apply(perm -> { for (int i = 0; i < perm.length; i++) { perm[perm.length-1-i] = i; }});
+		for (int i = 0; i < 10; i++) {
+			assertEquals(9-i, p.get(i));
+		}
+	}
+	
+	@Test
+	public void testBinaryOperator() {
+		Permutation p1 = new Permutation(10);
+		Permutation p2 = new Permutation(10);
+		p1.apply((perm1, perm2) -> { for (int i = 0; i < perm1.length; i++) { perm1[i] = i; perm2[perm1.length-1-i] = i; }}, p2);
+		for (int i = 0; i < 10; i++) {
+			assertEquals(i, p1.get(i));
+			assertEquals(9-i, p2.get(i));
+		}
+		p1.apply((perm1, perm2) -> { for (int i = 0; i < perm1.length; i++) { perm2[i] = i; perm1[perm1.length-1-i] = i; }}, p2);
+		for (int i = 0; i < 10; i++) {
+			assertEquals(i, p2.get(i));
+			assertEquals(9-i, p1.get(i));
+		}
+	}
 	
 	@Test
 	public void testZeroLengthPermutations() {
@@ -227,8 +257,7 @@ public class PermutationTestCases {
 		);
 	}
 	
-	@Test
-	public void testPermutationMechanicSet() {
+	@Test @SuppressWarnings("deprecation") public void testPermutationMechanicSet() {
 		
 		class MyMech extends Permutation.Mechanic {
 			public void testSet(Permutation p, int[] a) {

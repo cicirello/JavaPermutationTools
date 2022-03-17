@@ -1,7 +1,6 @@
 /*
- * Copyright 2014-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
- *
- * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
+ * JavaPermutationTools - A Java library for computation on permutations.
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -17,13 +16,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
 /**
- * Cyclic Edge Distance:
- *
  * <p>Cyclic edge distance treats the permutations as if they represent sets of edges, and counts
  * the number of edges that differ.  It treats the last to the first element as an edge.</p>
  *
@@ -41,8 +39,8 @@ import org.cicirello.permutations.Permutation;
  * <p>Cyclic edge distance was first described in:<br>
  * S. Ronald, "Distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1997, pp. 49–54.</p>
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 public final class CyclicEdgeDistance implements NormalizedPermutationDistanceMeasurer {
 	

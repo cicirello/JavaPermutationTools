@@ -1,5 +1,6 @@
 /*
- * Copyright 2019-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,9 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
- 
+ */ 
 package org.cicirello.sequences;
 
 import org.cicirello.math.rand.RandomIndexer;
@@ -32,7 +31,6 @@ import java.util.Arrays;
  * efficiently generating random samples of array elements, without replacement.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 5.24.2021
  */
 public final class SequenceSampler {
 	

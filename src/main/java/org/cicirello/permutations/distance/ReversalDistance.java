@@ -1,5 +1,6 @@
 /*
- * Copyright 2015-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -24,8 +25,6 @@ import org.cicirello.permutations.Permutation;
 import java.util.Arrays;
 
 /**
-* Reversal Distance:
-*
 * <p>Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
 * permutation into the other.  This is an NP-Hard problem.</p>
 *
@@ -48,7 +47,6 @@ import java.util.Arrays;
 * <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p>
 *
 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
-* @version 5.13.2021
 */
 public final class ReversalDistance implements NormalizedPermutationDistanceMeasurer {
 

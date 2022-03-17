@@ -1,7 +1,6 @@
 /*
- * Copyright 2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
- *
- * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
+ * JavaPermutationTools - A Java library for computation on permutations.
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -17,14 +16,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 package org.cicirello.permutations.distance;
 
 import org.cicirello.permutations.Permutation;
 
 /**
- * Block Interchange Distance:
- *
  * <p>Block Interchange Distance is the minimum number of block interchanges 
  * necessary to transform one permutation into the other.  A block interchange is
  * an edit operation that takes two non-overlapping blocks (i.e., subsequence)
@@ -39,8 +37,8 @@ import org.cicirello.permutations.Permutation;
  *
  * <p>Runtime: O(n), where n is the permutation length.</p>
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 public class BlockInterchangeDistance implements NormalizedPermutationDistanceMeasurer {
 	

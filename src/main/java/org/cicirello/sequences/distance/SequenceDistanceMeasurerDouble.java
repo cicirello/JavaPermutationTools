@@ -1,5 +1,6 @@
 /*
- * Copyright 2018-2019, 2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,17 +24,24 @@ package org.cicirello.sequences.distance;
 import java.util.List;
 
 /**
- * <p>Implement this interface, SequenceDistanceMeasurerDouble, to define a distance metric for sequences.  A sequence may have duplicate elements, unlike
- * a Permutation which must have unique elements.  Some SequenceDistanceMeasurers may require the pair of sequences to be the same length, while
- * others do not have that requirement.  Some SequenceDistanceMeasurers may require the pair of sequences to contain the same set of elements, while
- * others do not have that requirement.  Implementations of this interface compute distances that are floating-point valued.</p>
+ * <p>Implement this interface, SequenceDistanceMeasurerDouble, to define 
+ * a distance metric for sequences.  A sequence may have duplicate elements, unlike
+ * a Permutation which must have unique elements.  Some SequenceDistanceMeasurers 
+ * may require the pair of sequences to be the same length, while
+ * others do not have that requirement.  Some SequenceDistanceMeasurers may 
+ * require the pair of sequences to contain the same set of elements, while
+ * others do not have that requirement.  Implementations of this interface 
+ * compute distances that are floating-point valued.</p>
  *
- * <p>If your sequences are guaranteed not to contain duplicates, and the pair is guaranteed to contain the same set of elements, and are of the same length,
- * then consider instead using the classes that implement the {@link org.cicirello.permutations.distance.PermutationDistanceMeasurerDouble PermutationDistanceMeasurerDouble}
- * interface.  Those classes are specifically for distance between permutations of the integers from 0 to N-1.</p>
+ * <p>If your sequences are guaranteed not to contain duplicates, and the pair 
+ * is guaranteed to contain the same set of elements, and are of the same length,
+ * then consider instead using the classes that implement 
+ * the {@link org.cicirello.permutations.distance.PermutationDistanceMeasurerDouble PermutationDistanceMeasurerDouble}
+ * interface.  Those classes are specifically for distance between 
+ * permutations of the integers from 0 to N-1.</p>
  * 
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 public interface SequenceDistanceMeasurerDouble {
 	

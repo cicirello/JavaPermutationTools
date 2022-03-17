@@ -1,5 +1,6 @@
 /*
- * Copyright 2005, 2010, 2014-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,7 +18,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 package org.cicirello.permutations;
 
@@ -37,12 +37,14 @@ import org.cicirello.util.Copyable;
  * This class provides the functionality to generate random permutations, and to
  * manipulate permutations in a variety of ways.
  * 
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
- * @version 3.31.2021
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class Permutation implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private final int[] permutation;
 	
 	/**
 	 * Initializes a random permutation of n integers.  Uses
@@ -203,6 +205,28 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Applies a custom unary operator on a Permutation object.
+	 *
+	 * @param operator A unary Permutation operator
+	 */
+	public void apply(PermutationUnaryOperator operator) {
+		operator.apply(permutation);
+	}
+	
+	/**
+	 * Applies a custom binary operator on a pair of Permutation objects.
+	 * The raw int array belonging to this is passed as the first array to
+	 * operator.apply() and the raw int array belonging to other is passed
+	 * as the second.
+	 *
+	 * @param operator A binary Permutation operator
+	 * @param other The other Permutation
+	 */
+	public void apply(PermutationBinaryOperator operator, Permutation other) {
+		operator.apply(permutation, other.permutation);
 	}
 	
 	/**
@@ -904,8 +928,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 		return Arrays.hashCode(permutation);
 	}
 	
-	private final int[] permutation;
-	
 	/**
 	 * <p>The Permutation.Mechanic class provides a means of adding application-specific
 	 * operations on Permutations without the need to directly alter the Permutation
@@ -937,10 +959,15 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * a public method of Subclass can similarly, temporarily, create a non-functioning Permutation.  However,
 	 * that public method is expected to ensure that the Permutation is fully valid before returning.</p>
 	 *
-	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
-	 * @version 3.31.2021
+	 * @deprecated This class will be removed in the next major release, 4.0.0, and you should instead
+	 *    use the functionality provided by the {@link Permutation#apply(PermutationUnaryOperator)} and
+	 *    {@link Permutation#apply(PermutationBinaryOperator,Permutation)} methods, and the related
+	 *    {@link PermutationUnaryOperator} and {@link PermutationBinaryOperator} interfaces.
+	 *
+	 * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+	 * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
 	 */
-	public static class Mechanic {
+	@Deprecated public static class Mechanic {
 		
 		/**
 		 * The default constructor can only be called by subclasses.
