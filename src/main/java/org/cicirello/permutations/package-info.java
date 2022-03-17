@@ -1,5 +1,6 @@
 /*
- * Copyright 2005, 2010, 2014-2018 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -17,12 +18,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
  
- /**
- * Collection of classes related to representing and manipulating permutations. 
- * @version 1.18.5.30
- * @since 1.0
+/**
+ * Collection of classes related to representing and manipulating permutations.
+ *
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 package org.cicirello.permutations;

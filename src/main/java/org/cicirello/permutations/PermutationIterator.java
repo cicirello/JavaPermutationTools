@@ -1,5 +1,6 @@
 /*
- * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -31,7 +32,8 @@ import java.util.NoSuchElementException;
  * of swaps it returns a copy (an O(n) operation) of the internally maintained Permutation object so the caller can safely
  * modify the returned Permutation without risk of interfering with the operation of the Iterator.
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public class PermutationIterator implements Iterator<Permutation> {
 	
