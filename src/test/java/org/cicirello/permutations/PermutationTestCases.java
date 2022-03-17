@@ -1,5 +1,6 @@
 /*
- * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -227,8 +228,7 @@ public class PermutationTestCases {
 		);
 	}
 	
-	@Test
-	public void testPermutationMechanicSet() {
+	@Test @SuppressWarnings("deprecation") public void testPermutationMechanicSet() {
 		
 		class MyMech extends Permutation.Mechanic {
 			public void testSet(Permutation p, int[] a) {
