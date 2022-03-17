@@ -1,7 +1,6 @@
 /*
- * Copyright 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
- *
- * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
+ * JavaPermutationTools - A Java library for computation on permutations.
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -17,6 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 package org.cicirello.permutations.distance;
 
@@ -31,9 +31,8 @@ import org.cicirello.permutations.Permutation;
  * to rotations of p2, where the underlying distance measure is passed as a parameter to
  * the constructor.</p>
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
- *  
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>  
  */
 public final class CyclicIndependentDistance implements PermutationDistanceMeasurer {
 	

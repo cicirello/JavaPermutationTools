@@ -1,5 +1,6 @@
 /*
- * Copyright 2010, 2014, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,9 +23,7 @@ package org.cicirello.permutations.distance;
 
 
 import org.cicirello.permutations.Permutation;
- /**
- * RType Distance:
- *
+/**
  * <p>RType distance treats the permutations as if they represent sets of directed edges, and counts
  * the number of edges that differ.</p>
  *
@@ -44,7 +43,6 @@ import org.cicirello.permutations.Permutation;
  * INFORMS Journal on Computing, vol. 17, no. 1, pp. 111–122, 2005.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
- * @version 4.2.2021
  */
 public final class RTypeDistance implements NormalizedPermutationDistanceMeasurer {
 	

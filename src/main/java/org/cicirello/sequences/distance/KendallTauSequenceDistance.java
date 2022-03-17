@@ -1,6 +1,6 @@
 /*
- * JavaPermutationTools: A Java library for computation on permutations and sequences.
- * Copyright (C) 2018-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
