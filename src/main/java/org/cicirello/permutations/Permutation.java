@@ -44,6 +44,8 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	private static final long serialVersionUID = 1L;
 	
+	private final int[] permutation;
+	
 	/**
 	 * Initializes a random permutation of n integers.  Uses
 	 * java.util.concurrent.ThreadLocalRandom as the source of efficient random number generation.
@@ -203,6 +205,15 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Applies a custom unary operator on a Permutation object.
+	 *
+	 * @param operator A unary Permutation operator
+	 */
+	public void apply(PermutationUnaryOperator operator) {
+		operator.apply(permutation);
 	}
 	
 	/**
@@ -903,8 +914,6 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	public int hashCode() {
 		return Arrays.hashCode(permutation);
 	}
-	
-	private final int[] permutation;
 	
 	/**
 	 * <p>The Permutation.Mechanic class provides a means of adding application-specific
