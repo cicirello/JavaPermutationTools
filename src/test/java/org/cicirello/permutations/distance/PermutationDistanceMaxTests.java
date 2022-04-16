@@ -43,12 +43,6 @@ public class PermutationDistanceMaxTests {
 		assertEquals(2, d.max(3));
 		d = new ReversalDistance(4);
 		assertEquals(3, d.max(4));
-		
-		final ReversalDistance df = d;
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> df.max(7)
-		);
 	}
 	
 	@Test
