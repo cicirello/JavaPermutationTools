@@ -129,6 +129,9 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 	@Override
 	public int max(int length) {
 		if (length > 1) {
+			// Source: Bafna, V.; Pevzner, P.A. Genome Rearrangements and Sorting 
+			// by Reversals. SIAM Journal on Computing 1996, 25, 272–289. 570
+			// doi:10.1137/S0097539793250627.
 			return length - 1;
 		} else {
 			return 0;
