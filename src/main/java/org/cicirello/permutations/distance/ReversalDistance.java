@@ -52,8 +52,7 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 
 	private byte[] dist;
 	private final int PERM_LENGTH;
-	private int maxd;
-
+	
 	/**
 	 * Construct the distance measure. Default handles permutations of length n=5.
 	 */
@@ -71,7 +70,6 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 		if (n > 12 || n < 0) throw new IllegalArgumentException("Requires 0 <= n <= 12.");
 		PERM_LENGTH = n;
 		int fact = 1;
-		maxd = 0;
 		for (int i = 2; i <= n; i++) fact *= i;
 		dist = new byte[fact];
 		final byte BYTE_MAX = 0x7f;
@@ -83,7 +81,6 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 				int v = p.toInteger();
 				p.reverse(i,j);
 				dist[v] = 1;
-				maxd = 1;
 			}
 		}
 		int visited = n * (n-1) / 2 + 1;
@@ -99,7 +96,7 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 							int v = p.toInteger();
 							p.reverse(i,j);
 							if (v > 0 && dist[v]==BYTE_MAX) {
-								maxd = dist[v] = (byte)(d + 1);
+								dist[v] = (byte)(d + 1);
 								visited++;
 							}
 						}
@@ -129,19 +126,13 @@ public final class ReversalDistance implements NormalizedPermutationDistanceMeas
 		return dist[new Permutation(r2).toInteger()];
 	}	
 	
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @throws IllegalArgumentException if length is not equal to the
-	 * the permutation length for which this was configured at time
-	 * of construction.
-	 */
 	@Override
 	public int max(int length) {
-		if (PERM_LENGTH != length) {
-			throw new IllegalArgumentException("This distance measurer was not configured for length: " + length);
+		if (length > 1) {
+			return length - 1;
+		} else {
+			return 0;
 		}
-		return maxd;
 	}
 	
 }
