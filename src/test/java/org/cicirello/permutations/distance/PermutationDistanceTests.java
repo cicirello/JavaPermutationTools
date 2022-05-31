@@ -799,6 +799,32 @@ public class PermutationDistanceTests {
 		assertEquals(1.0, d.distancef(new Permutation(first), new Permutation(second)), EPSILON);
 	}
 	
+	@Test
+	public void testCycleDistance() {
+		CycleDistance d = new CycleDistance();
+		identicalPermutations(d);
+		int[][] cases = {
+			{1, 0},
+			{1, 2, 0},
+			{1, 2, 3, 0},
+			{1, 0, 3, 2},
+			{1, 2, 3, 4, 5, 6, 7, 0},
+			{7, 1, 2, 3, 4, 5, 6, 0},
+			{7, 1, 5, 3, 4, 2, 6, 0},
+			{7, 6, 5, 4, 3, 2, 1, 0}
+		};
+		int[] expected = {1, 1, 1, 2, 1, 1, 2, 4};
+		for (int i = 0; i < expected.length; i++) {
+			Permutation p1 = new Permutation(cases[i].length, 0);
+			Permutation p2 = new Permutation(cases[i]);
+			assertEquals(expected[i], d.distance(p1, p2));
+			assertEquals(expected[i], d.distance(p2, p1));
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
+	}
 	
 	private void identicalPermutations(PermutationDistanceMeasurer d) {
 		for (int n = 0; n <= 10; n++) {
