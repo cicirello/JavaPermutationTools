@@ -44,6 +44,9 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	private static final long serialVersionUID = 1L;
 	
+	/** 
+	 * Raw permutation, which should consist of a permutation of the integers in [0, permutation.length). 
+	 */
 	private final int[] permutation;
 	
 	/**
