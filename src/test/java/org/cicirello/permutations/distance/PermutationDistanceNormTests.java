@@ -167,6 +167,14 @@ public class PermutationDistanceNormTests {
 		}
 	}
 	
+	@Test
+	public void testCycleEditDistance() {
+		CycleEditDistance d = new CycleEditDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "Failed on length: " + n);
+		}
+	}
+	
 	//@Test // uncomment if we implement
 	public void testEditDistance() {
 		/* // Uncomment if we implement. 

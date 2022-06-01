@@ -811,9 +811,42 @@ public class PermutationDistanceTests {
 			{1, 2, 3, 4, 5, 6, 7, 0},
 			{7, 1, 2, 3, 4, 5, 6, 0},
 			{7, 1, 5, 3, 4, 2, 6, 0},
-			{7, 6, 5, 4, 3, 2, 1, 0}
+			{7, 6, 5, 4, 3, 2, 1, 0},
+			{2, 3, 4, 5, 0, 1, 7, 6},
+			{15, 3, 4, 5, 6, 1, 7, 2, 9, 10, 11, 8, 13, 14, 12, 0} 
 		};
-		int[] expected = {1, 1, 1, 2, 1, 1, 2, 4};
+		int[] expected = {1, 1, 1, 2, 1, 1, 2, 4, 3, 5};
+		for (int i = 0; i < expected.length; i++) {
+			Permutation p1 = new Permutation(cases[i].length, 0);
+			Permutation p2 = new Permutation(cases[i]);
+			assertEquals(expected[i], d.distance(p1, p2));
+			assertEquals(expected[i], d.distance(p2, p1));
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(new Permutation(1), new Permutation(2))
+		);
+	}
+	
+	@Test
+	public void testCycleEditDistance() {
+		CycleEditDistance d = new CycleEditDistance();
+		identicalPermutations(d);
+		int[][] cases = {
+			{1, 0},
+			{1, 2, 0},
+			{1, 2, 3, 0},
+			{1, 0, 3, 2},
+			{1, 2, 3, 4, 5, 6, 7, 0},
+			{7, 1, 2, 3, 4, 5, 6, 0},
+			{7, 1, 5, 3, 4, 2, 6, 0},
+			{7, 6, 5, 4, 3, 2, 1, 0},
+			{2, 3, 4, 5, 0, 1, 7, 6},
+			{15, 3, 4, 5, 6, 1, 7, 2, 9, 10, 11, 8, 13, 14, 12, 0},
+			{0, 1},
+			{0}
+		};
+		int[] expected = {1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 0, 0};
 		for (int i = 0; i < expected.length; i++) {
 			Permutation p1 = new Permutation(cases[i].length, 0);
 			Permutation p2 = new Permutation(cases[i]);
