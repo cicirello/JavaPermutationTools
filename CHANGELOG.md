@@ -7,9 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-06-01
 
 ### Added
-* CycleDistance: implementation of cycle distance described in https://doi.org/10.3390/app12115506
-* CycleEditDistance: implementation of cycle edit distance described in https://doi.org/10.3390/app12115506
-* KCycleDistance: implementation of k-cycle distance described in https://doi.org/10.3390/app12115506
 
 ### Changed
 
@@ -18,11 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* ReversalDistance.max method now handles general case properly.
 
 ### CI/CD
 
 ### Other
+
+
+## [3.3.0] - 2022-06-01
+
+### Added
+* CycleDistance: implementation of cycle distance described in https://doi.org/10.3390/app12115506
+* CycleEditDistance: implementation of cycle edit distance described in https://doi.org/10.3390/app12115506
+* KCycleDistance: implementation of k-cycle distance described in https://doi.org/10.3390/app12115506
+
+### Fixed
+* ReversalDistance.max method now handles general case properly.
 
 
 ## [3.2.0] - 2022-03-17
