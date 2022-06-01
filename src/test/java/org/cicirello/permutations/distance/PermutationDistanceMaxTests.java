@@ -236,6 +236,18 @@ public class PermutationDistanceMaxTests {
 		}
 	}
 	
+	@Test
+	public void testKCycleDistance() {
+		for (int k = 2; k <= 5; k++) { 
+			KCycleDistance d = new KCycleDistance(k);
+			for (int n = 0; n <= 7; n++) {
+				int expected = bruteForceComputeMax(d,n);
+				assertEquals(expected, d.max(n), "n,k=" + n + "," + k);
+				assertEquals(1.0*expected, d.maxf(n), EPSILON, "Failed on length: " + n);
+			}
+		}
+	}
+	
 	//@Test // uncomment if we implement
 	public void testEditDistance() {
 		/* // Uncomment if we implement. 
