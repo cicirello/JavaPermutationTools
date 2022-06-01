@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * CycleDistance: implementation of cycle distance described in https://doi.org/10.3390/app12115506
 * CycleEditDistance: implementation of cycle edit distance described in https://doi.org/10.3390/app12115506
+* KCycleDistance: implementation of k-cycle distance described in https://doi.org/10.3390/app12115506
 
 ### Changed
 
