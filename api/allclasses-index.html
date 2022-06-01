@@ -31,7 +31,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2,"i20":1,"i21":1,"i22":2,"i23":2,"i24":1,"i25":1,"i26":1,"i27":2,"i28":1,"i29":2,"i30":2,"i31":2,"i32":2,"i33":2,"i34":2,"i35":1,"i36":1,"i37":2,"i38":2,"i39":2};
+var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2,"i20":2,"i21":2,"i22":2,"i23":1,"i24":1,"i25":2,"i26":2,"i27":1,"i28":1,"i29":1,"i30":2,"i31":1,"i32":2,"i33":2,"i34":2,"i35":2,"i36":2,"i37":2,"i38":1,"i39":1,"i40":2,"i41":2,"i42":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -130,57 +130,71 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CycleDistance.html" title="class in org.cicirello.permutations.distance">CycleDistance</a></td>
+<th class="colLast" scope="row">
+<div class="block">Cycle distance is the count of the number of non-singleton permutation cycles
+ between a pair of permutations.</div>
+</th>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CycleEditDistance.html" title="class in org.cicirello.permutations.distance">CycleEditDistance</a></td>
+<th class="colLast" scope="row">
+<div class="block">Cycle edit distance is the minimum number of non-singleton permutation cycles
+ necessary to transform permutation p1 into p2.</div>
+</th>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicEdgeDistance.html" title="class in org.cicirello.permutations.distance">CyclicEdgeDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Cyclic edge distance treats the permutations as if they represent sets of edges, and counts
  the number of edges that differ.</div>
 </th>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicIndependentDistance.html" title="class in org.cicirello.permutations.distance">CyclicIndependentDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the concept of a cyclic independent distance measure.</div>
 </th>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicIndependentDistanceDouble.html" title="class in org.cicirello.permutations.distance">CyclicIndependentDistanceDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the concept of a cyclic independent distance measure.</div>
 </th>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">CyclicReversalIndependentDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the combination of cyclic independence and reversal independence.</div>
 </th>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicReversalIndependentDistanceDouble.html" title="class in org.cicirello.permutations.distance">CyclicReversalIndependentDistanceDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the combination of cyclic independence and reversal independence.</div>
 </th>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/CyclicRTypeDistance.html" title="class in org.cicirello.permutations.distance">CyclicRTypeDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Cyclic RType distance treats the permutations as if they represent sets of directed edges, and counts
  the number of edges that differ.</div>
 </th>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistance.html" title="class in org.cicirello.permutations.distance">DeviationDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Deviation distance is the sum of the positional deviation of the permutation elements.</div>
 </th>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized.html" title="class in org.cicirello.permutations.distance">DeviationDistanceNormalized</a></td>
 <th class="colLast" scope="row">
 <div class="block">Normalized Deviation distance is the sum of the positional deviation of the permutation elements
  divided by N-1 (where N is the length of the permutation).</div>
 </th>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/DeviationDistanceNormalized2005.html" title="class in org.cicirello.permutations.distance">DeviationDistanceNormalized2005</a></td>
 <th class="colLast" scope="row">
 <div class="block">The original version of Normalized Deviation distance (Ronald, 1998) is the 
@@ -188,87 +202,94 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  divided by N-1 (where N is the length of the permutation).</div>
 </th>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/EditDistance.html" title="class in org.cicirello.permutations.distance">EditDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">This is an implementation of Wagner and Fischer's dynamic programming algorithm for computing string edit distance,
  but adapted to permutations rather than general strings.</div>
 </th>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/EditDistance.html" title="class in org.cicirello.sequences.distance">EditDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">EditDistance is an implementation of Wagner and Fischer's dynamic programming algorithm for computing string edit distance.</div>
 </th>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ExactMatchDistance.html" title="class in org.cicirello.permutations.distance">ExactMatchDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Exact Match distance is an extension of Hamming distance but to non-binary strings, in this case, permutations.</div>
 </th>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/ExactMatchDistance.html" title="class in org.cicirello.sequences.distance">ExactMatchDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
  sequence (or string) positions where the two sequences differ.</div>
 </th>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html" title="class in org.cicirello.permutations.distance">InterchangeDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Interchange distance is the minimum number of swaps necessary to transform one
  permutation into the other.</div>
 </th>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i18" class="altColor">
+<td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KCycleDistance.html" title="class in org.cicirello.permutations.distance">KCycleDistance</a></td>
+<th class="colLast" scope="row">
+<div class="block">K-Cycle distance is the count of the number of non-singleton permutation cycles
+ of length at most K.</div>
+</th>
+</tr>
+<tr id="i19" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html" title="class in org.cicirello.permutations.distance">KendallTauDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Kendall Tau distance is sometimes also known as bubble sort distance, as it is
  the number of adjacent swaps necessary to transform one permutation into the other.</div>
 </th>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/KendallTauSequenceDistance.html" title="class in org.cicirello.sequences.distance">KendallTauSequenceDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Kendall Tau Sequence Distance is
  the minimum number of adjacent swaps necessary to transform one sequence into the other.</div>
 </th>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html" title="class in org.cicirello.permutations.distance">LeeDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Lee Distance is closely related to deviation distance.</div>
 </th>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/LongestCommonSubsequenceDistance.html" title="class in org.cicirello.sequences.distance">LongestCommonSubsequenceDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">LongestCommonSubsequenceDistance is a form of EditDistance, where the edit operations are limited to
  deletions and insertions (i.e., no replacements or changes), and where the cost of an edit operation is simply 1.</div>
 </th>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface to define a distance metric for permutations that supports
  normalizing the distance to the interval [0,1], but where the base distance is an integer value.</div>
 </th>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface to define a distance metric for permutations that supports
  normalizing the distance to the interval [0,1].</div>
 </th>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></td>
 <th class="colLast" scope="row">
 <div class="block">Representation of a permutation of the integers from 0 to N-1, inclusive.</div>
 </th>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.Mechanic.html" title="class in org.cicirello.permutations">Permutation.Mechanic</a></td>
 <th class="colLast" scope="row">Deprecated.
 <div class="deprecationComment">This class will be removed in the next major release, 4.0.0, and you should instead
@@ -277,104 +298,104 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
     <a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> and <a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationBinaryOperator</code></a> interfaces.</div>
 </th>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></td>
 <th class="colLast" scope="row">
 <div class="block">A functional interface for defining custom binary operators on Permutations.</div>
 </th>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurer</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface, PermutationDistanceMeasurer, to define a distance metric for permutations.</div>
 </th>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface, PermutationDistanceMeasurerDouble, to define a distance metric for permutations,
  where the distance is a floating-point value.</div>
 </th>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></td>
 <th class="colLast" scope="row">
 <div class="block">Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).</div>
 </th>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></td>
 <th class="colLast" scope="row">
 <div class="block">A functional interface for defining custom unary operators on Permutations.</div>
 </th>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html" title="class in org.cicirello.permutations.distance">ReinsertionDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Reinsertion distance is the count of the number of removal/reinsertion operations
  needed to transform one permutation into the other.</div>
 </th>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html" title="class in org.cicirello.permutations.distance">ReversalDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
  permutation into the other.</div>
 </th>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the concept of a reversal independent distance measure.</div>
 </th>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistanceDouble.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistanceDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the concept of a reversal independent distance measure.</div>
 </th>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html" title="class in org.cicirello.permutations.distance">RTypeDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">RType distance treats the permutations as if they represent sets of directed edges, and counts
  the number of edges that differ.</div>
 </th>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html" title="class in org.cicirello.permutations.distance">ScrambleDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.</div>
 </th>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface, SequenceDistanceMeasurer, to define 
  a distance metric for sequences.</div>
 </th>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i39" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></td>
 <th class="colLast" scope="row">
 <div class="block">Implement this interface, SequenceDistanceMeasurerDouble, to define 
  a distance metric for sequences.</div>
 </th>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/sequences/SequenceSampler.html" title="class in org.cicirello.sequences">SequenceSampler</a></td>
 <th class="colLast" scope="row">
 <div class="block">ArraySampler is a class of utility methods related to 
  efficiently generating random samples of array elements, without replacement.</div>
 </th>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance">SquaredDeviationDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">Squared Deviation distance is the sum of the squares of the positional deviations of the permutation elements.</div>
 </th>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class implements the weighted Kendall tau distance.</div>
