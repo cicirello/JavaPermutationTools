@@ -175,6 +175,16 @@ public class PermutationDistanceNormTests {
 		}
 	}
 	
+	@Test
+	public void testKCycleDistance() {
+		for (int k = 2; k <= 5; k++) { 
+			KCycleDistance d = new KCycleDistance(k);
+			for (int n = 0; n <= 7; n++) {
+				assertEquals(n<=1 ? 0.0 : 1.0, bruteForceComputeMax(d,n), EPSILON, "n,k=" + n + "," + k);
+			}
+		}
+	}
+	
 	//@Test // uncomment if we implement
 	public void testEditDistance() {
 		/* // Uncomment if we implement. 
