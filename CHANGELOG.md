@@ -20,6 +20,10 @@ details below.
 
 ### Fixed
 
+### Dependencies
+* Bumped core from 1.1.0 to 2.1.0 (breaking change).
+* Bumped rho-mu from 1.2.0 to 2.3.0 (breaking change).
+
 ### CI/CD
 
 ### Other
