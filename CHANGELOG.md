@@ -13,7 +13,7 @@ details below.
 
 ### Changed
 * Minimum supported Java version is now Java 17 (breaking change).
-* Utilized Java 17 RandomGenerator interface to eliminate redundant code.
+* Utilized Java 17 RandomGenerator interface to eliminate redundant code and to support all Java 17 random number generators.
 
 ### Deprecated
 
