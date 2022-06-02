@@ -17,6 +17,7 @@ details below.
 ### Deprecated
 
 ### Removed
+* Permutation.Mechanic nested class previously deprecated in v3.2.0 (breaking change).
 
 ### Fixed
 
