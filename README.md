@@ -32,13 +32,19 @@ computation on permutations and sequences. It includes implementations of a vari
 of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, 
 arrays, and other ordered data types). 
 
-## Java 11+
+## Java 17+
 
-Beginning with version 3.0.0, the library supports Java 11+. Our development process 
-utilizes OpenJDK 11, and all jar files released via Maven Central, GitHub Packages, 
-and GitHub Releases are built with a Java 11 target.
+We currently support Java 17+. See the following table for mapping between library version
+and minimum supported Java version.
 
-Versions prior to 3.0.0 previously required Java 8+.
+| version | Java requirements |
+| --- | --- |
+| 4.x.y | Java 17+ |
+| 3.x.y | Java 11+ |
+| 1.x.y to 2.x.y | Java 8+ |
+
+The jar files of the library are released via Maven Central, GitHub Packages, 
+and GitHub Releases.
 
 ## Versioning Scheme
 
@@ -86,7 +92,7 @@ module your.module.name.here {
 
 This module includes the `org.cicirello.permutations` and `org.cicirello.sequences`
 packages as well as their subpackages. See the [API documentation](https://jpt.cicirello.org/api) 
-for details.
+for details of all packages included in this module.
 
 Beginning with version 3.0.0, randomization and other math utilities, and some
 generic utilities, have been
@@ -95,12 +101,8 @@ and [org.cicirello.core](https://github.com/cicirello/core), which are
 now dependencies of JavaPermutationTools. Your dependency manager (see next section)
 will handle downloading these for you. 
 
-To ease the transition of users of the library who may have been relying on those
-utilities, we have configured the `module-info.java` for the `org.cicirello.jpt` module to
-require these transitively so that your application should only need to
-require `org.cicirello.jpt` to access the functionality of those new modules.
-However, it is possible that you __may__ actually need the following to access
-some of that functionality, such as the RandomIndexer class, or other math or utility classes:
+If you are directly utilizing the functionality of the dependencies, then you may instead 
+need the following:
 
 ```Java
 module your.module.name.here {
@@ -119,7 +121,7 @@ with the version you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>jpt</artifactId>
-  <version>3.0.0</version>
+  <version>4.0.0</version>
 </dependency>
 ```
 
@@ -146,9 +148,9 @@ or if you simply prefer to download manually, prebuilt jars are also attached to
 each [GitHub Release](https://github.com/cicirello/JavaPermutationTools).
 
 In addition to the regular jar of the library, we also regularly publish a
-`jar-with-dependencies`. The `jar-with-dependencies` is built for a Java 11 target,
-but does not contain any module declarations (unlike the regular jar file which does).
-Therefore, the `jar-with-dependencies` should be used on the classpath. 
+`jar-with-dependencies`. The `jar-with-dependencies` does not contain any module 
+declarations (unlike the regular jar file which does). Therefore, the 
+`jar-with-dependencies` should be used on the classpath. 
 
 ## License
 
