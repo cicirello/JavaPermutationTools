@@ -21,8 +21,7 @@
  */
 package org.cicirello.permutations;
 
-import java.util.Random;
-import java.util.SplittableRandom;
+import java.util.random.RandomGenerator;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.io.Serializable;
@@ -51,7 +50,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	/**
 	 * Initializes a random permutation of n integers.  Uses
-	 * java.util.concurrent.ThreadLocalRandom as the source of efficient random number generation.
+	 * {@link ThreadLocalRandom} as the source of efficient random number generation.
 	 * @param n the length of the permutation
 	 */
 	public Permutation(int n) {
@@ -64,17 +63,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param n the length of the permutation
 	 * @param r A source of randomness.
 	 */
-	public Permutation(int n, SplittableRandom r) {
-		permutation = new int[n];
-		scramble(r);
-	}
-	
-	/**
-	 * Initializes a random permutation of n integers.
-	 * @param n the length of the permutation
-	 * @param r A source of randomness.
-	 */
-	public Permutation(int n, Random r) {
+	public Permutation(int n, RandomGenerator r) {
 		permutation = new int[n];
 		scramble(r);
 	}
@@ -337,7 +326,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	/**
 	 * Randomly shuffles the permutation. Uses
-	 * java.util.concurrent.ThreadLocalRandom as 
+	 * {@link ThreadLocalRandom} as 
 	 * the source of efficient random number generation.
 	 */
 	public void scramble() {
@@ -348,30 +337,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * Randomly shuffles the permutation.
 	 * @param r a source of randomness.
 	 */
-	public void scramble(Random r) {
-		if (permutation.length > 0) {
-			// Since we're scrambling entire permutation, just generate a new
-			// permutation of integers in [0, n).
-			// Avoid swapping using trick described in Knuth, Vol 2, page 145,
-			// last complete paragraph.
-			permutation[0] = 0;
-			for (int i = 1; i < permutation.length; i++) {
-				int j = RandomIndexer.nextInt(i+1, r);
-				if (j == i) {
-					permutation[i] = i;
-				} else {
-					permutation[i] = permutation[j];
-					permutation[j] = i;
-				}			
-			}
-		}
-	}
-	
-	/**
-	 * Randomly shuffles the permutation.
-	 * @param r a source of randomness.
-	 */
-	public void scramble(SplittableRandom r) {
+	public void scramble(RandomGenerator r) {
 		if (permutation.length > 0) {
 			// Since we're scrambling entire permutation, just generate a new
 			// permutation of integers in [0, n).
@@ -392,7 +358,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	/**
 	 * Randomly shuffles the permutation. Uses
-	 * java.util.concurrent.ThreadLocalRandom as 
+	 * {@link ThreadLocalRandom} as 
 	 * the source of efficient random number generation.
 	 * 
 	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
@@ -409,32 +375,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
 	 * guarantees that the result is a different permutation than it was originally.
 	 */
-	public void scramble(Random r, boolean guaranteeDifferent) {
-		if (guaranteeDifferent) {
-			boolean changed = false;
-			for (int i = permutation.length - 1; i > 1; i--) {
-				int j = RandomIndexer.nextInt(i+1, r);
-				if (i != j) {
-					swap(i,j);
-					changed = true;
-				}
-			}
-			if (permutation.length > 1 && (!changed || r.nextBoolean())) {
-				swap(0,1);
-			}
-		} else {
-			scramble(r);
-		}
-	}
-	
-	/**
-	 * Randomly shuffles the permutation. 
-	 * 
-	 * @param r a source of randomness.
-	 * @param guaranteeDifferent if true and if permutation length is at least 2, then method
-	 * guarantees that the result is a different permutation than it was originally.
-	 */
-	public void scramble(SplittableRandom r, boolean guaranteeDifferent) {
+	public void scramble(RandomGenerator r, boolean guaranteeDifferent) {
 		if (guaranteeDifferent) {
 			boolean changed = false;
 			for (int i = permutation.length - 1; i > 1; i--) {
@@ -454,7 +395,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	
 	/**
 	 * Randomly shuffles a segment. Uses
-	 * java.util.concurrent.ThreadLocalRandom as 
+	 * {@link ThreadLocalRandom} as 
 	 * the source of efficient random number generation.
 	 * @param i endpoint of the segment
 	 * (precondition: 0 &le; i &lt; length())
@@ -477,37 +418,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
 	 * or if either i or j are greater than or equal to length()
 	 */
-	public void scramble(int i, int j, Random r) {
-		if (i==j) { return; }
-		if (i > j) {
-			int temp = i;
-			i = j;
-			j = temp;
-		}
-		boolean changed = false;
-		for (int k = j; k > i + 1; k--) {
-			int l = i + RandomIndexer.nextInt(k-i+1, r);
-			if (l != k) {
-				swap(l,k);
-				changed = true;
-			}
-		}
-		if (!changed || r.nextBoolean()) {
-			swap(i,i+1);
-		}
-	}
-	
-	/**
-	 * Randomly shuffles a segment.
-	 * @param i endpoint of the segment
-	 * (precondition: 0 &le; i &lt; length())
-	 * @param j endpoint of the segment
-	 * (precondition: 0 &le; j &lt; length())
-	 * @param r source of randomness
-	 * @throws ArrayIndexOutOfBoundsException if either i or j are negative, 
-	 * or if either i or j are greater than or equal to length()
-	 */
-	public void scramble(int i, int j, SplittableRandom r) {
+	public void scramble(int i, int j, RandomGenerator r) {
 		if (i==j) { return; }
 		if (i > j) {
 			int temp = i;
@@ -538,34 +449,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
 	 * greater than or equal to this.length().
 	 */
-	public void scramble(int[] indexes, SplittableRandom r) {
-		if (indexes.length > 1) {
-			boolean changed = false;
-			for (int j = indexes.length-1; j > 1; j--) {
-				int i = RandomIndexer.nextInt(j+1, r);
-				if (i != j) {
-					swap(indexes[i],indexes[j]);
-					changed = true;
-				}
-			}
-			if (!changed || r.nextBoolean()) {
-				swap(indexes[0],indexes[1]);
-			}
-		}
-	}
-	
-	/**
-	 * Randomly shuffles a non-contiguous set of permutation elements. As long as there
-	 * are at least 2 different indexes passed to this method, it is guaranteed to 
-	 * change the Permutation.
-	 * @param indexes An array of indexes into the permutation. This method assumes
-	 * that the indexes are valid indexes into the permutation.  That is, it assumes
-	 * that 0 &le; indexes[i] &lt; this.length().
-	 * @param r source of randomness
-	 * @throws ArrayIndexOutOfBoundsException if any of the indexes[i] are negative or
-	 * greater than or equal to this.length().
-	 */
-	public void scramble(int[] indexes, Random r) {
+	public void scramble(int[] indexes, RandomGenerator r) {
 		if (indexes.length > 1) {
 			boolean changed = false;
 			for (int j = indexes.length-1; j > 1; j--) {
