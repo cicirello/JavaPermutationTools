@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"org.cicirello.jpt"}]
+moduleSearchIndex = [{"l":"org.cicirello.jpt"}];updateSearchResults();
