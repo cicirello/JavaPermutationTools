@@ -6,7 +6,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2022-06-02
 
-**BREAKING CHANGES:** The next release is a major release that includes breaking changes. See
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [4.0.0] - 2022-06-02
+
+**BREAKING CHANGES:** This is a major release that includes breaking changes. See
 details below.
 
 ### Added
@@ -16,20 +35,12 @@ details below.
 * Minimum supported Java version is now Java 17 (breaking change).
 * Utilized Java 17 RandomGenerator interface to eliminate redundant code.
 
-### Deprecated
-
 ### Removed
 * Permutation.Mechanic nested class previously deprecated in v3.2.0 (breaking change).
-
-### Fixed
 
 ### Dependencies
 * Bumped core from 1.1.0 to 2.1.0 (breaking change).
 * Bumped rho-mu from 1.2.0 to 2.3.0 (breaking change).
-
-### CI/CD
-
-### Other
 
 
 ## [3.3.0] - 2022-06-01
