@@ -10,10 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 details below.
 
 ### Added
+* Support for all Java 17 random number generators in generating random Permutation objects.
 
 ### Changed
 * Minimum supported Java version is now Java 17 (breaking change).
-* Utilized Java 17 RandomGenerator interface to eliminate redundant code and to support all Java 17 random number generators.
+* Utilized Java 17 RandomGenerator interface to eliminate redundant code.
 
 ### Deprecated
 
