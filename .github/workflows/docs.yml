@@ -48,6 +48,7 @@ jobs:
         base-url-path: https://jpt.cicirello.org/
         path-to-root: gh-pages
         user-defined-block: |
+          <meta name="monetization" content="$ilp.uphold.com/RHNKxp4ZeLNE">
           <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
 
     - name: Log javadoc-cleanup output
