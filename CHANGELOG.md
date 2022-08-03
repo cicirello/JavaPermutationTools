@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-07-24
+## [Unreleased] - 2022-08-03
 
 ### Added
+* PermutationFullUnaryOperator and PermutationFullBinaryOperator functional interfaces for the purpose
+  of specifying custom operations on Permutation objects. These are variations of the existing
+  PermutationUnaryOperator and PermutationBinaryOperator interfaces that were added in 3.2.0, but with 
+  both the raw int arrays and Permutation objects passed to the operators.
+* Permutation.apply methods, one for each of the two new PermutationFullUnaryOperator 
+  and PermutationFullBinaryOperator interfaces, for applying such custom Permutation operators.
 
 ### Changed
 
