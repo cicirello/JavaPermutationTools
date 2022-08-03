@@ -209,6 +209,15 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	}
 	
 	/**
+	 * Applies a custom unary operator on a Permutation object.
+	 *
+	 * @param operator A unary Permutation operator
+	 */
+	public void apply(PermutationFullUnaryOperator operator) {
+		operator.apply(permutation, this);
+	}
+	
+	/**
 	 * Applies a custom binary operator on a pair of Permutation objects.
 	 * The raw int array belonging to this is passed as the first array to
 	 * operator.apply() and the raw int array belonging to other is passed
@@ -219,6 +228,19 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 */
 	public void apply(PermutationBinaryOperator operator, Permutation other) {
 		operator.apply(permutation, other.permutation);
+	}
+	
+	/**
+	 * Applies a custom binary operator on a pair of Permutation objects.
+	 * The raw int array belonging to this is passed as the first array to
+	 * operator.apply() and the raw int array belonging to other is passed
+	 * as the second, and this and other are passed as p1 and p2, respectively.
+	 *
+	 * @param operator A binary Permutation operator
+	 * @param other The other Permutation
+	 */
+	public void apply(PermutationFullBinaryOperator operator, Permutation other) {
+		operator.apply(permutation, other.permutation, this, other);
 	}
 	
 	/**
