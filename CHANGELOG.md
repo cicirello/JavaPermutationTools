@@ -7,12 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-08-03
 
 ### Added
-* PermutationFullUnaryOperator and PermutationFullBinaryOperator functional interfaces for the purpose
-  of specifying custom operations on Permutation objects. These are variations of the existing
-  PermutationUnaryOperator and PermutationBinaryOperator interfaces that were added in 3.2.0, but with 
-  both the raw int arrays and Permutation objects passed to the operators.
-* Permutation.apply methods, one for each of the two new PermutationFullUnaryOperator 
-  and PermutationFullBinaryOperator interfaces, for applying such custom Permutation operators.
 
 ### Changed
 
@@ -23,12 +17,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump core from 2.1.0 to 2.2.2
-* Bump rho-mu from 2.3.0 to 2.3.2
 
 ### CI/CD
 
 ### Other
+
+
+## [4.1.0] - 2022-08-03
+
+### Added
+* PermutationFullUnaryOperator and PermutationFullBinaryOperator functional interfaces for the purpose
+  of specifying custom operations on Permutation objects. These are variations of the existing
+  PermutationUnaryOperator and PermutationBinaryOperator interfaces that were added in 3.2.0, but with 
+  both the raw int arrays and Permutation objects passed to the operators.
+* Permutation.apply methods, one for each of the two new PermutationFullUnaryOperator 
+  and PermutationFullBinaryOperator interfaces, for applying such custom Permutation operators.
+
+### Dependencies
+* Bump core from 2.1.0 to 2.2.2.
+* Bump rho-mu from 2.3.0 to 2.3.2.
 
 
 ## [4.0.0] - 2022-06-02
