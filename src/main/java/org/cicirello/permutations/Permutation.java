@@ -152,12 +152,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 */
 	private Permutation(int[] p, boolean validate) {
 		if (validate) {
-			boolean[] inP = new boolean[p.length];
-			for (int e : p) {
-				if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of p must be in interval [0, p.length)");
-				if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
-				inP[e] = true;
-			}
+			validate(p);
 		}
 		permutation = p.clone();
 	}
@@ -241,6 +236,90 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	 */
 	public void apply(PermutationFullBinaryOperator operator, Permutation other) {
 		operator.apply(permutation, other.permutation, this, other);
+	}
+	
+	/**
+	 * Applies a custom unary operator on a Permutation object, and then
+	 * validates the state of the Permutation.
+	 *
+	 * @param operator A unary Permutation operator
+	 *
+	 * @throws IllegalPermutationStateException if the operator produced an illegal Permutation, in which
+	 * case all subsequent method calls upon that Permutation may be unpredictable
+	 */
+	public void applyThenValidate(PermutationUnaryOperator operator) {
+		try {
+			operator.apply(permutation);
+			validate(permutation);
+		} catch (IllegalArgumentException exception) {
+			throw new IllegalPermutationStateException("Internal state of the Permutation is illegal.", exception);
+		}
+	}
+	
+	/**
+	 * Applies a custom unary operator on a Permutation object, and then
+	 * validates the state of the Permutation.
+	 *
+	 * @param operator A unary Permutation operator
+	 *
+	 * @throws IllegalPermutationStateException if the operator produced an illegal Permutation, in which
+	 * case all subsequent method calls upon that Permutation may be unpredictable
+	 */
+	public void applyThenValidate(PermutationFullUnaryOperator operator) {
+		try {
+			operator.apply(permutation, this);
+			validate(permutation);
+		} catch (IllegalArgumentException exception) {
+			throw new IllegalPermutationStateException("Internal state of the Permutation is illegal.", exception);
+		}
+	}
+	
+	/**
+	 * Applies a custom binary operator on a pair of Permutation objects, and then
+	 * validates the state of the Permutation.
+	 * The raw int array belonging to this is passed as the first array to
+	 * operator.apply() and the raw int array belonging to other is passed
+	 * as the second.
+	 *
+	 * @param operator A binary Permutation operator
+	 * @param other The other Permutation
+	 *
+	 * @throws IllegalPermutationStateException if the operator produced an illegal Permutation, in which
+	 * case all subsequent method calls upon that Permutation may be unpredictable, and the illegal state 
+	 * may be either or both of the Permutation objects
+	 */
+	public void applyThenValidate(PermutationBinaryOperator operator, Permutation other) {
+		try {
+			operator.apply(permutation, other.permutation);
+			validate(permutation);
+			validate(other.permutation);
+		} catch (IllegalArgumentException exception) {
+			throw new IllegalPermutationStateException("Internal state of the Permutation is illegal.", exception);
+		}
+	}
+	
+	/**
+	 * Applies a custom binary operator on a pair of Permutation objects, and then
+	 * validates the state of the Permutation.
+	 * The raw int array belonging to this is passed as the first array to
+	 * operator.apply() and the raw int array belonging to other is passed
+	 * as the second, and this and other are passed as p1 and p2, respectively.
+	 *
+	 * @param operator A binary Permutation operator
+	 * @param other The other Permutation
+	 *
+	 * @throws IllegalPermutationStateException if the operator produced an illegal Permutation, in which
+	 * case all subsequent method calls upon that Permutation may be unpredictable, and the illegal state 
+	 * may be either or both of the Permutation objects
+	 */
+	public void applyThenValidate(PermutationFullBinaryOperator operator, Permutation other) {
+		try {
+			operator.apply(permutation, other.permutation, this, other);
+			validate(permutation);
+			validate(other.permutation);
+		} catch (IllegalArgumentException exception) {
+			throw new IllegalPermutationStateException("Internal state of the Permutation is illegal.", exception);
+		}
 	}
 	
 	/**
@@ -768,12 +847,7 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 		if (p.length != permutation.length) {
 			throw new IllegalArgumentException("Length of array must be same as that of permutation.");
 		}
-		boolean[] inP = new boolean[p.length];
-		for (int e : p) {
-			if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of p must be in interval [0, p.length)");
-			if (inP[e]) throw new IllegalArgumentException("Duplicate elements of p are not allowed.");
-			inP[e] = true;
-		}
+		validate(p);
 		System.arraycopy(p, 0, permutation, 0, p.length);
 	}
 	
@@ -835,5 +909,15 @@ public final class Permutation implements Serializable, Iterable<Permutation>, C
 	@Override
 	public int hashCode() {
 		return Arrays.hashCode(permutation);
+	}
+	
+	private boolean validate(int[] p) {
+		boolean[] inP = new boolean[p.length];
+		for (int e : p) {
+			if (e < 0 || e >= p.length) throw new IllegalArgumentException("Elements of a Permutation must be in interval [0, length())");
+			if (inP[e]) throw new IllegalArgumentException("Duplicate elements are not allowed in a Permutation.");
+			inP[e] = true;
+		}
+		return true;
 	}
 }
