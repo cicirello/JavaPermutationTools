@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-08-03
+## [Unreleased] - 2022-08-25
 
 ### Added
+* Four Permutation.applyThenValidate methods, which are counterparts to the four Permutation.apply method 
+  but which validate the Permutation(s) that result from the applied operator; whereas the existing apply
+  methods do not verify the state of the Permutation after operator application.
+* IllegalPermutationStateException exception class that is thrown by the new Permutation.applyThenValidate 
+  methods if validation fails.
 
 ### Changed
 
