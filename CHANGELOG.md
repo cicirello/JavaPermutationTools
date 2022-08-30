@@ -7,11 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-08-30
 
 ### Added
-* Four Permutation.applyThenValidate methods, which are counterparts to the four Permutation.apply method 
-  but which validate the Permutation(s) that result from the applied operator; whereas the existing apply
-  methods do not verify the state of the Permutation after operator application.
-* IllegalPermutationStateException exception class that is thrown by the new Permutation.applyThenValidate 
-  methods if validation fails.
 
 ### Changed
 
@@ -22,11 +17,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump rho-mu from 2.3.2 to 2.4.1
 
 ### CI/CD
 
 ### Other
+
+
+## [4.2.0] - 2022-08-30
+
+### Added
+* Four Permutation.applyThenValidate methods, which are counterparts to the four Permutation.apply methods, 
+  but which validate the Permutation(s) that result from the applied operator; whereas the existing apply
+  methods do not verify the state of the Permutation after operator application.
+* IllegalPermutationStateException exception class that is thrown by the new Permutation.applyThenValidate 
+  methods if validation fails.
+
+### Dependencies
+* Bump rho-mu from 2.3.2 to 2.4.1
 
 
 ## [4.1.0] - 2022-08-03
