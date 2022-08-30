@@ -184,6 +184,32 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Applies a custom unary operator on a Permutation object.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyThenValidate(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)" class="member-name-link">applyThenValidate</a><wbr>(<a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a>&nbsp;operator,
+ <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;other)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Applies a custom binary operator on a pair of Permutation objects, and then
+ validates the state of the Permutation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyThenValidate(org.cicirello.permutations.PermutationFullBinaryOperator,org.cicirello.permutations.Permutation)" class="member-name-link">applyThenValidate</a><wbr>(<a href="PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a>&nbsp;operator,
+ <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;other)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Applies a custom binary operator on a pair of Permutation objects, and then
+ validates the state of the Permutation.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyThenValidate(org.cicirello.permutations.PermutationFullUnaryOperator)" class="member-name-link">applyThenValidate</a><wbr>(<a href="PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a>&nbsp;operator)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Applies a custom unary operator on a Permutation object, and then
+ validates the state of the Permutation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyThenValidate(org.cicirello.permutations.PermutationUnaryOperator)" class="member-name-link">applyThenValidate</a><wbr>(<a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a>&nbsp;operator)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Applies a custom unary operator on a Permutation object, and then
+ validates the state of the Permutation.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#copy()" class="member-name-link">copy</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -566,6 +592,78 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dt>Parameters:</dt>
 <dd><code>operator</code> - A binary Permutation operator</dd>
 <dd><code>other</code> - The other Permutation</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyThenValidate(org.cicirello.permutations.PermutationUnaryOperator)">
+<h3>applyThenValidate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">applyThenValidate</span><wbr><span class="parameters">(<a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a>&nbsp;operator)</span></div>
+<div class="block">Applies a custom unary operator on a Permutation object, and then
+ validates the state of the Permutation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operator</code> - A unary Permutation operator</dd>
+<dt>Throws:</dt>
+<dd><code><a href="IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></code> - if the operator produced an illegal Permutation, in which
+ case all subsequent method calls upon that Permutation may be unpredictable</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyThenValidate(org.cicirello.permutations.PermutationFullUnaryOperator)">
+<h3>applyThenValidate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">applyThenValidate</span><wbr><span class="parameters">(<a href="PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a>&nbsp;operator)</span></div>
+<div class="block">Applies a custom unary operator on a Permutation object, and then
+ validates the state of the Permutation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operator</code> - A unary Permutation operator</dd>
+<dt>Throws:</dt>
+<dd><code><a href="IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></code> - if the operator produced an illegal Permutation, in which
+ case all subsequent method calls upon that Permutation may be unpredictable</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyThenValidate(org.cicirello.permutations.PermutationBinaryOperator,org.cicirello.permutations.Permutation)">
+<h3>applyThenValidate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">applyThenValidate</span><wbr><span class="parameters">(<a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a>&nbsp;operator,
+ <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;other)</span></div>
+<div class="block">Applies a custom binary operator on a pair of Permutation objects, and then
+ validates the state of the Permutation.
+ The raw int array belonging to this is passed as the first array to
+ operator.apply() and the raw int array belonging to other is passed
+ as the second.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operator</code> - A binary Permutation operator</dd>
+<dd><code>other</code> - The other Permutation</dd>
+<dt>Throws:</dt>
+<dd><code><a href="IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></code> - if the operator produced an illegal Permutation, in which
+ case all subsequent method calls upon that Permutation may be unpredictable, and the illegal state 
+ may be either or both of the Permutation objects</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyThenValidate(org.cicirello.permutations.PermutationFullBinaryOperator,org.cicirello.permutations.Permutation)">
+<h3>applyThenValidate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">applyThenValidate</span><wbr><span class="parameters">(<a href="PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a>&nbsp;operator,
+ <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;other)</span></div>
+<div class="block">Applies a custom binary operator on a pair of Permutation objects, and then
+ validates the state of the Permutation.
+ The raw int array belonging to this is passed as the first array to
+ operator.apply() and the raw int array belonging to other is passed
+ as the second, and this and other are passed as p1 and p2, respectively.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operator</code> - A binary Permutation operator</dd>
+<dd><code>other</code> - The other Permutation</dd>
+<dt>Throws:</dt>
+<dd><code><a href="IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></code> - if the operator produced an illegal Permutation, in which
+ case all subsequent method calls upon that Permutation may be unpredictable, and the illegal state 
+ may be either or both of the Permutation objects</dd>
 </dl>
 </section>
 </li>

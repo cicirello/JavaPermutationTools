@@ -91,33 +91,39 @@ loadScripts(document, 'script');</script>
 </li>
 <li>
 <div id="class-summary">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab1" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab1', 2)" class="table-tab">Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab1" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab1', 2)" class="table-tab">Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button><button id="class-summary-tab5" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab5', 2)" class="table-tab">Exceptions</button></div>
 <div id="class-summary.tabpanel" role="tabpanel">
 <div class="summary-table two-column-summary" aria-labelledby="class-summary-tab0">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab5"><a href="IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab5">
+<div class="block">This is a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link"><code>RuntimeException</code></a> that is thrown by certain methods of the <a href="Permutation.html" title="class in org.cicirello.permutations"><code>Permutation</code></a>
+ class to indicate that the Permutation object's state is invalid, and any subsequent calls
+ to methods on that object may be unpredictable.</div>
+</div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Representation of a permutation of the integers from 0 to N-1, inclusive.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab1">
-<div class="block">A functional interface for defining custom binary operators on Permutations.</div>
-</div>
-<div class="col-first even-row-color class-summary class-summary-tab1"><a href="PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a></div>
+<div class="col-first even-row-color class-summary class-summary-tab1"><a href="PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab1">
 <div class="block">A functional interface for defining custom binary operators on Permutations.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a></div>
+<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab1">
+<div class="block">A functional interface for defining custom binary operators on Permutations.</div>
+</div>
+<div class="col-first even-row-color class-summary class-summary-tab1"><a href="PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab1">
 <div class="block">A functional interface for defining custom unary operators on Permutations.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab1"><a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab1">
+<div class="col-first even-row-color class-summary class-summary-tab1"><a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab1">
 <div class="block">A functional interface for defining custom unary operators on Permutations.</div>
 </div>
 </div>

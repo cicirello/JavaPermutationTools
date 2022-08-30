@@ -61,7 +61,7 @@ loadScripts(document, 'script');</script>
 <h1 title="All Classes and Interfaces" class="title">All Classes and Interfaces</h1>
 </div>
 <div id="all-classes-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab1" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab1', 2)" class="table-tab">Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab1" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab1', 2)" class="table-tab">Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab5" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab5', 2)" class="table-tab">Exceptions</button></div>
 <div id="all-classes-table.tabpanel" role="tabpanel">
 <div class="summary-table two-column-summary" aria-labelledby="all-classes-table-tab0">
 <div class="table-header col-first">Class</div>
@@ -145,126 +145,132 @@ loadScripts(document, 'script');</script>
 <div class="block">ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
  sequence (or string) positions where the two sequences differ.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html" title="class in org.cicirello.permutations.distance">InterchangeDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab5"><a href="org.cicirello.jpt/org/cicirello/permutations/IllegalPermutationStateException.html" title="class in org.cicirello.permutations">IllegalPermutationStateException</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab5">
+<div class="block">This is a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/RuntimeException.html" title="class or interface in java.lang" class="external-link"><code>RuntimeException</code></a> that is thrown by certain methods of the <a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations"><code>Permutation</code></a>
+ class to indicate that the Permutation object's state is invalid, and any subsequent calls
+ to methods on that object may be unpredictable.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/InterchangeDistance.html" title="class in org.cicirello.permutations.distance">InterchangeDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Interchange distance is the minimum number of swaps necessary to transform one
  permutation into the other.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KCycleDistance.html" title="class in org.cicirello.permutations.distance">KCycleDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KCycleDistance.html" title="class in org.cicirello.permutations.distance">KCycleDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">K-Cycle distance is the count of the number of non-singleton permutation cycles
  of length at most K.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html" title="class in org.cicirello.permutations.distance">KendallTauDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/KendallTauDistance.html" title="class in org.cicirello.permutations.distance">KendallTauDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Kendall Tau distance is sometimes also known as bubble sort distance, as it is
  the number of adjacent swaps necessary to transform one permutation into the other.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/KendallTauSequenceDistance.html" title="class in org.cicirello.sequences.distance">KendallTauSequenceDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/KendallTauSequenceDistance.html" title="class in org.cicirello.sequences.distance">KendallTauSequenceDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Kendall Tau Sequence Distance is
  the minimum number of adjacent swaps necessary to transform one sequence into the other.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html" title="class in org.cicirello.permutations.distance">LeeDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/LeeDistance.html" title="class in org.cicirello.permutations.distance">LeeDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Lee Distance is closely related to deviation distance.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/LongestCommonSubsequenceDistance.html" title="class in org.cicirello.sequences.distance">LongestCommonSubsequenceDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/LongestCommonSubsequenceDistance.html" title="class in org.cicirello.sequences.distance">LongestCommonSubsequenceDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">LongestCommonSubsequenceDistance is a form of EditDistance, where the edit operations are limited to
  deletions and insertions (i.e., no replacements or changes), and where the cost of an edit operation is simply 1.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface to define a distance metric for permutations that supports
  normalizing the distance to the interval [0,1], but where the base distance is an integer value.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface to define a distance metric for permutations that supports
  normalizing the distance to the interval [0,1].</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/Permutation.html" title="class in org.cicirello.permutations">Permutation</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Representation of a permutation of the integers from 0 to N-1, inclusive.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationBinaryOperator</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">A functional interface for defining custom binary operators on Permutations.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurer</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurer</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface, PermutationDistanceMeasurer, to define a distance metric for permutations.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface, PermutationDistanceMeasurerDouble, to define a distance metric for permutations,
  where the distance is a floating-point value.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationFullBinaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullBinaryOperator</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">A functional interface for defining custom binary operators on Permutations.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationFullUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationFullUnaryOperator</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">A functional interface for defining custom unary operators on Permutations.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationIterator.html" title="class in org.cicirello.permutations">PermutationIterator</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/permutations/PermutationUnaryOperator.html" title="interface in org.cicirello.permutations">PermutationUnaryOperator</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">A functional interface for defining custom unary operators on Permutations.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html" title="class in org.cicirello.permutations.distance">ReinsertionDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReinsertionDistance.html" title="class in org.cicirello.permutations.distance">ReinsertionDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Reinsertion distance is the count of the number of removal/reinsertion operations
  needed to transform one permutation into the other.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html" title="class in org.cicirello.permutations.distance">ReversalDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalDistance.html" title="class in org.cicirello.permutations.distance">ReversalDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
  permutation into the other.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">This class implements the concept of a reversal independent distance measure.</div>
-</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistanceDouble.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistanceDouble</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistance.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistance</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">This class implements the concept of a reversal independent distance measure.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html" title="class in org.cicirello.permutations.distance">RTypeDistance</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ReversalIndependentDistanceDouble.html" title="class in org.cicirello.permutations.distance">ReversalIndependentDistanceDouble</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">This class implements the concept of a reversal independent distance measure.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/RTypeDistance.html" title="class in org.cicirello.permutations.distance">RTypeDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">RType distance treats the permutations as if they represent sets of directed edges, and counts
  the number of edges that differ.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html" title="class in org.cicirello.permutations.distance">ScrambleDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/ScrambleDistance.html" title="class in org.cicirello.permutations.distance">ScrambleDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Scramble Distance is the minimum number of random shufflings needed to transform one permutation into the other.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface, SequenceDistanceMeasurer, to define 
  a distance metric for sequences.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org.cicirello.jpt/org/cicirello/sequences/distance/SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Implement this interface, SequenceDistanceMeasurerDouble, to define 
  a distance metric for sequences.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/SequenceSampler.html" title="class in org.cicirello.sequences">SequenceSampler</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/sequences/SequenceSampler.html" title="class in org.cicirello.sequences">SequenceSampler</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">ArraySampler is a class of utility methods related to 
  efficiently generating random samples of array elements, without replacement.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance">SquaredDeviationDistance</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/SquaredDeviationDistance.html" title="class in org.cicirello.permutations.distance">SquaredDeviationDistance</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Squared Deviation distance is the sum of the squares of the positional deviations of the permutation elements.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org.cicirello.jpt/org/cicirello/permutations/distance/WeightedKendallTauDistance.html" title="class in org.cicirello.permutations.distance">WeightedKendallTauDistance</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">This class implements the weighted Kendall tau distance.</div>
 </div>
 </div>
