@@ -164,13 +164,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -191,13 +200,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -218,13 +236,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -245,13 +272,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -272,13 +308,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -299,13 +344,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k chars, without replacement, from a
 	 * given source String.  All n choose k combinations are equally
 	 * likely, where n is the length of the source String.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
@@ -326,13 +380,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -353,13 +416,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -380,13 +452,22 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
+	 *
 	 * <p>This method chooses among the samplePool, 
 	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of source.length and k.</p>
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 *
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1116,13 +1197,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
 	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
 	 * while samplePool requires O(n) extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1147,14 +1235,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1180,14 +1274,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1213,14 +1313,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1246,14 +1352,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1279,14 +1391,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k chars, without replacement, from a
 	 * given source String.  All n choose k combinations are equally
 	 * likely, where n is the length of the source String.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
@@ -1312,14 +1430,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1345,14 +1469,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
@@ -1378,14 +1508,20 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
 	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
-	 * However, this uses O(k) extra space (better than samplePool), 
-	 * whereas the reservoir algorithm
-	 * uses no extra space.</p>
-	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
-	 * as the underlying source of randomness.</p>
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 * <p>This method uses ThreadLocalRandom as the 
+	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
+	 * for use with threads.</p>
 	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
