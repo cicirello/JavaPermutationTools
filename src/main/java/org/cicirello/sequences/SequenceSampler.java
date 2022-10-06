@@ -370,10 +370,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sample(String source, int k, char[] target) {
-		if (k + k < source.length()) {
-			if (k * k < source.length()) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+		return sample(source.toCharArray(), k, target);
 	}
 	
 	/**
@@ -509,13 +506,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] sampleReservoir(int[] source, int k, int[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new int[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -548,13 +541,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] sampleReservoir(long[] source, int k, long[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new long[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -587,13 +576,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] sampleReservoir(short[] source, int k, short[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new short[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -626,13 +611,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new byte[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -665,13 +646,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleReservoir(char[] source, int k, char[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new char[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -704,20 +681,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleReservoir(String source, int k, char[] target) {
-		if (k > source.length()) {
-			throw new IllegalArgumentException("k must be no greater than length of source");
-		}
-		if (target == null || target.length < k) target = new char[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source.charAt(i);
-		}
-		for (int i = k; i < source.length(); i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source.charAt(i);
-			}
-		}
-		return target;
+		return sampleReservoir(source.toCharArray(), k, target);
 	}
 	
 	/**
@@ -743,13 +707,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] sampleReservoir(double[] source, int k, double[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new double[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -782,13 +742,9 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] sampleReservoir(float[] source, int k, float[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new float[k];
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -821,19 +777,10 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T[] sampleReservoir(T[] source, int k, T[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null) {
-			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
-		} else if (target.length < k) {
-			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
-		}
-		for (int i = 0; i < k; i++) {
-			target[i] = source[i];
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(source, k, target);
+		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
 			if (j < k) {
@@ -868,10 +815,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] samplePool(int[] source, int k, int[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new int[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -907,10 +852,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] samplePool(long[] source, int k, long[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new long[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		long[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -946,10 +889,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] samplePool(short[] source, int k, short[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new short[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		short[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -985,10 +926,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] samplePool(byte[] source, int k, byte[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new byte[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		byte[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1024,10 +963,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] samplePool(char[] source, int k, char[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new char[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		char[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1063,9 +1000,6 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] samplePool(String source, int k, char[] target) {
-		if (k > source.length()) {
-			throw new IllegalArgumentException("k must be no greater than length of source");
-		}
 		return samplePool(source.toCharArray(), k, target);
 	}
 	
@@ -1093,10 +1027,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] samplePool(double[] source, int k, double[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new double[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		double[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1132,10 +1064,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] samplePool(float[] source, int k, float[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new float[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		float[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1171,16 +1101,9 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T[] samplePool(T[] source, int k, T[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null) {
-			target = (T[]) Array.newInstance(source.getClass().getComponentType(), k);
-		} else if (target.length < k) {
-			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
-		}
+		validateK(k, source.length);
+		target = allocateIfNecessary(source, k, target);
 		T[] pool = Arrays.copyOf(source, source.length);
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1221,9 +1144,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] sampleInsertion(int[] source, int k, int[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
+		validateK(k, source.length);
 		target = RandomSampler.sampleInsertion(source.length, k, target);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[target[i]];
@@ -1259,10 +1180,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] sampleInsertion(long[] source, int k, long[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new long[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1298,10 +1217,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] sampleInsertion(short[] source, int k, short[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new short[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1337,10 +1254,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] sampleInsertion(byte[] source, int k, byte[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new byte[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1376,10 +1291,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleInsertion(char[] source, int k, char[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new char[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1415,15 +1328,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleInsertion(String source, int k, char[] target) {
-		if (k > source.length()) {
-			throw new IllegalArgumentException("k must be no greater than length of source");
-		}
-		if (target == null || target.length < k) target = new char[k];
-		int[] indexes = RandomSampler.sampleInsertion(source.length(), k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source.charAt(indexes[i]);
-		}
-		return target;
+		return sampleInsertion(source.toCharArray(), k, target);
 	}
 	
 	/**
@@ -1454,10 +1359,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] sampleInsertion(double[] source, int k, double[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new double[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1493,10 +1396,8 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] sampleInsertion(float[] source, int k, float[] target) {
-		if (k > source.length) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-		if (target == null || target.length < k) target = new float[k];
+		validateK(k, source.length);
+		target = allocateIfNecessary(k, target);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1532,19 +1433,77 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T[] sampleInsertion(T[] source, int k, T[] target) {
-		if (k > source.length) {
+		validateK(k, source.length);
+		target = allocateIfNecessary(source, k, target);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
+		for (int i = 0; i < k; i++) {
+			target[i] = source[indexes[i]];
+		}
+		return target;
+	}
+	
+	private static void validateK(int k, int sourceLength) {
+		if (k > sourceLength) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static <T> T[] allocateIfNecessary(T[] source, int k, T[] target) {
 		if (target == null) {
 			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
 		} else if (target.length < k) {
 			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
 		}
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
+		return target;
+	}
+	
+	private static int[] allocateIfNecessary(int k, int[] target) {
+		if (target == null || target.length < k) {
+			return new int[k];
+		}
+		return target;
+	}
+	
+	private static long[] allocateIfNecessary(int k, long[] target) {
+		if (target == null || target.length < k) {
+			return new long[k];
+		}
+		return target;
+	}
+	
+	private static short[] allocateIfNecessary(int k, short[] target) {
+		if (target == null || target.length < k) {
+			return new short[k];
+		}
+		return target;
+	}
+	
+	private static byte[] allocateIfNecessary(int k, byte[] target) {
+		if (target == null || target.length < k) {
+			return new byte[k];
+		}
+		return target;
+	}
+	
+	private static float[] allocateIfNecessary(int k, float[] target) {
+		if (target == null || target.length < k) {
+			return new float[k];
+		}
+		return target;
+	}
+	
+	private static double[] allocateIfNecessary(int k, double[] target) {
+		if (target == null || target.length < k) {
+			return new double[k];
+		}
+		return target;
+	}
+	
+	private static char[] allocateIfNecessary(int k, char[] target) {
+		if (target == null || target.length < k) {
+			return new char[k];
 		}
 		return target;
 	}
