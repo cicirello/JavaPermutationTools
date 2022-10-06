@@ -21,16 +21,18 @@
  */ 
 package org.cicirello.sequences;
 
+import org.cicirello.math.rand.RandomSampler;
 import org.cicirello.math.rand.RandomIndexer;
 import org.cicirello.math.rand.RandomVariates;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- * ArraySampler is a class of utility methods related to 
+ * SequenceSampler is a class of utility methods related to 
  * efficiently generating random samples of array elements, without replacement.
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class SequenceSampler {
 	
@@ -48,7 +50,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static byte[] sample(byte[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -62,7 +63,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static char[] sample(char[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -76,7 +76,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static double[] sample(double[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -90,7 +89,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static float[] sample(float[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -104,7 +102,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static int[] sample(int[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -118,7 +115,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static long[] sample(long[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -132,7 +128,6 @@ public final class SequenceSampler {
 	 * @param p The probability that element is included in the sample.  The expected 
 	 * sample size is source.length * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static short[] sample(short[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -146,7 +141,6 @@ public final class SequenceSampler {
 	 * @param p The probability that a character is included in the sample.  The expected 
 	 * sample size is source.length() * p.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static char[] sample(String source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length(), p), null);
@@ -161,7 +155,6 @@ public final class SequenceSampler {
 	 * sample size is source.length * p.
 	 * @param <T> The type of array elements.
 	 * @return An array containing the sample, whose sample size is simply the length of the array.
-	 * @since 2.0
 	 */
 	public static <T> T[] sample(T[] source, double p) {
 		return sample(source, RandomVariates.nextBinomial(source.length, p), null);
@@ -171,8 +164,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -188,7 +181,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] sample(int[] source, int k, int[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -198,8 +191,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -215,7 +208,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] sample(long[] source, int k, long[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -225,8 +218,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -242,7 +235,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] sample(short[] source, int k, short[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -252,8 +245,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -269,7 +262,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] sample(byte[] source, int k, byte[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -279,8 +272,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -296,7 +289,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sample(char[] source, int k, char[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -306,8 +299,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k chars, without replacement, from a
 	 * given source String.  All n choose k combinations are equally
 	 * likely, where n is the length of the source String.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -323,7 +316,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sample(String source, int k, char[] target) {
-		if (2 * k < source.length()) {
+		if (k + k < source.length()) {
 			if (k * k < source.length()) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -333,8 +326,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -350,7 +343,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] sample(double[] source, int k, double[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -360,8 +353,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -377,7 +370,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] sample(float[] source, int k, float[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -387,8 +380,8 @@ public final class SequenceSampler {
 	 * <p>Generates a random sample of k elements, without replacement, from a
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
-	 * <p>This method chooses among the ArraySampler.samplePool, 
-	 * ArraySampler.sampleReservoir, and ArraySampler.sampleInsertion 
+	 * <p>This method chooses among the samplePool, 
+	 * sampleReservoir, and sampleInsertion 
 	 * methods based on the values of source.length and k.</p>
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
@@ -405,7 +398,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static <T> T[] sample(T[] source, int k, T[] target) {
-		if (2 * k < source.length) {
+		if (k + k < source.length) {
 			if (k * k < source.length) return sampleInsertion(source, k, target);
 			else return samplePool(source, k, target);
 		} else return sampleReservoir(source, k, target);
@@ -1143,7 +1136,7 @@ public final class SequenceSampler {
 		if (k > source.length) {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
-		target = RandomIndexer.sampleInsertion(source.length, k, target);
+		target = RandomSampler.sampleInsertion(source.length, k, target);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[target[i]];
 		}
@@ -1176,7 +1169,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new long[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1209,7 +1202,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new short[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1242,7 +1235,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new byte[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1275,7 +1268,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new char[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1308,7 +1301,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source");
 		}
 		if (target == null || target.length < k) target = new char[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length(), k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length(), k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source.charAt(indexes[i]);
 		}
@@ -1341,7 +1334,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new double[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1374,7 +1367,7 @@ public final class SequenceSampler {
 			throw new IllegalArgumentException("k must be no greater than length of source array");
 		}
 		if (target == null || target.length < k) target = new float[k];
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
@@ -1413,13 +1406,10 @@ public final class SequenceSampler {
 		} else if (target.length < k) {
 			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
 		}
-		int[] indexes = RandomIndexer.sampleInsertion(source.length, k, null);
+		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
 		}
 		return target;
 	}
-	
-	
-	
 }
