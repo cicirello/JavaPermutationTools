@@ -1,10 +1,5 @@
 jdkVersion = "17"
 
-# don't run eslint... it is for js and will detect false positives 
-# in javadoc directories.
-
-disableTools = ["eslint"]
-
 # Enable PMD, which is disabled by default.
 # Now I know why it is disabled by default.... It takes forever to run.
 # customTools = [ "https://help.sonatype.com/lift/files/78578763/78578764/1/1623180860953/pmd.sh rulesets/java/quickstart.xml" ]
@@ -18,11 +13,3 @@ disableTools = ["eslint"]
 # numbers of random numbers. So ignore predictable random warnings. 
 
 ignoreRules = ["PREDICTABLE_RANDOM"]
-
-# Ignore results from these directories
-
-ignoreFiles = """
-docs/api/jquery/
-src/test/
-*.js
-"""
