@@ -56,16 +56,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(int[] s1, int[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -74,16 +72,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(long[] s1, long[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -92,16 +88,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(short[] s1, short[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -110,16 +104,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(byte[] s1, byte[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -128,16 +120,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(char[] s1, char[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -146,16 +136,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(boolean[] s1, boolean[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -164,16 +152,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(double[] s1, double[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -182,16 +168,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(float[] s1, float[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1[i] != s2[i]) {
-				cost++;
+			if (s1[i] == s2[i]) {
+				cost--;
 			}
 		}
 		return cost;
@@ -200,16 +184,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(String s1, String s2) {
 		int n = s1.length();
-		int cost = 0;
-		if (s2.length() < n) {
-			cost = n - s2.length();
+		int cost = s2.length();
+		if (cost < n) {
+			cost = n;
 			n = s2.length();
-		} else if (n < s2.length()) {
-			cost = s2.length() - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (s1.charAt(i) != s2.charAt(i)) {
-				cost++;
+			if (s1.charAt(i) == s2.charAt(i)) {
+				cost--;
 			}
 		}
 		return cost;
@@ -218,16 +200,14 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public int distance(Object[] s1, Object[] s2) {
 		int n = s1.length;
-		int cost = 0;
-		if (s2.length < n) {
-			cost = n - s2.length;
+		int cost = s2.length;
+		if (cost < n) {
+			cost = n;
 			n = s2.length;
-		} else if (n < s2.length) {
-			cost = s2.length - n;
-		}
+		} 
 		for (int i = 0; i < n; i++) {
-			if (!s1[i].equals(s2[i])) {
-				cost++;
+			if (s1[i].equals(s2[i])) {
+				cost--;
 			}
 		}
 		return cost;
@@ -236,21 +216,18 @@ public final class ExactMatchDistance implements SequenceDistanceMeasurer {
 	@Override
 	public <T> int distance(List<T> s1, List<T> s2) {
 		int n = s1.size();
-		int cost = 0;
-		if (s2.size() < n) {
-			cost = n - s2.size();
+		int cost = s2.size();
+		if (cost < n) {
+			cost = n;
 			n = s2.size();
-		} else if (n < s2.size()) {
-			cost = s2.size() - n;
-		}
+		} 
 		Iterator<T> iter1 = s1.iterator();
 		Iterator<T> iter2 = s2.iterator();
 		for (int i = 0; i < n; i++) {
-			if (!iter1.next().equals(iter2.next())) {
-				cost++;
+			if (iter1.next().equals(iter2.next())) {
+				cost--;
 			}
 		}
 		return cost;
 	}
-	
 }
