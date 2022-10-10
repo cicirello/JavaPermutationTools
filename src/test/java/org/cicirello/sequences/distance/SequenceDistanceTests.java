@@ -897,7 +897,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testTauAlg2ObjectSequences() {
-		KendallTauSequenceDistance d = new KendallTauSequenceDistance(true);
+		final KendallTauSequenceDistance d = new KendallTauSequenceDistance(true);
 		for (int n = 2; n <= 8; n++) {
 			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
 			String[] s1 = new String[n];
@@ -923,27 +923,20 @@ public class SequenceDistanceTests {
 			assertEquals(expected, d.distance(toList(s1),toList(s3)));
 			assertEquals(expected, d.distance(toList(s3),toList(s1)));
 		}
-		for (int n = 2; n <= 8; n++) {
-			//maximal distance if all unique elements (i.e., a permutation) is reversed sequence
-			NonComparable[] s1 = new NonComparable[n];
-			NonComparable[] s2 = new NonComparable[n];
-			NonComparable[] s3 = new NonComparable[n];
-			for (int i = 0; i < n; i++) {
-				s3[i] = s1[i] = s2[n-1-i] = new NonComparable(i+2);
-			}
-			s3[0] = s2[0];
-			s3[n-1] = s2[n-1];
-			int expected = n*(n-1)/2;
-			assertEquals(expected, d.distance(s1,s2));
-			assertEquals(expected, d.distance(s2,s1));
-			assertEquals(expected, d.distance(toList(s1),toList(s2)));
-			assertEquals(expected, d.distance(toList(s2),toList(s1)));
-			expected = 2*n-3;
-			assertEquals(expected, d.distance(s1,s3));
-			assertEquals(expected, d.distance(s3,s1));
-			assertEquals(expected, d.distance(toList(s1),toList(s3)));
-			assertEquals(expected, d.distance(toList(s3),toList(s1)));
+		
+		NonComparable[] s1 = new NonComparable[3];
+		NonComparable[] s2 = new NonComparable[3];
+		for (int i = 0; i < 3; i++) {
+			s1[i] = s2[i] = new NonComparable(i+2);
 		}
+		ClassCastException thrown = assertThrows( 
+			ClassCastException.class,
+			() -> d.distance(s1, s2)
+		);
+		ArrayStoreException thrown2 = assertThrows( 
+			ArrayStoreException.class,
+			() -> d.distance(toList(s1), toList(s2))
+		);
 	}
 	
 	@Test
@@ -1003,7 +996,7 @@ public class SequenceDistanceTests {
 	
 	@Test
 	public void testKendallTauSequenceDistance_HashTableBaseClass() {
-		class TestHT extends KendallTauSequenceDistance.BaseHT {
+		class TestHT extends RelabelByHashing.BaseHT {
 			TestHT(int min) {
 				super(32, min);
 			}

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Refactored SequenceSampler to reduce cyclomatic complexity.
 * Refactored ExactMatchDistance (for sequences) to reduce cyclomatic complexity.
+* Refactored KendallTauSequenceDistance to reduce cyclomatic complexity.
 
 ### Deprecated
 

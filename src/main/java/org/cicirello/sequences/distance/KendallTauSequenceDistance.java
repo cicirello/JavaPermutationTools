@@ -80,7 +80,7 @@ import java.util.Iterator;
  */
 public final class KendallTauSequenceDistance implements SequenceDistanceMeasurer {
 	
-	private final boolean USE_HASHMAP;
+	private final KendallTauRelabeler relabeler;
 	
 	/**
 	 * The KendallTauDistance class provides two algorithms.  
@@ -89,7 +89,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	 * the hashCode and equals methods of the {@link java.lang.Object} class.
 	 */
 	public KendallTauSequenceDistance() {
-		USE_HASHMAP = true;
+		this(false);
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	 * @param useAlternateAlg To use the alternate algorithm pass true. To use the default algorithm pass false.
 	 */
 	public KendallTauSequenceDistance(boolean useAlternateAlg) {
-		USE_HASHMAP = !useAlternateAlg;
+		relabeler = useAlternateAlg ? new RelabelBySorting() : new RelabelByHashing();
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -139,9 +139,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(long[] s1, long[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -155,9 +154,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(short[] s1, short[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -171,9 +169,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(byte[] s1, byte[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -187,9 +184,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(char[] s1, char[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -203,9 +199,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(String s1, String s2) {
 		if (s1.length() != s2.length()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length() == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length()][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -219,9 +214,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(float[] s1, float[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -235,9 +229,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(double[] s1, double[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = USE_HASHMAP ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements(s1,s2,relabeling); 
+		int numLabels = relabeler.relabel(s1,s2,relabeling); 
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -251,9 +244,8 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	public int distance(boolean[] s1, boolean[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = relabelElements(s1,s2,relabeling);		
+		int numLabels = relabeler.relabel(s1,s2,relabeling);		
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -261,20 +253,18 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	
 	/**
 	 * {@inheritDoc}
-	 * <p>If the distance measurer object is configured, via the constructor, to use the
-	 * alternate algorithm, but the arrays passed to this method do not implement
-	 * the Comparable interface, then this method will disregard the choice of alternate
-	 * algorithm and use the default algorithm instead.</p>
-	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements
+	 *
+	 * @throws IllegalArgumentException if sequences are of different lengths, or contain different elements.
+	 *
+	 * @throws ClassCastException If the distance measurer object is configured, via the constructor, to use the
+	 * alternate algorithm, but the arrays passed to this method contain objects that do not implement the Comparable interface.
 	 */
 	@Override
 	public int distance(Object[] s1, Object[] s2) {
 		if (s1.length != s2.length) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.length == 0) return 0;
-		
 		int[][] relabeling = new int[s1.length][2];
-		int numLabels = (USE_HASHMAP || !(s1 instanceof Comparable[])) ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements((Comparable[])s1,(Comparable[])s2,relabeling);
-		
+		int numLabels = relabeler.relabel(s1,s2,relabeling);
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -282,18 +272,19 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 	
 	/**
 	 * {@inheritDoc}
+	 *
 	 * @throws IllegalArgumentException if s1.size() is not equal to s2.size(), or if they contain
 	 * different elements.
+	 *
+	 * @throws ArrayStoreException If the distance measurer object is configured, via the constructor, to use the
+	 * alternate algorithm, but the Lists passed to this method contain objects that do not implement the Comparable interface.
 	 */
 	@Override
 	public <T> int distance(List<T> s1, List<T> s2) {
 		if (s1.size() != s2.size()) throw new IllegalArgumentException("Sequences must be same length for Kendall Tau distance.");
 		if (s1.size() == 0) return 0;
-		
 		int[][] relabeling = new int[s1.size()][2];
-		@SuppressWarnings("unchecked")
-		int numLabels = (USE_HASHMAP || !(s1.get(0) instanceof Comparable)) ? relabelElementsWithHash(s1,s2,relabeling) : relabelElements((List<Comparable>)s1,(List<Comparable>)s2,relabeling);
-		
+		int numLabels = relabeler.relabel(s1,s2,relabeling);
 		Bucket[][] buckets = bucketSortElements(relabeling, numLabels);
 		int[] mapping = mapElements(buckets, relabeling.length);	
 		return countInversions(mapping, 0, mapping.length-1);
@@ -330,427 +321,7 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 		}
 		return buckets;
 	}
-	
-	private int relabelElementsWithHash(Object[] s1, Object[] s2, int[][] relabeling) {
-		HashMap<Object,Integer> labelMap = new HashMap<Object,Integer>((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
 		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			Integer j = labelMap.get(s2[i]);
-			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private <T> int relabelElementsWithHash(List<T> s1, List<T> s2, int[][] relabeling) {
-		HashMap<T,Integer> labelMap = new HashMap<T,Integer>((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (T e : s1) {
-			if (!labelMap.containsKey(e)) {
-				current++;
-				labelMap.put(e,current);
-			}
-		}
-		Iterator<T> iter1 = s1.iterator();
-		Iterator<T> iter2 = s2.iterator();
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(iter1.next()); 
-			Integer j = labelMap.get(iter2.next());
-			if (j == null) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(int[] s1, int[] s2, int[][] relabeling) {
-		IntHT labelMap = new IntHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(double[] s1, double[] s2, int[][] relabeling) {
-		DoubleHT labelMap = new DoubleHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(float[] s1, float[] s2, int[][] relabeling) {
-		FloatHT labelMap = new FloatHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(long[] s1, long[] s2, int[][] relabeling) {
-		LongHT labelMap = new LongHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(short[] s1, short[] s2, int[][] relabeling) {
-		ShortHT labelMap = new ShortHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(char[] s1, char[] s2, int[][] relabeling) {
-		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1[i]); 
-			int j = labelMap.get(s2[i]);
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(String s1, String s2, int[][] relabeling) {
-		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1.charAt(i))) {
-				current++;
-				labelMap.put(s1.charAt(i),current);
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			relabeling[i][0] = labelMap.get(s1.charAt(i)); 
-			int j = labelMap.get(s2.charAt(i));
-			if (j == -1) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j;
-		}
-		return current+1;
-	}
-	
-	private int relabelElementsWithHash(byte[] s1, byte[] s2, int[][] relabeling) {
-		// Since there are only 256 possible byte values, use a simple array of length 256 for the hash table.
-		// Always perfect hashing with no collisions in this special case.
-		int[] labelMap = new int[256];
-		int current = 0;
-		for (int i = 0; i < relabeling.length; i++) {
-			int key = 255 & (int)s1[i];
-			if (labelMap[key]==0) {
-				current++;
-				labelMap[key] = current;
-			}
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int key1 = 255 & (int)s1[i];
-			relabeling[i][0] = labelMap[key1] - 1; 
-			int key2 = 255 & (int)s2[i];
-			int j = labelMap[key2];
-			if (j == 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = j - 1;
-		}
-		return current;
-	}
-	
-	private int relabelElements(int[] s1, int[] s2, int[][] relabeling) {
-		int[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(long[] s1, long[] s2, int[][] relabeling) {
-		long[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(short[] s1, short[] s2, int[][] relabeling) {
-		short[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(byte[] s1, byte[] s2, int[][] relabeling) {
-		byte[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(char[] s1, char[] s2, int[][] relabeling) {
-		char[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(String s1, String s2, int[][] relabeling) {
-		char[] c1 = s1.toCharArray();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1.charAt(i));
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2.charAt(i));
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(float[] s1, float[] s2, int[][] relabeling) {
-		float[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(double[] s1, double[] s2, int[][] relabeling) {
-		double[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(boolean[] s1, boolean[] s2, int[][] relabeling) {
-		int trueCount1 = 0;
-		int trueCount2 = 0;
-		for (int i = 0; i < s1.length; i++) {
-			if (s1[i]) trueCount1++;
-			if (s2[i]) trueCount2++;
-		}
-		if (trueCount1 != trueCount2) {
-			throw new IllegalArgumentException("Sequences must contain same elements.");
-		}
-		if (trueCount1 < s1.length) {
-			for (int i = 0; i < relabeling.length; i++) {
-				relabeling[i][0] = s1[i] ? 1 : 0; 
-				relabeling[i][1] = s2[i] ? 1 : 0;
-			}
-		} else {
-			for (int i = 0; i < relabeling.length; i++) {
-				relabeling[i][0] = relabeling[i][1] = 0; 
-			}
-		}
-		return trueCount1 > 0 && s1.length > trueCount1 ? 2 : 1;
-	}
-	
-	private int relabelElements(Comparable[] s1, Comparable[] s2, int[][] relabeling) {
-		Comparable[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int relabelElements(List<Comparable> s1, List<Comparable> s2, int[][] relabeling) {
-		Comparable[] c1 = s1.toArray(new Comparable[s1.size()]);
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		Iterator<Comparable> iter1 = s1.iterator();
-		Iterator<Comparable> iter2 = s2.iterator();
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, iter1.next());
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, iter2.next());
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
 	// assumes all unique elements
 	private int countInversions(int[] array, int first, int last) {
 		if (last <= first) {
@@ -780,19 +351,11 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 				k++;
 			}
 		}
-		while (i < left.length) {
-			array[k] = left[i];
-			i++;
-			k++;
-		}
-		while (j < right.length) {
-			array[k] = right[j];
-			j++;
-			k++;
-		}
+		int size = left.length - i;
+		System.arraycopy(left, i, array, k, size);
+		System.arraycopy(right, j, array, k + size, right.length - j);
 		return count;
 	}
-	
 	
 	// internal data structures below
 	
@@ -818,309 +381,5 @@ public final class KendallTauSequenceDistance implements SequenceDistanceMeasure
 			Node next;
 			Node(int value) { this.value = value; }
 		}
-	}
-	
-	static class BaseHT {
-		protected final int mask;
-		protected final int minSize;
-		
-		BaseHT(int maxSize, int minSize) {
-			final int MAX_SIZE = maxSize;
-			if (minSize > MAX_SIZE) {
-				minSize = MAX_SIZE;
-				mask = minSize - 1;
-			} else {
-				minSize = minSize - 1;
-				minSize = minSize | (minSize >> 1);
-				minSize = minSize | (minSize >> 2);
-				minSize = minSize | (minSize >> 4);
-				minSize = minSize | (minSize >> 8);
-				minSize = minSize | (minSize >> 16);
-				mask = minSize;
-				minSize++;
-			}
-			this.minSize = minSize;
-		}
-	}
-	
-	private static final class IntHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		IntHT(int min) {
-			super(0x40000000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(int key) {
-			return (key ^ (key >>> 16)) & mask;
-		}
-		
-		boolean containsKey(int key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(int key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(int key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			int key;
-			int value;
-			Node next;
-			Node(int key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
-	private static final class LongHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		LongHT(int min) {
-			super(0x40000000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(long key) {
-			int x = (int)(key ^ (key >>> 32));
-			return (x ^ (x >>> 16)) & mask;
-		}
-		
-		boolean containsKey(long key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(long key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(long key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			long key;
-			int value;
-			Node next;
-			Node(long key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
-	private static final class ShortHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		ShortHT(int min) {
-			super(0x10000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(short key) {
-			return key & mask;
-		}
-		
-		boolean containsKey(short key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(short key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(short key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			short key;
-			int value;
-			Node next;
-			Node(short key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
-	private static final class CharHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		CharHT(int min) {
-			super(0x10000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(char key) {
-			return key & mask;
-		}
-		
-		boolean containsKey(char key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(char key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(char key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			char key;
-			int value;
-			Node next;
-			Node(char key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
-	private static final class DoubleHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		DoubleHT(int min) {
-			super(0x40000000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(double key) {
-			long x = Double.doubleToLongBits(key);
-			int y = (int)(x ^ (x >>> 32));
-			return (y ^ (y >>> 16)) & mask;
-		}
-		
-		boolean containsKey(double key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(double key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(double key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			double key;
-			int value;
-			Node next;
-			Node(double key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
-	private static final class FloatHT extends BaseHT {
-		
-		private final Node[] table;
-		
-		FloatHT(int min) {
-			super(0x40000000, min);
-			table = new Node[minSize];
-		}
-		
-		int index(float key) {
-			int x = Float.floatToIntBits(key);
-			return (x ^ (x >>> 16)) & mask;
-		}
-		
-		boolean containsKey(float key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return true;
-			}
-			return false;
-		}
-		
-		int get(float key) {
-			for (Node current = table[index(key)]; current != null; current = current.next) {
-				if (current.key == key) return current.value;
-			}
-			// NOTE: our internal usage never puts a negative as a value
-			return -1;
-		}
-		
-		void put(float key, int value) {
-			// warning: assumes key is not already in hash table (only used internally so ok).
-			int i = index(key);
-			table[i] = new Node(key, value, table[i]);
-		}
-		
-		static final class Node {
-			float key;
-			int value;
-			Node next;
-			Node(float key, int value, Node next) {
-				this.key = key;
-				this.value = value;
-				this.next = next;
-			}
-		}
-	}
-	
+	}	
 }
