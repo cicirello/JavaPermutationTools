@@ -24,6 +24,7 @@ package org.cicirello.sequences;
 import org.cicirello.math.rand.RandomSampler;
 import org.cicirello.math.rand.RandomIndexer;
 import org.cicirello.math.rand.RandomVariates;
+import org.cicirello.util.ArrayMinimumLengthEnforcer;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -507,7 +508,7 @@ public final class SequenceSampler {
 	 */
 	public static int[] sampleReservoir(int[] source, int k, int[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -542,7 +543,7 @@ public final class SequenceSampler {
 	 */
 	public static long[] sampleReservoir(long[] source, int k, long[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -577,7 +578,7 @@ public final class SequenceSampler {
 	 */
 	public static short[] sampleReservoir(short[] source, int k, short[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -612,7 +613,7 @@ public final class SequenceSampler {
 	 */
 	public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -647,7 +648,7 @@ public final class SequenceSampler {
 	 */
 	public static char[] sampleReservoir(char[] source, int k, char[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -708,7 +709,7 @@ public final class SequenceSampler {
 	 */
 	public static double[] sampleReservoir(double[] source, int k, double[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -743,7 +744,7 @@ public final class SequenceSampler {
 	 */
 	public static float[] sampleReservoir(float[] source, int k, float[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		System.arraycopy(source, 0, target, 0, k);
 		for (int i = k; i < source.length; i++) {
 			int j = RandomIndexer.nextInt(i+1);
@@ -816,7 +817,7 @@ public final class SequenceSampler {
 	 */
 	public static int[] samplePool(int[] source, int k, int[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -853,7 +854,7 @@ public final class SequenceSampler {
 	 */
 	public static long[] samplePool(long[] source, int k, long[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		long[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -890,7 +891,7 @@ public final class SequenceSampler {
 	 */
 	public static short[] samplePool(short[] source, int k, short[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		short[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -927,7 +928,7 @@ public final class SequenceSampler {
 	 */
 	public static byte[] samplePool(byte[] source, int k, byte[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		byte[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -964,7 +965,7 @@ public final class SequenceSampler {
 	 */
 	public static char[] samplePool(char[] source, int k, char[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		char[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1028,7 +1029,7 @@ public final class SequenceSampler {
 	 */
 	public static double[] samplePool(double[] source, int k, double[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		double[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1065,7 +1066,7 @@ public final class SequenceSampler {
 	 */
 	public static float[] samplePool(float[] source, int k, float[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		float[] pool = source.clone();
 		int remaining = pool.length;
 		for (int i = 0; i < k; i++) {
@@ -1181,7 +1182,7 @@ public final class SequenceSampler {
 	 */
 	public static long[] sampleInsertion(long[] source, int k, long[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1218,7 +1219,7 @@ public final class SequenceSampler {
 	 */
 	public static short[] sampleInsertion(short[] source, int k, short[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1255,7 +1256,7 @@ public final class SequenceSampler {
 	 */
 	public static byte[] sampleInsertion(byte[] source, int k, byte[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1292,7 +1293,7 @@ public final class SequenceSampler {
 	 */
 	public static char[] sampleInsertion(char[] source, int k, char[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1360,7 +1361,7 @@ public final class SequenceSampler {
 	 */
 	public static double[] sampleInsertion(double[] source, int k, double[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1397,7 +1398,7 @@ public final class SequenceSampler {
 	 */
 	public static float[] sampleInsertion(float[] source, int k, float[] target) {
 		validateK(k, source.length);
-		target = allocateIfNecessary(k, target);
+		target = ArrayMinimumLengthEnforcer.enforce(target, k);
 		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
 		for (int i = 0; i < k; i++) {
 			target[i] = source[indexes[i]];
@@ -1455,55 +1456,6 @@ public final class SequenceSampler {
 			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
 		} else if (target.length < k) {
 			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
-		}
-		return target;
-	}
-	
-	private static int[] allocateIfNecessary(int k, int[] target) {
-		if (target == null || target.length < k) {
-			return new int[k];
-		}
-		return target;
-	}
-	
-	private static long[] allocateIfNecessary(int k, long[] target) {
-		if (target == null || target.length < k) {
-			return new long[k];
-		}
-		return target;
-	}
-	
-	private static short[] allocateIfNecessary(int k, short[] target) {
-		if (target == null || target.length < k) {
-			return new short[k];
-		}
-		return target;
-	}
-	
-	private static byte[] allocateIfNecessary(int k, byte[] target) {
-		if (target == null || target.length < k) {
-			return new byte[k];
-		}
-		return target;
-	}
-	
-	private static float[] allocateIfNecessary(int k, float[] target) {
-		if (target == null || target.length < k) {
-			return new float[k];
-		}
-		return target;
-	}
-	
-	private static double[] allocateIfNecessary(int k, double[] target) {
-		if (target == null || target.length < k) {
-			return new double[k];
-		}
-		return target;
-	}
-	
-	private static char[] allocateIfNecessary(int k, char[] target) {
-		if (target == null || target.length < k) {
-			return new char[k];
 		}
 		return target;
 	}
