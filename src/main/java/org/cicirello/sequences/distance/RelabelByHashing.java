@@ -78,13 +78,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(int[] s1, int[] s2, int[][] relabeling) {
 		IntHT labelMap = new IntHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -98,13 +92,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(double[] s1, double[] s2, int[][] relabeling) {
 		DoubleHT labelMap = new DoubleHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -118,13 +106,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(float[] s1, float[] s2, int[][] relabeling) {
 		FloatHT labelMap = new FloatHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -138,13 +120,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(long[] s1, long[] s2, int[][] relabeling) {
 		LongHT labelMap = new LongHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -158,13 +134,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(short[] s1, short[] s2, int[][] relabeling) {
 		ShortHT labelMap = new ShortHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -178,13 +148,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(char[] s1, char[] s2, int[][] relabeling) {
 		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1[i])) {
-				current++;
-				labelMap.put(s1[i],current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1[i]); 
@@ -198,13 +162,7 @@ final class RelabelByHashing implements KendallTauRelabeler {
 	@Override
 	public int relabel(String s1, String s2, int[][] relabeling) {
 		CharHT labelMap = new CharHT((int)(1.334 * relabeling.length)+2);
-		int current = -1;
-		for (int i = 0; i < relabeling.length; i++) {
-			if (!labelMap.containsKey(s1.charAt(i))) {
-				current++;
-				labelMap.put(s1.charAt(i),current);
-			}
-		}
+		int current = labelMap.populate(s1);
 		
 		for (int i = 0; i < relabeling.length; i++) {
 			relabeling[i][0] = labelMap.get(s1.charAt(i)); 
@@ -272,6 +230,17 @@ final class RelabelByHashing implements KendallTauRelabeler {
 			table = new Node[minSize];
 		}
 		
+		int populate(int[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
+		}
+		
 		int index(int key) {
 			return (key ^ (key >>> 16)) & mask;
 		}
@@ -316,6 +285,17 @@ final class RelabelByHashing implements KendallTauRelabeler {
 		LongHT(int min) {
 			super(0x40000000, min);
 			table = new Node[minSize];
+		}
+		
+		int populate(long[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
 		}
 		
 		int index(long key) {
@@ -365,6 +345,17 @@ final class RelabelByHashing implements KendallTauRelabeler {
 			table = new Node[minSize];
 		}
 		
+		int populate(short[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
+		}
+		
 		int index(short key) {
 			return key & mask;
 		}
@@ -409,6 +400,28 @@ final class RelabelByHashing implements KendallTauRelabeler {
 		CharHT(int min) {
 			super(0x10000, min);
 			table = new Node[minSize];
+		}
+		
+		int populate(char[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
+		}
+		
+		int populate(String s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length(); i++) {
+				if (!containsKey(s1.charAt(i))) {
+					current++;
+					put(s1.charAt(i),current);
+				}
+			}
+			return current;
 		}
 		
 		int index(char key) {
@@ -457,6 +470,17 @@ final class RelabelByHashing implements KendallTauRelabeler {
 			table = new Node[minSize];
 		}
 		
+		int populate(double[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
+		}
+		
 		int index(double key) {
 			long x = Double.doubleToLongBits(key);
 			int y = (int)(x ^ (x >>> 32));
@@ -503,6 +527,17 @@ final class RelabelByHashing implements KendallTauRelabeler {
 		FloatHT(int min) {
 			super(0x40000000, min);
 			table = new Node[minSize];
+		}
+		
+		int populate(float[] s1) {
+			int current = -1;
+			for (int i = 0; i < s1.length; i++) {
+				if (!containsKey(s1[i])) {
+					current++;
+					put(s1[i],current);
+				}
+			}
+			return current;
 		}
 		
 		int index(float key) {
