@@ -49,7 +49,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -70,7 +70,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -91,7 +91,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -112,7 +112,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -133,7 +133,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -154,7 +154,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1.charAt(i));
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2.charAt(i));
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -175,7 +175,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -196,7 +196,7 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
