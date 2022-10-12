@@ -31,6 +31,14 @@ import org.cicirello.permutations.*;
 public class CyclicEdgeDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testNormalized() {
+		CyclicEdgeDistance d = new CyclicEdgeDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(n<=3 ? 0.0 : 1.0, validateNormalizedDistance(d,n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testMax() {
 		CyclicEdgeDistance d = new CyclicEdgeDistance();
 		for (int n = 0; n <= 7; n++) {

@@ -31,6 +31,16 @@ import org.cicirello.permutations.Permutation;
 public class KCycleDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testNormalized() {
+		for (int k = 2; k <= 5; k++) { 
+			KCycleDistance d = new KCycleDistance(k);
+			for (int n = 0; n <= 7; n++) {
+				assertEquals(n<=1 ? 0.0 : 1.0, validateNormalizedDistance(d,n), "n,k=" + n + "," + k);
+			}
+		}
+	}
+	
+	@Test
 	public void testMax() {
 		for (int k = 2; k <= 5; k++) { 
 			KCycleDistance d = new KCycleDistance(k);

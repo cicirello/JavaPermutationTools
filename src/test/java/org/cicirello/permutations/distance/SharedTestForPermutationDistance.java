@@ -67,4 +67,13 @@ public class SharedTestForPermutationDistance {
 		}
 		return max;
 	}
+	
+	final double validateNormalizedDistance(NormalizedPermutationDistanceMeasurer d, int n) {
+		double max = 0;
+		Permutation p1 = new Permutation(n, 0);
+		for (Permutation p2 : p1) {
+			max = Math.max(max, d.normalizedDistance(p1,p2));
+		}
+		return max;
+	}
 }

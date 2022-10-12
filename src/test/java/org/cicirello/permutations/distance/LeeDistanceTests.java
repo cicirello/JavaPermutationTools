@@ -31,6 +31,14 @@ import org.cicirello.permutations.Permutation;
 public class LeeDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testNormalized() {
+		LeeDistance d = new LeeDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(n<=1 ? 0.0 : 1.0, validateNormalizedDistance(d,n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testMax() {
 		LeeDistance d = new LeeDistance();
 		for (int n = 0; n <= 7; n++) {

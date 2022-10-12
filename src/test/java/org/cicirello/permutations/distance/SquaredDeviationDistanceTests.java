@@ -31,6 +31,14 @@ import org.cicirello.permutations.Permutation;
 public class SquaredDeviationDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testNormalized() {
+		SquaredDeviationDistance d = new SquaredDeviationDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(n<=1 ? 0.0 : 1.0, validateNormalizedDistance(d,n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testMax() {
 		SquaredDeviationDistance d = new SquaredDeviationDistance();
 		for (int n = 0; n <= 7; n++) {

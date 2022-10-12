@@ -104,7 +104,7 @@ public class EditDistanceTests extends SharedTestForPermutationDistanceDouble {
 	
 	/* // uncomment if we implement maxf
 	@Test 
-	public void testEditDistance() {
+	public void testMax() {
 		for (double i = 0.0; i < 1.0; i += 0.1) {
 			for (double d = 0.0; d < 1.0; d += 0.1) {
 				for (double c = i+d; c < 1.0; c += 0.1) {
@@ -126,5 +126,31 @@ public class EditDistanceTests extends SharedTestForPermutationDistanceDouble {
 			}
 		}
 	}
+	*/
+	
+	/* // uncomment if we implement maxf
+	@Test 
+	public void testNormalized() {
+		for (double i = 0.0; i < 1.0; i += 0.1) {
+			for (double d = 0.0; d < 1.0; d += 0.1) {
+				for (double c = i+d; c < 1.0; c += 0.1) {
+					EditDistance dist = new EditDistance(i, d, c);
+					for (int n = 0; n <= 7; n++) {
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", n<=1 ? 0.0 : 1.0, validateNormalizedDistanceD(d,n));
+					}
+				}
+			}
+		}
+		for (double i = 0.0; i < 1.0; i += 0.1) {
+			for (double d = 0.0; d < 1.0; d += 0.1) {
+				for (double c =0.0; c < 1.0 && c < i+d; c += 0.1) {
+					EditDistance dist = new EditDistance(i, d, c);
+					for (int n = 0; n <= 7; n++) {
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", n<=1 ? 0.0 : 1.0, validateNormalizedDistanceD(d,n));
+					}
+				}
+			}
+		}
+	}		
 	*/
 }

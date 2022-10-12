@@ -24,11 +24,26 @@ package org.cicirello.permutations.distance;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.cicirello.permutations.Permutation;
+import java.util.SplittableRandom;
 
 /**
  * JUnit tests for WeightedKendallTauDistance.
  */
-public class WeightedKendallTauDistanceTests {
+public class WeightedKendallTauDistanceTests extends SharedTestForPermutationDistanceDouble {
+	
+	@Test
+	public void testNormalized() {
+		final double EPSILON = 1e-10;
+		SplittableRandom gen = new SplittableRandom(42);
+		for (int n = 0; n <= 6; n++) {
+			double[] weights = new double[n];
+			for (int i = 0; i < n; i++) {
+				weights[i] = 5 + 15*gen.nextDouble();
+			}
+			WeightedKendallTauDistance d = new WeightedKendallTauDistance(weights);
+			assertEquals(n<=1 ? 0.0 : 1.0, validateNormalizedDistanceD(d,n), EPSILON, "Failed on length: " + n);
+		}
+	}
 	
 	@Test
 	public void testMax() {

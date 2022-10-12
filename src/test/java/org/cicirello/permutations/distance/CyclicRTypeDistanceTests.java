@@ -31,6 +31,14 @@ import org.cicirello.permutations.Permutation;
 public class CyclicRTypeDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testNormalized() {
+		CyclicRTypeDistance d = new CyclicRTypeDistance();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(n<=2 ? 0.0 : 1.0, validateNormalizedDistance(d,n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testMax() {
 		CyclicRTypeDistance d = new CyclicRTypeDistance();
 		for (int n = 0; n <= 7; n++) {
