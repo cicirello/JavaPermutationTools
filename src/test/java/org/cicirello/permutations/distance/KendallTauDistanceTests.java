@@ -31,6 +31,16 @@ import org.cicirello.permutations.Permutation;
 public class KendallTauDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testMax() {
+		KendallTauDistance d = new KendallTauDistance();
+		for (int n = 0; n <= 7; n++) {
+			int expected = bruteForceComputeMax(d,n);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testIdenticalPermutations() {
 		KendallTauDistance d = new KendallTauDistance();
 		identicalPermutations(d);

@@ -31,6 +31,20 @@ import org.cicirello.permutations.Permutation;
 public class ReversalDistanceTests {
 	
 	@Test
+	public void testMax() {
+		ReversalDistance d = new ReversalDistance(0);
+		assertEquals(0, d.max(0));
+		d = new ReversalDistance(1);
+		assertEquals(0, d.max(1));
+		d = new ReversalDistance(2);
+		assertEquals(1, d.max(2));
+		d = new ReversalDistance(3);
+		assertEquals(2, d.max(3));
+		d = new ReversalDistance(4);
+		assertEquals(3, d.max(4));
+	}
+	
+	@Test
 	public void testReversalDistance() {
 		ReversalDistance d4 = new ReversalDistance(4);
 		int[] a4 = {0, 1, 2, 3};

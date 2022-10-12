@@ -31,6 +31,16 @@ import org.cicirello.permutations.Permutation;
 public class ScrambleDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testMax() {
+		ScrambleDistance d = new ScrambleDistance();
+		assertEquals(0, d.max(0));
+		assertEquals(0, d.max(1));
+		for (int n = 2; n <= 10; n++) {
+			assertEquals(1, d.max(n));
+		}
+	}
+	
+	@Test
 	public void testIdenticalPermutations() {
 		ScrambleDistance d = new ScrambleDistance();
 		identicalPermutations(d);

@@ -101,4 +101,30 @@ public class EditDistanceTests extends SharedTestForPermutationDistanceDouble {
 		int[] second = { 0, 1, 2, 3 };
 		assertEquals(1.0, d.distancef(new Permutation(first), new Permutation(second)));
 	}
+	
+	/* // uncomment if we implement maxf
+	@Test 
+	public void testEditDistance() {
+		for (double i = 0.0; i < 1.0; i += 0.1) {
+			for (double d = 0.0; d < 1.0; d += 0.1) {
+				for (double c = i+d; c < 1.0; c += 0.1) {
+					EditDistance dist = new EditDistance(i, d, c);
+					for (int n = 0; n <= 7; n++) {
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", bruteForceComputeMaxD(dist,n), dist.maxf(n));
+					}
+				}
+			}
+		}
+		for (double i = 0.0; i < 1.0; i += 0.1) {
+			for (double d = 0.0; d < 1.0; d += 0.1) {
+				for (double c =0.0; c < 1.0 && c < i+d; c += 0.1) {
+					EditDistance dist = new EditDistance(i, d, c);
+					for (int n = 0; n <= 7; n++) {
+						assertEquals("Failed on length " + n + " and (i,d,c) = (" + i + ", " + d + ", " + c + ")", bruteForceComputeMaxD(dist,n), dist.maxf(n));
+					}
+				}
+			}
+		}
+	}
+	*/
 }

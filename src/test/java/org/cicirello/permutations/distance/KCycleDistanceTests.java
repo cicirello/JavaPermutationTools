@@ -28,7 +28,19 @@ import org.cicirello.permutations.Permutation;
 /**
  * JUnit tests for KCycleDistance.
  */
-public class KCycleDistanceTests {
+public class KCycleDistanceTests extends SharedTestForPermutationDistance {
+	
+	@Test
+	public void testMax() {
+		for (int k = 2; k <= 5; k++) { 
+			KCycleDistance d = new KCycleDistance(k);
+			for (int n = 0; n <= 7; n++) {
+				int expected = bruteForceComputeMax(d,n);
+				assertEquals(expected, d.max(n), "n,k=" + n + "," + k);
+				assertEquals(1.0*expected, d.maxf(n), "Failed on length: " + n);
+			}
+		}
+	}
 	
 	@Test
 	public void testAllOneCycle() {

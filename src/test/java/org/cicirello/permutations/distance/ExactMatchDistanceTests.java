@@ -31,6 +31,16 @@ import org.cicirello.permutations.Permutation;
 public class ExactMatchDistanceTests extends SharedTestForPermutationDistance {
 	
 	@Test
+	public void testMax() {
+		ExactMatchDistance d = new ExactMatchDistance();
+		for (int n = 0; n <= 7; n++) {
+			int expected = bruteForceComputeMax(d,n);
+			assertEquals(expected, d.max(n), "Failed on length: " + n);
+			assertEquals(1.0*expected, d.maxf(n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testIdenticalPermutations() {
 		ExactMatchDistance d = new ExactMatchDistance();
 		identicalPermutations(d);

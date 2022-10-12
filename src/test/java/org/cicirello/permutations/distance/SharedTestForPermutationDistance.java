@@ -58,4 +58,13 @@ public class SharedTestForPermutationDistance {
 			}
 		}
 	}
+	
+	final int bruteForceComputeMax(PermutationDistanceMeasurer d, int n) {
+		int max = 0;
+		Permutation p1 = new Permutation(n, 0);
+		for (Permutation p2 : p1) {
+			max = Math.max(max, d.distance(p1,p2));
+		}
+		return max;
+	}
 }

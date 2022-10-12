@@ -31,6 +31,14 @@ import org.cicirello.permutations.Permutation;
 public class DeviationDistanceNormalizedTests extends SharedTestForPermutationDistanceDouble {
 	
 	@Test
+	public void testMax() {
+		DeviationDistanceNormalized d = new DeviationDistanceNormalized();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(bruteForceComputeMaxD(d,n), d.maxf(n), "Failed on length: " + n);
+		}
+	}
+	
+	@Test
 	public void testIdenticalPermutations() {
 		DeviationDistanceNormalized d = new DeviationDistanceNormalized();
 		identicalPermutationsDouble(d);
@@ -59,6 +67,14 @@ public class DeviationDistanceNormalizedTests extends SharedTestForPermutationDi
 			IllegalArgumentException.class,
 			() -> d.distancef(new Permutation(1), new Permutation(2))
 		);
+	}
+	
+	@Test
+	public void testMax2005() {
+		DeviationDistanceNormalized2005 d = new DeviationDistanceNormalized2005();
+		for (int n = 0; n <= 7; n++) {
+			assertEquals(bruteForceComputeMaxD(d,n), d.maxf(n), "Failed on length: " + n);
+		}
 	}
 	
 	@Test
