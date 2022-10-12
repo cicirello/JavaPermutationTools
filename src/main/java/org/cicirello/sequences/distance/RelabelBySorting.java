@@ -32,7 +32,7 @@ import java.util.Iterator;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-final class RelabelBySorting implements KendallTauRelabeler {
+final class RelabelBySorting extends AbstractRelabelBySorting implements KendallTauRelabeler {
 	
 	@Override
 	public int relabel(int[] s1, int[] s2, int[][] relabeling) {
@@ -49,7 +49,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -70,7 +70,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -91,7 +91,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -112,7 +112,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -133,7 +133,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -154,7 +154,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1.charAt(i));
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2.charAt(i));
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -175,7 +175,7 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
@@ -196,68 +196,19 @@ final class RelabelBySorting implements KendallTauRelabeler {
 			int j = Arrays.binarySearch(c1, s1[i]);
 			relabeling[i][0] = labels[j];
 			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
+			validateElementIndex(j);
 			relabeling[i][1] = labels[j];
 		}
 		return current+1;
 	}
 	
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public int relabel(Object[] s1, Object[] s2, int[][] relabeling) {
-		@SuppressWarnings("unchecked")
-		Comparable[] c1 = (Comparable[])s1;
-		@SuppressWarnings("unchecked")
-		Comparable[] c2 = (Comparable[])s2;
-		return internalRelabel(c1, c2, relabeling);
+		return internalRelabel((Comparable[])s1, (Comparable[])s2, relabeling);
 	}
 	
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T> int relabel(List<T> s1, List<T> s2, int[][] relabeling) {
-		@SuppressWarnings("unchecked")
-		List<Comparable> c1 = (List<Comparable>)s1;
-		@SuppressWarnings("unchecked")
-		List<Comparable> c2 = (List<Comparable>)s2;
-		return internalRelabel(c1, c2, relabeling);
-	}
-	
-	private int internalRelabel(Comparable[] s1, Comparable[] s2, int[][] relabeling) {
-		Comparable[] c1 = s1.clone();
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, s1[i]);
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, s2[i]);
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
-	}
-	
-	private int internalRelabel(List<Comparable> s1, List<Comparable> s2, int[][] relabeling) {
-		Comparable[] c1 = s1.toArray(new Comparable[s1.size()]);
-		Arrays.sort(c1);
-		int[] labels = new int[c1.length];
-		int current = labels[0] = 0;
-		for (int i = 1; i < labels.length; i++) {
-			if (c1[i] != c1[i-1]) current++;
-			labels[i] = current;
-		}
-		Iterator<Comparable> iter1 = s1.iterator();
-		Iterator<Comparable> iter2 = s2.iterator();
-		for (int i = 0; i < relabeling.length; i++) {
-			int j = Arrays.binarySearch(c1, iter1.next());
-			relabeling[i][0] = labels[j];
-			j = Arrays.binarySearch(c1, iter2.next());
-			if (j < 0) throw new IllegalArgumentException("Sequences must contain same elements: s2 contains at least one element not in s1.");
-			relabeling[i][1] = labels[j];
-		}
-		return current+1;
+		return internalRelabel((List<Comparable>)s1, (List<Comparable>)s2, relabeling);
 	}
 }
