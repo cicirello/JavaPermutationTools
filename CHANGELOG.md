@@ -4,14 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-10-12
+## [Unreleased] - 2022-10-14
 
 ### Added
+* EditDistanceDouble: extracted from EditDistance (for sequences) all of the distancef methods for
+  double-valued distances. The original EditDistance now subclasses this one to retain existing functionality.
 
 ### Changed
-* Refactored SequenceSampler to reduce cyclomatic complexity.
-* Refactored ExactMatchDistance (for sequences) to reduce cyclomatic complexity.
-* Refactored KendallTauSequenceDistance to reduce cyclomatic complexity.
+* Refactored the following classes to reduce cyclomatic complexity, or for other maintainability reasons:
+  * SequenceSampler
+  * ExactMatchDistance (for sequences)
+  * KendallTauSequenceDistance
+  * EditDistance (for sequences)
 
 ### Deprecated
 
