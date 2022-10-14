@@ -54,32 +54,27 @@ import java.util.List;
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class EditDistance implements SequenceDistanceMeasurer {
+public class EditDistance extends EditDistanceDouble implements SequenceDistanceMeasurer {
 	
 	private final int insert_i;
 	private final int delete_i;
 	private final int change_i;
 	
-	private final double insert_d;
-	private final double delete_d;
-	private final double change_d;
-	
 	/**
-	 * Constructs an edit distance measure with the specified edit operation costs.  With costs as doubles, all of the distancef methods that
-	 * compute distance as double values are available.  The distance methods that compute integer-valued distances may or may not be available if
-	 * this constructor is used with double valued costs.  If the costs are equal to integer values if cast to type double, then the distance methods
-	 * will also function.  Otherwise, they will throw an exception.  For safety, it is recommended to only use the distancef methods if you use this
+	 * Constructs an edit distance measure with the specified edit operation costs. With costs as doubles, all of the distancef methods that
+	 * compute distance as double values are available. The distance methods that compute integer-valued distances may or may not be available if
+	 * this constructor is used with double valued costs. If the costs are equal to integer values if cast to type double, then the distance methods
+	 * will also function.  Otherwise, they will throw an exception. For safety, it is recommended to only use the distancef methods if you use this
 	 * constructor to pass costs as type double.  If you desire integer valued distances, then use the other constructor to pass costs as ints.
 	 *
 	 * @param insertCost Cost of an insertion operation. Must be non-negative.
 	 * @param deleteCost Cost of an deletion operation. Must be non-negative.
 	 * @param changeCost Cost of an change operation. Must be non-negative.
+	 *
+	 * @throws IllegalArgumentException if any of the costs are negative.
 	 */
 	public EditDistance(double insertCost, double deleteCost, double changeCost) {
-		if (insertCost < 0.0 || deleteCost < 0.0 || changeCost < 0.0) throw new IllegalArgumentException("Costs must be non-negative.");
-		insert_d = insertCost;
-		delete_d = deleteCost;
-		change_d = changeCost;
+		super(insertCost, deleteCost, changeCost);
 		if (isIntAsDouble(insertCost) && isIntAsDouble(deleteCost) && isIntAsDouble(changeCost)) {
 			insert_i = (int)insertCost;
 			delete_i = (int)deleteCost;
@@ -91,17 +86,20 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	}
 	
 	/**
-	 * Constructs an edit distance measure with the specified edit operation costs.  With integer costs, all of the distance and distancef methods
+	 * Constructs an edit distance measure with the specified edit operation costs. With integer costs, all of the distance and distancef methods
 	 * are available.
+	 *
 	 * @param insertCost Cost of an insertion operation. Must be non-negative.
 	 * @param deleteCost Cost of an deletion operation. Must be non-negative.
 	 * @param changeCost Cost of an change operation. Must be non-negative.
+	 *
+	 * @throws IllegalArgumentException if any of the costs are negative.
 	 */
 	public EditDistance(int insertCost, int deleteCost, int changeCost) {
-		if (insertCost < 0 || deleteCost < 0 || changeCost < 0) throw new IllegalArgumentException("Costs must be non-negative.");
-		insert_d = insert_i = insertCost;
-		delete_d = delete_i = deleteCost;
-		change_d = change_i = changeCost;
+		super(insertCost, deleteCost, changeCost);
+		insert_i = insertCost;
+		delete_i = deleteCost;
+		change_i = changeCost;
 	}
 	
 	/**
@@ -109,27 +107,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(int[] s1, int[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(int[] s1, int[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -137,27 +120,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(long[] s1, long[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(long[] s1, long[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -165,27 +133,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(short[] s1, short[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(short[] s1, short[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -193,27 +146,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(byte[] s1, byte[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(byte[] s1, byte[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -221,27 +159,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(char[] s1, char[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(char[] s1, char[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -249,27 +172,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(boolean[] s1, boolean[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(boolean[] s1, boolean[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -277,27 +185,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(double[] s1, double[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(double[] s1, double[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -305,27 +198,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(float[] s1, float[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(float[] s1, float[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -333,27 +211,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(String s1, String s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length() + 1][s2.length() + 1];
-		for (int i = 1; i <= s1.length(); i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length(); j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length(); i++) {
-			for (int j = 1; j <= s2.length(); j++) { 
-				int m1 = D[i-1][j-1] + (s1.charAt(i-1) != s2.charAt(j-1) ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length()][s2.length()];
+	public final int distance(String s1, String s2) {
+		return distance(
+			s1.length(), 
+			s2.length(),
+			(i, j, costIfSame) -> s1.charAt(i) == s2.charAt(j) ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -361,27 +224,12 @@ public class EditDistance implements SequenceDistanceMeasurer {
 	 * @throws UnsupportedOperationException if costs were initialized with double values.
 	 */
 	@Override
-	public int distance(Object[] s1, Object[] s2) {
-		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
-		int[][] D = new int[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_i;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_i;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				int m1 = D[i-1][j-1] + (!s1[i-1].equals(s2[j-1]) ? change_i : 0);
-				int m2 = D[i-1][j] + delete_i;
-				int m3 = D[i][j-1] + insert_i;
-				int min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
+	public final int distance(Object[] s1, Object[] s2) {
+		return distance(
+			s1.length, 
+			s2.length,
+			(i, j, costIfSame) -> s1[i].equals(s2[j]) ? costIfSame : costIfSame + change_i
+		);
 	}
 	
 	/**
@@ -393,242 +241,52 @@ public class EditDistance implements SequenceDistanceMeasurer {
 		return distance(s1.toArray(), s2.toArray());
 	}
 	
-	@Override
-	public double distancef(int[] s1, int[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(long[] s1, long[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(short[] s1, short[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(byte[] s1, byte[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(char[] s1, char[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(boolean[] s1, boolean[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(double[] s1, double[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(float[] s1, float[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (s1[i-1] != s2[j-1] ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public double distancef(String s1, String s2) {
-		double[][] D = new double[s1.length() + 1][s2.length() + 1];
-		for (int i = 1; i <= s1.length(); i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length(); j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length(); i++) {
-			for (int j = 1; j <= s2.length(); j++) { 
-				double m1 = D[i-1][j-1] + (s1.charAt(i-1) != s2.charAt(j-1) ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length()][s2.length()];
-	}
-	
-	@Override
-	public double distancef(Object[] s1, Object[] s2) {
-		double[][] D = new double[s1.length + 1][s2.length + 1];
-		for (int i = 1; i <= s1.length; i++) {
-			D[i][0] = D[i-1][0] + delete_d;
-		}
-		for (int j = 1; j <= s2.length; j++) {
-			D[0][j] = D[0][j-1] + insert_d;
-		}
-		for (int i = 1; i <= s1.length; i++) {
-			for (int j = 1; j <= s2.length; j++) { 
-				double m1 = D[i-1][j-1] + (!s1[i-1].equals(s2[j-1]) ? change_d : 0);
-				double m2 = D[i-1][j] + delete_d;
-				double m3 = D[i][j-1] + insert_d;
-				double min = m1;
-				if (m2 < min) min = m2;
-				if (m3 < min) min = m3;
-				D[i][j] = min;
-			}
-		}
-		return D[s1.length][s2.length];
-	}
-	
-	@Override
-	public final <T> double distancef(List<T> s1, List<T> s2) {
-		return distancef(s1.toArray(), s2.toArray());
+	@FunctionalInterface
+	private interface ChangeCost {
+		/**
+		 * Computes cost of change.
+		 *
+		 * @param i Index into first sequence.
+		 * @param j Index into second sequence.
+		 * @param costIfSame The cost if the elements are the same.
+		 *
+		 * @return Cost for a change.
+		 */
+		int apply(int i, int j, int valueIfSame);
 	}
 	
 	private boolean isIntAsDouble(double d) {
 		 return ((double)((int)d)) == d;
+	}
+	
+	private int distance(int n, int m, ChangeCost coster) {
+		int[][] D = initD(n, m); 
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) { 
+				D[i][j] = min(
+					coster.apply(i-1, j-1, D[i-1][j-1]),
+					D[i-1][j] + delete_i,
+					D[i][j-1] + insert_i
+				);
+			}
+		}
+		return D[n][m];
+	}
+	
+	private int[][] initD(int n, int m) {
+		if (insert_i < 0) throw new UnsupportedOperationException("EditDistance.distance not supported for floating-point costs.");
+		int[][] D = new int[n + 1][m + 1];
+		for (int i = 1; i <= n; i++) {
+			D[i][0] = D[i-1][0] + delete_i;
+		}
+		for (int j = 1; j <= m; j++) {
+			D[0][j] = D[0][j-1] + insert_i;
+		}
+		return D;
+	}
+	
+	private int min(int m1, int m2, int m3) {
+		if (m2 < m1) m1 = m2;
+		return m3 < m1 ? m3 : m1;
 	}
 }
