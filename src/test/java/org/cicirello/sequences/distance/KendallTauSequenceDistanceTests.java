@@ -246,4 +246,87 @@ public class KendallTauSequenceDistanceTests extends InternalTestHelpersKendallT
 		helperForKendallTauCases(d);
 		helperForKendallTauBooleans(d);
 	}
+	
+	final void helperKendallTauDistanceExceptionsDiffElements(final KendallTauSequenceDistance d) {
+	
+		final int[] i1 = { 1, 2, 3 };
+		final int[] i2 = { 1, 2, 4 };
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(i1, i2)
+		);
+		final String[] str1 = {"a", "a", "c"};
+		final String[] str2 = {"a", "a", "d"};
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(str1, str2)
+		);
+		final ArrayList<String> aL1 = new ArrayList<String>();
+		final ArrayList<String> aL2 = new ArrayList<String>();
+		for (String e : str1) aL1.add(e);
+		for (String e : str2) aL2.add(e);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(aL1, aL2)
+		);
+		final double[] d1 = { 1, 2, 3 };
+		final double[] d2 = { 1, 2, 4 };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(d1, d2)
+		);
+		final float[] f1 = { 1f, 2f, 3f };
+		final float[] f2 = { 1f, 2f, 4f };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(f1, f2)
+		);
+		final long[] L1 = { 1, 2, 3 };
+		final long[] L2 = { 1, 2, 4 };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(L1, L2)
+		);
+		final short[] sh1 = { 1, 2, 3 };
+		final short[] sh2 = { 1, 2, 4 };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(sh1, sh2)
+		);
+		final byte[] b1 = { 1, 2, 3 };
+		final byte[] b2 = { 1, 2, 4 };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(b1, b2)
+		);
+		final char[] ch1 = { '1', '2', '3' };
+		final char[] ch2 = { '1', '2', '4' };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(ch1, ch2)
+		);
+		final String g1 = "123";
+		final String g2 = "124";
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(g1, g2)
+		);
+		final boolean[] bool1 = { false, false, true };
+		final boolean[] bool2 = { false, false, false };
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(bool1, bool2)
+		);
+		final String diffCounts1 = "ababa";
+		final String diffCounts2 = "babab";
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(diffCounts1, diffCounts2)
+		);
+		final String diffCounts3 = "aaaab";
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> d.distance(diffCounts1, diffCounts3)
+		);
+	}
 }
