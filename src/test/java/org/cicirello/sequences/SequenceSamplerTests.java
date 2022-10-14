@@ -52,6 +52,12 @@ public class SequenceSamplerTests {
 	private static final double CRITICAL_VALUE_995_INF = 2.576;
 	
 	@Test
+	public void testAbstractbaseClass() {
+		class TestExtension extends AbstractSequenceSampler {}
+		assertNotNull(new TestExtension());
+	}
+	
+	@Test
 	public void testSamplePTTest() {
 		if (DISABLE_T_TEST) {
 			return;

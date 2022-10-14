@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * EditDistanceDouble: extracted from EditDistance (for sequences) all of the distancef methods for
   double-valued distances. The original EditDistance now subclasses this one to retain existing functionality.
+* SequencePoolSampler, SequenceReservoirSampler, and SequenceInsertionSampler extracted from SequenceSampler.
 
 ### Changed
 * Refactored the following classes to reduce cyclomatic complexity, or for other maintainability reasons:

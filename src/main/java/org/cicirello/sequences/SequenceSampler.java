@@ -21,12 +21,8 @@
  */ 
 package org.cicirello.sequences;
 
-import org.cicirello.math.rand.RandomSampler;
-import org.cicirello.math.rand.RandomIndexer;
 import org.cicirello.math.rand.RandomVariates;
-import org.cicirello.util.ArrayMinimumLengthEnforcer;
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * SequenceSampler is a class of utility methods related to 
@@ -192,9 +188,9 @@ public final class SequenceSampler {
 	 */
 	public static int[] sample(int[] source, int k, int[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -228,9 +224,9 @@ public final class SequenceSampler {
 	 */
 	public static long[] sample(long[] source, int k, long[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -264,9 +260,9 @@ public final class SequenceSampler {
 	 */
 	public static short[] sample(short[] source, int k, short[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -300,9 +296,9 @@ public final class SequenceSampler {
 	 */
 	public static byte[] sample(byte[] source, int k, byte[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -336,9 +332,9 @@ public final class SequenceSampler {
 	 */
 	public static char[] sample(char[] source, int k, char[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -405,9 +401,9 @@ public final class SequenceSampler {
 	 */
 	public static double[] sample(double[] source, int k, double[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -441,9 +437,9 @@ public final class SequenceSampler {
 	 */
 	public static float[] sample(float[] source, int k, float[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -478,9 +474,9 @@ public final class SequenceSampler {
 	 */
 	public static <T> T[] sample(T[] source, int k, T[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 
 	
@@ -507,16 +503,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] sampleReservoir(int[] source, int k, int[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -542,16 +529,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] sampleReservoir(long[] source, int k, long[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -577,16 +555,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] sampleReservoir(short[] source, int k, short[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -612,16 +581,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -647,16 +607,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleReservoir(char[] source, int k, char[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -682,7 +633,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleReservoir(String source, int k, char[] target) {
-		return sampleReservoir(source.toCharArray(), k, target);
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -708,16 +659,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] sampleReservoir(double[] source, int k, double[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -743,16 +685,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] sampleReservoir(float[] source, int k, float[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -779,16 +712,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static <T> T[] sampleReservoir(T[] source, int k, T[] target) {
-		validateK(k, source.length);
-		target = allocateIfNecessary(source, k, target);
-		System.arraycopy(source, 0, target, 0, k);
-		for (int i = k; i < source.length; i++) {
-			int j = RandomIndexer.nextInt(i+1);
-			if (j < k) {
-				target[j] = source[i];
-			}
-		}
-		return target;
+		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	
@@ -816,17 +740,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] samplePool(int[] source, int k, int[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -853,17 +767,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] samplePool(long[] source, int k, long[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		long[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -890,17 +794,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] samplePool(short[] source, int k, short[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		short[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -927,17 +821,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] samplePool(byte[] source, int k, byte[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		byte[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -964,17 +848,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] samplePool(char[] source, int k, char[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		char[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1001,7 +875,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] samplePool(String source, int k, char[] target) {
-		return samplePool(source.toCharArray(), k, target);
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1028,17 +902,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] samplePool(double[] source, int k, double[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		double[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1065,17 +929,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] samplePool(float[] source, int k, float[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		float[] pool = source.clone();
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1103,17 +957,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static <T> T[] samplePool(T[] source, int k, T[] target) {
-		validateK(k, source.length);
-		target = allocateIfNecessary(source, k, target);
-		T[] pool = Arrays.copyOf(source, source.length);
-		int remaining = pool.length;
-		for (int i = 0; i < k; i++) {
-			int j = RandomIndexer.nextInt(remaining);
-			target[i] = pool[j];
-			remaining--;
-			pool[j] = pool[remaining];
-		}
-		return target;
+		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	
@@ -1145,12 +989,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static int[] sampleInsertion(int[] source, int k, int[] target) {
-		validateK(k, source.length);
-		target = RandomSampler.sampleInsertion(source.length, k, target);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[target[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1181,13 +1020,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static long[] sampleInsertion(long[] source, int k, long[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1218,13 +1051,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static short[] sampleInsertion(short[] source, int k, short[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1255,13 +1082,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static byte[] sampleInsertion(byte[] source, int k, byte[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1292,13 +1113,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleInsertion(char[] source, int k, char[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1329,7 +1144,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static char[] sampleInsertion(String source, int k, char[] target) {
-		return sampleInsertion(source.toCharArray(), k, target);
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1360,13 +1175,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static double[] sampleInsertion(double[] source, int k, double[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1397,13 +1206,7 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static float[] sampleInsertion(float[] source, int k, float[] target) {
-		validateK(k, source.length);
-		target = ArrayMinimumLengthEnforcer.enforce(target, k);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -1435,28 +1238,6 @@ public final class SequenceSampler {
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
 	public static <T> T[] sampleInsertion(T[] source, int k, T[] target) {
-		validateK(k, source.length);
-		target = allocateIfNecessary(source, k, target);
-		int[] indexes = RandomSampler.sampleInsertion(source.length, k, null);
-		for (int i = 0; i < k; i++) {
-			target[i] = source[indexes[i]];
-		}
-		return target;
-	}
-	
-	private static void validateK(int k, int sourceLength) {
-		if (k > sourceLength) {
-			throw new IllegalArgumentException("k must be no greater than length of source array");
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	private static <T> T[] allocateIfNecessary(T[] source, int k, T[] target) {
-		if (target == null) {
-			target = (T[])Array.newInstance(source.getClass().getComponentType(), k);
-		} else if (target.length < k) {
-			target = (T[])Array.newInstance(target.getClass().getComponentType(), k);
-		}
-		return target;
+		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 }
