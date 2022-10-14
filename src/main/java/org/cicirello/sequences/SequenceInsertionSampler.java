@@ -36,9 +36,9 @@ import java.util.random.RandomGenerator;
  *
  * <p>The runtime of the sample methods is O(k<sup>2</sup>)
  * and generates O(k) random numbers. Thus, it is a better 
- * choice than both SequenceReservoirSampler and SequencePoolSampler when k<sup>2</sup> &lt; n.
- * Just like SequenceReservoirSampler, SequenceInsertionSampler only requires O(1) extra space,
- * while SequencePoolSampler requires O(n) extra space.</p>
+ * choice than both {@link SequenceReservoirSampler} and {@link SequencePoolSampler} when k<sup>2</sup> &lt; n.
+ * Just like {@link SequenceReservoirSampler}, the SequenceInsertionSampler only requires O(1) extra space,
+ * while {@link SequencePoolSampler} requires O(n) extra space.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 

@@ -35,7 +35,7 @@ import java.util.Arrays;
  * Computer Journal, 25(1):45-47, 1982.</p>	
  *
  * <p>The runtime of the sample methods is O(n) and it generates O(k) random numbers. Thus, it is a better 
- * choice than SequenceReservoirSampler when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir algorithm
+ * choice than {@link SequenceReservoirSampler} when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir algorithm
  * uses no extra space.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
