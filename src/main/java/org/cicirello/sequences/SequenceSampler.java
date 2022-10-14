@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
-public final class SequenceSampler extends AbstractSequenceSampler {
+public final class SequenceSampler {
 	
 	/**
 	 * Class of static utility methods so prevent instantiation
@@ -188,9 +188,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static int[] sample(int[] source, int k, int[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -224,9 +224,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static long[] sample(long[] source, int k, long[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -260,9 +260,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static short[] sample(short[] source, int k, short[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -296,9 +296,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static byte[] sample(byte[] source, int k, byte[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -332,9 +332,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static char[] sample(char[] source, int k, char[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -401,9 +401,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static double[] sample(double[] source, int k, double[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -437,9 +437,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static float[] sample(float[] source, int k, float[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 	
 	/**
@@ -474,9 +474,9 @@ public final class SequenceSampler extends AbstractSequenceSampler {
 	 */
 	public static <T> T[] sample(T[] source, int k, T[] target) {
 		if (k + k < source.length) {
-			if (k * k < source.length) return sampleInsertion(source, k, target);
-			else return samplePool(source, k, target);
-		} else return sampleReservoir(source, k, target);
+			if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
+			else return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
+		} else return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
 
 	
