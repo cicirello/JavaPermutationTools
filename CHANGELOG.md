@@ -4,12 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-10-14
+## [Unreleased] - 2022-10-15
 
 ### Added
 * EditDistanceDouble: extracted from EditDistance (for sequences) all of the distancef methods for
   double-valued distances. The original EditDistance now subclasses this one to retain existing functionality.
-* SequencePoolSampler, SequenceReservoirSampler, and SequenceInsertionSampler extracted from SequenceSampler.
+* Extracted the following classes from SequenceSampler that implement different algorithms for efficiently 
+  randomly sampling array elements without replacement:
+  * SequencePoolSampler: the pool sampling algorithm of Ernvall and Nevalainen (1982),
+  * SequenceReservoirSampler: the reservoir sampling algorithm of Vitter (1985),
+  * SequenceInsertionSampler: the insertion sampling algorithm of Cicirello (2022), and
+  * SequenceCompositeSampler: the composite of the above three of Cicirello (2022).
 
 ### Changed
 * Refactored the following classes to reduce cyclomatic complexity, or for other maintainability reasons:
