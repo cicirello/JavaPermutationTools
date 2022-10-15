@@ -46,7 +46,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler {
 	 * Class of static utility methods so prevent instantiation
 	 * with a private constructor.
 	 */
-	private SequenceReservoirSampler() {};
+	private SequenceReservoirSampler() {}
 	
 	/**
 	 * <p>Generates a random sample of k elements, without replacement, from a
