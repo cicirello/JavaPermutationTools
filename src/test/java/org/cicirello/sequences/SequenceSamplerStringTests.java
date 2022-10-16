@@ -22,11 +22,12 @@ package org.cicirello.sequences;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashMap;
 
 /**
  * Internal helpers for tests of sequence samplers.
  */
-public class SequenceSamplerStringTests extends SharedTestSamplers {
+public class SequenceSamplerStringTests {
 	
 	@Test
 	public void testSampleReservoir() {
@@ -83,7 +84,31 @@ public class SequenceSamplerStringTests extends SharedTestSamplers {
 		char[] sample(String source, int k, char[] target);
 	}
 	
-	final void validateSamples(Sampler sampler) {
+	private void validateSample(char[] array, char[] sample, int k) {
+		assertEquals(k, sample.length);
+		validateSample(array, sample);
+	}
+	
+	private void validateSample(char[] array, char[] sample) {
+		HashMap<Character, Integer> counts = new HashMap<Character, Integer>();
+		for (int i = 0; i < array.length; i++) {
+			if (counts.containsKey(array[i])) {
+				counts.put(array[i], counts.get(array[i])+1);
+			} else {
+				counts.put(array[i], 1);
+			}
+		}
+		for (int i = 0; i < sample.length; i++) {
+			assertTrue(counts.containsKey(sample[i]));
+			if (counts.get(sample[i]) <= 1) {
+				counts.remove(sample[i]);
+			} else {
+				counts.put(sample[i], counts.get(sample[i])-1);
+			}
+		}
+	}
+	
+	private void validateSamples(Sampler sampler) {
 		for (int n = 1; n < 9; n++) {
 			char[] allDiff = new char[n];
 			char[] mixedQuantities = new char[n];
