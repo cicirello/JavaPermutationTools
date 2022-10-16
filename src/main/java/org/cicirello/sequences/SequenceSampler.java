@@ -162,9 +162,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -195,9 +194,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -228,9 +226,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -261,9 +258,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -294,9 +290,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -327,9 +322,8 @@ public final class SequenceSampler {
 	 * given source String.  All n choose k combinations are equally
 	 * likely, where n is the length of the source String.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -360,9 +354,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -393,9 +386,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -426,9 +418,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
