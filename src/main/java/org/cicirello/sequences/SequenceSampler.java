@@ -162,9 +162,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -195,9 +194,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -228,9 +226,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -261,9 +258,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -294,9 +290,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -327,9 +322,8 @@ public final class SequenceSampler {
 	 * given source String.  All n choose k combinations are equally
 	 * likely, where n is the length of the source String.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -360,9 +354,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -393,9 +386,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -426,9 +418,8 @@ public final class SequenceSampler {
 	 * given source array.  All n choose k combinations are equally
 	 * likely, where n is the length of the source array.</p>
 	 *
-	 * <p>This method chooses among the samplePool, 
-	 * sampleReservoir, and sampleInsertion 
-	 * methods based on the values of n and k.</p>
+	 * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler}, 
+	 * and {@link SequenceInsertionSampler} classes based on the values of n and k.</p>
 	 *
 	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
 	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
@@ -470,6 +461,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -478,6 +471,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static int[] sampleReservoir(int[] source, int k, int[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -496,6 +490,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -504,6 +500,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static long[] sampleReservoir(long[] source, int k, long[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -522,6 +519,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -530,6 +529,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static short[] sampleReservoir(short[] source, int k, short[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -548,6 +548,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -556,6 +558,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -574,6 +577,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -582,6 +587,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] sampleReservoir(char[] source, int k, char[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -600,6 +606,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -608,6 +616,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] sampleReservoir(String source, int k, char[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -626,6 +635,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -634,6 +645,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static double[] sampleReservoir(double[] source, int k, double[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -652,6 +664,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -660,6 +674,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static float[] sampleReservoir(float[] source, int k, float[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -678,6 +693,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -687,6 +704,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static <T> T[] sampleReservoir(T[] source, int k, T[] target) {
 		return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -707,6 +725,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -715,6 +735,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static int[] samplePool(int[] source, int k, int[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -734,6 +755,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -742,6 +765,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static long[] samplePool(long[] source, int k, long[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -761,6 +785,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -769,6 +795,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static short[] samplePool(short[] source, int k, short[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -788,6 +815,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -796,6 +825,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static byte[] samplePool(byte[] source, int k, byte[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -815,6 +845,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -823,6 +855,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] samplePool(char[] source, int k, char[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -842,6 +875,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -850,6 +885,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] samplePool(String source, int k, char[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -869,6 +905,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -877,6 +915,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static double[] samplePool(double[] source, int k, double[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -896,6 +935,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -904,6 +945,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static float[] samplePool(float[] source, int k, float[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -923,6 +965,8 @@ public final class SequenceSampler {
 	 * <p>This method is safe to use with threads, as it uses ThreadLocalRandom
 	 * as the underlying source of randomness.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequencePoolSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -932,6 +976,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static <T> T[] samplePool(T[] source, int k, T[] target) {
 		return SequencePoolSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -956,6 +1001,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -964,6 +1011,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static int[] sampleInsertion(int[] source, int k, int[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -987,6 +1035,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -995,6 +1045,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static long[] sampleInsertion(long[] source, int k, long[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1018,6 +1069,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1026,6 +1079,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static short[] sampleInsertion(short[] source, int k, short[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1049,6 +1103,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1057,6 +1113,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static byte[] sampleInsertion(byte[] source, int k, byte[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1080,6 +1137,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1088,6 +1147,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] sampleInsertion(char[] source, int k, char[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1111,6 +1171,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source to sample.
 	 * @param k The number of random samples (must be no greater than source.length()).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1119,6 +1181,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length()
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static char[] sampleInsertion(String source, int k, char[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1142,6 +1205,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1150,6 +1215,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static double[] sampleInsertion(double[] source, int k, double[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1173,6 +1239,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1181,6 +1249,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static float[] sampleInsertion(float[] source, int k, float[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
@@ -1204,6 +1273,8 @@ public final class SequenceSampler {
 	 * pseudorandom number generator, and is thus safe, and efficient (i.e., non-blocking), 
 	 * for use with threads.</p>
 	 *
+	 * @deprecated This method is deprecated, and replaced by the {@link SequenceInsertionSampler} class.
+	 *
 	 * @param source The source array to sample.
 	 * @param k The number of random samples (must be no greater than source.length).
 	 * @param target An array to hold the result.  If target is null or target.length is less than k, 
@@ -1213,6 +1284,7 @@ public final class SequenceSampler {
 	 * @throws IllegalArgumentException if k &gt; source.length
 	 * @throws NegativeArraySizeException if k &lt; 0
 	 */
+	@Deprecated
 	public static <T> T[] sampleInsertion(T[] source, int k, T[] target) {
 		return SequenceInsertionSampler.sample(source, k, target, ThreadLocalRandom.current());
 	}
