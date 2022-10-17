@@ -4,7 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-10-16
+## [Unreleased] - 2022-10-17
+
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [4.3.0] - 2022-10-17
 
 ### Added
 * EditDistanceDouble: extracted from EditDistance (for sequences) all of the distancef methods for
@@ -28,17 +47,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * The SequenceSampler.samplePool methods, which are now replaced by the SequencePoolSampler class.
 * The SequenceSampler.sampleInsertion methods, which are now replaced by the SequenceInsertionSampler class.
 
-### Removed
-
-### Fixed
-
 ### Dependencies
 * Bump rho-mu from 2.4.1 to 2.5.0
 * Bump core from 2.2.2 to 2.4.0
-
-### CI/CD
-
-### Other
 
 
 ## [4.2.0] - 2022-08-30
