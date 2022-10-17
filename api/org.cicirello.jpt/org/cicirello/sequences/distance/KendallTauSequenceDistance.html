@@ -42,6 +42,7 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="class-use/KendallTauSequenceDistance.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -479,11 +480,7 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s2)</span></div>
 <div class="block">Measures the distance between two arrays of objects.
  The objects in the arrays must be of a class that has overridden the
- Object.equals method.
- <p>If the distance measurer object is configured, via the constructor, to use the
- alternate algorithm, but the arrays passed to this method do not implement
- the Comparable interface, then this method will disregard the choice of alternate
- algorithm and use the default algorithm instead.</p></div>
+ Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurer.html#distance(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
@@ -493,7 +490,9 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <dt>Returns:</dt>
 <dd>distance between s1 and s2</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if sequences are of different lengths, or contain different elements</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if sequences are of different lengths, or contain different elements.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ClassCastException.html" title="class or interface in java.lang" class="external-link">ClassCastException</a></code> - If the distance measurer object is configured, via the constructor, to use the
+ alternate algorithm, but the arrays passed to this method contain objects that do not implement the Comparable interface.</dd>
 </dl>
 </section>
 </li>
@@ -518,6 +517,8 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if s1.size() is not equal to s2.size(), or if they contain
  different elements.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ArrayStoreException.html" title="class or interface in java.lang" class="external-link">ArrayStoreException</a></code> - If the distance measurer object is configured, via the constructor, to use the
+ alternate algorithm, but the Lists passed to this method contain objects that do not implement the Comparable interface.</dd>
 </dl>
 </section>
 </li>
