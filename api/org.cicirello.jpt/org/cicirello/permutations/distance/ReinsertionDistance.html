@@ -91,37 +91,38 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">ReinsertionDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Reinsertion distance is the count of the number of removal/reinsertion operations
- needed to transform one permutation into the other.</p>
- 
- <p>This implementation utilizes the observation that the elements that must be removed and reinserted
- are exactly those elements that are not in the longest common subsequence.</p>
+<div class="block">Reinsertion distance is the count of the number of removal/reinsertion operations needed to
+ transform one permutation into the other.
 
- <p>Runtime: O(n lg n), where n is the permutation length.</p>
+ <p>This implementation utilizes the observation that the elements that must be removed and
+ reinserted are exactly those elements that are not in the longest common subsequence.
+
+ <p>Runtime: O(n lg n), where n is the permutation length.
 
  <p>Reinsertion distance more generally was described in:<br>
- V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html" target=_top>"Profiling the distance characteristics 
- of mutation operators for permutation-based genetic algorithms,"</a> 
- in Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.</p> 
+ V. A. Cicirello and R. Cernera, <a href="https://www.cicirello.org/publications/cicirello2013flairs.html" target=_top>"Profiling the
+ distance characteristics of mutation operators for permutation-based genetic algorithms,"</a> in
+ Proceedings of the 26th FLAIRS Conference. AAAI Press, May 2013, pp. 46–51.
 
- <p>However, in that paper, it was computed, in O(n^2) time, using an adaptation of string Edit Distance.</p>
+ <p>However, in that paper, it was computed, in O(n^2) time, using an adaptation of string Edit
+ Distance.
 
- <p>For description of computing it using the length of the longest common subsequence, see:<br> 
- V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem 
- and the Calculus of Search Landscapes,"</a> 
- IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p>
+ <p>For description of computing it using the length of the longest common subsequence, see:<br>
+ V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem and the Calculus of Search Landscapes,"</a>
+ IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.
 
- <p>However, that paper used an O(n^2) time algorithm for longest common subsequence.  This class has been
- updated to use a more efficient O(n lg n) algorithm for longest common subsequence.  It is a version of
- Hunt et al's algorithm 
- that has been optimized to assume permutations of the integers in [0, (n-1)] with unique elements.
- The original algorithm of Hunt et al was for general strings that could contain duplicates and which could consist 
- of characters of any alphabet.  In that more general case, O(n lg n) was the best case runtime.  In our
- special case, O(n lg n) is worst case runtime.</p>
+ <p>However, that paper used an O(n^2) time algorithm for longest common subsequence. This class
+ has been updated to use a more efficient O(n lg n) algorithm for longest common subsequence. It
+ is a version of Hunt et al's algorithm that has been optimized to assume permutations of the
+ integers in [0, (n-1)] with unique elements. The original algorithm of Hunt et al was for general
+ strings that could contain duplicates and which could consist of characters of any alphabet. In
+ that more general case, O(n lg n) was the best case runtime. In our special case, O(n lg n) is
+ worst case runtime.
 
- <p>See the following for complete details of Hunt et al's algorithm for longest common subsequence:<br>
- J.W. Hunt and T.G. Szymanski, "A fast algorithm for computing longest common subsequences," 
- Communications of the ACM, 20(5):350-353, May, 1977.</p></div>
+ <p>See the following for complete details of Hunt et al's algorithm for longest common
+ subsequence:<br>
+ J.W. Hunt and T.G. Szymanski, "A fast algorithm for computing longest common subsequences,"
+ Communications of the ACM, 20(5):350-353, May, 1977.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -160,8 +161,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -225,8 +225,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

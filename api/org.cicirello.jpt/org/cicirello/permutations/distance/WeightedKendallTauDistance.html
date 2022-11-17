@@ -91,21 +91,21 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">WeightedKendallTauDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></span></div>
-<div class="block"><p>This class implements the weighted Kendall tau distance. In the original
- Kendall tau distance, each inverted pair of elements (i.e., such that element
- x appears someplace before y in Permutation p1, but someplace after y in Permutation p2)
- contributes 1 to the distance. Thus, since there are n(n-1)/2 pairs of elements,
- the maximum of Kendall tau distance is n(n-1)/2 where n is the permutation length.
- In this weighted Kendall tau distance, each element x of the permutation has an
- associated weight w(x), and each inverted pair x, y (where x appears before sometime
- prior to y in p1, but sometime after y in p2) contributes w(x) * w(y) to the weighted
- Kendall tau distance.</p>
+<div class="block">This class implements the weighted Kendall tau distance. In the original Kendall tau distance,
+ each inverted pair of elements (i.e., such that element x appears someplace before y in
+ Permutation p1, but someplace after y in Permutation p2) contributes 1 to the distance. Thus,
+ since there are n(n-1)/2 pairs of elements, the maximum of Kendall tau distance is n(n-1)/2 where
+ n is the permutation length. In this weighted Kendall tau distance, each element x of the
+ permutation has an associated weight w(x), and each inverted pair x, y (where x appears before
+ sometime prior to y in p1, but sometime after y in p2) contributes w(x) * w(y) to the weighted
+ Kendall tau distance.
 
  <p>The weighted Kendall tau distance was first described in:<br>
- "Failure proximity: a fault localization-based approach" (Liu and Han, SIGSOFT 2006, pages 46-56).</p>
+ "Failure proximity: a fault localization-based approach" (Liu and Han, SIGSOFT 2006, pages
+ 46-56).
 
- <p>The runtime of JPT's implementation is O(n lg n), where n is the permutation length. 
- This runtime is achieved using a modified version of mergesort to sum the weighted inversions.</p></div>
+ <p>The runtime of JPT's implementation is O(n lg n), where n is the permutation length. This
+ runtime is achieved using a modified version of mergesort to sum the weighted inversions.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -144,15 +144,13 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#maxf(int)" class="member-name-link">maxf</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#supportedLength()" class="member-name-link">supportedLength</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the length of permutations supported by this instance of
- WeightedKendallTauDistance, which is equal to the length of the
- array of weights passed to the constructor.</div>
+<div class="block">Gets the length of permutations supported by this instance of WeightedKendallTauDistance, which
+ is equal to the length of the array of weights passed to the constructor.</div>
 </div>
 </div>
 </div>
@@ -181,8 +179,7 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <div class="block">Constructs an instance of the WeightedKendallTauDistance.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>weights</code> - An array of weights, such that weights[e] is the weight of
- element e.</dd>
+<dd><code>weights</code> - An array of weights, such that weights[e] is the weight of element e.</dd>
 </dl>
 </section>
 </li>
@@ -198,9 +195,8 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <section class="detail" id="supportedLength()">
 <h3>supportedLength</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">supportedLength</span>()</div>
-<div class="block">Gets the length of permutations supported by this instance of
- WeightedKendallTauDistance, which is equal to the length of the
- array of weights passed to the constructor.</div>
+<div class="block">Gets the length of permutations supported by this instance of WeightedKendallTauDistance, which
+ is equal to the length of the array of weights passed to the constructor.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>The length of supported Permutations.</dd>
@@ -222,8 +218,8 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <dt>Returns:</dt>
 <dd>distance between p1 and p2</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if p1.length() is not equal to supportedLength(),
- or if p2.length() is not equal to supportedLength().</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if p1.length() is not equal to supportedLength(), or if
+     p2.length() is not equal to supportedLength().</dd>
 </dl>
 </section>
 </li>
@@ -231,12 +227,10 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <section class="detail" id="maxf(int)">
 <h3>maxf</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">maxf</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.
+<div class="block">Computes the maximum possible distance between permutations of a specified length.
 
- <p><b>This implementation ignores the length parameter since this
- distance is configured for one specific length based upon the weights
- passed during construction.</b></p></div>
+ <p><b>This implementation ignores the length parameter since this distance is configured for
+ one specific length based upon the weights passed during construction.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurerDouble.html#maxf(int)">maxf</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></code></dd>

@@ -91,27 +91,24 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">DeviationDistanceNormalized</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></span></div>
-<div class="block"><p>Normalized Deviation distance is the sum of the positional deviation of the permutation elements
- divided by N-1 (where N is the length of the permutation).
- The positional deviation of an element is the difference in its location in the two
- permutations.  Normalizing by dividing by N-1 causes each element's contribution to 
- distance to be in the interval [0,1].</p>
+<div class="block">Normalized Deviation distance is the sum of the positional deviation of the permutation elements
+ divided by N-1 (where N is the length of the permutation). The positional deviation of an element
+ is the difference in its location in the two permutations. Normalizing by dividing by N-1 causes
+ each element's contribution to distance to be in the interval [0,1].
 
- <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3].
- Element 0 is displaced by 1 position.  Likewise for elements 1 and 2.
- Element 3 is displaced by 2 positions.
- Element 4 is in the same position in both.
- Element 5 is displaced by 3 positions.</p> 
+ <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3]. Element 0 is
+ displaced by 1 position. Likewise for elements 1 and 2. Element 3 is displaced by 2 positions.
+ Element 4 is in the same position in both. Element 5 is displaced by 3 positions.
 
- <p>Sum the deviations: 1 + 1 + 1 + 2 + 0 + 3 = 8.</p>  
+ <p>Sum the deviations: 1 + 1 + 1 + 2 + 0 + 3 = 8.
 
- <p>The length is 6.  So, normalized deviation distance is 8 / (6-1) = 1.6.</p>
+ <p>The length is 6. So, normalized deviation distance is 8 / (6-1) = 1.6.
 
- <p>Runtime: O(n), where n is the permutation length.</p>
- 
+ <p>Runtime: O(n), where n is the permutation length.
+
  <p>Normalized deviation distance was introduced in:<br>
- S. Ronald, "More distance functions for order-based encodings," in 
- Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p></div>
+ S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press,
+ 1998, pp. 558–563.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -150,8 +147,7 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#maxf(int)" class="member-name-link">maxf</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -212,8 +208,7 @@ implements <a href="NormalizedPermutationDistanceMeasurerDouble.html" title="int
 <h3>maxf</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">maxf</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurerDouble.html#maxf(int)">NormalizedPermutationDistanceMeasurerDouble</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurerDouble.html#maxf(int)">maxf</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurerDouble</a></code></dd>

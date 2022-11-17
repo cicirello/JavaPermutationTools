@@ -91,11 +91,11 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PermutationIterator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Iterator.html" title="class or interface in java.util" class="external-link">Iterator</a>&lt;<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&gt;</span></div>
-<div class="block">Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).  
- The runtime of the constructors is O(n), where n is the permutation length.  The <a href="#hasNext()"><code>hasNext()</code></a> method is O(1).
- The runtime of the <a href="#next()"><code>next()</code></a> method is O(n), as it does O(n) swaps in the worst-case, and regardless of number
- of swaps it returns a copy (an O(n) operation) of the internally maintained Permutation object so the caller can safely
- modify the returned Permutation without risk of interfering with the operation of the Iterator.</div>
+<div class="block">Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).
+ The runtime of the constructors is O(n), where n is the permutation length. The <a href="#hasNext()"><code>hasNext()</code></a> method is O(1). The runtime of the <a href="#next()"><code>next()</code></a> method is O(n), as it does O(n)
+ swaps in the worst-case, and regardless of number of swaps it returns a copy (an O(n) operation)
+ of the internally maintained Permutation object so the caller can safely modify the returned
+ Permutation without risk of interfering with the operation of the Iterator.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -113,7 +113,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.cicirello.permutations.Permutation)" class="member-name-link">PermutationIterator</a><wbr>(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Initializes a PermutationIterator to iterate over all permutations the same length as a given permutation.</div>
+<div class="block">Initializes a PermutationIterator to iterate over all permutations the same length as a given
+ permutation.</div>
 </div>
 </div>
 </section>
@@ -163,9 +164,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>PermutationIterator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PermutationIterator</span><wbr><span class="parameters">(int&nbsp;n)</span></div>
-<div class="block">Initializes a PermutationIterator to iterate over all permutations of a given length.  Specifically, it iterates over
- permutations of the first n integers, i.e., the integers in the interval [0, n-1].  The first permutation in the 
- iteration is chosen randomly.</div>
+<div class="block">Initializes a PermutationIterator to iterate over all permutations of a given length.
+ Specifically, it iterates over permutations of the first n integers, i.e., the integers in the
+ interval [0, n-1]. The first permutation in the iteration is chosen randomly.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The length of the permutations.</dd>
@@ -176,9 +177,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="&lt;init&gt;(org.cicirello.permutations.Permutation)">
 <h3>PermutationIterator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PermutationIterator</span><wbr><span class="parameters">(<a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p)</span></div>
-<div class="block">Initializes a PermutationIterator to iterate over all permutations the same length as a given permutation.  
- Specifically, it iterates over permutations of the first n integers, i.e., the integers in the interval [0, n-1).  
- The first permutation in the iteration is specified as a parameter.</div>
+<div class="block">Initializes a PermutationIterator to iterate over all permutations the same length as a given
+ permutation. Specifically, it iterates over permutations of the first n integers, i.e., the
+ integers in the interval [0, n-1). The first permutation in the iteration is specified as a
+ parameter.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>p</code> - The first permutation in the iteration.</dd>

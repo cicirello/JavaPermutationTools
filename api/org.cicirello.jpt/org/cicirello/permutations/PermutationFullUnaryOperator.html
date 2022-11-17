@@ -87,13 +87,12 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/FunctionalInterface.html" title="class or interface in java.lang" class="external-link">@FunctionalInterface</a>
 </span><span class="modifiers">public interface </span><span class="element-name type-name-label">PermutationFullUnaryOperator</span></div>
-<div class="block">A functional interface for defining custom unary operators on Permutations.
- See the <a href="Permutation.html#apply(org.cicirello.permutations.PermutationFullUnaryOperator)"><code>Permutation.apply(PermutationFullUnaryOperator)</code></a> method. In this
- interface, the <a href="#apply(int%5B%5D,org.cicirello.permutations.Permutation)"><code>apply(int[], org.cicirello.permutations.Permutation)</code></a> method is passed both a reference to the raw array
- of ints that is encapsulated by the Permutation, as well as a reference to the
- Permutation object itself to enable utilizing the methods of the <a href="Permutation.html" title="class in org.cicirello.permutations"><code>Permutation</code></a>
- class. If the operator that you are implementing only requires the raw array of ints,
- then consider implementing the <a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> interface instead.</div>
+<div class="block">A functional interface for defining custom unary operators on Permutations. See the <a href="Permutation.html#apply(org.cicirello.permutations.PermutationFullUnaryOperator)"><code>Permutation.apply(PermutationFullUnaryOperator)</code></a> method. In this interface, the <a href="#apply(int%5B%5D,org.cicirello.permutations.Permutation)"><code>apply(int[], org.cicirello.permutations.Permutation)</code></a>
+ method is passed both a reference to the raw array of ints that is encapsulated by the
+ Permutation, as well as a reference to the Permutation object itself to enable utilizing the
+ methods of the <a href="Permutation.html" title="class in org.cicirello.permutations"><code>Permutation</code></a> class. If the operator that you are implementing only requires
+ the raw array of ints, then consider implementing the <a href="PermutationUnaryOperator.html" title="interface in org.cicirello.permutations"><code>PermutationUnaryOperator</code></a> interface
+ instead.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,8 +111,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#apply(int%5B%5D,org.cicirello.permutations.Permutation)" class="member-name-link">apply</a><wbr>(int[]&nbsp;rawPermutation,
  <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Applies an operator on the raw representation of
- a Permutation.</div>
+<div class="block">Applies an operator on the raw representation of a Permutation.</div>
 </div>
 </div>
 </div>
@@ -134,15 +132,13 @@ loadScripts(document, 'script');</script>
 <h3>apply</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">apply</span><wbr><span class="parameters">(int[]&nbsp;rawPermutation,
  <a href="Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p)</span></div>
-<div class="block">Applies an operator on the raw representation of
- a Permutation. Implementers of this interface are responsible
- for ensuring that the apply method maintains a valid
- permutation of the integers in {0, 1, ..., rawPermutation.length - 1 }.</div>
+<div class="block">Applies an operator on the raw representation of a Permutation. Implementers of this interface
+ are responsible for ensuring that the apply method maintains a valid permutation of the
+ integers in {0, 1, ..., rawPermutation.length - 1 }.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>rawPermutation</code> - A reference to the raw array of ints underlying a
- Permutation object. Changes to this array will directly change the Permutation
- object that encapsulates it.</dd>
+<dd><code>rawPermutation</code> - A reference to the raw array of ints underlying a Permutation object.
+     Changes to this array will directly change the Permutation object that encapsulates it.</dd>
 <dd><code>p</code> - A reference to the Permutation object that encapsulates it.</dd>
 </dl>
 </section>

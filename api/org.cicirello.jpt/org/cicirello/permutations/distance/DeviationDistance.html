@@ -91,22 +91,20 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">DeviationDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Deviation distance is the sum of the positional deviation of the permutation elements.
- The positional deviation of an element is the difference in its location in the two
- permutations.</p>
+<div class="block">Deviation distance is the sum of the positional deviation of the permutation elements. The
+ positional deviation of an element is the difference in its location in the two permutations.
 
- <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3].
- Element 0 is displaced by 1 position.  Likewise for elements 1 and 2.
- Element 3 is displaced by 2 positions.
- Element 4 is in the same position in both.
- Element 5 is displaced by 3 positions.</p> 
+ <p>For example, consider p1 = [0, 1, 2, 3, 4, 5] and p2 = [1, 0, 5, 2, 4, 3]. Element 0 is
+ displaced by 1 position. Likewise for elements 1 and 2. Element 3 is displaced by 2 positions.
+ Element 4 is in the same position in both. Element 5 is displaced by 3 positions.
 
- <p>Sum the deviations: 1 + 1 + 1 + 2 + 0 + 3 = 8.  And that is the distance.</p>
+ <p>Sum the deviations: 1 + 1 + 1 + 2 + 0 + 3 = 8. And that is the distance.
 
- <p>Runtime: O(n), where n is the permutation length.</p>
- 
+ <p>Runtime: O(n), where n is the permutation length.
+
  <p>Deviation distance was introduced in:<br>
- S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p></div>
+ S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press,
+ 1998, pp. 558–563.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -145,8 +143,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -210,8 +207,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

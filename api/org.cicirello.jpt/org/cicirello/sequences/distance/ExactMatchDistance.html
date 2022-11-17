@@ -91,24 +91,27 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">ExactMatchDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></span></div>
-<div class="block"><p>ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally sequences) is the number of
- sequence (or string) positions where the two sequences differ. 
- This class supports comparison of Java String objects,
- as well as comparisons of arrays of any of Java's eight primitive types, and arrays of any object type. 
- It is the count of the number of positions for which the two sequences contain different elements.</p>
+<div class="block">ExactMatch distance (or Hamming Distance) of a pair of non-binary strings (or more generally
+ sequences) is the number of sequence (or string) positions where the two sequences differ. This
+ class supports comparison of Java String objects, as well as comparisons of arrays of any of
+ Java's eight primitive types, and arrays of any object type. It is the count of the number of
+ positions for which the two sequences contain different elements.
 
- <p>Most other implementations of Hamming distance require the two strings to be of the same length.  Ours does not.
- If the two sequences (i.e., arrays or Strings) are of different lengths, then the difference in length affects
- distance.  E.g., although "abbd" is a distance of 1 from "abcd" since they differ in one position, "abbd" is a distance of 4 from "abcdefg"
- (the one difference, plus the three extra characters).</p>
+ <p>Most other implementations of Hamming distance require the two strings to be of the same
+ length. Ours does not. If the two sequences (i.e., arrays or Strings) are of different lengths,
+ then the difference in length affects distance. E.g., although "abbd" is a distance of 1 from
+ "abcd" since they differ in one position, "abbd" is a distance of 4 from "abcdefg" (the one
+ difference, plus the three extra characters).
 
- <p>Runtime: O(n), where n is the length of the shorter of the two sequences.</p>
+ <p>Runtime: O(n), where n is the length of the shorter of the two sequences.
 
- <p>If your sequences are guaranteed not to have duplicates, and to contain the same set of elements, then consider instead using the
- <a href="../../permutations/distance/ExactMatchDistance.html" title="class in org.cicirello.permutations.distance"><code>ExactMatchDistance</code></a> class, which assumes permutations of the integers from 0 to N-1.</p>
+ <p>If your sequences are guaranteed not to have duplicates, and to contain the same set of
+ elements, then consider instead using the <a href="../../permutations/distance/ExactMatchDistance.html" title="class in org.cicirello.permutations.distance"><code>ExactMatchDistance</code></a> class, which assumes permutations of the
+ integers from 0 to N-1.
 
  <p>Exact match distance was introduced specifically for permutations in:<br>
- S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1998, pp. 558–563.</p></div>
+ S. Ronald, "More distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press,
+ 1998, pp. 558–563.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -407,9 +410,8 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">distance</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">SequenceDistanceMeasurer</a></code></span></div>
-<div class="block">Measures the distance between two arrays of objects.
- The objects in the arrays must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two arrays of objects. The objects in the arrays must be of a
+ class that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurer.html#distance(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>
@@ -427,9 +429,8 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">distance</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurer.html#distance(java.util.List,java.util.List)">SequenceDistanceMeasurer</a></code></span></div>
-<div class="block">Measures the distance between two lists of objects.
- The objects in the lists must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two lists of objects. The objects in the lists must be of a class
+ that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurer.html#distance(java.util.List,java.util.List)">distance</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurer</a></code></dd>

@@ -91,21 +91,20 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">CycleEditDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Cycle edit distance is the minimum number of non-singleton permutation cycles
- necessary to transform permutation p1 into p2. If p1 equals p2, then this distance
- is 0. If p1 and p2 have a single permutation cycle, then this distance is clearly 1
- since the inverse of that cycle will produce n fixed points. Otherwise, this distance
- is equal to 2 since it can be shown that at most 2 permutation cycle operations are
- necessary to transform any permutation of length n into any other. Cycle edit distance
- satisfies all of the metric properties.</p>
+<div class="block">Cycle edit distance is the minimum number of non-singleton permutation cycles necessary to
+ transform permutation p1 into p2. If p1 equals p2, then this distance is 0. If p1 and p2 have a
+ single permutation cycle, then this distance is clearly 1 since the inverse of that cycle will
+ produce n fixed points. Otherwise, this distance is equal to 2 since it can be shown that at most
+ 2 permutation cycle operations are necessary to transform any permutation of length n into any
+ other. Cycle edit distance satisfies all of the metric properties.
 
- <p>Cycle edit distance was introduced in the following article:</p>
+ <p>Cycle edit distance was introduced in the following article:
 
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
- Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
- doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+ <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022).
+ doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
 
- <p>Runtime: O(n), where n is the permutation length.</p></div>
+ <p>Runtime: O(n), where n is the permutation length.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -144,8 +143,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -209,8 +207,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

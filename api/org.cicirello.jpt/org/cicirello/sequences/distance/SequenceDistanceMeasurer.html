@@ -91,27 +91,22 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">SequenceDistanceMeasurer</span><span class="extends-implements">
 extends <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></span></div>
-<div class="block"><p>Implement this interface, SequenceDistanceMeasurer, to define 
- a distance metric for sequences.  A sequence may have duplicate elements, unlike
- a Permutation which must have unique elements.  Some SequenceDistanceMeasurers 
- may require the pair of sequences to be the same length, while
- others do not have that requirement.  Some SequenceDistanceMeasurers may 
- require the pair of sequences to contain the same set of elements, while
- others do not have that requirement.  Implementations of this interface 
- compute distances that are integer valued.</p>
+<div class="block">Implement this interface, SequenceDistanceMeasurer, to define a distance metric for sequences. A
+ sequence may have duplicate elements, unlike a Permutation which must have unique elements. Some
+ SequenceDistanceMeasurers may require the pair of sequences to be the same length, while others
+ do not have that requirement. Some SequenceDistanceMeasurers may require the pair of sequences to
+ contain the same set of elements, while others do not have that requirement. Implementations of
+ this interface compute distances that are integer valued.
 
- <p>This interface extends the <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurerDouble</code></a> interface,
- providing default implementations of all of that superinterface's distancef methods
- by delegating the behavior to the various distance methods. In this way,
- implementers of SequenceDistanceMeasurer should not have a reason to implement
- the distancef methods of <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurerDouble</code></a>.</p>
+ <p>This interface extends the <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurerDouble</code></a> interface, providing default
+ implementations of all of that superinterface's distancef methods by delegating the behavior to
+ the various distance methods. In this way, implementers of SequenceDistanceMeasurer should not
+ have a reason to implement the distancef methods of <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurerDouble</code></a>.
 
- <p>If your sequences are guaranteed not to contain duplicates, and the 
- pair is guaranteed to contain the same set of elements, and are of the same length,
- then consider instead using the classes that implement 
- the <a href="../../permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance"><code>PermutationDistanceMeasurer</code></a>
- interface.  Those classes are specifically for distance between 
- permutations of the integers from 0 to N-1.</p></div>
+ <p>If your sequences are guaranteed not to contain duplicates, and the pair is guaranteed to
+ contain the same set of elements, and are of the same length, then consider instead using the
+ classes that implement the <a href="../../permutations/distance/PermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance"><code>PermutationDistanceMeasurer</code></a> interface. Those classes are specifically for distance between
+ permutations of the integers from 0 to N-1.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -412,9 +407,8 @@ extends <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.ci
 <h3>distance</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">distance</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s2)</span></div>
-<div class="block">Measures the distance between two arrays of objects.
- The objects in the arrays must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two arrays of objects. The objects in the arrays must be of a
+ class that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>s1</code> - First array.</dd>
@@ -429,9 +423,8 @@ extends <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.ci
 <h3>distance</h3>
 <div class="member-signature"><span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">distance</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s2)</span></div>
-<div class="block">Measures the distance between two lists of objects.
- The objects in the lists must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two lists of objects. The objects in the lists must be of a class
+ that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>T</code> - Type of List elements.</dd>
@@ -611,9 +604,8 @@ extends <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.ci
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distancef</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">SequenceDistanceMeasurerDouble</a></code></span></div>
-<div class="block">Measures the distance between two arrays of objects.
- The objects in the arrays must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two arrays of objects. The objects in the arrays must be of a
+ class that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
@@ -631,9 +623,8 @@ extends <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.ci
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distancef</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.util.List,java.util.List)">SequenceDistanceMeasurerDouble</a></code></span></div>
-<div class="block">Measures the distance between two lists of objects.
- The objects in the lists must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two lists of objects. The objects in the lists must be of a class
+ that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.util.List,java.util.List)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>

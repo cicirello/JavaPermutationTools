@@ -91,26 +91,27 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">KendallTauDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Kendall Tau distance is sometimes also known as bubble sort distance, as it is
- the number of adjacent swaps necessary to transform one permutation into the other.</p>
+<div class="block">Kendall Tau distance is sometimes also known as bubble sort distance, as it is the number of
+ adjacent swaps necessary to transform one permutation into the other.
 
- <p>Another way of describing it is the number of pairs of elements whose order is inverted
- in one permutation relative to the other.</p>
- 
- <p>For example, consider p1 = [0, 1, 2, 3, 4] and p2 = [0, 3, 2, 1, 4].
- The length is 5, so there are a total of 5*4/2 = 10 pairs of elements.
- 0 precedes all of 1, 2, 3, and 4 in both permutations.
- However, 1 precedes 2, 3, and 4 in p1, but only 4 in p2, so 2 adjacent swaps are needed for element 1.
- Elements 2 and 3 are in one order in p1, but switched in p2 relative to p1.
- So a total of 3 adjacent swaps are needed to transform p1 to p2.  Kendall Tau distance is thus 3.</p>
+ <p>Another way of describing it is the number of pairs of elements whose order is inverted in one
+ permutation relative to the other.
 
- <p>Kendall originally normalized the distance, but more recently many do not.  Our implementation does not normalize.</p>
+ <p>For example, consider p1 = [0, 1, 2, 3, 4] and p2 = [0, 3, 2, 1, 4]. The length is 5, so there
+ are a total of 5*4/2 = 10 pairs of elements. 0 precedes all of 1, 2, 3, and 4 in both
+ permutations. However, 1 precedes 2, 3, and 4 in p1, but only 4 in p2, so 2 adjacent swaps are
+ needed for element 1. Elements 2 and 3 are in one order in p1, but switched in p2 relative to p1.
+ So a total of 3 adjacent swaps are needed to transform p1 to p2. Kendall Tau distance is thus 3.
 
- <p>Runtime: O(n lg n), where n is the permutation length.  This runtime is achieved using a modified version of
- mergesort to count the inversions.</p>
+ <p>Kendall originally normalized the distance, but more recently many do not. Our implementation
+ does not normalize.
+
+ <p>Runtime: O(n lg n), where n is the permutation length. This runtime is achieved using a
+ modified version of mergesort to count the inversions.
 
  <p>Kendall Tau distance originally described in:<br>
- M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June 1938.</p></div>
+ M. G. Kendall, "A new measure of rank correlation," Biometrika, vol. 30, no. 1/2, pp. 81–93, June
+ 1938.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -149,8 +150,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -214,8 +214,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

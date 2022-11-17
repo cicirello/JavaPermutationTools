@@ -91,22 +91,22 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">AcyclicEdgeDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Acyclic edge distance treats the permutations as if they represent sets of edges, and counts
- the number of edges that differ.</p>
+<div class="block">Acyclic edge distance treats the permutations as if they represent sets of edges, and counts the
+ number of edges that differ.
 
- <p>Consider the example permutation: [1, 5, 2, 4, 0, 3]. 
- Acyclic edge distance treats this as equivalent to the set of undirected edges:
- {(1,5), (5,2), (2,4), (4,0), (0,3)}.</p> 
+ <p>Consider the example permutation: [1, 5, 2, 4, 0, 3]. Acyclic edge distance treats this as
+ equivalent to the set of undirected edges: {(1,5), (5,2), (2,4), (4,0), (0,3)}.
 
- <p>E.g., distance between [1, 5, 2, 4, 0, 3] and [ 5, 1, 4, 0, 3, 2] is 2.
- Why? Well, the first permutation has the edges: {(1,5), (5,2), (2,4), (4,0), (0,3)}.
- The second has three of these (5,1), which is the same as (1,5) since they are undirected edges, (4,0), and (0,3),
- but does not include two of the edges: (5,2), (2,4)</p>
+ <p>E.g., distance between [1, 5, 2, 4, 0, 3] and [ 5, 1, 4, 0, 3, 2] is 2. Why? Well, the first
+ permutation has the edges: {(1,5), (5,2), (2,4), (4,0), (0,3)}. The second has three of these
+ (5,1), which is the same as (1,5) since they are undirected edges, (4,0), and (0,3), but does not
+ include two of the edges: (5,2), (2,4)
 
- <p>Runtime: O(n), where n is the permutation length.</p>
+ <p>Runtime: O(n), where n is the permutation length.
 
  <p>Acyclic edge distance was first described in:<br>
- S. Ronald, "Distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1997, pp. 49–54.</p></div>
+ S. Ronald, "Distance functions for order-based encodings," in Proc. IEEE CEC. IEEE Press, 1997,
+ pp. 49–54.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -145,8 +145,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -210,8 +209,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

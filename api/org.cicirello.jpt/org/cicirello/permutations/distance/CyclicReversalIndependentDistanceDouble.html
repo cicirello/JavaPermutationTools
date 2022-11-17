@@ -91,14 +91,15 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">CyclicReversalIndependentDistanceDouble</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></span></div>
-<div class="block"><p>This class implements the combination of cyclic independence and reversal independence.
- This is relevant if any rotation of the permutation or its reverse has the same problem dependent
- interpretation.  For example, if the permutation represents a solution to a traveling salesperson problem (i.e.
- a tour of a set of cities), then the cost of that tour is the same if you rotate it, reverse it, or reverse it and rotate it.</p>
+<div class="block">This class implements the combination of cyclic independence and reversal independence. This is
+ relevant if any rotation of the permutation or its reverse has the same problem dependent
+ interpretation. For example, if the permutation represents a solution to a traveling salesperson
+ problem (i.e. a tour of a set of cities), then the cost of that tour is the same if you rotate
+ it, reverse it, or reverse it and rotate it.
 
- <p>In this case, this class computes the minimum of the distance from permutation p1
- to rotations of p2 and rotations of the reverse of p2, where the underlying distance measure is passed as a parameter to
- the constructor.</p></div>
+ <p>In this case, this class computes the minimum of the distance from permutation p1 to rotations
+ of p2 and rotations of the reverse of p2, where the underlying distance measure is passed as a
+ parameter to the constructor.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,8 +113,9 @@ implements <a href="PermutationDistanceMeasurerDouble.html" title="interface in 
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.cicirello.permutations.distance.PermutationDistanceMeasurerDouble)" class="member-name-link">CyclicReversalIndependentDistanceDouble</a><wbr>(<a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a>&nbsp;d)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a distance measure for measuring distance with cyclic and reversal independence, such that
- distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
+<div class="block">Constructs a distance measure for measuring distance with cyclic and reversal independence,
+ such that distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)),
+ distance(p1,rotate(reverse(p2),i)) }</div>
 </div>
 </div>
 </section>
@@ -133,8 +135,8 @@ implements <a href="PermutationDistanceMeasurerDouble.html" title="interface in 
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)" class="member-name-link">distancef</a><wbr>(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
  <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
- distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
+<div class="block">Measures the distance between two permutations, with cyclic and reversal independence: distance
+ = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 </div>
 </div>
 </div>
@@ -157,8 +159,9 @@ implements <a href="PermutationDistanceMeasurerDouble.html" title="interface in 
 <section class="detail" id="&lt;init&gt;(org.cicirello.permutations.distance.PermutationDistanceMeasurerDouble)">
 <h3>CyclicReversalIndependentDistanceDouble</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CyclicReversalIndependentDistanceDouble</span><wbr><span class="parameters">(<a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a>&nbsp;d)</span></div>
-<div class="block">Constructs a distance measure for measuring distance with cyclic and reversal independence, such that
- distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
+<div class="block">Constructs a distance measure for measuring distance with cyclic and reversal independence,
+ such that distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)),
+ distance(p1,rotate(reverse(p2),i)) }</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>d</code> - A distance measure.</dd>
@@ -178,8 +181,8 @@ implements <a href="PermutationDistanceMeasurerDouble.html" title="interface in 
 <h3>distancef</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distancef</span><wbr><span class="parameters">(<a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p1,
  <a href="../Permutation.html" title="class in org.cicirello.permutations">Permutation</a>&nbsp;p2)</span></div>
-<div class="block">Measures the distance between two permutations, with cyclic and reversal independence:
- distance = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
+<div class="block">Measures the distance between two permutations, with cyclic and reversal independence: distance
+ = min_{i in [0,N)} { distance(p1,rotate(p2,i)), distance(p1,rotate(reverse(p2),i)) }</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="PermutationDistanceMeasurerDouble.html#distancef(org.cicirello.permutations.Permutation,org.cicirello.permutations.Permutation)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="PermutationDistanceMeasurerDouble.html" title="interface in org.cicirello.permutations.distance">PermutationDistanceMeasurerDouble</a></code></dd>

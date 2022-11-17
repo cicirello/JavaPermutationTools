@@ -91,20 +91,18 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">InterchangeDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Interchange distance is the minimum number of swaps necessary to transform one
- permutation into the other.</p>
+<div class="block">Interchange distance is the minimum number of swaps necessary to transform one permutation into
+ the other.
 
- <p>Interchange distance is computed efficiently by counting the
- number of permutation cycles between the permutations. A permutation
- cycle of length k is transformed into k fixed points with
- k − 1 swaps (a fixed point is a cycle of length 1).</p>
+ <p>Interchange distance is computed efficiently by counting the number of permutation cycles
+ between the permutations. A permutation cycle of length k is transformed into k fixed points with
+ k − 1 swaps (a fixed point is a cycle of length 1).
 
- <p>Runtime: O(n), where n is the permutation length.</p>
- 
+ <p>Runtime: O(n), where n is the permutation length.
+
  <p>Computing Interchange distance using cycle lengths is described in:<br>
- V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem 
- and the Calculus of Search Landscapes,"</a> 
- IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</p></div>
+ V.A. Cicirello, <a href="https://www.cicirello.org/publications/cicirello2016evc.html" target=_top>"The Permutation in a Haystack Problem and the Calculus of Search Landscapes,"</a>
+ IEEE Transactions on Evolutionary Computation, 20(3):434-446, June 2016.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -143,8 +141,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -208,8 +205,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

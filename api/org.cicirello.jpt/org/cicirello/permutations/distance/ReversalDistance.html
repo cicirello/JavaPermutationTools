@@ -91,26 +91,28 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">ReversalDistance</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></span></div>
-<div class="block"><p>Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
- permutation into the other.  This is an NP-Hard problem.</p>
+<div class="block">Reversal Distance is the minimum number of subpermutation reversals necessary to transform one
+ permutation into the other. This is an NP-Hard problem.
 
  <p>Our original motivation for implementing this required computing reversal distance from a
- target permutation for all permutations of that target.  Therefore, we were going to exhaust
- all N! permutations of an N element list regardless of how we computed this.</p>
+ target permutation for all permutations of that target. Therefore, we were going to exhaust all
+ N! permutations of an N element list regardless of how we computed this.
 
  <p>Therefore, the approach taken in this implementation is to compute a lookup table with N!
- elements, one for each of the N! possible permutations.  The lookup table maps permutations to
- distances.  The distances are computed using a breadth first enumeration outward from the
- permutation [0, 1, ..., (N-1)].  The starting permutation is distance 0 from itself.
- The N*(N-1)/2 permutations that are derived by reversing a subpermutation are a distance of 1 from 
- the initial permutation.  And we continue in this manner, computing all that are a distance of 2, and
- then 3, etc.</p>
+ elements, one for each of the N! possible permutations. The lookup table maps permutations to
+ distances. The distances are computed using a breadth first enumeration outward from the
+ permutation [0, 1, ..., (N-1)]. The starting permutation is distance 0 from itself. The N*(N-1)/2
+ permutations that are derived by reversing a subpermutation are a distance of 1 from the initial
+ permutation. And we continue in this manner, computing all that are a distance of 2, and then 3,
+ etc.
 
- <p>The total cost of this is: O(N! * N^3) since each permutation has N^2 neighbors, generating a neighbor is linear cost, and there are N! permutations.
- Since our original application required computing distance for all N! permutations, the amortized cost (if your application
- also has that requirement) of computing distance is O(N^3).</p>
+ <p>The total cost of this is: O(N! * N^3) since each permutation has N^2 neighbors, generating a
+ neighbor is linear cost, and there are N! permutations. Since our original application required
+ computing distance for all N! permutations, the amortized cost (if your application also has that
+ requirement) of computing distance is O(N^3).
 
- <p>We have not used this for N &gt; 10.  Warning: time to construct distance measure increases factorially.</p></div>
+ <p>We have not used this for N &gt; 10. Warning: time to construct distance measure increases
+ factorially.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -153,8 +155,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#max(int)" class="member-name-link">max</a><wbr>(int&nbsp;length)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 </div>
 </div>
 </div>
@@ -190,7 +191,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>ReversalDistance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ReversalDistance</span><wbr><span class="parameters">(int&nbsp;n)</span></div>
-<div class="block">Defines a distance measure for permutations of length n.  n must be no greater than 12.</div>
+<div class="block">Defines a distance measure for permutations of length n. n must be no greater than 12.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The length of the permutations supported.</dd>
@@ -223,10 +224,8 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <dd>distance between p1 and p2</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if p1.length() is not equal to p2.length().</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if length of the permutations
- is not equal to the
- the permutation length for which this was configured at time
- of construction.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if length of the permutations is not equal to the the
+     permutation length for which this was configured at time of construction.</dd>
 </dl>
 </section>
 </li>
@@ -235,8 +234,7 @@ implements <a href="NormalizedPermutationDistanceMeasurer.html" title="interface
 <h3>max</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">max</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">NormalizedPermutationDistanceMeasurer</a></code></span></div>
-<div class="block">Computes the maximum possible distance between permutations
- of a specified length.</div>
+<div class="block">Computes the maximum possible distance between permutations of a specified length.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="NormalizedPermutationDistanceMeasurer.html#max(int)">max</a></code>&nbsp;in interface&nbsp;<code><a href="NormalizedPermutationDistanceMeasurer.html" title="interface in org.cicirello.permutations.distance">NormalizedPermutationDistanceMeasurer</a></code></dd>

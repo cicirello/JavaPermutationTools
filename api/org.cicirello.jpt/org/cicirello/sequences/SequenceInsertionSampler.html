@@ -86,19 +86,20 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SequenceInsertionSampler</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block"><p>SequenceInsertionSampler is a class of utility methods for 
- efficiently generating random samples of array elements, without replacement.</p>
+<div class="block">SequenceInsertionSampler is a class of utility methods for efficiently generating random samples
+ of array elements, without replacement.
 
- <p>The methods of this class implement the insertion sampling algorithm described in:</p>
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
- Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
- doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+ <p>The methods of this class implement the insertion sampling algorithm described in:
 
- <p>The runtime of the sample methods is O(k<sup>2</sup>)
- and generates O(k) random numbers. Thus, it is a better 
- choice than both <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a> and <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> when k<sup>2</sup> &lt; n.
- Just like <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>, the SequenceInsertionSampler only requires O(1) extra space,
- while <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> requires O(n) extra space.</p></div>
+ <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022).
+ doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>The runtime of the sample methods is O(k<sup>2</sup>) and generates O(k) random numbers. Thus,
+ it is a better choice than both <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a> and <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>
+ when k<sup>2</sup> &lt; n. Just like <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>, the
+ SequenceInsertionSampler only requires O(1) extra space, while <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>
+ requires O(n) extra space.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,8 +120,7 @@ loadScripts(document, 'script');</script>
  byte[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(char%5B%5D,int,char%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(char[]&nbsp;source,
@@ -128,8 +128,7 @@ loadScripts(document, 'script');</script>
  char[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(double%5B%5D,int,double%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(double[]&nbsp;source,
@@ -137,8 +136,7 @@ loadScripts(document, 'script');</script>
  double[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static float[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(float%5B%5D,int,float%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(float[]&nbsp;source,
@@ -146,8 +144,7 @@ loadScripts(document, 'script');</script>
  float[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(int%5B%5D,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(int[]&nbsp;source,
@@ -155,8 +152,7 @@ loadScripts(document, 'script');</script>
  int[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static long[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(long%5B%5D,int,long%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(long[]&nbsp;source,
@@ -164,8 +160,7 @@ loadScripts(document, 'script');</script>
  long[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static short[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(short%5B%5D,int,short%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(short[]&nbsp;source,
@@ -173,8 +168,7 @@ loadScripts(document, 'script');</script>
  short[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(java.lang.String,int,char%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
@@ -182,8 +176,7 @@ loadScripts(document, 'script');</script>
  char[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k chars, without replacement, from a
- given source String.</div>
+<div class="block">Generates a random sample of k chars, without replacement, from a given source String.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(T%5B%5D,int,T%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample</a><wbr>(T[]&nbsp;source,
@@ -191,8 +184,7 @@ loadScripts(document, 'script');</script>
  T[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Generates a random sample of k elements, without replacement, from a
- given source array.</div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
 </div>
 </div>
@@ -218,15 +210,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  int[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -243,15 +234,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  long[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -268,15 +258,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  short[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -293,15 +282,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  byte[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -318,15 +306,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  char[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -343,15 +330,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  char[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k chars, without replacement, from a
- given source String.  All n choose k combinations are equally
- likely, where n is the length of the source String.</p></div>
+<div class="block">Generates a random sample of k chars, without replacement, from a given source String. All n
+ choose k combinations are equally likely, where n is the length of the source String.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length()).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -368,15 +354,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  double[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -393,15 +378,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  float[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>
@@ -418,17 +402,16 @@ loadScripts(document, 'script');</script>
  int&nbsp;k,
  T[]&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
-<div class="block"><p>Generates a random sample of k elements, without replacement, from a
- given source array.  All n choose k combinations are equally
- likely, where n is the length of the source array.</p></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>T</code> - The type of array elements.</dd>
 <dt>Parameters:</dt>
 <dd><code>source</code> - The source array to sample.</dd>
 <dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result.  If target is null or target.length is less than k, 
- then this method will construct a new array for the result.</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
 <dd><code>r</code> - The source of randomness.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the random sample.</dd>

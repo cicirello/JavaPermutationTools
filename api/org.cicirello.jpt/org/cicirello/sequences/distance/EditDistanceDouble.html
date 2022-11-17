@@ -95,32 +95,33 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">EditDistanceDouble</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></span></div>
-<div class="block"><p>EditDistanceDouble is an implementation of Wagner and Fischer's dynamic programming algorithm for computing string edit distance.
- This class supports double-valued costs, while the <a href="EditDistance.html" title="class in org.cicirello.sequences.distance"><code>EditDistance</code></a> class supports both double-valued as well as int-valued 
- costs. If your costs are int-valued, the <a href="EditDistance.html" title="class in org.cicirello.sequences.distance"><code>EditDistance</code></a> class may be slightly faster, but not asymptotically faster. If your
- costs are double-valued, there should be no difference (one is a subclass of the other).</p>
- 
- <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which is the sum of the costs
- of the edit operations necessary to do so.  This edit distance considers 3 edit operations:
- Inserts which insert a new element into the sequence, Deletes which remove an element from the sequence, and
- Changes which replace an element with a different element.</p>
+<div class="block">EditDistanceDouble is an implementation of Wagner and Fischer's dynamic programming algorithm for
+ computing string edit distance. This class supports double-valued costs, while the <a href="EditDistance.html" title="class in org.cicirello.sequences.distance"><code>EditDistance</code></a> class supports both double-valued as well as int-valued costs. If your costs are
+ int-valued, the <a href="EditDistance.html" title="class in org.cicirello.sequences.distance"><code>EditDistance</code></a> class may be slightly faster, but not asymptotically faster.
+ If your costs are double-valued, there should be no difference (one is a subclass of the other).
 
- <p>The edit distance is parameterized by costs for the edit operations. The constructor enables you to specify
- 3 costs as values of type double, 1 for each type of edit operation.</p>
+ <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which
+ is the sum of the costs of the edit operations necessary to do so. This edit distance considers 3
+ edit operations: Inserts which insert a new element into the sequence, Deletes which remove an
+ element from the sequence, and Changes which replace an element with a different element.
 
- <p>This class supports computing edit distance for Java String objects or arrays of any of the primitive types, or arrays of objects. 
- It makes no assumptions
- about the contents of the Strings or arrays, and they can contain duplicates, or can be such that some elements only appear in one or
- the other of the sequences, or can be of different lengths.</p>
+ <p>The edit distance is parameterized by costs for the edit operations. The constructor enables
+ you to specify 3 costs as values of type double, 1 for each type of edit operation.
 
- <p>Another class, <a href="../../permutations/distance/EditDistance.html" title="class in org.cicirello.permutations.distance"><code>EditDistance</code></a>, is available if you need to compute distance specifically between permutations,
- rather than general sequences. That class computes distance between permutations
- of the integers from 0 to N-1.</p> 
+ <p>This class supports computing edit distance for Java String objects or arrays of any of the
+ primitive types, or arrays of objects. It makes no assumptions about the contents of the Strings
+ or arrays, and they can contain duplicates, or can be such that some elements only appear in one
+ or the other of the sequences, or can be of different lengths.
 
- <p>Runtime: O(n*m), where n and m are the lengths of the two sequences (i.e., Strings or arrays).</p> 
+ <p>Another class, <a href="../../permutations/distance/EditDistance.html" title="class in org.cicirello.permutations.distance"><code>EditDistance</code></a>, is available if you
+ need to compute distance specifically between permutations, rather than general sequences. That
+ class computes distance between permutations of the integers from 0 to N-1.
+
+ <p>Runtime: O(n*m), where n and m are the lengths of the two sequences (i.e., Strings or arrays).
 
  <p>Wagner and Fischer's String Edit Distance was introduced in:<br>
- R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM, vol. 21, no. 1, pp. 168–173, January 1974.</p></div>
+ R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM,
+ vol. 21, no. 1, pp. 168–173, January 1974.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -428,9 +429,8 @@ implements <a href="SequenceDistanceMeasurerDouble.html" title="interface in org
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distancef</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>[]&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">SequenceDistanceMeasurerDouble</a></code></span></div>
-<div class="block">Measures the distance between two arrays of objects.
- The objects in the arrays must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two arrays of objects. The objects in the arrays must be of a
+ class that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.lang.Object%5B%5D,java.lang.Object%5B%5D)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
@@ -448,9 +448,8 @@ implements <a href="SequenceDistanceMeasurerDouble.html" title="interface in org
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distancef</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s1,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;s2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.util.List,java.util.List)">SequenceDistanceMeasurerDouble</a></code></span></div>
-<div class="block">Measures the distance between two lists of objects.
- The objects in the lists must be of a class that has overridden the
- Object.equals method.</div>
+<div class="block">Measures the distance between two lists of objects. The objects in the lists must be of a class
+ that has overridden the Object.equals method.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="SequenceDistanceMeasurerDouble.html#distancef(java.util.List,java.util.List)">distancef</a></code>&nbsp;in interface&nbsp;<code><a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance">SequenceDistanceMeasurerDouble</a></code></dd>
