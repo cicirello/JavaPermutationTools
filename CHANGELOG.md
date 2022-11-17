@@ -9,11 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Reformatted all sourcecode to [Google Java Style](https://google.github.io/styleguide/javaguide.html)
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [4.3.1] - 2022-11-17
+
+### Changed
+* Reformatted all sourcecode to [Google Java Style](https://google.github.io/styleguide/javaguide.html)
 
 ### Fixed
 * Corrected configuration of maven-shade-plugin to ensure full pom with all dependencies published during deploy.
