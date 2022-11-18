@@ -146,6 +146,18 @@ public interface SequenceSampler {
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
    *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
    *     source.length * p.
@@ -158,6 +170,18 @@ public interface SequenceSampler {
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
+   *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
    *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
@@ -172,6 +196,18 @@ public interface SequenceSampler {
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
    *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
    *     source.length * p.
@@ -184,6 +220,18 @@ public interface SequenceSampler {
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
+   *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
    *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
@@ -198,6 +246,18 @@ public interface SequenceSampler {
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
    *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
    *     source.length * p.
@@ -210,6 +270,18 @@ public interface SequenceSampler {
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
+   *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
    *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
@@ -224,6 +296,18 @@ public interface SequenceSampler {
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
    *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
    *     source.length * p.
@@ -237,6 +321,18 @@ public interface SequenceSampler {
    * Generates a random sample, without replacement, from a given String with a specified
    * probability of a character's inclusion in the sample.
    *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
    * @param source The String from which to sample.
    * @param p The probability that a character is included in the sample. The expected sample size
    *     is source.length() * p.
@@ -249,6 +345,18 @@ public interface SequenceSampler {
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.
+   *
+   * <p>This method chooses among the {@link SequencePoolSampler}, {@link SequenceReservoirSampler},
+   * and {@link SequenceInsertionSampler} classes based on the values of n and p.
+   *
+   * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+   * described in: Vincent A. Cicirello. 2022. <a
+   * href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+   * Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+   * 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
    *
    * @param source The array from which to sample.
    * @param p The probability that element is included in the sample. The expected sample size is
@@ -529,250 +637,6 @@ public interface SequenceSampler {
    */
   public static <T> T[] sample(T[] source, int k, T[] target) {
     return SequenceCompositeSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static int[] sampleReservoir(int[] source, int k, int[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static long[] sampleReservoir(long[] source, int k, long[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static short[] sampleReservoir(short[] source, int k, short[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static byte[] sampleReservoir(byte[] source, int k, byte[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static char[] sampleReservoir(char[] source, int k, char[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k chars, without replacement, from a given source String. All n
-   * choose k combinations are equally likely, where n is the length of the source String.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length()).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length()
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static char[] sampleReservoir(String source, int k, char[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static double[] sampleReservoir(double[] source, int k, double[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static float[] sampleReservoir(float[] source, int k, float[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random sample of k elements, without replacement, from a given source array. All n
-   * choose k combinations are equally likely, where n is the length of the source array.
-   *
-   * <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
-   * Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
-   * and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
-   * n. Only constant extra space required.
-   *
-   * <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
-   * source of randomness.
-   *
-   * @deprecated This method is deprecated, and replaced by the {@link SequenceReservoirSampler}
-   *     class.
-   * @param source The source array to sample.
-   * @param k The number of random samples (must be no greater than source.length).
-   * @param target An array to hold the result. If target is null or target.length is less than k,
-   *     then this method will construct a new array for the result.
-   * @param <T> The type of array elements.
-   * @return An array containing the random sample.
-   * @throws IllegalArgumentException if k &gt; source.length
-   * @throws NegativeArraySizeException if k &lt; 0
-   */
-  @Deprecated
-  public static <T> T[] sampleReservoir(T[] source, int k, T[] target) {
-    return SequenceReservoirSampler.sample(source, k, target, ThreadLocalRandom.current());
   }
 
   /**
