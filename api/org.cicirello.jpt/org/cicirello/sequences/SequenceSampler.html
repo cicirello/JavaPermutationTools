@@ -11,7 +11,7 @@
 <title>SequenceSampler (JavaPermutationTools - A Java library for computation on permutations)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="description" content="declaration: module: org.cicirello.jpt, package: org.cicirello.sequences, class: SequenceSampler">
+<meta name="description" content="declaration: module: org.cicirello.jpt, package: org.cicirello.sequences, interface: SequenceSampler">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -42,7 +42,6 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="class-use/SequenceSampler.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../index-all.html">Index</a></li>
 <li><a href="../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -77,17 +76,17 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <div class="sub-title"><span class="module-label-in-type">Module</span>&nbsp;<a href="../../../module-summary.html">org.cicirello.jpt</a></div>
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">org.cicirello.sequences</a></div>
-<h1 title="Class SequenceSampler" class="title">Class SequenceSampler</h1>
-</div>
-<div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">org.cicirello.sequences.SequenceSampler</div>
+<h1 title="Interface SequenceSampler" class="title">Interface SequenceSampler</h1>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Known Implementing Classes:</dt>
+<dd><code><a href="SequenceCompositeSampler.html" title="class in org.cicirello.sequences">SequenceCompositeSampler</a></code>, <code><a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences">SequenceInsertionSampler</a></code>, <code><a href="SequencePoolSampler.html" title="class in org.cicirello.sequences">SequencePoolSampler</a></code>, <code><a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences">SequenceReservoirSampler</a></code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SequenceSampler</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">SequenceSampler is a class of utility methods related to efficiently generating random samples of
- array elements, without replacement.</div>
+<div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">SequenceSampler</span></div>
+<div class="block">An implementation of the SequenceSampler interface is used for generating random samples of array
+ elements, without replacement.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -96,405 +95,267 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static byte[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(byte%5B%5D,double)" class="member-name-link">sample</a><wbr>(byte[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default byte[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(byte%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(byte[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static byte[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">sample</a><wbr>(byte[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>byte[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">nextSample</a><wbr>(byte[]&nbsp;source,
  int&nbsp;k,
  byte[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(char%5B%5D,double)" class="member-name-link">sample</a><wbr>(char[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default char[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(char%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(char[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(char%5B%5D,int,char%5B%5D)" class="member-name-link">sample</a><wbr>(char[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>char[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(char%5B%5D,int,char%5B%5D)" class="member-name-link">nextSample</a><wbr>(char[]&nbsp;source,
  int&nbsp;k,
  char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(double%5B%5D,double)" class="member-name-link">sample</a><wbr>(double[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default double[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(double%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(double[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(double%5B%5D,int,double%5B%5D)" class="member-name-link">sample</a><wbr>(double[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(double%5B%5D,int,double%5B%5D)" class="member-name-link">nextSample</a><wbr>(double[]&nbsp;source,
  int&nbsp;k,
  double[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static float[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(float%5B%5D,double)" class="member-name-link">sample</a><wbr>(float[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default float[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(float%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(float[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static float[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(float%5B%5D,int,float%5B%5D)" class="member-name-link">sample</a><wbr>(float[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>float[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(float%5B%5D,int,float%5B%5D)" class="member-name-link">nextSample</a><wbr>(float[]&nbsp;source,
  int&nbsp;k,
  float[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(int%5B%5D,double)" class="member-name-link">sample</a><wbr>(int[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(int%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(int[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(int%5B%5D,int,int%5B%5D)" class="member-name-link">sample</a><wbr>(int[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(int%5B%5D,int,int%5B%5D)" class="member-name-link">nextSample</a><wbr>(int[]&nbsp;source,
  int&nbsp;k,
  int[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static long[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(long%5B%5D,double)" class="member-name-link">sample</a><wbr>(long[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default long[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(long%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(long[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static long[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(long%5B%5D,int,long%5B%5D)" class="member-name-link">sample</a><wbr>(long[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>long[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(long%5B%5D,int,long%5B%5D)" class="member-name-link">nextSample</a><wbr>(long[]&nbsp;source,
  int&nbsp;k,
  long[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static short[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(short%5B%5D,double)" class="member-name-link">sample</a><wbr>(short[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default short[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(short%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(short[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static short[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(short%5B%5D,int,short%5B%5D)" class="member-name-link">sample</a><wbr>(short[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>short[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(short%5B%5D,int,short%5B%5D)" class="member-name-link">nextSample</a><wbr>(short[]&nbsp;source,
  int&nbsp;k,
  short[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(java.lang.String,double)" class="member-name-link">sample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default char[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(java.lang.String,double)" class="member-name-link">nextSample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Generates a random sample, without replacement, from a given source String with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>char[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(java.lang.String,int,char%5B%5D)" class="member-name-link">nextSample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+ int&nbsp;k,
+ char[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source String.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default &lt;T&gt;&nbsp;T[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#nextSample(T%5B%5D,double)" class="member-name-link">nextSample</a><wbr>(T[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;T[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#nextSample(T%5B%5D,int,T%5B%5D)" class="member-name-link">nextSample</a><wbr>(T[]&nbsp;source,
+ int&nbsp;k,
+ T[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static byte[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(byte%5B%5D,double)" class="member-name-link">sample</a><wbr>(byte[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static byte[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">sample</a><wbr>(byte[]&nbsp;source,
+ int&nbsp;k,
+ byte[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static char[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(char%5B%5D,double)" class="member-name-link">sample</a><wbr>(char[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static char[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(char%5B%5D,int,char%5B%5D)" class="member-name-link">sample</a><wbr>(char[]&nbsp;source,
+ int&nbsp;k,
+ char[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static double[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(double%5B%5D,double)" class="member-name-link">sample</a><wbr>(double[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static double[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(double%5B%5D,int,double%5B%5D)" class="member-name-link">sample</a><wbr>(double[]&nbsp;source,
+ int&nbsp;k,
+ double[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static float[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(float%5B%5D,double)" class="member-name-link">sample</a><wbr>(float[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static float[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(float%5B%5D,int,float%5B%5D)" class="member-name-link">sample</a><wbr>(float[]&nbsp;source,
+ int&nbsp;k,
+ float[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(int%5B%5D,double)" class="member-name-link">sample</a><wbr>(int[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static int[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(int%5B%5D,int,int%5B%5D)" class="member-name-link">sample</a><wbr>(int[]&nbsp;source,
+ int&nbsp;k,
+ int[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static long[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(long%5B%5D,double)" class="member-name-link">sample</a><wbr>(long[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static long[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(long%5B%5D,int,long%5B%5D)" class="member-name-link">sample</a><wbr>(long[]&nbsp;source,
+ int&nbsp;k,
+ long[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static short[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(short%5B%5D,double)" class="member-name-link">sample</a><wbr>(short[]&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static short[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(short%5B%5D,int,short%5B%5D)" class="member-name-link">sample</a><wbr>(short[]&nbsp;source,
+ int&nbsp;k,
+ short[]&nbsp;target)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static char[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(java.lang.String,double)" class="member-name-link">sample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Generates a random sample, without replacement, from a given String with a specified
  probability of a character's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(java.lang.String,int,char%5B%5D)" class="member-name-link">sample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static char[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(java.lang.String,int,char%5B%5D)" class="member-name-link">sample</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
  int&nbsp;k,
  char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Generates a random sample of k chars, without replacement, from a given source String.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(T%5B%5D,double)" class="member-name-link">sample</a><wbr>(T[]&nbsp;source,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1"><code>static &lt;T&gt;&nbsp;T[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(T%5B%5D,double)" class="member-name-link">sample</a><wbr>(T[]&nbsp;source,
  double&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sample(T%5B%5D,int,T%5B%5D)" class="member-name-link">sample</a><wbr>(T[]&nbsp;source,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1"><code>static &lt;T&gt;&nbsp;T[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1"><code><a href="#sample(T%5B%5D,int,T%5B%5D)" class="member-name-link">sample</a><wbr>(T[]&nbsp;source,
  int&nbsp;k,
  T[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1">
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static byte[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(char%5B%5D,int,char%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(double%5B%5D,int,double%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static float[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(float%5B%5D,int,float%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(int%5B%5D,int,int%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static long[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(long%5B%5D,int,long%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static short[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(short%5B%5D,int,short%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(java.lang.String,int,char%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static &lt;T&gt;&nbsp;T[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleInsertion(T%5B%5D,int,T%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static byte[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">samplePool</a><wbr>(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(char%5B%5D,int,char%5B%5D)" class="member-name-link">samplePool</a><wbr>(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static double[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(double%5B%5D,int,double%5B%5D)" class="member-name-link">samplePool</a><wbr>(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static float[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(float%5B%5D,int,float%5B%5D)" class="member-name-link">samplePool</a><wbr>(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(int%5B%5D,int,int%5B%5D)" class="member-name-link">samplePool</a><wbr>(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static long[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(long%5B%5D,int,long%5B%5D)" class="member-name-link">samplePool</a><wbr>(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static short[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(short%5B%5D,int,short%5B%5D)" class="member-name-link">samplePool</a><wbr>(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(java.lang.String,int,char%5B%5D)" class="member-name-link">samplePool</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static &lt;T&gt;&nbsp;T[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#samplePool(T%5B%5D,int,T%5B%5D)" class="member-name-link">samplePool</a><wbr>(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static byte[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(byte%5B%5D,int,byte%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(char%5B%5D,int,char%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(double%5B%5D,int,double%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static float[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(float%5B%5D,int,float%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(int%5B%5D,int,int%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static long[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(long%5B%5D,int,long%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static short[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(short%5B%5D,int,short%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static char[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(java.lang.String,int,char%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code>static &lt;T&gt;&nbsp;T[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#sampleReservoir(T%5B%5D,int,T%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4 method-summary-table-tab6">
-<div class="block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -507,9 +368,182 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="sample(byte[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(byte[]&nbsp;source,
+<section class="detail" id="nextSample(int[],int,int[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">int[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(int[]&nbsp;source,
+ int&nbsp;k,
+ int[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(short[],int,short[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">short[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(short[]&nbsp;source,
+ int&nbsp;k,
+ short[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(long[],int,long[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">long[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(long[]&nbsp;source,
+ int&nbsp;k,
+ long[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(byte[],int,byte[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">byte[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(byte[]&nbsp;source,
+ int&nbsp;k,
+ byte[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(char[],int,char[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">char[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(char[]&nbsp;source,
+ int&nbsp;k,
+ char[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(java.lang.String,int,char[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">char[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+ int&nbsp;k,
+ char[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source String. All n
+ choose k combinations are equally likely, where n is the length of the source String.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source String to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(double[],int,double[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">double[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(double[]&nbsp;source,
+ int&nbsp;k,
+ double[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(float[],int,float[])">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="return-type">float[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(float[]&nbsp;source,
+ int&nbsp;k,
+ float[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(T[],int,T[])">
+<h3 id="nextSample(java.lang.Object[],int,java.lang.Object[])">nextSample</h3>
+<div class="member-signature"><span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(T[]&nbsp;source,
+ int&nbsp;k,
+ T[]&nbsp;target)</span></div>
+<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
+ choose k combinations are equally likely, where n is the length of the source array.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - The type of array elements.</dd>
+<dt>Parameters:</dt>
+<dd><code>source</code> - The source array to sample.</dd>
+<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
+<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
+     then this method will construct a new array for the result.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the random sample.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextSample(int[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(int[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -524,9 +558,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(char[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(char[]&nbsp;source,
+<section class="detail" id="nextSample(long[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(long[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -541,9 +575,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(double[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(double[]&nbsp;source,
+<section class="detail" id="nextSample(short[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(short[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -558,9 +592,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(float[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(float[]&nbsp;source,
+<section class="detail" id="nextSample(byte[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(byte[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -575,9 +609,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(int[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int[]&nbsp;source,
+<section class="detail" id="nextSample(double[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(double[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -592,9 +626,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(long[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(long[]&nbsp;source,
+<section class="detail" id="nextSample(float[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(float[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -609,9 +643,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(short[],double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(short[]&nbsp;source,
+<section class="detail" id="nextSample(char[],double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(char[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -626,26 +660,26 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(java.lang.String,double)">
-<h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+<section class="detail" id="nextSample(java.lang.String,double)">
+<h3>nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
  double&nbsp;p)</span></div>
-<div class="block">Generates a random sample, without replacement, from a given String with a specified
- probability of a character's inclusion in the sample.</div>
+<div class="block">Generates a random sample, without replacement, from a given source String with a specified
+ probability of an element's inclusion in the sample.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>source</code> - The String from which to sample.</dd>
-<dd><code>p</code> - The probability that a character is included in the sample. The expected sample size
-     is source.length() * p.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length() * p.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="sample(T[],double)">
-<h3 id="sample(java.lang.Object[],double)">sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(T[]&nbsp;source,
+<section class="detail" id="nextSample(T[],double)">
+<h3 id="nextSample(java.lang.Object[],double)">nextSample</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">nextSample</span><wbr><span class="parameters">(T[]&nbsp;source,
  double&nbsp;p)</span></div>
 <div class="block">Generates a random sample, without replacement, from a given source array with a specified
  probability of an element's inclusion in the sample.</div>
@@ -662,9 +696,263 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="sample(byte[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(byte[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(char[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(char[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(double[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(double[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(float[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(float[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(int[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(long[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(long[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(short[],double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(short[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(java.lang.String,double)">
+<h3>sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given String with a specified
+ probability of a character's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - The String from which to sample.</dd>
+<dd><code>p</code> - The probability that a character is included in the sample. The expected sample size
+     is source.length() * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sample(T[],double)">
+<h3 id="sample(java.lang.Object[],double)">sample</h3>
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(T[]&nbsp;source,
+ double&nbsp;p)</span></div>
+<div class="block">Generates a random sample, without replacement, from a given source array with a specified
+ probability of an element's inclusion in the sample.
+
+ <p>This method chooses among the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a>, <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>,
+ and <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a> classes based on the values of n and p.
+
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+ and efficient (i.e., non-blocking), for use with threads.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - The type of array elements.</dd>
+<dt>Parameters:</dt>
+<dd><code>source</code> - The array from which to sample.</dd>
+<dd><code>p</code> - The probability that element is included in the sample. The expected sample size is
+     source.length * p.</dd>
+<dt>Returns:</dt>
+<dd>An array containing the sample, whose sample size is simply the length of the array.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="sample(int[],int,int[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int[]&nbsp;source,
  int&nbsp;k,
  int[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -699,7 +987,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(long[],int,long[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(long[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(long[]&nbsp;source,
  int&nbsp;k,
  long[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -734,7 +1022,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(short[],int,short[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(short[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(short[]&nbsp;source,
  int&nbsp;k,
  short[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -769,7 +1057,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(byte[],int,byte[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(byte[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(byte[]&nbsp;source,
  int&nbsp;k,
  byte[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -804,7 +1092,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(char[],int,char[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(char[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(char[]&nbsp;source,
  int&nbsp;k,
  char[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -839,7 +1127,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(java.lang.String,int,char[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
  int&nbsp;k,
  char[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k chars, without replacement, from a given source String. All n
@@ -874,7 +1162,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(double[],int,double[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(double[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(double[]&nbsp;source,
  int&nbsp;k,
  double[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -909,7 +1197,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(float[],int,float[])">
 <h3>sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(float[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(float[]&nbsp;source,
  int&nbsp;k,
  float[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -944,7 +1232,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="sample(T[],int,T[])">
 <h3 id="sample(java.lang.Object[],int,java.lang.Object[])">sample</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(T[]&nbsp;source,
+<div class="member-signature"><span class="modifiers">static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(T[]&nbsp;source,
  int&nbsp;k,
  T[]&nbsp;target)</span></div>
 <div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
@@ -959,1029 +1247,6 @@ loadScripts(document, 'script');</script>
  2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
 
  <p>The runtime is O(min(n, k<sup>2</sup>)) and it generates O(min(k, n-k)) random numbers.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>T</code> - The type of array elements.</dd>
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(int[],int,int[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(long[],int,long[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(short[],int,short[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(byte[],int,byte[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(char[],int,char[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(java.lang.String,int,char[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k chars, without replacement, from a given source String. All n
- choose k combinations are equally likely, where n is the length of the source String.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length()).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length()</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(double[],int,double[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(float[],int,float[])">
-<h3>sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleReservoir(T[],int,T[])">
-<h3 id="sampleReservoir(java.lang.Object[],int,java.lang.Object[])">sampleReservoir</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceReservoirSampler.html" title="class in org.cicirello.sequences"><code>SequenceReservoirSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
- Sampling with a Reservoir" from ACM Transactions on Mathematical Software. The runtime is O(n)
- and it generates O(n-k) random numbers. Thus, it is an especially good choice as k approaches
- n. Only constant extra space required.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>T</code> - The type of array elements.</dd>
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(int[],int,int[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(long[],int,long[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(short[],int,short[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(byte[],int,byte[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(char[],int,char[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(java.lang.String,int,char[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k chars, without replacement, from a given source String. All n
- choose k combinations are equally likely, where n is the length of the source String.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length()).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length()</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(double[],int,double[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(float[],int,float[])">
-<h3>samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="samplePool(T[],int,T[])">
-<h3 id="samplePool(java.lang.Object[],int,java.lang.Object[])">samplePool</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequencePoolSampler.html" title="class in org.cicirello.sequences"><code>SequencePoolSampler</code></a> class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
- Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
- 25(1):45-47, 1982.
-
- <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
- sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
- algorithm uses no extra space.
-
- <p>This method is safe to use with threads, as it uses ThreadLocalRandom as the underlying
- source of randomness.</div>
-<dl class="notes">
-<dt>Type Parameters:</dt>
-<dd><code>T</code> - The type of array elements.</dd>
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(int[],int,int[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(int[]&nbsp;source,
- int&nbsp;k,
- int[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(long[],int,long[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">long[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(long[]&nbsp;source,
- int&nbsp;k,
- long[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(short[],int,short[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">short[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(short[]&nbsp;source,
- int&nbsp;k,
- short[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(byte[],int,byte[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(byte[]&nbsp;source,
- int&nbsp;k,
- byte[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(char[],int,char[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(char[]&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(java.lang.String,int,char[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">char[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;source,
- int&nbsp;k,
- char[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k chars, without replacement, from a given source String. All n
- choose k combinations are equally likely, where n is the length of the source String.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length()).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length()</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(double[],int,double[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(double[]&nbsp;source,
- int&nbsp;k,
- double[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(float[],int,float[])">
-<h3>sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="return-type">float[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(float[]&nbsp;source,
- int&nbsp;k,
- float[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
-
- <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
- and efficient (i.e., non-blocking), for use with threads.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>source</code> - The source array to sample.</dd>
-<dd><code>k</code> - The number of random samples (must be no greater than source.length).</dd>
-<dd><code>target</code> - An array to hold the result. If target is null or target.length is less than k,
-     then this method will construct a new array for the result.</dd>
-<dt>Returns:</dt>
-<dd>An array containing the random sample.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if k &gt; source.length</dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NegativeArraySizeException.html" title="class or interface in java.lang" class="external-link">NegativeArraySizeException</a></code> - if k &lt; 0</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sampleInsertion(T[],int,T[])">
-<h3 id="sampleInsertion(java.lang.Object[],int,java.lang.Object[])">sampleInsertion</h3>
-<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(T[]&nbsp;source,
- int&nbsp;k,
- T[]&nbsp;target)</span></div>
-<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
-<div class="deprecation-comment">This method is deprecated, and replaced by the <a href="SequenceInsertionSampler.html" title="class in org.cicirello.sequences"><code>SequenceInsertionSampler</code></a>
-     class.</div>
-</div>
-<div class="block">Generates a random sample of k elements, without replacement, from a given source array. All n
- choose k combinations are equally likely, where n is the length of the source array.
-
- <p>This implements the insertion sampling algorithm described in:
-
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
- Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
- 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
-
- <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
- sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
- requires O(n) extra space.
 
  <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
  and efficient (i.e., non-blocking), for use with threads.</div>
