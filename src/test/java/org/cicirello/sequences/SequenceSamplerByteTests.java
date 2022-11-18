@@ -54,12 +54,40 @@ public class SequenceSamplerByteTests {
   }
 
   @Test
+  public void testSampleCompositeP() {
+    SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSampleReservoirP() {
+    SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSamplePoolP() {
+    SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSampleInsertionP() {
+    SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
   public void testSample() {
     validateSamples(SequenceSampler::sample);
   }
 
   @Test
   public void testSampleByteP() {
+    validateWithP(SequenceSampler::sample);
+  }
+
+  private void validateWithP(PSampler sampler) {
     for (int n = 1; n <= 10; n++) {
       byte[] allDiff = new byte[n];
       byte[] mixedQuantities = new byte[n];
@@ -78,11 +106,16 @@ public class SequenceSamplerByteTests {
         allSame[i] = 100;
       }
       for (double p = 0.25; p <= 0.8; p += 0.25) {
-        validateSample(allDiff, SequenceSampler.sample(allDiff, p));
-        validateSample(mixedQuantities, SequenceSampler.sample(mixedQuantities, p));
-        validateSample(allSame, SequenceSampler.sample(allSame, p));
+        validateSample(allDiff, sampler.sample(allDiff, p));
+        validateSample(mixedQuantities, sampler.sample(mixedQuantities, p));
+        validateSample(allSame, sampler.sample(allSame, p));
       }
     }
+  }
+
+  @FunctionalInterface
+  interface PSampler {
+    byte[] sample(byte[] source, double p);
   }
 
   @FunctionalInterface

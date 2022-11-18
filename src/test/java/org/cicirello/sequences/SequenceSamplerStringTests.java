@@ -54,12 +54,40 @@ public class SequenceSamplerStringTests {
   }
 
   @Test
+  public void testSampleCompositeP() {
+    SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSampleReservoirP() {
+    SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSamplePoolP() {
+    SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
+  public void testSampleInsertionP() {
+    SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+  }
+
+  @Test
   public void testSample() {
     validateSamples(SequenceSampler::sample);
   }
 
   @Test
   public void testSampleStringP() {
+    validateWithP(SequenceSampler::sample);
+  }
+
+  private void validateWithP(PSampler sampler) {
     for (int n = 1; n <= 10; n++) {
       char[] allDiff = new char[n];
       char[] mixedQuantities = new char[n];
@@ -81,11 +109,16 @@ public class SequenceSamplerStringTests {
       String mixedQuantitiesS = new String(mixedQuantities);
       String allSameS = new String(allSame);
       for (double p = 0.25; p <= 0.8; p += 0.25) {
-        validateSample(allDiff, SequenceSampler.sample(allDiffS, p));
-        validateSample(mixedQuantities, SequenceSampler.sample(mixedQuantitiesS, p));
-        validateSample(allSame, SequenceSampler.sample(allSameS, p));
+        validateSample(allDiff, sampler.sample(allDiffS, p));
+        validateSample(mixedQuantities, sampler.sample(mixedQuantitiesS, p));
+        validateSample(allSame, sampler.sample(allSameS, p));
       }
     }
+  }
+
+  @FunctionalInterface
+  interface PSampler {
+    char[] sample(String source, double p);
   }
 
   @FunctionalInterface
