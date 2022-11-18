@@ -43,7 +43,8 @@ public class SequenceSamplerDoubleTests {
 
   @Test
   public void testSampleInsertion() {
-    validateSamples(SequenceSampler::sampleInsertion);
+    SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
   }
 
   @Test
