@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * Added the SequenceSampler interface's methods to SequenceReservoirSampler.
 * Added the SequenceSampler interface's methods to SequencePoolSampler.
+* Added the SequenceSampler interface's methods to SequenceInsertionSampler.
 
 ### Changed
 * SequenceSampler converted from a utility class of static methods to an interface, retaining the existing static
@@ -21,10 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 * SequenceSampler.sampleReservoir methods, previously deprecated in 4.3.0, replaced by the SequenceReservoirSampler class.
 * SequenceSampler.samplePool methods, previously deprecated in 4.3.0, replaced by the SequencePoolSampler class.
+* SequenceSampler.sampleInsertion methods, previously deprecated in 4.3.0, replaced by the SequenceInsertionSampler class.
 
 ### Fixed
 
 ### Dependencies
+* Bump rho-mu from 2.5.0 to 3.0.1
 
 ### CI/CD
 
