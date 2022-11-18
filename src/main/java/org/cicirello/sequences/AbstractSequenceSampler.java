@@ -34,7 +34,6 @@ abstract class AbstractSequenceSampler {
 
   /** prevent instantiation with a private constructor. */
   AbstractSequenceSampler() {}
-  ;
 
   static void validateK(int k, int sourceLength) {
     if (k > sourceLength) {

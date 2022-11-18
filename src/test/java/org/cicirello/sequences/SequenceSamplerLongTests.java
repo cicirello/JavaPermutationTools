@@ -23,14 +23,16 @@ package org.cicirello.sequences;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
-/** Internal helpers for tests of sequence samplers. */
+/** JUnit tests for sequence samplers of longs. */
 public class SequenceSamplerLongTests {
 
   @Test
   public void testSampleReservoir() {
-    validateSamples(SequenceSampler::sampleReservoir);
+    SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
   }
 
   @Test
