@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **BREAKING CHANGES:** See the Removed section for details.
 
 ### Added
+* Added the SequenceSampler interface's methods to SequenceCompositeSampler.
 * Added the SequenceSampler interface's methods to SequenceReservoirSampler.
 * Added the SequenceSampler interface's methods to SequencePoolSampler.
 * Added the SequenceSampler interface's methods to SequenceInsertionSampler.
