@@ -24,8 +24,7 @@ package org.cicirello.sequences;
 import java.util.random.RandomGenerator;
 
 /**
- * SequenceCompositeSampler is a class of utility methods for efficiently generating random samples
- * of array elements, without replacement.
+ * SequenceCompositeSampler generates random samples of array elements, without replacement.
  *
  * <p>This class implements the composite sampler that combines reservoir sampling, pool sampling,
  * and insertion sampling as described in:
@@ -42,10 +41,117 @@ import java.util.random.RandomGenerator;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public final class SequenceCompositeSampler {
+public final class SequenceCompositeSampler implements SequenceSampler {
 
-  /** Class of static utility methods so prevent instantiation with a private constructor. */
-  private SequenceCompositeSampler() {}
+  private final RandomGenerator r;
+
+  /**
+   * Constructs a sampler wrapping a RandomGenerator used as the source of randomness.
+   *
+   * @param r The source of randomness.
+   */
+  public SequenceCompositeSampler(RandomGenerator r) {
+    this.r = r;
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public int[] nextSample(int[] source, int k, int[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public long[] nextSample(long[] source, int k, long[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public short[] nextSample(short[] source, int k, short[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public byte[] nextSample(byte[] source, int k, byte[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public double[] nextSample(double[] source, int k, double[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public float[] nextSample(float[] source, int k, float[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public char[] nextSample(char[] source, int k, char[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length()
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public char[] nextSample(String source, int k, char[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public <T> T[] nextSample(T[] source, int k, T[] target) {
+    return sample(source, k, target, r);
+  }
 
   /**
    * Generates a random sample of k elements, without replacement, from a given source array. All n

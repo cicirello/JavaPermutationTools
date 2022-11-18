@@ -30,6 +30,12 @@ import org.junit.jupiter.api.*;
 public class SequenceSamplerObjectTests {
 
   @Test
+  public void testSampleComposite() {
+    SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+  }
+
+  @Test
   public void testSampleReservoir() {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
