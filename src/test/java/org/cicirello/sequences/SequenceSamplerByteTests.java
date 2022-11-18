@@ -37,7 +37,8 @@ public class SequenceSamplerByteTests {
 
   @Test
   public void testSamplePool() {
-    validateSamples(SequenceSampler::samplePool);
+    SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
   }
 
   @Test
