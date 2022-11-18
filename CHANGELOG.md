@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-11-18
 
 ### Added
+* Added the SequenceSampler interface's methods to SequenceReservoirSampler.
 
 ### Changed
 * SequenceSampler converted from a utility class of static methods to an interface, retaining the existing static
@@ -15,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 ### Removed
+* SequenceSampler.sampleReservoir methods, previously deprecated in 4.3.0, replaced by the SequenceReservoirSampler class.
 
 ### Fixed
 
