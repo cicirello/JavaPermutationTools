@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Added the SequenceSampler interface's methods to SequenceReservoirSampler.
 * Added the SequenceSampler interface's methods to SequencePoolSampler.
 * Added the SequenceSampler interface's methods to SequenceInsertionSampler.
+* Methods to sample by specifying probability of including element in sample to the classes that implement SequenceSampler
+  including SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, and SequenceCompositeSampler.
 
 ### Changed
 * SequenceSampler converted from a utility class of static methods to an interface, retaining the existing static

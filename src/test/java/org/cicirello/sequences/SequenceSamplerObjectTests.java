@@ -87,6 +87,58 @@ public class SequenceSamplerObjectTests {
     validateWithP(SequenceSampler::sample);
   }
 
+  @Test
+  public void testSampleCompositeStaticP() {
+    class ObjectPSampler implements PSampler {
+      private final SplittableRandom r = new SplittableRandom(42);
+
+      @Override
+      public <T> T[] sample(T[] source, double p) {
+        return SequenceCompositeSampler.sample(source, p, r);
+      }
+    }
+    validateWithP(new ObjectPSampler());
+  }
+
+  @Test
+  public void testSamplePoolStaticP() {
+    class ObjectPSampler implements PSampler {
+      private final SplittableRandom r = new SplittableRandom(42);
+
+      @Override
+      public <T> T[] sample(T[] source, double p) {
+        return SequencePoolSampler.sample(source, p, r);
+      }
+    }
+    validateWithP(new ObjectPSampler());
+  }
+
+  @Test
+  public void testSampleInsertionStaticP() {
+    class ObjectPSampler implements PSampler {
+      private final SplittableRandom r = new SplittableRandom(42);
+
+      @Override
+      public <T> T[] sample(T[] source, double p) {
+        return SequenceInsertionSampler.sample(source, p, r);
+      }
+    }
+    validateWithP(new ObjectPSampler());
+  }
+
+  @Test
+  public void testSampleReservoirStaticP() {
+    class ObjectPSampler implements PSampler {
+      private final SplittableRandom r = new SplittableRandom(42);
+
+      @Override
+      public <T> T[] sample(T[] source, double p) {
+        return SequenceReservoirSampler.sample(source, p, r);
+      }
+    }
+    validateWithP(new ObjectPSampler());
+  }
+
   private void validateWithP(PSampler sampler) {
     for (int n = 1; n <= 10; n++) {
       Integer[] allDiff = new Integer[n];

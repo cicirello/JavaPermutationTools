@@ -87,6 +87,30 @@ public class SequenceSamplerByteTests {
     validateWithP(SequenceSampler::sample);
   }
 
+  @Test
+  public void testSampleCompositeStaticP() {
+    SplittableRandom r = new SplittableRandom(42);
+    validateWithP((source, p) -> SequenceCompositeSampler.sample(source, p, r));
+  }
+
+  @Test
+  public void testSamplePoolStaticP() {
+    SplittableRandom r = new SplittableRandom(42);
+    validateWithP((source, p) -> SequencePoolSampler.sample(source, p, r));
+  }
+
+  @Test
+  public void testSampleInsertionStaticP() {
+    SplittableRandom r = new SplittableRandom(42);
+    validateWithP((source, p) -> SequenceInsertionSampler.sample(source, p, r));
+  }
+
+  @Test
+  public void testSampleReservoirStaticP() {
+    SplittableRandom r = new SplittableRandom(42);
+    validateWithP((source, p) -> SequenceReservoirSampler.sample(source, p, r));
+  }
+
   private void validateWithP(PSampler sampler) {
     for (int n = 1; n <= 10; n++) {
       byte[] allDiff = new byte[n];
