@@ -27,8 +27,7 @@ import org.cicirello.math.rand.RandomIndexer;
 import org.cicirello.util.ArrayMinimumLengthEnforcer;
 
 /**
- * SequencePoolSampler is a class of utility methods for efficiently generating random samples of
- * array elements, without replacement.
+ * SequencePoolSampler generates random samples of array elements, without replacement.
  *
  * <p>The methods of this class implement the algorithm SELECT of S. Goodman and S. Hedetniemi, as
  * described in: J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer
@@ -41,10 +40,117 @@ import org.cicirello.util.ArrayMinimumLengthEnforcer;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public final class SequencePoolSampler extends AbstractSequenceSampler {
+public final class SequencePoolSampler extends AbstractSequenceSampler implements SequenceSampler {
 
-  /** Class of static utility methods so prevent instantiation with a private constructor. */
-  private SequencePoolSampler() {}
+  private final RandomGenerator r;
+
+  /**
+   * Constructs a sampler wrapping a RandomGenerator used as the source of randomness.
+   *
+   * @param r The source of randomness.
+   */
+  public SequencePoolSampler(RandomGenerator r) {
+    this.r = r;
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public int[] nextSample(int[] source, int k, int[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public long[] nextSample(long[] source, int k, long[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public short[] nextSample(short[] source, int k, short[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public byte[] nextSample(byte[] source, int k, byte[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public double[] nextSample(double[] source, int k, double[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public float[] nextSample(float[] source, int k, float[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public char[] nextSample(char[] source, int k, char[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length()
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public char[] nextSample(String source, int k, char[] target) {
+    return sample(source, k, target, r);
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * @throws IllegalArgumentException if k &gt; source.length
+   * @throws NegativeArraySizeException if k &lt; 0
+   */
+  @Override
+  public <T> T[] nextSample(T[] source, int k, T[] target) {
+    return sample(source, k, target, r);
+  }
 
   /**
    * Generates a random sample of k elements, without replacement, from a given source array. All n
