@@ -39,7 +39,7 @@ and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
-| 4.x.y | Java 17+ |
+| 4.w.x to 5.y.z | Java 17+ |
 | 3.x.y | Java 11+ |
 | 1.x.y to 2.x.y | Java 8+ |
 
@@ -121,7 +121,7 @@ with the version you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>jpt</artifactId>
-  <version>4.0.0</version>
+  <version>5.0.0</version>
 </dependency>
 ```
 
