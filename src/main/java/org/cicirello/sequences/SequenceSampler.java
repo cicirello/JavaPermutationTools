@@ -25,16 +25,122 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.cicirello.math.rand.RandomVariates;
 
 /**
- * SequenceSampler is a class of utility methods related to efficiently generating random samples of
- * array elements, without replacement.
+ * An implementation of the SequenceSampler interface is used for generating random samples of array
+ * elements, without replacement.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public final class SequenceSampler {
+public interface SequenceSampler {
 
-  /** Class of static utility methods so prevent instantiation with a private constructor. */
-  private SequenceSampler() {}
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  int[] nextSample(int[] source, int k, int[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  short[] nextSample(short[] source, int k, short[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  long[] nextSample(long[] source, int k, long[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  byte[] nextSample(byte[] source, int k, byte[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  char[] nextSample(char[] source, int k, char[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source String. All n
+   * choose k combinations are equally likely, where n is the length of the source String.
+   *
+   * @param source The source String to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  char[] nextSample(String source, int k, char[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  double[] nextSample(double[] source, int k, double[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  float[] nextSample(float[] source, int k, float[] target);
+
+  /**
+   * Generates a random sample of k elements, without replacement, from a given source array. All n
+   * choose k combinations are equally likely, where n is the length of the source array.
+   *
+   * @param <T> The type of array elements.
+   * @param source The source array to sample.
+   * @param k The number of random samples (must be no greater than source.length).
+   * @param target An array to hold the result. If target is null or target.length is less than k,
+   *     then this method will construct a new array for the result.
+   * @return An array containing the random sample.
+   */
+  <T> T[] nextSample(T[] source, int k, T[] target);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
