@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2022-11-18
 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [5.0.0] - 2022-11-18
+
 **BREAKING CHANGES:** See the Removed section for details.
 
 ### Added
@@ -20,21 +39,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * SequenceSampler converted from a utility class of static methods to an interface, retaining the existing static
   methods that use a default source of randomness, but introducing nextSample methods for classes to implement.
 
-### Deprecated
-
 ### Removed
 * SequenceSampler.sampleReservoir methods, previously deprecated in 4.3.0, replaced by the SequenceReservoirSampler class.
 * SequenceSampler.samplePool methods, previously deprecated in 4.3.0, replaced by the SequencePoolSampler class.
 * SequenceSampler.sampleInsertion methods, previously deprecated in 4.3.0, replaced by the SequenceInsertionSampler class.
 
-### Fixed
-
 ### Dependencies
 * Bump rho-mu from 2.5.0 to 3.0.1
-
-### CI/CD
-
-### Other
 
 
 ## [4.3.1] - 2022-11-17
