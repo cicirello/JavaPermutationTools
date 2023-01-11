@@ -30,7 +30,7 @@
 			<distribution>repo</distribution>
 			<comments>
 			JavaPermutationTools (JPT): A library for computation on permutations and sequences.
-			Copyright (C) 2005-2022 Vincent A. Cicirello.
+			Copyright (C) 2005-2023 Vincent A. Cicirello.
 
 			JavaPermutationTools is free software: you can redistribute it and/or modify
 			it under the terms of the GNU General Public License as published by
@@ -259,7 +259,7 @@
 						<link>https://rho-mu.cicirello.org/api</link>
 						<link>https://core.cicirello.org/api</link>
 					</links>
-					<bottom><![CDATA[Copyright &copy; 2005-2022 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+					<bottom><![CDATA[Copyright &copy; 2005-2023 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
 			</plugin>
 			<plugin>

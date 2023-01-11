@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools - A Java library for computation on permutations.
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -24,7 +24,7 @@
  *
  * <h2>JavaPermutationTools - A Java library for computation on permutations</h2>
  *
- * <p>Copyright &copy; 2005-2022 <a href="https://www.cicirello.org/" target=_top>Vincent A.
+ * <p>Copyright &copy; 2005-2023 <a href="https://www.cicirello.org/" target=_top>Vincent A.
  * Cicirello</a>.
  *
  * <p><a href="https://doi.org/10.21105/joss.00950"><img
