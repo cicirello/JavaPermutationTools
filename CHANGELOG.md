@@ -17,12 +17,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump core from 2.4.3 to 2.4.4
-* Bump rho-mu from 3.0.1 to 3.0.2
 
 ### CI/CD
 
 ### Other
+
+
+## [5.0.1] - 2023-01-12
+
+### Dependencies
+* Bump core from 2.4.3 to 2.4.4
+* Bump rho-mu from 3.0.1 to 3.0.2
 
 
 ## [5.0.0] - 2022-11-18
