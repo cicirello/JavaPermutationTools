@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -605,9 +605,7 @@ public final class Permutation
    */
   public int[] get(int i, int j) {
     if (j < i) throw new IllegalArgumentException("j must not be less than i");
-    int[] array = new int[j - i + 1];
-    System.arraycopy(permutation, i, array, 0, array.length);
-    return array;
+    return Arrays.copyOfRange(permutation, i, j + 1);
   }
 
   /**
@@ -776,11 +774,15 @@ public final class Permutation
   public void removeAndInsert(int i, int j) {
     if (i < j) {
       int n = permutation[i];
-      System.arraycopy(permutation, i + 1, permutation, i, j - i);
+      for (int k = i; k < j; k++) {
+        permutation[k] = permutation[k + 1];
+      }
       permutation[j] = n;
     } else if (i > j) {
       int n = permutation[i];
-      System.arraycopy(permutation, j, permutation, j + 1, i - j);
+      for (int k = i; k > j; k--) {
+        permutation[k] = permutation[k - 1];
+      }
       permutation[j] = n;
     }
   }
