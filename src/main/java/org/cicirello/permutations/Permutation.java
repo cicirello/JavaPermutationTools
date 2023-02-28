@@ -774,15 +774,11 @@ public final class Permutation
   public void removeAndInsert(int i, int j) {
     if (i < j) {
       int n = permutation[i];
-      for (int k = i; k < j; k++) {
-        permutation[k] = permutation[k + 1];
-      }
+      System.arraycopy(permutation, i + 1, permutation, i, j - i);
       permutation[j] = n;
     } else if (i > j) {
       int n = permutation[i];
-      for (int k = i; k > j; k--) {
-        permutation[k] = permutation[k - 1];
-      }
+      System.arraycopy(permutation, j, permutation, j + 1, i - j);
       permutation[j] = n;
     }
   }
