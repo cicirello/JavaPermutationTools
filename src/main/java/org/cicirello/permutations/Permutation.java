@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 import org.cicirello.math.rand.RandomIndexer;
+import org.cicirello.util.ArrayFiller;
 import org.cicirello.util.Copyable;
 
 /**
@@ -81,16 +82,11 @@ public final class Permutation
    * @param value The integer value of the permutation in the interval: 0..(n!-1).
    */
   public Permutation(int n, int value) {
-    permutation = new int[n];
-    for (int i = 0; i < n; i++) {
-      permutation[i] = i;
-    }
+    permutation = ArrayFiller.create(n);
     for (int i = 0; i < n - 1; i++) {
       int j = i + value % (n - i);
       int temp = permutation[j];
-      for (int k = j; k > i; k--) {
-        permutation[k] = permutation[k - 1];
-      }
+      System.arraycopy(permutation, i, permutation, i + 1, j - i);
       permutation[i] = temp;
       value = value / (n - i);
     }
@@ -117,17 +113,12 @@ public final class Permutation
    * @param value The integer value of the permutation in the interval: 0..(n!-1).
    */
   public Permutation(int n, BigInteger value) {
-    permutation = new int[n];
-    for (int i = 0; i < n; i++) {
-      permutation[i] = i;
-    }
+    permutation = ArrayFiller.create(n);
     for (int i = 0; i < n - 1; i++) {
       BigInteger[] divRem = value.divideAndRemainder(BigInteger.valueOf(n - i));
       int j = i + divRem[1].intValue();
       int temp = permutation[j];
-      for (int k = j; k > i; k--) {
-        permutation[k] = permutation[k - 1];
-      }
+      System.arraycopy(permutation, i, permutation, i + 1, j - i);
       permutation[i] = temp;
       value = divRem[0];
     }
@@ -341,18 +332,16 @@ public final class Permutation
    * @throws UnsupportedOperationException when permutation length is greater than 12.
    */
   public int toInteger() {
-    int N = permutation.length;
-    if (N > 12)
+    if (permutation.length > 12)
       throw new UnsupportedOperationException(
           "Unsupported for permutations of length greater than 12.");
-    int[] index = new int[N];
-    for (int i = 0; i < N; i++) index[i] = i;
+    int[] index = ArrayFiller.create(permutation.length);
     int result = 0;
     int multiplier = 1;
-    int factor = N;
-    for (int i = 0; i < N - 1; i++) {
+    int factor = permutation.length;
+    for (int i = 0; i < index.length - 1; i++) {
       result += multiplier * index[permutation[i]];
-      for (int j = permutation[i]; j < N; j++) {
+      for (int j = permutation[i]; j < index.length; j++) {
         index[j]--;
       }
       multiplier *= factor;
@@ -377,16 +366,14 @@ public final class Permutation
    * @return a mixed radix representation of the permutation
    */
   public BigInteger toBigInteger() {
-    int N = permutation.length;
-    if (N <= 12) return BigInteger.valueOf(toInteger());
-    int[] index = new int[N];
-    for (int i = 0; i < N; i++) index[i] = i;
+    if (permutation.length <= 12) return BigInteger.valueOf(toInteger());
+    int[] index = ArrayFiller.create(permutation.length);
     BigInteger result = BigInteger.ZERO;
     BigInteger multiplier = BigInteger.ONE;
-    int factor = N;
-    for (int i = 0; i < N - 1; i++) {
+    int factor = permutation.length;
+    for (int i = 0; i < index.length - 1; i++) {
       result = result.add(multiplier.multiply(BigInteger.valueOf(index[permutation[i]])));
-      for (int j = permutation[i]; j < N; j++) {
+      for (int j = permutation[i]; j < index.length; j++) {
         index[j]--;
       }
       multiplier = multiplier.multiply(BigInteger.valueOf(factor));
@@ -425,8 +412,7 @@ public final class Permutation
    * iff p2.get(j) == i, for all i, j.
    */
   public void invert() {
-    int[] inverse = getInverse();
-    System.arraycopy(inverse, 0, permutation, 0, inverse.length);
+    System.arraycopy(getInverse(), 0, permutation, 0, permutation.length);
   }
 
   /**
@@ -774,15 +760,11 @@ public final class Permutation
   public void removeAndInsert(int i, int j) {
     if (i < j) {
       int n = permutation[i];
-      for (int k = i; k < j; k++) {
-        permutation[k] = permutation[k + 1];
-      }
+      System.arraycopy(permutation, i + 1, permutation, i, j - i);
       permutation[j] = n;
     } else if (i > j) {
       int n = permutation[i];
-      for (int k = i; k > j; k--) {
-        permutation[k] = permutation[k - 1];
-      }
+      System.arraycopy(permutation, j, permutation, j + 1, i - j);
       permutation[j] = n;
     }
   }
@@ -793,13 +775,16 @@ public final class Permutation
    * @param numPositions Number of positions to rotate.
    */
   public void rotate(int numPositions) {
-    if (numPositions >= permutation.length || numPositions < 0)
+    if (numPositions >= permutation.length || numPositions < 0) {
       numPositions = Math.floorMod(numPositions, permutation.length);
-    if (numPositions == 0) return;
-    int[] temp = new int[numPositions];
-    System.arraycopy(permutation, 0, temp, 0, numPositions);
-    System.arraycopy(permutation, numPositions, permutation, 0, permutation.length - numPositions);
-    System.arraycopy(temp, 0, permutation, permutation.length - numPositions, numPositions);
+    }
+    if (numPositions > 0) {
+      int[] temp = new int[numPositions];
+      System.arraycopy(permutation, 0, temp, 0, numPositions);
+      System.arraycopy(
+          permutation, numPositions, permutation, 0, permutation.length - numPositions);
+      System.arraycopy(temp, 0, permutation, permutation.length - numPositions, numPositions);
+    }
   }
 
   /**
@@ -815,7 +800,7 @@ public final class Permutation
    *     greater than or equal to length().
    */
   public void removeAndInsert(int i, int size, int j) {
-    if ((size == 0) || (i == j)) {
+    if ((size <= 0) || (i == j)) {
       return;
     } else if (size == 1) {
       removeAndInsert(i, j);
@@ -869,14 +854,15 @@ public final class Permutation
    */
   @Override
   public String toString() {
-    String permS = "";
+    StringBuilder s = new StringBuilder();
     if (permutation.length > 0) {
-      permS += permutation[0];
+      s.append(permutation[0]);
       for (int i = 1; i < permutation.length; i++) {
-        permS += " " + permutation[i];
+        s.append(" ");
+        s.append(permutation[i]);
       }
     }
-    return permS;
+    return s.toString();
   }
 
   /**
@@ -912,11 +898,13 @@ public final class Permutation
   private boolean validate(int[] p) {
     boolean[] inP = new boolean[p.length];
     for (int e : p) {
-      if (e < 0 || e >= p.length)
+      if (e < 0 || e >= p.length) {
         throw new IllegalArgumentException(
             "Elements of a Permutation must be in interval [0, length())");
-      if (inP[e])
+      }
+      if (inP[e]) {
         throw new IllegalArgumentException("Duplicate elements are not allowed in a Permutation.");
+      }
       inP[e] = true;
     }
     return true;

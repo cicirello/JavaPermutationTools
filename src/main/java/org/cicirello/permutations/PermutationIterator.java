@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -24,6 +24,7 @@ package org.cicirello.permutations;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import org.cicirello.util.ArrayFiller;
 
 /**
  * Iterator over all permutations of a specified length, n, of the integers in the interval [0,n).
@@ -63,8 +64,7 @@ public class PermutationIterator implements Iterator<Permutation> {
    */
   public PermutationIterator(Permutation p) {
     this.p = new Permutation(p);
-    lastSwap = new int[p.length()];
-    for (int i = 0; i < lastSwap.length; i++) lastSwap[i] = i;
+    lastSwap = ArrayFiller.create(p.length());
     done = false;
   }
 
