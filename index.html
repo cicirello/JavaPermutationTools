@@ -206,7 +206,7 @@ A. Cicirello</span></a>.</p>
 </section>
 <section>
 <h3>Importing from Maven Central</h3>
-<div class="badge-height"><a href="https://search.maven.org/artifact/org.cicirello/jpt"><amp-img class="contain" layout="fill" alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven"></amp-img></a></div>
+<div class="badge-height"><a href="https://central.sonatype.com/search?namespace=org.cicirello&q=jpt"><amp-img class="contain" layout="fill" alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven"></amp-img></a></div>
 <p>To import JPT from the Maven Central repository (if your build tool is
 Maven), add the following to the dependencies section of 
 your &ldquo;pom.xml&rdquo; (for other build tools, see the tool's documentation
@@ -214,10 +214,10 @@ for the equivalent):</p>
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;org.cicirello&lt;/groupId&gt;
   &lt;artifactId&gt;jpt&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;x.y.z&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-<p>Just replace the version number with your desired version of the library.</p>
+<p>Just replace <code>x.y.z</code> with your desired version of the library.</p>
 </section>
 <section>
 <h3>Java Modules</h3>
@@ -252,14 +252,20 @@ corresponds to backwards compatible bug fixes.</p>
 </section>
 <section>
 <h3>Development Process</h3>
+To maintain a high quality library, our development process utilizes
+the following:
 <ul>
 <li>Test Coverage: We require unit tests for all functionality. We generate 
 <a href="https://www.jacoco.org/jacoco/">JaCoCo</a> test coverage 
 reports on all push and pull-request events to
-the source code repository. Although we don't have a strict minimum coverage for acceptance,
-coverage is usually over 90%, and quite often at or near 100%. Current coverage
-is reported in the readme of the GitHub repository (updated automatically).</li>
-<li>Regression Testing: All new and existing tests are executed as part of all pull requests,
+the source code repository. Although we don't 
+have a strict minimum coverage for acceptance,
+coverage is usually over 90%, and quite often 
+at or near 100%. Current coverage
+is reported in the readme of the GitHub 
+repository (updated automatically).</li>
+<li>Regression Testing: All new and existing tests are 
+executed as part of all pull requests,
 and all must pass for acceptance.</li>
 <li>Static Analysis: We use multiple static analysis 
 tools to scan for potential 
@@ -268,6 +274,7 @@ potential code improvements. At the
 present time, this includes running:
 <ul>
 <li><a href="https://codeql.github.com/docs/">CodeQL</a></li>
+<li><a href="https://github.com/jimbethancourt/RefactorFirst">RefactorFirst</a></li>
 <li><a href="https://snyk.io/">Snyk</a></li>
 <li><a href="https://lift.sonatype.com/">Lift</a>: Sonatype's 
 Lift runs a suite of several tools that includes 
@@ -276,6 +283,13 @@ Facebook's <a href="https://fbinfer.com/">Infer</a>,
 as well as <a href="https://find-sec-bugs.github.io/">FindSecBugs</a>,
 among others.</li>
 </ul></li>
+</ul>
+</section>
+<section>
+<h3>Dependent Libraries</h3>
+<p>The following libraries depend upon JavaPermutationTools:</p>
+<ul>
+<li><a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a></li>
 </ul>
 </section>
 <section class="publist">
@@ -315,7 +329,7 @@ In <i>Proceedings of the Twenty-Sixth International Florida Artificial Intellige
 </section>
 </article>
 <footer>
-<div id="copyright"><small>Copyright &copy; 2005-<span itemprop="copyrightYear">2022</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
+<div id="copyright"><small>Copyright &copy; 2005-<span itemprop="copyrightYear">2023</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
 </footer>
 </body>
 </html>
