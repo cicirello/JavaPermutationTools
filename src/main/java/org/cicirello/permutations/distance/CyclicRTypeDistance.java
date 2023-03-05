@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools - A Java library for computation on permutations.
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -61,11 +61,13 @@ public final class CyclicRTypeDistance implements NormalizedPermutationDistanceM
     int countNonSharedEdges = 0;
     int[] successors2 = new int[p2.length()];
     for (int i = 0; i < successors2.length; i++) {
-      successors2[p2.get(i)] = p2.get((i + 1) % successors2.length);
+      successors2[p2.get(i)] = p2.get(indexCyclicAdjustment(i + 1, successors2.length));
     }
 
     for (int i = 0; i < successors2.length; i++) {
-      if (p1.get((i + 1) % successors2.length) != successors2[p1.get(i)]) countNonSharedEdges++;
+      if (p1.get(indexCyclicAdjustment(i + 1, successors2.length)) != successors2[p1.get(i)]) {
+        countNonSharedEdges++;
+      }
     }
     return countNonSharedEdges;
   }
@@ -74,5 +76,9 @@ public final class CyclicRTypeDistance implements NormalizedPermutationDistanceM
   public int max(int length) {
     if (length <= 2) return 0;
     return length;
+  }
+
+  private int indexCyclicAdjustment(int i, int length) {
+    return i < length ? i : 0;
   }
 }
