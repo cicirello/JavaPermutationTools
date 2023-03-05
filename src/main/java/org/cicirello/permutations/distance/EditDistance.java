@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools - A Java library for computation on permutations.
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -131,7 +131,7 @@ public final class EditDistance implements PermutationDistanceMeasurerDouble {
   if (combined <= changeCost) {
   	return (length-1)*combined;
   }
-  if (length % 2 == 0) {
+  if ((length & 1) == 0) {
   	double m1 = (length-1)*combined;
   	double m2 = length*changeCost;
   	double m3 = combined + (length-2)*changeCost;

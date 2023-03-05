@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences.
- * Copyright (C) 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2018-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -149,16 +149,8 @@ public final class WeightedKendallTauDistance
         k++;
       }
     }
-    while (i < left.length) {
-      array[k] = left[i];
-      i++;
-      k++;
-    }
-    while (j < right.length) {
-      array[k] = right[j];
-      j++;
-      k++;
-    }
+    System.arraycopy(left, i, array, k, left.length - i);
+    System.arraycopy(right, j, array, k, right.length - j);
     return weightedCount;
   }
 }

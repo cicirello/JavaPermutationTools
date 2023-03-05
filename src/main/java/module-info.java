@@ -29,7 +29,8 @@
  *
  * <p><a href="https://doi.org/10.21105/joss.00950"><img
  * src="http://joss.theoj.org/papers/10.21105/joss.00950/status.svg" alt="DOI:10.21105/joss.00950"
- * height="20" width="168"></a> <a href="https://central.sonatype.com/search?namespace=org.cicirello&q=jpt"><img
+ * height="20" width="168"></a> <a
+ * href="https://central.sonatype.com/search?namespace=org.cicirello&q=jpt"><img
  * src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?logo=apachemaven" alt="Maven
  * Central" height="20" width="153"></a> <a
  * href="https://github.com/cicirello/JavaPermutationTools/releases"><img

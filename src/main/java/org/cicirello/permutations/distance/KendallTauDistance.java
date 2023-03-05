@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools - A Java library for computation on permutations.
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -112,16 +112,8 @@ public final class KendallTauDistance implements NormalizedPermutationDistanceMe
         k++;
       }
     }
-    while (i < left.length) {
-      array[k] = left[i];
-      i++;
-      k++;
-    }
-    while (j < right.length) {
-      array[k] = right[j];
-      j++;
-      k++;
-    }
+    System.arraycopy(left, i, array, k, left.length - i);
+    System.arraycopy(right, j, array, k, right.length - j);
     return count;
   }
 }
