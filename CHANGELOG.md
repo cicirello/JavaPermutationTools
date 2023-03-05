@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Minor code improvements within Permutation and PermutationIterator classes.
-* Minor code improvements within KendallTauDistance and WeightedKendallTauDistance.
+* Minor code improvements to Permutation and PermutationIterator classes.
+* Minor code improvements to KendallTauDistance and WeightedKendallTauDistance.
+* Minor code improvements to CyclicEdgeDistance and CyclicRTypeDistance.
 
 ### Deprecated
 
