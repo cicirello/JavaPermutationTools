@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [5.0.2] - 2023-03-07
+
+### Changed
 * Minor code improvements and/or optimizations within the following classes:
   * Permutation
   * PermutationIterator
@@ -19,19 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * The various SequenceSamplers
   * KendallTauSequenceDistance
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
 ### Dependencies
 * Bump core from 2.4.4 to 2.4.6
 * Bump rho-mu from 3.0.2 to 3.0.3
-
-### CI/CD
-
-### Other
 
 
 ## [5.0.1] - 2023-01-12
