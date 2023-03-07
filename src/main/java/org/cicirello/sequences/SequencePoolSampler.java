@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -41,7 +41,7 @@ import org.cicirello.util.ArrayMinimumLengthEnforcer;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public final class SequencePoolSampler extends AbstractSequenceSampler implements SequenceSampler {
+public final class SequencePoolSampler implements SequenceSampler {
 
   private final RandomGenerator r;
 
@@ -294,7 +294,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static int[] sample(int[] source, int k, int[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     int[] pool = source.clone();
     int remaining = pool.length;
@@ -321,7 +321,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static long[] sample(long[] source, int k, long[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     long[] pool = source.clone();
     int remaining = pool.length;
@@ -348,7 +348,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static short[] sample(short[] source, int k, short[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     short[] pool = source.clone();
     int remaining = pool.length;
@@ -375,7 +375,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static byte[] sample(byte[] source, int k, byte[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     byte[] pool = source.clone();
     int remaining = pool.length;
@@ -402,7 +402,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static char[] sample(char[] source, int k, char[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     char[] pool = source.clone();
     int remaining = pool.length;
@@ -446,7 +446,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static double[] sample(double[] source, int k, double[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     double[] pool = source.clone();
     int remaining = pool.length;
@@ -473,7 +473,7 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static float[] sample(float[] source, int k, float[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     float[] pool = source.clone();
     int remaining = pool.length;
@@ -501,8 +501,8 @@ public final class SequencePoolSampler extends AbstractSequenceSampler implement
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static <T> T[] sample(T[] source, int k, T[] target, RandomGenerator r) {
-    validateK(k, source.length);
-    target = allocateIfNecessary(source, k, target);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = SequenceSamplerUtils.allocateIfNecessary(source, k, target);
     T[] pool = Arrays.copyOf(source, source.length);
     int remaining = pool.length;
     for (int i = 0; i < k; i++) {
