@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://jpt.cicirello.org/</loc>
-<lastmod>2022-10-24T09:12:17-04:00</lastmod>
+<lastmod>2023-03-04T14:07:15-05:00</lastmod>
 </url>
 <url>
 <loc>https://jpt.cicirello.org/api/allclasses-index.html</loc>
@@ -30,7 +30,7 @@
 </url>
 <url>
 <loc>https://jpt.cicirello.org/api/org.cicirello.jpt/module-summary.html</loc>
-<lastmod>2023-01-12T15:24:05+00:00</lastmod>
+<lastmod>2023-03-07T16:12:06+00:00</lastmod>
 </url>
 <url>
 <loc>https://jpt.cicirello.org/api/org.cicirello.jpt/org/cicirello/permutations/IllegalPermutationStateException.html</loc>
