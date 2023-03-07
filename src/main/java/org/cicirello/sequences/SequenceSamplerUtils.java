@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -24,16 +24,16 @@ package org.cicirello.sequences;
 import java.lang.reflect.Array;
 
 /**
- * AbstractSequenceSampler is an internal abstract base class for the classes of utility methods
- * related to efficiently generating random samples of array elements, without replacement.
+ * SequenceSamplerUtils is an internal utility class with utility methods related to efficiently
+ * generating random samples of array elements, without replacement.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-abstract class AbstractSequenceSampler {
+class SequenceSamplerUtils {
 
   /** prevent instantiation with a private constructor. */
-  AbstractSequenceSampler() {}
+  private SequenceSamplerUtils() {}
 
   static void validateK(int k, int sourceLength) {
     if (k > sourceLength) {

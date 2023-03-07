@@ -1,5 +1,6 @@
 /*
- * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * JavaPermutationTools: A Java library for computation on permutations and sequences
+ * Copyright 2019-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -44,12 +45,6 @@ public class SequenceSamplerStatisticalTests {
   // The second one is for infinite number of samples (use for very large TTEST_NUM_SAMPLES).
   private static final double CRITICAL_VALUE_995 = 2.626;
   private static final double CRITICAL_VALUE_995_INF = 2.576;
-
-  @Test
-  public void testAbstractbaseClass() {
-    class TestExtension extends AbstractSequenceSampler {}
-    assertNotNull(new TestExtension());
-  }
 
   @Test
   public void testSamplePTTest() {

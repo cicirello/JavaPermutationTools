@@ -38,8 +38,7 @@ import org.cicirello.util.ArrayMinimumLengthEnforcer;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public final class SequenceReservoirSampler extends AbstractSequenceSampler
-    implements SequenceSampler {
+public final class SequenceReservoirSampler implements SequenceSampler {
 
   private final RandomGenerator r;
 
@@ -292,7 +291,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static int[] sample(int[] source, int k, int[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -318,7 +317,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static long[] sample(long[] source, int k, long[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -344,7 +343,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static short[] sample(short[] source, int k, short[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -370,7 +369,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static byte[] sample(byte[] source, int k, byte[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -396,7 +395,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static char[] sample(char[] source, int k, char[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -439,7 +438,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static double[] sample(double[] source, int k, double[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -465,7 +464,7 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static float[] sample(float[] source, int k, float[] target, RandomGenerator r) {
-    validateK(k, source.length);
+    SequenceSamplerUtils.validateK(k, source.length);
     target = ArrayMinimumLengthEnforcer.enforce(target, k);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
@@ -492,8 +491,8 @@ public final class SequenceReservoirSampler extends AbstractSequenceSampler
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static <T> T[] sample(T[] source, int k, T[] target, RandomGenerator r) {
-    validateK(k, source.length);
-    target = allocateIfNecessary(source, k, target);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = SequenceSamplerUtils.allocateIfNecessary(source, k, target);
     System.arraycopy(source, 0, target, 0, k);
     for (int i = k; i < source.length; i++) {
       int j = RandomIndexer.nextInt(i + 1, r);
