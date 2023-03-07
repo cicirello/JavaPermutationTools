@@ -31,7 +31,7 @@ import java.util.List;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-final class RelabelBySorting extends AbstractRelabelBySorting implements KendallTauRelabeler {
+final class RelabelBySorting implements KendallTauRelabeler {
 
   @Override
   public int relabel(int[] s1, int[] s2, int[][] relabeling) {
@@ -250,5 +250,12 @@ final class RelabelBySorting extends AbstractRelabelBySorting implements Kendall
       relabeling[i][1] = labels[j];
     }
     return current + 1;
+  }
+
+  private void validateElementIndex(int index) {
+    if (index < 0) {
+      throw new IllegalArgumentException(
+          "Sequences must contain same elements: s2 contains at least one element not in s1.");
+    }
   }
 }
