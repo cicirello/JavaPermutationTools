@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Permutation now caches hash on first call to hashCode() to optimize applications that rely heavily on hashing.
 
 ### Deprecated
 
@@ -18,11 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump rho-mu from 3.0.3 to 3.0.4
 
 ### CI/CD
 
 ### Other
+
+
+## [5.0.3] - 2023-04-13
+
+### Changed
+* Permutation now caches hash on first call to hashCode() to optimize applications that rely heavily on hashing.
+
+### Dependencies
+* Bump rho-mu from 3.0.3 to 3.0.4
 
 
 ## [5.0.2] - 2023-03-07
