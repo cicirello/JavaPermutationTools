@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,6 +23,7 @@ package org.cicirello.permutations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for removing and reinserting. */
@@ -30,10 +31,11 @@ public class PermutationRemoveInsertTests {
 
   @Test
   public void testPermutationRemoveInsert() {
-    Permutation p = new Permutation(5);
+    Permutation p = new Permutation(5, new SplittableRandom(42));
     for (int i = 0; i < p.length(); i++) {
       for (int j = 0; j < p.length(); j++) {
         Permutation copy = new Permutation(p);
+        assertEquals(p.hashCode(), copy.hashCode());
         copy.removeAndInsert(i, j);
         if (i < j) {
           for (int k = 0; k < i; k++) {
@@ -46,6 +48,7 @@ public class PermutationRemoveInsertTests {
           for (int k = j + 1; k < p.length(); k++) {
             assertEquals(p.get(k), copy.get(k));
           }
+          assertNotEquals(p.hashCode(), copy.hashCode());
         } else if (i > j) {
           for (int k = 0; k < j; k++) {
             assertEquals(p.get(k), copy.get(k));
@@ -57,6 +60,7 @@ public class PermutationRemoveInsertTests {
           for (int k = i + 1; k < p.length(); k++) {
             assertEquals(p.get(k), copy.get(k));
           }
+          assertNotEquals(p.hashCode(), copy.hashCode());
         } else {
           assertEquals(p, copy);
         }
@@ -76,16 +80,20 @@ public class PermutationRemoveInsertTests {
     Permutation p = new Permutation(a);
     Permutation p1 = new Permutation(a1);
     Permutation mutant = new Permutation(p);
+    assertEquals(p.hashCode(), mutant.hashCode());
     mutant.removeAndInsert(7, 1, 0);
     assertEquals(p1, mutant);
+    assertNotEquals(p.hashCode(), mutant.hashCode());
     Permutation p2 = new Permutation(a2);
     mutant = new Permutation(p);
     mutant.removeAndInsert(2, 1, 10);
     assertEquals(p2, mutant);
     Permutation p3 = new Permutation(a3);
     mutant = new Permutation(p);
+    assertEquals(p.hashCode(), mutant.hashCode());
     mutant.removeAndInsert(7, 2, 0);
     assertEquals(p3, mutant);
+    assertNotEquals(p.hashCode(), mutant.hashCode());
     Permutation p4 = new Permutation(a4);
     mutant = new Permutation(p);
     mutant.removeAndInsert(1, 2, 9);

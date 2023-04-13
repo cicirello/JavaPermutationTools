@@ -39,8 +39,8 @@ import org.cicirello.util.ArrayFiller;
  */
 public class PermutationIterator implements Iterator<Permutation> {
 
-  private Permutation p;
-  private int[] lastSwap;
+  private final Permutation p;
+  private final int[] lastSwap;
   private boolean done;
 
   /**
@@ -92,14 +92,14 @@ public class PermutationIterator implements Iterator<Permutation> {
       done = true;
     } else {
       for (int i = lastSwap.length - 2; i >= 0; i--) {
-        if (lastSwap[i] != i) p.swap(i, lastSwap[i]);
+        if (lastSwap[i] != i) p.internalSwap(i, lastSwap[i]);
         if (lastSwap[i] == lastSwap.length - 1) {
           lastSwap[i] = i;
           if (i == 0) done = true;
           continue;
         }
         lastSwap[i]++;
-        p.swap(i, lastSwap[i]);
+        p.internalSwap(i, lastSwap[i]);
         break;
       }
     }

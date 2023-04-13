@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -50,7 +50,7 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
 
   @Test
   public void testScramble() {
-    SplittableRandom r2 = new SplittableRandom();
+    SplittableRandom r2 = new SplittableRandom(42);
     for (int i = 0; i < 8; i++) {
       Permutation p = new Permutation(i);
       for (int j = 0; j < 10; j++) {
@@ -58,20 +58,34 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
         p.scramble();
         validatePermutation(p, i);
         original = new Permutation(p);
+        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(r2);
+        if (i >= 7) assertNotEquals(original.hashCode(), p.hashCode());
         validatePermutation(p, i);
+
         p.scramble(false);
         validatePermutation(p, i);
+
         p.scramble(r2, false);
         validatePermutation(p, i);
+
         original = new Permutation(p);
+        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(true);
         validatePermutation(p, i);
-        if (i > 1) assertNotEquals(original, p);
+        if (i > 1) {
+          assertNotEquals(original, p);
+          assertNotEquals(original.hashCode(), p.hashCode());
+        }
+
         original = new Permutation(p);
+        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(r2, true);
         validatePermutation(p, i);
-        if (i > 1) assertNotEquals(original, p);
+        if (i > 1) {
+          assertNotEquals(original, p);
+          assertNotEquals(original.hashCode(), p.hashCode());
+        }
       }
     }
   }
@@ -80,30 +94,39 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
   public void testScrambleFromItoJ() {
     SplittableRandom r2 = new SplittableRandom();
     for (int n = 4; n < 8; n++) {
-      Permutation p = new Permutation(n);
+      Permutation p = new Permutation(n, r2);
       Permutation original = new Permutation(p);
+      assertEquals(original.hashCode(), p.hashCode());
       p.scramble(1, n - 2);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
+      assertNotEquals(original.hashCode(), p.hashCode());
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
+
       original = new Permutation(p);
+      assertEquals(original.hashCode(), p.hashCode());
       p.scramble(1, n - 2, r2);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
+      assertNotEquals(original.hashCode(), p.hashCode());
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
+
       original = new Permutation(p);
       p.scramble(0, n - 1);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
+
       original = new Permutation(p);
       p.scramble(0, n - 1, r2);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
+
       original = new Permutation(p);
       p.scramble(1, 1, r2);
       assertEquals(original, p);
+
       original = new Permutation(p);
       p.scramble(1, 1);
       assertEquals(original, p);
@@ -111,13 +134,14 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
       original = new Permutation(p);
       p.scramble(n - 2, 1);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
+
       original = new Permutation(p);
       p.scramble(n - 2, 1, r2);
       validatePermutation(p, n);
-      if (n > 1) assertNotEquals(original, p);
+      assertNotEquals(original, p);
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
     }
