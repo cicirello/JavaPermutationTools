@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -68,14 +68,19 @@ public class PermutationInverseTests {
   public void testInvert() {
     int[] before = {4, 2, 5, 0, 3, 1};
     Permutation p = new Permutation(before);
+    int oldHash = p.hashCode();
     int[] expected = {3, 5, 1, 4, 0, 2};
     Permutation pExpected = new Permutation(expected);
     p.invert();
     assertEquals(pExpected, p);
+    assertEquals(pExpected.hashCode(), p.hashCode());
+    assertNotEquals(oldHash, p.hashCode());
     int[] array = {0, 1, 2, 3, 4, 5};
     p = new Permutation(array);
     pExpected = new Permutation(array);
+    assertEquals(pExpected.hashCode(), p.hashCode());
     p.invert();
     assertEquals(pExpected, p);
+    assertEquals(pExpected.hashCode(), p.hashCode());
   }
 }

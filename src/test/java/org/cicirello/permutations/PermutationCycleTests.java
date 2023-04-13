@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -38,8 +38,10 @@ public class PermutationCycleTests {
       Permutation p2 = new Permutation(p);
       p2.cycle(indexes1);
       assertEquals(p, p2);
+      assertEquals(p.hashCode(), p2.hashCode());
       p2.cycle(indexes0);
       assertEquals(p, p2);
+      assertEquals(p.hashCode(), p2.hashCode());
     }
   }
 
@@ -52,7 +54,9 @@ public class PermutationCycleTests {
       Permutation p2 = new Permutation(p);
       indexes[0] = 0;
       indexes[1] = i - 1;
+      assertEquals(p.hashCode(), p2.hashCode());
       p2.cycle(indexes);
+      if (i > 1) assertNotEquals(p.hashCode(), p2.hashCode());
       assertEquals(p.get(0), p2.get(i - 1));
       assertEquals(p.get(i - 1), p2.get(0));
       for (int j = 1; j < i - 1; j++) {
@@ -64,7 +68,9 @@ public class PermutationCycleTests {
       Permutation p2 = new Permutation(p);
       indexes[1] = 0;
       indexes[0] = i - 1;
+      assertEquals(p.hashCode(), p2.hashCode());
       p2.cycle(indexes);
+      if (i > 1) assertNotEquals(p.hashCode(), p2.hashCode());
       assertEquals(p.get(0), p2.get(i - 1));
       assertEquals(p.get(i - 1), p2.get(0));
       for (int j = 1; j < i - 1; j++) {
@@ -76,7 +82,9 @@ public class PermutationCycleTests {
       Permutation p2 = new Permutation(p);
       indexes[0] = (i - 1) / 2;
       indexes[1] = indexes[0] + 1;
+      assertEquals(p.hashCode(), p2.hashCode());
       p2.cycle(indexes);
+      assertNotEquals(p.hashCode(), p2.hashCode());
       assertEquals(p.get(indexes[0]), p2.get(indexes[1]));
       assertEquals(p.get(indexes[1]), p2.get(indexes[0]));
       for (int j = 0; j < indexes[0]; j++) {

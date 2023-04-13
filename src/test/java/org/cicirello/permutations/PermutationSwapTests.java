@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -27,6 +27,15 @@ import org.junit.jupiter.api.*;
 
 /** JUnit tests for swap and swapBlocks methods. */
 public class PermutationSwapTests {
+
+  @Test
+  public void testHashCodeInvalidation() {
+    Permutation p1 = new Permutation(4, 0);
+    Permutation p2 = new Permutation(4, 0);
+    assertEquals(p1.hashCode(), p2.hashCode());
+    p2.swap(1, 2);
+    assertNotEquals(p1.hashCode(), p2.hashCode());
+  }
 
   @Test
   public void testSwap() {

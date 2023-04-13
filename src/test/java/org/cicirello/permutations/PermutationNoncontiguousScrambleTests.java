@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -34,10 +34,12 @@ public class PermutationNoncontiguousScrambleTests {
     SplittableRandom r2 = new SplittableRandom(42);
     // Verify does nothing if permutation length < 2.
     Permutation p = new Permutation(1);
+    int oldHash = p.hashCode();
     int[] indexes = {0};
     for (int i = 0; i < 5; i++) {
       p.scramble(indexes, r2);
       assertEquals(0, p.get(0));
+      assertEquals(oldHash, p.hashCode());
       p.scramble(indexes);
       assertEquals(0, p.get(0));
     }
@@ -55,9 +57,11 @@ public class PermutationNoncontiguousScrambleTests {
       shouldChange[indexes[0]] = shouldChange[indexes[1]] = true;
       Permutation p = new Permutation(n, 0);
       Permutation p0 = new Permutation(p);
+      assertEquals(p0.hashCode(), p.hashCode());
       p.scramble(indexes, r2);
       assertEquals(0, p.get(n - 1));
       assertEquals(n - 1, p.get(0));
+      assertNotEquals(p0.hashCode(), p.hashCode());
       for (int i = 0; i < n; i++) {
         if (!shouldChange[i]) {
           assertEquals(p0.get(i), p.get(i));

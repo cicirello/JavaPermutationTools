@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -155,6 +155,7 @@ public class PermutationConstructorRelatedTests extends SharedTestHelpersPermuta
         Permutation copy = new Permutation(p);
         assertEquals(p, copy);
         assertEquals(p.hashCode(), copy.hashCode());
+        assertEquals(p.hashCode(), copy.hashCode());
       }
     }
   }
@@ -167,6 +168,7 @@ public class PermutationConstructorRelatedTests extends SharedTestHelpersPermuta
         Permutation copy = p.copy();
         assertEquals(p, copy);
         assertTrue(p != copy);
+        assertEquals(p.hashCode(), copy.hashCode());
         assertEquals(p.hashCode(), copy.hashCode());
       }
     }

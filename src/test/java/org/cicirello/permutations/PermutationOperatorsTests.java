@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,6 +23,7 @@ package org.cicirello.permutations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for the applyThenValidate and apply methods of the Permutation class. */
@@ -45,7 +46,8 @@ public class PermutationOperatorsTests {
 
   @Test
   public void testUnaryOperator() {
-    Permutation p = new Permutation(10);
+    Permutation p = new Permutation(10, new SplittableRandom(42));
+    int oldHash = p.hashCode();
     p.apply(
         perm -> {
           for (int i = 0; i < perm.length; i++) {
@@ -55,6 +57,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     p.apply(
         perm -> {
           for (int i = 0; i < perm.length; i++) {
@@ -64,11 +67,13 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(9 - i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
   }
 
   @Test
   public void testValidatedUnaryOperator() {
-    final Permutation p = new Permutation(10);
+    final Permutation p = new Permutation(10, new SplittableRandom(42));
+    int oldHash = p.hashCode();
     p.applyThenValidate(
         perm -> {
           for (int i = 0; i < perm.length; i++) {
@@ -78,6 +83,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     p.applyThenValidate(
         perm -> {
           for (int i = 0; i < perm.length; i++) {
@@ -87,6 +93,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(9 - i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     IllegalPermutationStateException thrown =
         assertThrows(
             IllegalPermutationStateException.class,
@@ -102,8 +109,10 @@ public class PermutationOperatorsTests {
 
   @Test
   public void testBinaryOperator() {
-    Permutation p1 = new Permutation(10);
-    Permutation p2 = new Permutation(10);
+    Permutation p1 = new Permutation(10, new SplittableRandom(42));
+    int oldHash1 = p1.hashCode();
+    Permutation p2 = new Permutation(10, new SplittableRandom(73));
+    int oldHash2 = p2.hashCode();
     p1.apply(
         (perm1, perm2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -116,6 +125,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p1.get(i));
       assertEquals(9 - i, p2.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     p1.apply(
         (perm1, perm2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -128,12 +139,16 @@ public class PermutationOperatorsTests {
       assertEquals(i, p2.get(i));
       assertEquals(9 - i, p1.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
   }
 
   @Test
   public void testValidatedBinaryOperator() {
-    final Permutation p1 = new Permutation(10);
-    final Permutation p2 = new Permutation(10);
+    final Permutation p1 = new Permutation(10, new SplittableRandom(42));
+    int oldHash1 = p1.hashCode();
+    final Permutation p2 = new Permutation(10, new SplittableRandom(73));
+    int oldHash2 = p2.hashCode();
     p1.applyThenValidate(
         (perm1, perm2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -146,6 +161,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p1.get(i));
       assertEquals(9 - i, p2.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     p1.applyThenValidate(
         (perm1, perm2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -158,6 +175,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p2.get(i));
       assertEquals(9 - i, p1.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     IllegalPermutationStateException thrown =
         assertThrows(
             IllegalPermutationStateException.class,
@@ -175,7 +194,8 @@ public class PermutationOperatorsTests {
 
   @Test
   public void testFullUnaryOperator() {
-    Permutation p = new Permutation(10);
+    Permutation p = new Permutation(10, new SplittableRandom(42));
+    int oldHash = p.hashCode();
     p.apply(
         (perm, original) -> {
           for (int i = 0; i < perm.length; i++) {
@@ -186,6 +206,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     p.apply(
         (perm, original) -> {
           for (int i = 0; i < perm.length; i++) {
@@ -196,11 +217,13 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(9 - i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
   }
 
   @Test
   public void testValidatedFullUnaryOperator() {
-    final Permutation p = new Permutation(10);
+    final Permutation p = new Permutation(10, new SplittableRandom(42));
+    int oldHash = p.hashCode();
     p.applyThenValidate(
         (perm, original) -> {
           for (int i = 0; i < perm.length; i++) {
@@ -211,6 +234,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     p.applyThenValidate(
         (perm, original) -> {
           for (int i = 0; i < perm.length; i++) {
@@ -221,6 +245,7 @@ public class PermutationOperatorsTests {
     for (int i = 0; i < 10; i++) {
       assertEquals(9 - i, p.get(i));
     }
+    assertNotEquals(oldHash, p.hashCode());
     IllegalPermutationStateException thrown =
         assertThrows(
             IllegalPermutationStateException.class,
@@ -236,8 +261,10 @@ public class PermutationOperatorsTests {
 
   @Test
   public void testFullBinaryOperator() {
-    Permutation p1 = new Permutation(10);
-    Permutation p2 = new Permutation(10);
+    Permutation p1 = new Permutation(10, new SplittableRandom(42));
+    int oldHash1 = p1.hashCode();
+    Permutation p2 = new Permutation(10, new SplittableRandom(73));
+    int oldHash2 = p2.hashCode();
     p1.apply(
         (perm1, perm2, o1, o2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -252,6 +279,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p1.get(i));
       assertEquals(9 - i, p2.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     p1.apply(
         (perm1, perm2, o1, o2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -266,12 +295,16 @@ public class PermutationOperatorsTests {
       assertEquals(i, p2.get(i));
       assertEquals(9 - i, p1.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
   }
 
   @Test
   public void testValidatedFullBinaryOperator() {
-    final Permutation p1 = new Permutation(10);
-    final Permutation p2 = new Permutation(10);
+    final Permutation p1 = new Permutation(10, new SplittableRandom(42));
+    int oldHash1 = p1.hashCode();
+    final Permutation p2 = new Permutation(10, new SplittableRandom(73));
+    int oldHash2 = p2.hashCode();
     p1.applyThenValidate(
         (perm1, perm2, o1, o2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -286,6 +319,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p1.get(i));
       assertEquals(9 - i, p2.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     p1.applyThenValidate(
         (perm1, perm2, o1, o2) -> {
           for (int i = 0; i < perm1.length; i++) {
@@ -300,6 +335,8 @@ public class PermutationOperatorsTests {
       assertEquals(i, p2.get(i));
       assertEquals(9 - i, p1.get(i));
     }
+    assertNotEquals(oldHash1, p1.hashCode());
+    assertNotEquals(oldHash2, p2.hashCode());
     IllegalPermutationStateException thrown =
         assertThrows(
             IllegalPermutationStateException.class,

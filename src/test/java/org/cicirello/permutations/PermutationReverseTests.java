@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,6 +23,7 @@ package org.cicirello.permutations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for reversing a Permutation. */
@@ -38,26 +39,35 @@ public class PermutationReverseTests {
   @Test
   public void testReverseComplete() {
     for (int n = 1; n <= 8; n *= 2) {
-      Permutation p = new Permutation(n);
+      Permutation p = new Permutation(n, new SplittableRandom(42));
       Permutation copy = new Permutation(p);
+      assertEquals(p.hashCode(), copy.hashCode());
       copy.reverse();
       for (int i = 0; i < n; i++) {
         assertEquals(p.get(i), copy.get(n - 1 - i));
+      }
+      if (n >= 2) {
+        assertNotEquals(p.hashCode(), copy.hashCode());
       }
     }
   }
 
   @Test
   public void testReverseSub() {
-    Permutation p = new Permutation(8);
+    Permutation p = new Permutation(8, new SplittableRandom(42));
     for (int j = 0; j < p.length(); j++) {
       for (int k = j + 1; k < p.length(); k++) {
         Permutation copy = new Permutation(p);
+        assertEquals(p.hashCode(), copy.hashCode());
         copy.reverse(j, k);
         validateReversal(p, copy, j, k);
+        assertNotEquals(p.hashCode(), copy.hashCode());
+
         copy = new Permutation(p);
+        assertEquals(p.hashCode(), copy.hashCode());
         copy.reverse(k, j);
         validateReversal(p, copy, j, k);
+        assertNotEquals(p.hashCode(), copy.hashCode());
       }
     }
   }

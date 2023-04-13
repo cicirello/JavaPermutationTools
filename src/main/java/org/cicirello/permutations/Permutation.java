@@ -42,13 +42,26 @@ import org.cicirello.util.Copyable;
 public final class Permutation
     implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 2L;
 
   /**
    * Raw permutation, which should consist of a permutation of the integers in [0,
    * permutation.length).
    */
   private final int[] permutation;
+
+  /*
+   * Class caches the hashCode the first time hashCode() is called
+   * to avoid cost of recomputing in applications that rely on HashSets or HashMaps
+   * of Permutations, etc with heavy use of the hashCode.
+   */
+  private transient int hashCode;
+
+  /*
+   * Flag for validating/invalidating cache of hashCode. All methods
+   * that change state of Permutation must invalidate the cache.
+   */
+  private transient boolean hashCodeIsCached;
 
   /**
    * Initializes a random permutation of n integers. Uses {@link ThreadLocalRandom} as the source of
@@ -159,6 +172,8 @@ public final class Permutation
    */
   public Permutation(Permutation p) {
     permutation = p.permutation.clone();
+    hashCodeIsCached = p.hashCodeIsCached;
+    hashCode = p.hashCode;
   }
 
   /**
@@ -197,6 +212,7 @@ public final class Permutation
    */
   public void apply(PermutationUnaryOperator operator) {
     operator.apply(permutation);
+    hashCodeIsCached = false;
   }
 
   /**
@@ -206,6 +222,7 @@ public final class Permutation
    */
   public void apply(PermutationFullUnaryOperator operator) {
     operator.apply(permutation, this);
+    hashCodeIsCached = false;
   }
 
   /**
@@ -218,6 +235,8 @@ public final class Permutation
    */
   public void apply(PermutationBinaryOperator operator, Permutation other) {
     operator.apply(permutation, other.permutation);
+    hashCodeIsCached = false;
+    other.hashCodeIsCached = false;
   }
 
   /**
@@ -230,6 +249,8 @@ public final class Permutation
    */
   public void apply(PermutationFullBinaryOperator operator, Permutation other) {
     operator.apply(permutation, other.permutation, this, other);
+    hashCodeIsCached = false;
+    other.hashCodeIsCached = false;
   }
 
   /**
@@ -243,6 +264,7 @@ public final class Permutation
   public void applyThenValidate(PermutationUnaryOperator operator) {
     try {
       operator.apply(permutation);
+      hashCodeIsCached = false;
       validate(permutation);
     } catch (IllegalArgumentException exception) {
       throw new IllegalPermutationStateException(
@@ -261,6 +283,7 @@ public final class Permutation
   public void applyThenValidate(PermutationFullUnaryOperator operator) {
     try {
       operator.apply(permutation, this);
+      hashCodeIsCached = false;
       validate(permutation);
     } catch (IllegalArgumentException exception) {
       throw new IllegalPermutationStateException(
@@ -282,6 +305,8 @@ public final class Permutation
   public void applyThenValidate(PermutationBinaryOperator operator, Permutation other) {
     try {
       operator.apply(permutation, other.permutation);
+      hashCodeIsCached = false;
+      other.hashCodeIsCached = false;
       validate(permutation);
       validate(other.permutation);
     } catch (IllegalArgumentException exception) {
@@ -305,6 +330,8 @@ public final class Permutation
   public void applyThenValidate(PermutationFullBinaryOperator operator, Permutation other) {
     try {
       operator.apply(permutation, other.permutation, this, other);
+      hashCodeIsCached = false;
+      other.hashCodeIsCached = false;
       validate(permutation);
       validate(other.permutation);
     } catch (IllegalArgumentException exception) {
@@ -413,6 +440,7 @@ public final class Permutation
    */
   public void invert() {
     System.arraycopy(getInverse(), 0, permutation, 0, permutation.length);
+    hashCodeIsCached = false;
   }
 
   /**
@@ -444,6 +472,7 @@ public final class Permutation
           permutation[j] = i;
         }
       }
+      hashCodeIsCached = false;
     }
   }
 
@@ -471,13 +500,14 @@ public final class Permutation
       for (int i = permutation.length - 1; i > 1; i--) {
         int j = RandomIndexer.nextInt(i + 1, r);
         if (i != j) {
-          swap(i, j);
+          internalSwap(i, j);
           changed = true;
         }
       }
       if (permutation.length > 1 && (!changed || r.nextBoolean())) {
-        swap(0, 1);
+        internalSwap(0, 1);
       }
+      hashCodeIsCached = false;
     } else {
       scramble(r);
     }
@@ -509,22 +539,23 @@ public final class Permutation
     if (i == j) {
       return;
     }
+    int k = j;
     if (i > j) {
-      int temp = i;
+      k = i;
       i = j;
-      j = temp;
     }
     boolean changed = false;
-    for (int k = j; k > i + 1; k--) {
+    for (; k > i + 1; k--) {
       int l = i + RandomIndexer.nextInt(k - i + 1, r);
       if (l != k) {
-        swap(l, k);
+        internalSwap(l, k);
         changed = true;
       }
     }
     if (!changed || r.nextBoolean()) {
-      swap(i, i + 1);
+      internalSwap(i, i + 1);
     }
+    hashCodeIsCached = false;
   }
 
   /**
@@ -544,13 +575,14 @@ public final class Permutation
       for (int j = indexes.length - 1; j > 1; j--) {
         int i = RandomIndexer.nextInt(j + 1, r);
         if (i != j) {
-          swap(indexes[i], indexes[j]);
+          internalSwap(indexes[i], indexes[j]);
           changed = true;
         }
       }
       if (!changed || r.nextBoolean()) {
-        swap(indexes[0], indexes[1]);
+        internalSwap(indexes[0], indexes[1]);
       }
+      hashCodeIsCached = false;
     }
   }
 
@@ -667,6 +699,7 @@ public final class Permutation
     int temp = permutation[i];
     permutation[i] = permutation[j];
     permutation[j] = temp;
+    hashCodeIsCached = false;
   }
 
   /**
@@ -688,6 +721,7 @@ public final class Permutation
         permutation[indexes[i - 1]] = permutation[indexes[i]];
       }
       permutation[indexes[indexes.length - 1]] = temp;
+      hashCodeIsCached = false;
     }
   }
 
@@ -718,14 +752,16 @@ public final class Permutation
       System.arraycopy(permutation, b + 1, temp, k, m);
       System.arraycopy(permutation, a, temp, k + m, b - a + 1);
       System.arraycopy(temp, 0, permutation, a, temp.length);
+      hashCodeIsCached = false;
     }
   }
 
   /** Reverses the order of the elements in the permutation. */
   public void reverse() {
     for (int i = 0, j = permutation.length - 1; i < j; i++, j--) {
-      swap(i, j);
+      internalSwap(i, j);
     }
+    hashCodeIsCached = false;
   }
 
   /**
@@ -739,13 +775,14 @@ public final class Permutation
   public void reverse(int i, int j) {
     if (i > j) {
       for (; i > j; i--, j++) {
-        swap(i, j);
+        internalSwap(i, j);
       }
     } else {
       for (; i < j; i++, j--) {
-        swap(i, j);
+        internalSwap(i, j);
       }
     }
+    hashCodeIsCached = false;
   }
 
   /**
@@ -762,10 +799,12 @@ public final class Permutation
       int n = permutation[i];
       System.arraycopy(permutation, i + 1, permutation, i, j - i);
       permutation[j] = n;
+      hashCodeIsCached = false;
     } else if (i > j) {
       int n = permutation[i];
       System.arraycopy(permutation, j, permutation, j + 1, i - j);
       permutation[j] = n;
+      hashCodeIsCached = false;
     }
   }
 
@@ -784,6 +823,7 @@ public final class Permutation
       System.arraycopy(
           permutation, numPositions, permutation, 0, permutation.length - numPositions);
       System.arraycopy(temp, 0, permutation, permutation.length - numPositions, numPositions);
+      hashCodeIsCached = false;
     }
   }
 
@@ -809,11 +849,13 @@ public final class Permutation
       System.arraycopy(permutation, j, temp, 0, i - j);
       System.arraycopy(permutation, i, permutation, j, size);
       System.arraycopy(temp, 0, permutation, j + size, i - j);
+      hashCodeIsCached = false;
     } else { // Condition is implied by above: if (i < j)
       int[] temp = new int[size];
       System.arraycopy(permutation, i, temp, 0, size);
       System.arraycopy(permutation, i + size, permutation, i, j - i);
       System.arraycopy(temp, 0, permutation, j, size);
+      hashCodeIsCached = false;
     }
   }
 
@@ -831,6 +873,7 @@ public final class Permutation
     }
     validate(p);
     System.arraycopy(p, 0, permutation, 0, p.length);
+    hashCodeIsCached = false;
   }
 
   /**
@@ -892,7 +935,11 @@ public final class Permutation
    */
   @Override
   public int hashCode() {
-    return Arrays.hashCode(permutation);
+    if (hashCodeIsCached) {
+      return hashCode;
+    }
+    hashCodeIsCached = true;
+    return hashCode = Arrays.hashCode(permutation);
   }
 
   private boolean validate(int[] p) {
@@ -908,5 +955,16 @@ public final class Permutation
       inP[e] = true;
     }
     return true;
+  }
+
+  /*
+   * Use internally, such as from reverse, etc to avoid
+   * repeatedly invalidating hashCode cache (as well as from
+   * the PermutationIterator).
+   */
+  final void internalSwap(int i, int j) {
+    int temp = permutation[i];
+    permutation[i] = permutation[j];
+    permutation[j] = temp;
   }
 }
