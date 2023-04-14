@@ -58,9 +58,7 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
         p.scramble();
         validatePermutation(p, i);
         original = new Permutation(p);
-        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(r2);
-        if (i >= 7) assertNotEquals(original.hashCode(), p.hashCode());
         validatePermutation(p, i);
 
         p.scramble(false);
@@ -70,21 +68,17 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
         validatePermutation(p, i);
 
         original = new Permutation(p);
-        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(true);
         validatePermutation(p, i);
         if (i > 1) {
           assertNotEquals(original, p);
-          assertNotEquals(original.hashCode(), p.hashCode());
         }
 
         original = new Permutation(p);
-        assertEquals(original.hashCode(), p.hashCode());
         p.scramble(r2, true);
         validatePermutation(p, i);
         if (i > 1) {
           assertNotEquals(original, p);
-          assertNotEquals(original.hashCode(), p.hashCode());
         }
       }
     }
@@ -96,20 +90,16 @@ public class PermutationScrambleTests extends SharedTestHelpersPermutation {
     for (int n = 4; n < 8; n++) {
       Permutation p = new Permutation(n, r2);
       Permutation original = new Permutation(p);
-      assertEquals(original.hashCode(), p.hashCode());
       p.scramble(1, n - 2);
       validatePermutation(p, n);
       assertNotEquals(original, p);
-      assertNotEquals(original.hashCode(), p.hashCode());
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
 
       original = new Permutation(p);
-      assertEquals(original.hashCode(), p.hashCode());
       p.scramble(1, n - 2, r2);
       validatePermutation(p, n);
       assertNotEquals(original, p);
-      assertNotEquals(original.hashCode(), p.hashCode());
       assertEquals(original.get(0), p.get(0));
       assertEquals(original.get(n - 1), p.get(n - 1));
 

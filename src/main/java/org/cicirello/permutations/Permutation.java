@@ -539,10 +539,12 @@ public final class Permutation
     if (i == j) {
       return;
     }
-    int k = j;
+    int k;
     if (i > j) {
       k = i;
       i = j;
+    } else {
+      k = j;
     }
     boolean changed = false;
     for (; k > i + 1; k--) {
@@ -745,12 +747,12 @@ public final class Permutation
       // blocks are adjacent
       removeAndInsert(i, j - i + 1, a);
     } else {
-      int[] temp = new int[j - a + 1];
+      int[] temp = new int[j - b];
       int k = j - i + 1;
       System.arraycopy(permutation, i, temp, 0, k);
       int m = i - b - 1;
       System.arraycopy(permutation, b + 1, temp, k, m);
-      System.arraycopy(permutation, a, temp, k + m, b - a + 1);
+      System.arraycopy(permutation, a, permutation, a + temp.length, b - a + 1);
       System.arraycopy(temp, 0, permutation, a, temp.length);
       hashCodeIsCached = false;
     }
@@ -758,9 +760,7 @@ public final class Permutation
 
   /** Reverses the order of the elements in the permutation. */
   public void reverse() {
-    for (int i = 0, j = permutation.length - 1; i < j; i++, j--) {
-      internalSwap(i, j);
-    }
+    internalReverse(0, permutation.length - 1);
     hashCodeIsCached = false;
   }
 
@@ -774,13 +774,9 @@ public final class Permutation
    */
   public void reverse(int i, int j) {
     if (i > j) {
-      for (; i > j; i--, j++) {
-        internalSwap(i, j);
-      }
+      internalReverse(j, i);
     } else {
-      for (; i < j; i++, j--) {
-        internalSwap(i, j);
-      }
+      internalReverse(i, j);
     }
     hashCodeIsCached = false;
   }
@@ -955,6 +951,12 @@ public final class Permutation
       inP[e] = true;
     }
     return true;
+  }
+
+  private void internalReverse(int i, int j) {
+    for (; i < j; i++, j--) {
+      internalSwap(i, j);
+    }
   }
 
   /*
