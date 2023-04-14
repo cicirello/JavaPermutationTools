@@ -760,9 +760,7 @@ public final class Permutation
 
   /** Reverses the order of the elements in the permutation. */
   public void reverse() {
-    for (int i = 0, j = permutation.length - 1; i < j; i++, j--) {
-      internalSwap(i, j);
-    }
+    internalReverse(0, permutation.length - 1);
     hashCodeIsCached = false;
   }
 
@@ -776,13 +774,9 @@ public final class Permutation
    */
   public void reverse(int i, int j) {
     if (i > j) {
-      for (; i > j; i--, j++) {
-        internalSwap(i, j);
-      }
+      internalReverse(j, i);
     } else {
-      for (; i < j; i++, j--) {
-        internalSwap(i, j);
-      }
+      internalReverse(i, j);
     }
     hashCodeIsCached = false;
   }
@@ -957,6 +951,12 @@ public final class Permutation
       inP[e] = true;
     }
     return true;
+  }
+
+  private void internalReverse(int i, int j) {
+    for (; i < j; i++, j--) {
+      internalSwap(i, j);
+    }
   }
 
   /*
