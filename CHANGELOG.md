@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Optimized or otherwise refactored for code quality the scramble, reverse, and swapBlocks methods of the Permutation class.
 
 ### Deprecated
 
@@ -22,6 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [5.0.4] - 2023-04-14
+
+### Changed
+* Optimized or otherwise refactored for code quality the scramble, reverse, and swapBlocks methods of the Permutation class.
 
 
 ## [5.0.3] - 2023-04-13
