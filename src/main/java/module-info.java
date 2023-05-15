@@ -30,7 +30,7 @@
  * <p><a href="https://doi.org/10.21105/joss.00950"><img
  * src="http://joss.theoj.org/papers/10.21105/joss.00950/status.svg" alt="DOI:10.21105/joss.00950"
  * height="20" width="168"></a> <a
- * href="https://central.sonatype.com/search?namespace=org.cicirello&q=jpt"><img
+ * href="https://central.sonatype.com/artifact/org.cicirello/jpt/"><img
  * src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?logo=apachemaven" alt="Maven
  * Central" height="20" width="153"></a> <a
  * href="https://github.com/cicirello/JavaPermutationTools/releases"><img
@@ -53,7 +53,7 @@
  * <p>The <a href="https://github.com/cicirello/JavaPermutationTools" target=_top>source code</a> is
  * hosted on GitHub; and is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html"
  * target=_top>GNU General Public License Version 3 (GPLv3)</a>. The library's jar files are
- * regularly published to <a href="https://search.maven.org/artifact/org.cicirello/jpt"
+ * regularly published to <a href="https://central.sonatype.com/artifact/org.cicirello/jpt/"
  * target=_top>Maven Central</a>, from which it is easily imported into software projects using
  * Maven and other commonly used build tools. Additionally, there is a GitHub <a
  * href="https://github.com/cicirello/jpt-examples" target=_top>repository of example programs</a>
