@@ -70,8 +70,9 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
    * @throws IllegalArgumentException if any of the costs are negative.
    */
   public EditDistanceDouble(double insertCost, double deleteCost, double changeCost) {
-    if (insertCost < 0.0 || deleteCost < 0.0 || changeCost < 0.0)
+    if (insertCost < 0.0 || deleteCost < 0.0 || changeCost < 0.0) {
       throw new IllegalArgumentException("Costs must be non-negative.");
+    }
     insert_d = insertCost;
     delete_d = deleteCost;
     change_d = changeCost;
