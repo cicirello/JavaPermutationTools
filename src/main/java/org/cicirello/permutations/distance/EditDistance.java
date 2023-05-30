@@ -39,7 +39,9 @@ import org.cicirello.permutations.Permutation;
  * edit operation. We chose this as the default as it is equivalent to counting the number of
  * reinsertion operations necessary to transform one permutation into the other, known as
  * Reinsertion Distance. A reinsertion operation removes an element and reinserts it in a different
- * position, and is treated as a single composite operation.
+ * position, and is treated as a single composite operation. However, the {@link
+ * ReinsertionDistance} class provides an implementation of a specialized algorithm that is more
+ * efficient for this special case.
  *
  * <p>Runtime: O(n<sup>2</sup>), where n is the permutation length.
  *
@@ -57,9 +59,10 @@ import org.cicirello.permutations.Permutation;
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 public final class EditDistance implements PermutationDistanceMeasurerDouble {
-  private double insertCost;
-  private double deleteCost;
-  private double changeCost;
+
+  private final double insertCost;
+  private final double deleteCost;
+  private final double changeCost;
 
   /**
    * Constructs an EditDistance function.
@@ -67,8 +70,12 @@ public final class EditDistance implements PermutationDistanceMeasurerDouble {
    * @param insertCost Cost of an insertion operation.
    * @param deleteCost Cost of a deletion operation.
    * @param changeCost Cost of a change operation.
+   * @throws IllegalArgumentException if any of the costs are negative.
    */
   public EditDistance(double insertCost, double deleteCost, double changeCost) {
+    if (insertCost < 0.0 || deleteCost < 0.0 || changeCost < 0.0) {
+      throw new IllegalArgumentException("Costs must be non-negative.");
+    }
     this.insertCost = insertCost;
     this.deleteCost = deleteCost;
     this.changeCost = changeCost;
@@ -92,61 +99,29 @@ public final class EditDistance implements PermutationDistanceMeasurerDouble {
    */
   @Override
   public double distancef(Permutation p1, Permutation p2) {
-    int L1 = p1.length();
-    int L2 = p2.length();
-    if (L1 == L2 && L1 <= 1) return 0;
-    double[][] D = new double[L1 + 1][L2 + 1];
-    for (int i = 1; i <= L1; i++) {
+    int n = p1.length();
+    int m = p2.length();
+    if (n == m && n <= 1) return 0;
+    double[][] D = new double[n + 1][m + 1];
+    for (int i = 1; i <= n; i++) {
       D[i][0] = D[i - 1][0] + deleteCost;
     }
-    for (int j = 1; j <= L2; j++) {
+    for (int j = 1; j <= m; j++) {
       D[0][j] = D[0][j - 1] + insertCost;
     }
-    for (int i = 1; i <= L1; i++) {
-      for (int j = 1; j <= L2; j++) {
-        double m1 = D[i - 1][j - 1] + ((p1.get(i - 1) != p2.get(j - 1)) ? changeCost : 0);
-        double m2 = D[i - 1][j] + deleteCost;
-        double m3 = D[i][j - 1] + insertCost;
-        double min = m1;
-        if (m2 < min) min = m2;
-        if (m3 < min) min = m3;
-        D[i][j] = min;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= m; j++) {
+        D[i][j] =
+            min(
+                p1.get(i - 1) == p2.get(j - 1) ? D[i - 1][j - 1] : D[i - 1][j - 1] + changeCost,
+                D[i - 1][j] + deleteCost,
+                D[i][j - 1] + insertCost);
       }
     }
-    return D[L1][L2];
+    return D[n][m];
   }
 
-  /* // REMOVED FOR NOW
-   * The maxf method is not currently unsupported when computing
-   * edit distance.
-   *
-   * @throws UnsupportedOperationException If this method is invoked.
-   */
-  // @Override
-  // public double maxf(int length) {
-  // throw new UnsupportedOperationException("Unimplemented.");
-  /* // This is close but doesn't work.  Might be too complex to be worth computing here.
-  if (length <= 1) return 0;
-  double combined = insertCost + deleteCost;
-  if (combined <= changeCost) {
-  	return (length-1)*combined;
+  private double min(double m1, double m2, double m3) {
+    return Math.min(m1 < m2 ? m1 : m2, m3);
   }
-  if ((length & 1) == 0) {
-  	double m1 = (length-1)*combined;
-  	double m2 = length*changeCost;
-  	double m3 = combined + (length-2)*changeCost;
-  	double max = m1 < m2 ? m1 : m2;
-  	if (m3 < max) max = m3;
-  	return max;
-  } else {
-  	double m = (length-1)*changeCost;
-  	double m1 = (length-2)*combined;
-  	double m2 = length*changeCost;
-  	double m3 = combined + (length-2)*changeCost;
-  	double max = m1 < m2 ? m1 : m2;
-  	if (m3 < max) max = m3;
-  	return m > max ? m : max;
-  } */
-  // }
-
 }

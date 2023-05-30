@@ -30,6 +30,17 @@ import org.junit.jupiter.api.*;
 public class EditDistanceTests extends SharedTestForPermutationDistanceDouble {
 
   @Test
+  public void testEditDistanceExceptions() {
+    IllegalArgumentException illegal =
+        assertThrows(IllegalArgumentException.class, () -> new EditDistance(-1, 0, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, -1, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, 0, -1));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(-0.01, 0, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, -0.01, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, 0, -0.01));
+  }
+
+  @Test
   public void testIdenticalPermutations() {
     EditDistance d = new EditDistance();
     identicalPermutationsDouble(d);
