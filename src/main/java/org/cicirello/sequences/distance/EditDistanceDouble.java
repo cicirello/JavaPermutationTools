@@ -26,8 +26,8 @@ import java.util.List;
 /**
  * EditDistanceDouble is an implementation of Wagner and Fischer's dynamic programming algorithm for
  * computing string edit distance. This class supports double-valued costs, while the {@link
- * EditDistance} class supports int-valued costs. If your costs are
- * int-valued, the {@link EditDistance} class may be slightly faster, but not asymptotically faster.
+ * EditDistance} class supports int-valued costs. If your costs are int-valued, the {@link
+ * EditDistance} class may be slightly faster, but not asymptotically faster.
  *
  * <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which
  * is the sum of the costs of the edit operations necessary to do so. This edit distance considers 3
