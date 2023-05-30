@@ -25,15 +25,21 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.*;
 
-/** JUnit tests for EditDistance. */
-public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
+/** JUnit tests for EditDistanceDouble. */
+public class EditDistanceDoubleTests extends InternalTestHelpersSequenceDistance {
 
   @Test
-  public void testEditDistanceExceptions() {
+  public void testEditDistanceDoubleExceptions() {
     IllegalArgumentException illegal =
-        assertThrows(IllegalArgumentException.class, () -> new EditDistance(-1, 0, 0));
-    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, -1, 0));
-    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistance(0, 0, -1));
+        assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(-1, 0, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(0, -1, 0));
+    illegal = assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(0, 0, -1));
+    illegal =
+        assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(-0.01, 0, 0));
+    illegal =
+        assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(0, -0.01, 0));
+    illegal =
+        assertThrows(IllegalArgumentException.class, () -> new EditDistanceDouble(0, 0, -0.01));
   }
 
   @Test
@@ -42,15 +48,11 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       "a", "b", "a", "c", "a", "d", "a", "e", "a", "f", "a", "h", "a", "i", "a", "j", "a"
     };
     String[] s2 = {"k", "a", "m", "n", "o", "p", "a", "l", "a", "a", "q", "a", "a", "a", "a"};
-    EditDistance d = new EditDistance(1, 1, 2);
-    assertEquals(16, d.distance(s1, s2));
+    EditDistanceDouble d = new EditDistanceDouble(1, 1, 2);
     assertEquals(16.0, d.distancef(s1, s2));
-    assertEquals(16, d.distance(toList(s1), toList(s2)));
     assertEquals(16.0, d.distancef(toList(s1), toList(s2)));
-    d = new EditDistance(3, 3, 6);
-    assertEquals(48, d.distance(s1, s2));
+    d = new EditDistanceDouble(3, 3, 6);
     assertEquals(48.0, d.distancef(s1, s2));
-    assertEquals(48, d.distance(toList(s1), toList(s2)));
     assertEquals(48.0, d.distancef(toList(s1), toList(s2)));
 
     String[] s3 = {
@@ -61,13 +63,11 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       "b", "b", "b", "b", "b", "b", "c", "d", "e", "f", "b", "b", "b", "b", "b", "b", "c", "d", "e",
       "f", "b", "b", "b", "b", "b"
     };
-    d = new EditDistance(2, 2, 3);
-    assertEquals(45, d.distance(s3, s4));
+    d = new EditDistanceDouble(2, 2, 3);
     assertEquals(45.0, d.distancef(s3, s4));
-    assertEquals(45, d.distance(toList(s3), toList(s4)));
     assertEquals(45.0, d.distancef(toList(s3), toList(s4)));
 
-    d = new EditDistance(3, 3, 6);
+    d = new EditDistanceDouble(3, 3, 6);
     NonComparable[] c1 = new NonComparable[17];
     for (int i = 0; i < 17; i++) {
       c1[i] = (i % 2) == 0 ? new NonComparable(0) : new NonComparable(i);
@@ -76,52 +76,53 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
     for (int i = 0; i < 16; i++) {
       c2[i] = (i % 2 == 0) ? new NonComparable(100 + i) : new NonComparable(0);
     }
-    assertEquals(51, d.distance(c1, c2));
-    assertEquals(51, d.distance(toList(c1), toList(c2)));
+    assertEquals(51, d.distancef(c1, c2));
+    assertEquals(51, d.distancef(toList(c1), toList(c2)));
   }
 
   @Test
   public void testIdentical() {
-    EditDistance d = new EditDistance(1, 2, 10);
-    identicalSequences(d);
+    EditDistanceDouble d = new EditDistanceDouble(1, 2, 10);
     identicalSequencesD(d);
-    d = new EditDistance(2, 1, 10);
-    identicalSequences(d);
+    d = new EditDistanceDouble(1.0, 2.0, 10.0);
     identicalSequencesD(d);
-    d = new EditDistance(3, 2, 1);
-    identicalSequences(d);
+    d = new EditDistanceDouble(2, 1, 10);
     identicalSequencesD(d);
-    d = new EditDistance(4, 5, 2);
-    identicalSequences(d);
+    d = new EditDistanceDouble(3, 2, 1);
+    identicalSequencesD(d);
+    d = new EditDistanceDouble(4, 5, 2);
+    identicalSequencesD(d);
+    d = new EditDistanceDouble(4.2, 5.2, 2.2);
+    identicalSequencesD(d);
+    d = new EditDistanceDouble(3.2, 2.2, 1.2);
+    identicalSequencesD(d);
+    d = new EditDistanceDouble(2.2, 1.2, 10.2);
+    identicalSequencesD(d);
+    d = new EditDistanceDouble(1.2, 2.2, 10.2);
     identicalSequencesD(d);
   }
 
   @Test
-  public void testEditDistance() {
+  public void testEditDistanceDouble() {
     int cost_i = 1;
     int cost_d = 1;
     // lcs of next pair is 8... lengths 17 and 15
     String s1 = "abacadaeafahaiaja";
     String s2 = "kamnopalaaqaaaa";
-    EditDistance d = new EditDistance(cost_i, cost_d, cost_i + cost_d);
-    assertEquals(16, d.distance(s1, s2));
+    EditDistanceDouble d = new EditDistanceDouble(cost_i, cost_d, cost_i + cost_d);
     assertEquals(16.0, d.distancef(s1, s2));
     char[] a1 = s1.toCharArray();
     char[] a2 = s2.toCharArray();
-    assertEquals(16, d.distance(a1, a2));
     assertEquals(16.0, d.distancef(a1, a2));
     cost_i = 3;
     cost_d = 3;
-    EditDistance d2 = new EditDistance(cost_i, cost_d, cost_i + cost_d);
-    assertEquals(48, d2.distance(s1, s2));
+    EditDistanceDouble d2 = new EditDistanceDouble(cost_i, cost_d, cost_i + cost_d);
     assertEquals(48.0, d2.distancef(s1, s2));
     {
       boolean[] b1 = {true, false, true, false, true, false, true, true, true, true, true, true};
       boolean[] b2 = {false, false, true, true, true, false, false, false};
       // lcs is 5... lengths are 12 and 8
-      assertEquals(10, d.distance(b1, b2));
       assertEquals(10.0, d.distancef(b1, b2));
-      assertEquals(30, d2.distance(b1, b2));
       assertEquals(30.0, d2.distancef(b1, b2));
     }
     { // int
@@ -133,9 +134,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
     { // long
@@ -147,9 +146,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
     { // short
@@ -161,9 +158,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = (short) a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
     { // byte
@@ -175,9 +170,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = (byte) a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
     { // double
@@ -189,9 +182,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
     { // float
@@ -203,9 +194,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(16, d.distance(b1, b2));
       assertEquals(16.0, d.distancef(b1, b2));
-      assertEquals(48, d2.distance(b1, b2));
       assertEquals(48.0, d2.distancef(b1, b2));
     }
 
@@ -214,12 +203,10 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
     cost_i = 2;
     cost_d = 2;
     int cost_c = 3;
-    d = new EditDistance(cost_i, cost_d, cost_c);
-    assertEquals(45, d.distance(s1, s2));
+    d = new EditDistanceDouble(cost_i, cost_d, cost_c);
     assertEquals(45.0, d.distancef(s1, s2));
     a1 = s1.toCharArray();
     a2 = s2.toCharArray();
-    assertEquals(45, d.distance(a1, a2));
     assertEquals(45.0, d.distancef(a1, a2));
     { // int
       int[] b1 = new int[a1.length];
@@ -230,7 +217,6 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
     { // long
@@ -242,7 +228,6 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
     { // short
@@ -254,7 +239,6 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = (short) a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
     { // byte
@@ -266,7 +250,6 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = (byte) a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
     { // double
@@ -278,7 +261,6 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
     { // float
@@ -290,9 +272,14 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
       for (int i = 0; i < b2.length; i++) {
         b2[i] = a2[i];
       }
-      assertEquals(45, d.distance(b1, b2));
       assertEquals(45.0, d.distancef(b1, b2));
     }
+    EditDistanceDouble dist1 = new EditDistanceDouble(1.1, 2.0, 2.0);
+    EditDistanceDouble dist2 = new EditDistanceDouble(2.0, 1.1, 2.0);
+    EditDistanceDouble dist3 = new EditDistanceDouble(2.0, 2.0, 1.1);
+    assertEquals(1.1, dist1.distancef("a", "ab"));
+    assertEquals(1.1, dist2.distancef("ab", "a"));
+    assertEquals(1.1, dist3.distancef("a", "b"));
   }
 
   private void identicalSequencesD(SequenceDistanceMeasurerDouble d) {
