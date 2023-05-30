@@ -79,109 +79,78 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
 
   @Override
   public final double distancef(int[] s1, int[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(long[] s1, long[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(short[] s1, short[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(byte[] s1, byte[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(char[] s1, char[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(boolean[] s1, boolean[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(double[] s1, double[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(float[] s1, float[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
   @Override
   public final double distancef(String s1, String s2) {
-    return distancef(
-        s1.length(),
-        s2.length(),
-        (i, j, costIfSame) -> s1.charAt(i) == s2.charAt(j) ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length(), s2.length(), (i, j) -> s1.charAt(i) == s2.charAt(j));
   }
 
   @Override
   public final double distancef(Object[] s1, Object[] s2) {
-    return distancef(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i].equals(s2[j]) ? costIfSame : costIfSame + change_d);
+    return distancef(s1.length, s2.length, (i, j) -> s1[i].equals(s2[j]));
   }
 
   @Override
   public final <T> double distancef(List<T> s1, List<T> s2) {
-    return distancef(s1.toArray(), s2.toArray());
+    return distancef(s1.size(), s2.size(), (i, j) -> s1.get(i).equals(s2.get(j)));
   }
 
   @FunctionalInterface
-  private interface ChangeCost {
+  private interface Equals {
     /**
-     * Computes cost of change.
+     * Checks if elements are the same.
      *
      * @param i Index into first sequence.
      * @param j Index into second sequence.
-     * @param costIfSame The cost if the elements are the same.
-     * @return Cost for a change.
+     * @return true if and only if the corresponding elements are equal.
      */
-    double apply(int i, int j, double valueIfSame);
+    boolean same(int i, int j);
   }
 
-  private double distancef(int n, int m, ChangeCost coster) {
+  private double distancef(int n, int m, Equals compare) {
     double[][] D = initD(n, m);
     for (int i = 1; i <= n; i++) {
       for (int j = 1; j <= m; j++) {
         D[i][j] =
             min(
-                coster.apply(i - 1, j - 1, D[i - 1][j - 1]),
+                compare.same(i - 1, j - 1) ? D[i - 1][j - 1] : D[i - 1][j - 1] + change_d,
                 D[i - 1][j] + delete_d,
                 D[i][j - 1] + insert_d);
       }
@@ -201,7 +170,6 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
   }
 
   private double min(double m1, double m2, double m3) {
-    if (m2 < m1) m1 = m2;
-    return m3 < m1 ? m3 : m1;
+    return Math.min(m1 < m2 ? m1 : m2, m3);
   }
 }
