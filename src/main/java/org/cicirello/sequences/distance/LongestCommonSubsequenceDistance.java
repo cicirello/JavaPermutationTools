@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -42,7 +42,7 @@ package org.cicirello.sequences.distance;
  * length, common set of elements, and unique elements properties of permutations to more
  * efficiently (in O(n lg n) time) compute the longest common subpermutation (i.e., that class does
  * not delegate the work to the edit distance algorithm). However, the result of ReinsertionDistance
- * is half of what LongestCommonSunsequenceDistance would compute. This is because for permutations
+ * is half of what LongestCommonSubsequenceDistance would compute. This is because for permutations
  * the elements that would be inserted are exactly the same as those that would be deleted by the
  * edit operations, and ReinsertionDistance is defined as an edit distance with one edit operation,
  * removal/reinsertion (i.e., a deletion is only half the operation, and the insertion is the other
