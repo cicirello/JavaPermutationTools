@@ -42,6 +42,7 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="class-use/EditDistance.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -101,15 +102,13 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 
  <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which
  is the sum of the costs of the edit operations necessary to do so. This edit distance considers 3
- edit operations: Inserts which insert a new element into the sequence, Deletes which remove an
+ edit operations: Inserts which inserts a new element into the sequence, Deletes which removes an
  element from the sequence, and Changes which replace an element with a different element.
 
- <p>The edit distance is parameterized by costs for the edit operations. We provide two
- constructors which enable you to specify 3 costs, 1 for each type of edit operation. One of the
- constructors expects integer costs, and the other double valued costs. If you specify costs as
- integers, then all of the distance and distancef methods from the <a href="SequenceDistanceMeasurer.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurer</code></a> and <a href="SequenceDistanceMeasurerDouble.html" title="interface in org.cicirello.sequences.distance"><code>SequenceDistanceMeasurerDouble</code></a>
- interfaces are available. If costs are specified as doubles, then only the distancef methods will
- function, while the distance methods will throw exceptions.
+ <p>The edit distance is parameterized by costs for the edit operations. The class provides a
+ constructor which enables you to specify 3 costs as ints, 1 for each type of edit operation. If
+ your application requires non-integer costs, then use the <a href="EditDistanceDouble.html" title="class in org.cicirello.sequences.distance"><code>EditDistanceDouble</code></a> class which
+ defines the costs as doubles, but is otherwise an implementation of the same algorithm.
 
  <p>This class supports computing EditDistance for Java String objects or arrays of any of the
  primitive types, or arrays of objects. It makes no assumptions about the contents of the Strings
@@ -141,7 +140,9 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
  double&nbsp;deleteCost,
  double&nbsp;changeCost)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs an edit distance measure with the specified edit operation costs.</div>
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">For double-valued costs, use the <a href="EditDistanceDouble.html" title="class in org.cicirello.sequences.distance"><code>EditDistanceDouble</code></a> class instead.</div>
+</div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,int,int)" class="member-name-link">EditDistance</a><wbr>(int&nbsp;insertCost,
  int&nbsp;deleteCost,
@@ -255,9 +256,13 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <li>
 <section class="detail" id="&lt;init&gt;(double,double,double)">
 <h3>EditDistance</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EditDistance</span><wbr><span class="parameters">(double&nbsp;insertCost,
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">EditDistance</span><wbr><span class="parameters">(double&nbsp;insertCost,
  double&nbsp;deleteCost,
  double&nbsp;changeCost)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">For double-valued costs, use the <a href="EditDistanceDouble.html" title="class in org.cicirello.sequences.distance"><code>EditDistanceDouble</code></a> class instead.</div>
+</div>
 <div class="block">Constructs an edit distance measure with the specified edit operation costs. With costs as
  doubles, all of the distancef methods that compute distance as double values are available. The
  distance methods that compute integer-valued distances may or may not be available if this
@@ -282,8 +287,7 @@ implements <a href="SequenceDistanceMeasurer.html" title="interface in org.cicir
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EditDistance</span><wbr><span class="parameters">(int&nbsp;insertCost,
  int&nbsp;deleteCost,
  int&nbsp;changeCost)</span></div>
-<div class="block">Constructs an edit distance measure with the specified edit operation costs. With integer
- costs, all of the distance and distancef methods are available.</div>
+<div class="block">Constructs an edit distance measure with the specified edit operation costs.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>insertCost</code> - Cost of an insertion operation. Must be non-negative.</dd>
