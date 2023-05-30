@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -30,6 +30,7 @@ import org.junit.jupiter.api.*;
 public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
 
   @Test
+  @SuppressWarnings("deprecation")
   public void testEditDistanceExceptions() {
     final EditDistance d = new EditDistance(1.5, 1.5, 1.5);
     UnsupportedOperationException thrown =
@@ -118,6 +119,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   public void testIdentical() {
     EditDistance d = new EditDistance(1, 2, 10);
     identicalSequences(d);
@@ -145,6 +147,7 @@ public class EditDistanceTests extends InternalTestHelpersSequenceDistance {
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   public void testEditDistance() {
     int cost_i = 1;
     int cost_d = 1;

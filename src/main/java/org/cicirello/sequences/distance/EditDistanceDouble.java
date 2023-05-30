@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -26,9 +26,8 @@ import java.util.List;
 /**
  * EditDistanceDouble is an implementation of Wagner and Fischer's dynamic programming algorithm for
  * computing string edit distance. This class supports double-valued costs, while the {@link
- * EditDistance} class supports both double-valued as well as int-valued costs. If your costs are
- * int-valued, the {@link EditDistance} class may be slightly faster, but not asymptotically faster.
- * If your costs are double-valued, there should be no difference (one is a subclass of the other).
+ * EditDistance} class supports int-valued costs. If your costs are int-valued, the {@link
+ * EditDistance} class may be slightly faster, but not asymptotically faster.
  *
  * <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which
  * is the sum of the costs of the edit operations necessary to do so. This edit distance considers 3

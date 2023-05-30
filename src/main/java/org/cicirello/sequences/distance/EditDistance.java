@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -29,17 +29,13 @@ import java.util.List;
  *
  * <p>Edit distance is the minimum cost to transform one string (or sequence) into the other, which
  * is the sum of the costs of the edit operations necessary to do so. This edit distance considers 3
- * edit operations: Inserts which insert a new element into the sequence, Deletes which remove an
+ * edit operations: Inserts which inserts a new element into the sequence, Deletes which removes an
  * element from the sequence, and Changes which replace an element with a different element.
  *
- * <p>The edit distance is parameterized by costs for the edit operations. We provide two
- * constructors which enable you to specify 3 costs, 1 for each type of edit operation. One of the
- * constructors expects integer costs, and the other double valued costs. If you specify costs as
- * integers, then all of the distance and distancef methods from the {@link
- * org.cicirello.sequences.distance.SequenceDistanceMeasurer SequenceDistanceMeasurer} and {@link
- * org.cicirello.sequences.distance.SequenceDistanceMeasurerDouble SequenceDistanceMeasurerDouble}
- * interfaces are available. If costs are specified as doubles, then only the distancef methods will
- * function, while the distance methods will throw exceptions.
+ * <p>The edit distance is parameterized by costs for the edit operations. The class provides a
+ * constructor which enables you to specify 3 costs as ints, 1 for each type of edit operation. If
+ * your application requires non-integer costs, then use the {@link EditDistanceDouble} class which
+ * defines the costs as doubles, but is otherwise an implementation of the same algorithm.
  *
  * <p>This class supports computing EditDistance for Java String objects or arrays of any of the
  * primitive types, or arrays of objects. It makes no assumptions about the contents of the Strings
@@ -80,7 +76,9 @@ public class EditDistance extends EditDistanceDouble implements SequenceDistance
    * @param deleteCost Cost of an deletion operation. Must be non-negative.
    * @param changeCost Cost of an change operation. Must be non-negative.
    * @throws IllegalArgumentException if any of the costs are negative.
+   * @deprecated For double-valued costs, use the {@link EditDistanceDouble} class instead.
    */
+  @Deprecated
   public EditDistance(double insertCost, double deleteCost, double changeCost) {
     super(insertCost, deleteCost, changeCost);
     if (isIntAsDouble(insertCost) && isIntAsDouble(deleteCost) && isIntAsDouble(changeCost)) {
@@ -95,8 +93,7 @@ public class EditDistance extends EditDistanceDouble implements SequenceDistance
   }
 
   /**
-   * Constructs an edit distance measure with the specified edit operation costs. With integer
-   * costs, all of the distance and distancef methods are available.
+   * Constructs an edit distance measure with the specified edit operation costs.
    *
    * @param insertCost Cost of an insertion operation. Must be non-negative.
    * @param deleteCost Cost of an deletion operation. Must be non-negative.
