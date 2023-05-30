@@ -56,41 +56,11 @@ import java.util.List;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class EditDistance extends EditDistanceDouble implements SequenceDistanceMeasurer {
+public class EditDistance implements SequenceDistanceMeasurer {
 
-  private final int insert_i;
-  private final int delete_i;
-  private final int change_i;
-
-  /**
-   * Constructs an edit distance measure with the specified edit operation costs. With costs as
-   * doubles, all of the distancef methods that compute distance as double values are available. The
-   * distance methods that compute integer-valued distances may or may not be available if this
-   * constructor is used with double valued costs. If the costs are equal to integer values if cast
-   * to type double, then the distance methods will also function. Otherwise, they will throw an
-   * exception. For safety, it is recommended to only use the distancef methods if you use this
-   * constructor to pass costs as type double. If you desire integer valued distances, then use the
-   * other constructor to pass costs as ints.
-   *
-   * @param insertCost Cost of an insertion operation. Must be non-negative.
-   * @param deleteCost Cost of an deletion operation. Must be non-negative.
-   * @param changeCost Cost of an change operation. Must be non-negative.
-   * @throws IllegalArgumentException if any of the costs are negative.
-   * @deprecated For double-valued costs, use the {@link EditDistanceDouble} class instead.
-   */
-  @Deprecated
-  public EditDistance(double insertCost, double deleteCost, double changeCost) {
-    super(insertCost, deleteCost, changeCost);
-    if (isIntAsDouble(insertCost) && isIntAsDouble(deleteCost) && isIntAsDouble(changeCost)) {
-      insert_i = (int) insertCost;
-      delete_i = (int) deleteCost;
-      change_i = (int) changeCost;
-    } else {
-      // Use -1 on these to disallow use of distance (the one that returns an int)... make sure to
-      // throw an exception there
-      insert_i = delete_i = change_i = -1;
-    }
-  }
+  private final int insertCost;
+  private final int deleteCost;
+  private final int changeCost;
 
   /**
    * Constructs an edit distance measure with the specified edit operation costs.
@@ -101,199 +71,107 @@ public class EditDistance extends EditDistanceDouble implements SequenceDistance
    * @throws IllegalArgumentException if any of the costs are negative.
    */
   public EditDistance(int insertCost, int deleteCost, int changeCost) {
-    super(insertCost, deleteCost, changeCost);
-    insert_i = insertCost;
-    delete_i = deleteCost;
-    change_i = changeCost;
+    if (insertCost < 0 || deleteCost < 0 || changeCost < 0) {
+      throw new IllegalArgumentException("Costs must be non-negative.");
+    }
+    this.insertCost = insertCost;
+    this.deleteCost = deleteCost;
+    this.changeCost = changeCost;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(int[] s1, int[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(long[] s1, long[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(short[] s1, short[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(byte[] s1, byte[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(char[] s1, char[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(boolean[] s1, boolean[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(double[] s1, double[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(float[] s1, float[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i] == s2[j] ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i] == s2[j]);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(String s1, String s2) {
-    return distance(
-        s1.length(),
-        s2.length(),
-        (i, j, costIfSame) -> s1.charAt(i) == s2.charAt(j) ? costIfSame : costIfSame + change_i);
+    return distance(s1.length(), s2.length(), (i, j) -> s1.charAt(i) == s2.charAt(j));
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final int distance(Object[] s1, Object[] s2) {
-    return distance(
-        s1.length,
-        s2.length,
-        (i, j, costIfSame) -> s1[i].equals(s2[j]) ? costIfSame : costIfSame + change_i);
+    return distance(s1.length, s2.length, (i, j) -> s1[i].equals(s2[j]));
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @throws UnsupportedOperationException if costs were initialized with double values.
-   */
   @Override
   public final <T> int distance(List<T> s1, List<T> s2) {
-    return distance(s1.toArray(), s2.toArray());
+    return distance(s1.size(), s2.size(), (i, j) -> s1.get(i).equals(s2.get(j)));
   }
 
   @FunctionalInterface
-  private interface ChangeCost {
+  private interface Equals {
     /**
-     * Computes cost of change.
+     * Checks if elements are the same.
      *
      * @param i Index into first sequence.
      * @param j Index into second sequence.
-     * @param costIfSame The cost if the elements are the same.
-     * @return Cost for a change.
+     * @return true if and only if the corresponding elements are equal.
      */
-    int apply(int i, int j, int valueIfSame);
+    boolean same(int i, int j);
   }
 
-  private boolean isIntAsDouble(double d) {
-    return ((double) ((int) d)) == d;
-  }
-
-  private int distance(int n, int m, ChangeCost coster) {
+  private int distance(int n, int m, Equals compare) {
     int[][] D = initD(n, m);
     for (int i = 1; i <= n; i++) {
       for (int j = 1; j <= m; j++) {
         D[i][j] =
             min(
-                coster.apply(i - 1, j - 1, D[i - 1][j - 1]),
-                D[i - 1][j] + delete_i,
-                D[i][j - 1] + insert_i);
+                compare.same(i - 1, j - 1) ? D[i - 1][j - 1] : D[i - 1][j - 1] + changeCost,
+                D[i - 1][j] + deleteCost,
+                D[i][j - 1] + insertCost);
       }
     }
     return D[n][m];
   }
 
   private int[][] initD(int n, int m) {
-    if (insert_i < 0)
-      throw new UnsupportedOperationException(
-          "EditDistance.distance not supported for floating-point costs.");
     int[][] D = new int[n + 1][m + 1];
     for (int i = 1; i <= n; i++) {
-      D[i][0] = D[i - 1][0] + delete_i;
+      D[i][0] = D[i - 1][0] + deleteCost;
     }
     for (int j = 1; j <= m; j++) {
-      D[0][j] = D[0][j - 1] + insert_i;
+      D[0][j] = D[0][j - 1] + insertCost;
     }
     return D;
   }
 
   private int min(int m1, int m2, int m3) {
-    if (m2 < m1) m1 = m2;
-    return m3 < m1 ? m3 : m1;
+    return Math.min(m1 < m2 ? m1 : m2, m3);
   }
 }

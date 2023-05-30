@@ -55,11 +55,11 @@ import java.util.List;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
+public final class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
 
-  private final double insert_d;
-  private final double delete_d;
-  private final double change_d;
+  private final double insertCost;
+  private final double deleteCost;
+  private final double changeCost;
 
   /**
    * Constructs an edit distance measure with the specified edit operation costs.
@@ -73,9 +73,9 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
     if (insertCost < 0.0 || deleteCost < 0.0 || changeCost < 0.0) {
       throw new IllegalArgumentException("Costs must be non-negative.");
     }
-    insert_d = insertCost;
-    delete_d = deleteCost;
-    change_d = changeCost;
+    this.insertCost = insertCost;
+    this.deleteCost = deleteCost;
+    this.changeCost = changeCost;
   }
 
   @Override
@@ -151,9 +151,9 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
       for (int j = 1; j <= m; j++) {
         D[i][j] =
             min(
-                compare.same(i - 1, j - 1) ? D[i - 1][j - 1] : D[i - 1][j - 1] + change_d,
-                D[i - 1][j] + delete_d,
-                D[i][j - 1] + insert_d);
+                compare.same(i - 1, j - 1) ? D[i - 1][j - 1] : D[i - 1][j - 1] + changeCost,
+                D[i - 1][j] + deleteCost,
+                D[i][j - 1] + insertCost);
       }
     }
     return D[n][m];
@@ -162,10 +162,10 @@ public class EditDistanceDouble implements SequenceDistanceMeasurerDouble {
   private double[][] initD(int n, int m) {
     double[][] D = new double[n + 1][m + 1];
     for (int i = 1; i <= n; i++) {
-      D[i][0] = D[i - 1][0] + delete_d;
+      D[i][0] = D[i - 1][0] + deleteCost;
     }
     for (int j = 1; j <= m; j++) {
-      D[0][j] = D[0][j - 1] + insert_d;
+      D[0][j] = D[0][j - 1] + insertCost;
     }
     return D;
   }
