@@ -11,19 +11,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Deprecated
-* Deprecated double-valued costs constructor of EditDistance for arrays and other sequences, with the existing EditDistanceDouble class as its replacement. This constructor will be removed in the next major release, most likely sometime in the Fall of 2023. 
 
 ### Removed
 
 ### Fixed
 
 ### Dependencies
-* Bump core from 2.4.6 to 2.5.0
-* Bump rho-mu from 3.0.4 to 3.1.0
 
 ### CI/CD
 
 ### Other
+
+
+## [5.1.0] - 2023-05-30
+
+### Deprecated
+* Deprecated double-valued costs constructor of EditDistance for arrays and other sequences, with the existing EditDistanceDouble class as its replacement. This constructor will be removed in the next major release, most likely sometime in the Fall of 2023.
+
+### Dependencies
+* Bump core from 2.4.6 to 2.5.0
+* Bump rho-mu from 3.0.4 to 3.1.0 
 
 
 ## [5.0.4] - 2023-04-14
