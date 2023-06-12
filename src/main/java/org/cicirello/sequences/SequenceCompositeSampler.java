@@ -45,6 +45,10 @@ import org.cicirello.math.rand.RandomVariates;
  */
 public final class SequenceCompositeSampler implements SequenceSampler {
 
+  private final SequenceInsertionSampler insertion;
+  private final SequencePoolSampler pool;
+  private final SequenceReservoirSampler reservoir;
+
   private final EnhancedRandomGenerator r;
 
   /**
@@ -54,6 +58,10 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   public SequenceCompositeSampler(RandomGenerator r) {
     this.r = new EnhancedRandomGenerator(r);
+
+    insertion = new SequenceInsertionSampler(this.r, true);
+    pool = new SequencePoolSampler(this.r, true);
+    reservoir = new SequenceReservoirSampler(this.r, true);
   }
 
   /**
@@ -64,7 +72,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public int[] nextSample(int[] source, int k, int[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -75,7 +89,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public long[] nextSample(long[] source, int k, long[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -86,7 +106,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public short[] nextSample(short[] source, int k, short[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -97,7 +123,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public byte[] nextSample(byte[] source, int k, byte[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -108,7 +140,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public double[] nextSample(double[] source, int k, double[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -119,7 +157,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public float[] nextSample(float[] source, int k, float[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -130,7 +174,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public char[] nextSample(char[] source, int k, char[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -141,7 +191,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public char[] nextSample(String source, int k, char[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length()) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length()) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   /**
@@ -152,7 +208,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    */
   @Override
   public <T> T[] nextSample(T[] source, int k, T[] target) {
-    return sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return reservoir.nextSample(source, k, target);
+    }
+    if (k * k >= source.length) {
+      return pool.nextSample(source, k, target);
+    }
+    return insertion.nextSample(source, k, target);
   }
 
   @Override
@@ -341,10 +403,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static int[] sample(int[] source, int k, int[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -361,10 +426,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static long[] sample(long[] source, int k, long[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -381,10 +449,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static short[] sample(short[] source, int k, short[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -401,10 +472,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static byte[] sample(byte[] source, int k, byte[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -421,10 +495,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static char[] sample(char[] source, int k, char[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -458,10 +535,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static double[] sample(double[] source, int k, double[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -478,10 +558,13 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static float[] sample(float[] source, int k, float[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 
   /**
@@ -499,9 +582,12 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @throws NegativeArraySizeException if k &lt; 0
    */
   public static <T> T[] sample(T[] source, int k, T[] target, RandomGenerator r) {
-    if (k + k < source.length) {
-      if (k * k < source.length) return SequenceInsertionSampler.sample(source, k, target, r);
-      else return SequencePoolSampler.sample(source, k, target, r);
-    } else return SequenceReservoirSampler.sample(source, k, target, r);
+    if (k + k >= source.length) {
+      return SequenceReservoirSampler.sample(source, k, target, r);
+    }
+    if (k * k >= source.length) {
+      return SequencePoolSampler.sample(source, k, target, r);
+    }
+    return SequenceInsertionSampler.sample(source, k, target, r);
   }
 }

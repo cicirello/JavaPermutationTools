@@ -56,6 +56,17 @@ public final class SequencePoolSampler implements SequenceSampler {
   }
 
   /**
+   * package use only: creates an instance wrapping an existing EnhancedRandomGenerator
+   *
+   * @param r the source of randomness
+   * @param reserved currently does nothing, and only serves purpose of differentiating between this
+   *     internal constructor and the public constructor
+   */
+  SequencePoolSampler(EnhancedRandomGenerator r, boolean reserved) {
+    this.r = r;
+  }
+
+  /**
    * {@inheritDoc}
    *
    * @throws IllegalArgumentException if k &gt; source.length
