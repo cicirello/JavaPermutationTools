@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2023-05-30
+## [Unreleased] - 2023-06-12
 
 **Breaking Changes**: Due to breaking changes, the next release will be a major release (see the Removed section below for details). Timing of that major release will likely be in the Fall of 2023 to coincide with the planned transition to Java 21 upon its release.
 
@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
+* Bump rho-mu from 3.1.0 to 3.1.1
 
 ### CI/CD
 
