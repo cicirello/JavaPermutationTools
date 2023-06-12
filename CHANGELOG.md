@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 * Removed the previously deprecated (in v5.1.0) constructor `org.cicirello.sequences.distance.EditDistance(double, double, double)`. To compute edit distance with double-valued costs for arrays and other sequences, use the existing `EditDistanceDouble` class instead. This does not impact the class with the same name that computes edit distance for permutations (i.e., the `org.cicirello.permutations.distance.EditDistance` class still accepts doubles for the costs).
+* Removed default method implementations in SequenceSampler interface (all interface methods now implemented in the implementing classes).
 
 ### Fixed
 * SequenceSampler method implementations with probability p of sampling an element fixed to always use specified randomness source (previously incorrectly used default randomness source on some calls).
