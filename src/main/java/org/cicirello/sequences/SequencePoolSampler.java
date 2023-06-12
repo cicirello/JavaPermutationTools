@@ -164,7 +164,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static int[] sample(int[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -178,7 +178,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static long[] sample(long[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -192,7 +192,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static short[] sample(short[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -206,7 +206,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static byte[] sample(byte[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -220,7 +220,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static double[] sample(double[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -234,7 +234,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static float[] sample(float[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -248,7 +248,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static char[] sample(char[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
@@ -262,7 +262,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static char[] sample(String source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length(), p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length(), p, r), null, r);
   }
 
   /**
@@ -277,7 +277,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   public static <T> T[] sample(T[] source, double p, RandomGenerator r) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p), null, r);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
