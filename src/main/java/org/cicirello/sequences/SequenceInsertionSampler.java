@@ -68,6 +68,11 @@ public final class SequenceInsertionSampler implements SequenceSampler {
     this.r = new EnhancedRandomGenerator(seed);
   }
 
+  /** Constructs a sampler with a default source of randomness. */
+  public SequenceInsertionSampler() {
+    this.r = new EnhancedRandomGenerator();
+  }
+
   /**
    * package use only: creates an instance wrapping an existing EnhancedRandomGenerator
    *

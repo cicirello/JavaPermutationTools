@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -35,6 +35,8 @@ public class SequenceSamplerStringTests {
     validateSamples(r::nextSample);
     r = new SequenceCompositeSampler(42);
     validateSamples(r::nextSample);
+    r = new SequenceCompositeSampler();
+    validateSamples(r::nextSample);
   }
 
   @Test
@@ -42,6 +44,8 @@ public class SequenceSamplerStringTests {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
     r = new SequenceReservoirSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequenceReservoirSampler();
     validateSamples(r::nextSample);
   }
 
@@ -51,6 +55,8 @@ public class SequenceSamplerStringTests {
     validateSamples(r::nextSample);
     r = new SequencePoolSampler(42);
     validateSamples(r::nextSample);
+    r = new SequencePoolSampler();
+    validateSamples(r::nextSample);
   }
 
   @Test
@@ -58,6 +64,8 @@ public class SequenceSamplerStringTests {
     SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
     r = new SequenceInsertionSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequenceInsertionSampler();
     validateSamples(r::nextSample);
   }
 

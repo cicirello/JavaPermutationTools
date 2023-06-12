@@ -64,6 +64,11 @@ public final class SequencePoolSampler implements SequenceSampler {
     this.r = new EnhancedRandomGenerator(seed);
   }
 
+  /** Constructs a sampler with a default source of randomness. */
+  public SequencePoolSampler() {
+    this.r = new EnhancedRandomGenerator();
+  }
+
   /**
    * package use only: creates an instance wrapping an existing EnhancedRandomGenerator
    *

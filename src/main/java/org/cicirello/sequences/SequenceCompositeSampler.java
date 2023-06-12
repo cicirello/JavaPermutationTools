@@ -77,6 +77,15 @@ public final class SequenceCompositeSampler implements SequenceSampler {
     reservoir = new SequenceReservoirSampler(this.r, true);
   }
 
+  /** Constructs a sampler with a default source of randomness. */
+  public SequenceCompositeSampler() {
+    this.r = new EnhancedRandomGenerator();
+
+    insertion = new SequenceInsertionSampler(this.r, true);
+    pool = new SequencePoolSampler(this.r, true);
+    reservoir = new SequenceReservoirSampler(this.r, true);
+  }
+
   /**
    * {@inheritDoc}
    *

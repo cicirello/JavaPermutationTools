@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * Seeded constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
+* Default constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 
 ### Changed
 * Refactored to improve code quality and to perform minor optimizations of the following classes:
