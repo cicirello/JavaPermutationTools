@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Breaking Changes**: Due to breaking changes, the next release will be a major release (see the Removed section below for details). Timing of that major release will likely be in the Fall of 2023 to coincide with the planned transition to Java 21 upon its release.
 
 ### Added
+* SequenceSampler.getDefault() method for creating an instance of the default implementation of SequenceSampler.
+* SequenceSampler.getDefault(RandomGenerator) method for creating an instance of the default implementation of SequenceSampler from a given source of randomness.
+* SequenceSampler.getDefault(seed) method for creating an instance of the default implementation of SequenceSampler, specifying a seed for the random number generator.
 * Seeded constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 * Default constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 
