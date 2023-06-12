@@ -23,6 +23,7 @@ package org.cicirello.sequences;
 
 import java.util.Arrays;
 import java.util.random.RandomGenerator;
+import org.cicirello.math.rand.EnhancedRandomGenerator;
 import org.cicirello.math.rand.RandomIndexer;
 import org.cicirello.math.rand.RandomVariates;
 import org.cicirello.util.ArrayMinimumLengthEnforcer;
@@ -43,7 +44,7 @@ import org.cicirello.util.ArrayMinimumLengthEnforcer;
  */
 public final class SequencePoolSampler implements SequenceSampler {
 
-  private final RandomGenerator r;
+  private final EnhancedRandomGenerator r;
 
   /**
    * Constructs a sampler wrapping a RandomGenerator used as the source of randomness.
@@ -51,7 +52,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    * @param r The source of randomness.
    */
   public SequencePoolSampler(RandomGenerator r) {
-    this.r = r;
+    this.r = new EnhancedRandomGenerator(r);
   }
 
   /**
@@ -62,7 +63,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public int[] nextSample(int[] source, int k, int[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    int[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -73,7 +84,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public long[] nextSample(long[] source, int k, long[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    long[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -84,7 +105,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public short[] nextSample(short[] source, int k, short[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    short[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -95,7 +126,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public byte[] nextSample(byte[] source, int k, byte[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    byte[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -106,7 +147,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public double[] nextSample(double[] source, int k, double[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    double[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -117,7 +168,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public float[] nextSample(float[] source, int k, float[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    float[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -128,7 +189,17 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public char[] nextSample(char[] source, int k, char[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = ArrayMinimumLengthEnforcer.enforce(target, k);
+    char[] pool = source.clone();
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   /**
@@ -139,7 +210,7 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public char[] nextSample(String source, int k, char[] target) {
-    return sample(source, k, target, r);
+    return nextSample(source.toCharArray(), k, target);
   }
 
   /**
@@ -150,52 +221,62 @@ public final class SequencePoolSampler implements SequenceSampler {
    */
   @Override
   public <T> T[] nextSample(T[] source, int k, T[] target) {
-    return sample(source, k, target, r);
+    SequenceSamplerUtils.validateK(k, source.length);
+    target = SequenceSamplerUtils.allocateIfNecessary(source, k, target);
+    T[] pool = Arrays.copyOf(source, source.length);
+    int remaining = pool.length;
+    for (int i = 0; i < k; i++) {
+      int j = r.nextInt(remaining);
+      target[i] = pool[j];
+      remaining--;
+      pool[j] = pool[remaining];
+    }
+    return target;
   }
 
   @Override
   public int[] nextSample(int[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public long[] nextSample(long[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public short[] nextSample(short[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public byte[] nextSample(byte[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public double[] nextSample(double[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public float[] nextSample(float[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public char[] nextSample(char[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public char[] nextSample(String source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length(), p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length(), p), null);
   }
 
   @Override
   public <T> T[] nextSample(T[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   /**

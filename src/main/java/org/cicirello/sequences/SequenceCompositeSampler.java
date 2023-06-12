@@ -22,6 +22,7 @@
 package org.cicirello.sequences;
 
 import java.util.random.RandomGenerator;
+import org.cicirello.math.rand.EnhancedRandomGenerator;
 import org.cicirello.math.rand.RandomVariates;
 
 /**
@@ -44,7 +45,7 @@ import org.cicirello.math.rand.RandomVariates;
  */
 public final class SequenceCompositeSampler implements SequenceSampler {
 
-  private final RandomGenerator r;
+  private final EnhancedRandomGenerator r;
 
   /**
    * Constructs a sampler wrapping a RandomGenerator used as the source of randomness.
@@ -52,7 +53,7 @@ public final class SequenceCompositeSampler implements SequenceSampler {
    * @param r The source of randomness.
    */
   public SequenceCompositeSampler(RandomGenerator r) {
-    this.r = r;
+    this.r = new EnhancedRandomGenerator(r);
   }
 
   /**
@@ -156,47 +157,47 @@ public final class SequenceCompositeSampler implements SequenceSampler {
 
   @Override
   public int[] nextSample(int[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public long[] nextSample(long[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public short[] nextSample(short[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public byte[] nextSample(byte[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public double[] nextSample(double[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public float[] nextSample(float[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public char[] nextSample(char[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   @Override
   public char[] nextSample(String source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length(), p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length(), p), null);
   }
 
   @Override
   public <T> T[] nextSample(T[] source, double p) {
-    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+    return nextSample(source, r.nextBinomial(source.length, p), null);
   }
 
   /**
