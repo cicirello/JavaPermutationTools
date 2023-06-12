@@ -65,6 +65,19 @@ public final class SequenceCompositeSampler implements SequenceSampler {
   }
 
   /**
+   * Constructs a sampler seeding the internal random number generator as specified.
+   *
+   * @param seed The seed for the random number generator
+   */
+  public SequenceCompositeSampler(long seed) {
+    this.r = new EnhancedRandomGenerator(seed);
+
+    insertion = new SequenceInsertionSampler(this.r, true);
+    pool = new SequencePoolSampler(this.r, true);
+    reservoir = new SequenceReservoirSampler(this.r, true);
+  }
+
+  /**
    * {@inheritDoc}
    *
    * @throws IllegalArgumentException if k &gt; source.length

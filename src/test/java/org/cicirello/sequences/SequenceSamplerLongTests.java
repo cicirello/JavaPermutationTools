@@ -33,11 +33,15 @@ public class SequenceSamplerLongTests {
   public void testSampleComposite() {
     SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
+    r = new SequenceCompositeSampler(42);
+    validateSamples(r::nextSample);
   }
 
   @Test
   public void testSampleReservoir() {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = new SequenceReservoirSampler(42);
     validateSamples(r::nextSample);
   }
 
@@ -45,11 +49,15 @@ public class SequenceSamplerLongTests {
   public void testSamplePool() {
     SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
+    r = new SequencePoolSampler(42);
+    validateSamples(r::nextSample);
   }
 
   @Test
   public void testSampleInsertion() {
     SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = new SequenceInsertionSampler(42);
     validateSamples(r::nextSample);
   }
 
@@ -57,11 +65,15 @@ public class SequenceSamplerLongTests {
   public void testSampleCompositeP() {
     SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
     validateWithP(r::nextSample);
+    r = new SequenceCompositeSampler(42);
+    validateWithP(r::nextSample);
   }
 
   @Test
   public void testSampleReservoirP() {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+    r = new SequenceReservoirSampler(42);
     validateWithP(r::nextSample);
   }
 
@@ -69,11 +81,15 @@ public class SequenceSamplerLongTests {
   public void testSamplePoolP() {
     SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
     validateWithP(r::nextSample);
+    r = new SequencePoolSampler(42);
+    validateWithP(r::nextSample);
   }
 
   @Test
   public void testSampleInsertionP() {
     SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+    r = new SequenceInsertionSampler(42);
     validateWithP(r::nextSample);
   }
 
