@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * org.cicirello.permutations.distance.EditDistance
   * org.cicirello.sequences.distance.EditDistance
   * org.cicirello.sequences.distance.EditDistanceDouble
+* Refactored to improve code quality and to optimize SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 
 ### Deprecated
 
@@ -25,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Removed default method implementations in SequenceSampler interface (all interface methods now implemented in the implementing classes).
 
 ### Fixed
-* SequenceSampler method implementations with probability p of sampling an element fixed to always use specified randomness source (previously incorrectly used default randomness source on some calls).
+* Classes implementing SequenceSampler interface: methods with probability p of sampling an element fixed to always use specified randomness source (previously incorrectly used default randomness source on some calls).
 
 ### Dependencies
 * Bump rho-mu from 3.1.0 to 3.1.1
