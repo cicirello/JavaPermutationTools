@@ -153,6 +153,51 @@ public final class SequencePoolSampler implements SequenceSampler {
     return sample(source, k, target, r);
   }
 
+  @Override
+  public int[] nextSample(int[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public long[] nextSample(long[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public short[] nextSample(short[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public byte[] nextSample(byte[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public double[] nextSample(double[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public float[] nextSample(float[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public char[] nextSample(char[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
+  @Override
+  public char[] nextSample(String source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length(), p, r), null, r);
+  }
+
+  @Override
+  public <T> T[] nextSample(T[] source, double p) {
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
+  }
+
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
    * probability of an element's inclusion in the sample.

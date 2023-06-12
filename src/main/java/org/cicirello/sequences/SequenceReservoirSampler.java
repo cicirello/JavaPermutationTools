@@ -152,47 +152,47 @@ public final class SequenceReservoirSampler implements SequenceSampler {
 
   @Override
   public int[] nextSample(int[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public long[] nextSample(long[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public short[] nextSample(short[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public byte[] nextSample(byte[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public double[] nextSample(double[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public float[] nextSample(float[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public char[] nextSample(char[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   @Override
   public char[] nextSample(String source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length(), p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length(), p, r), null, r);
   }
 
   @Override
   public <T> T[] nextSample(T[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p, r), null);
+    return sample(source, RandomVariates.nextBinomial(source.length, p, r), null, r);
   }
 
   /**
