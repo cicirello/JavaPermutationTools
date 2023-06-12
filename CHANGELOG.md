@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Removed the previously deprecated (in v5.1.0) constructor `org.cicirello.sequences.distance.EditDistance(double, double, double)`. To compute edit distance with double-valued costs for arrays and other sequences, use the existing `EditDistanceDouble` class instead. This does not impact the class with the same name that computes edit distance for permutations (i.e., the `org.cicirello.permutations.distance.EditDistance` class still accepts doubles for the costs).
 
 ### Fixed
+* SequenceSampler static method implementations with probability p of element inclusion and randomness source r fixed to always use r as randomness source (previously incorrectly used default randomness source on some calls).
 
 ### Dependencies
 * Bump rho-mu from 3.1.0 to 3.1.1
