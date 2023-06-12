@@ -30,6 +30,16 @@ import org.junit.jupiter.api.*;
 public class SequenceSamplerFloatTests {
 
   @Test
+  public void testDefaultSampler() {
+    SequenceSampler r = SequenceSampler.getDefault(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = SequenceSampler.getDefault(42);
+    validateSamples(r::nextSample);
+    r = SequenceSampler.getDefault();
+    validateSamples(r::nextSample);
+  }
+
+  @Test
   public void testSampleComposite() {
     SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);

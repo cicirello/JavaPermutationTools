@@ -22,6 +22,7 @@
 package org.cicirello.sequences;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 import org.cicirello.math.rand.RandomVariates;
 
 /**
@@ -241,6 +242,44 @@ public interface SequenceSampler {
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
   <T> T[] nextSample(T[] source, double p);
+
+  /**
+   * Gets an instance of the default SequenceSampler with a default source of randomness. The
+   * default is currently {@link SequenceCompositeSampler}, but this may change in future releases
+   * without notice, so no assumptions should be made concerning the specific SequenceSampler
+   * returned by this method.
+   *
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault() {
+    return new SequenceCompositeSampler();
+  }
+
+  /**
+   * Gets an instance of the default SequenceSampler given a specified source of randomness. The
+   * default is currently {@link SequenceCompositeSampler}, but this may change in future releases
+   * without notice, so no assumptions should be made concerning the specific SequenceSampler
+   * returned by this method.
+   *
+   * @param r The source of randomness.
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault(RandomGenerator r) {
+    return new SequenceCompositeSampler(r);
+  }
+
+  /**
+   * Gets an instance of the default SequenceSampler with a seed specified for the internal random
+   * number generator. The default is currently {@link SequenceCompositeSampler}, but this may
+   * change in future releases without notice, so no assumptions should be made concerning the
+   * specific SequenceSampler returned by this method.
+   *
+   * @param seed The seed for the random number generator
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault(long seed) {
+    return new SequenceCompositeSampler(seed);
+  }
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
