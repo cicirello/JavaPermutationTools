@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -30,8 +30,22 @@ import org.junit.jupiter.api.*;
 public class SequenceSamplerLongTests {
 
   @Test
+  public void testDefaultSampler() {
+    SequenceSampler r = SequenceSampler.getDefault(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = SequenceSampler.getDefault(42);
+    validateSamples(r::nextSample);
+    r = SequenceSampler.getDefault();
+    validateSamples(r::nextSample);
+  }
+
+  @Test
   public void testSampleComposite() {
     SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = new SequenceCompositeSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequenceCompositeSampler();
     validateSamples(r::nextSample);
   }
 
@@ -39,11 +53,19 @@ public class SequenceSamplerLongTests {
   public void testSampleReservoir() {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
+    r = new SequenceReservoirSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequenceReservoirSampler();
+    validateSamples(r::nextSample);
   }
 
   @Test
   public void testSamplePool() {
     SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
+    validateSamples(r::nextSample);
+    r = new SequencePoolSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequencePoolSampler();
     validateSamples(r::nextSample);
   }
 
@@ -51,11 +73,17 @@ public class SequenceSamplerLongTests {
   public void testSampleInsertion() {
     SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
     validateSamples(r::nextSample);
+    r = new SequenceInsertionSampler(42);
+    validateSamples(r::nextSample);
+    r = new SequenceInsertionSampler();
+    validateSamples(r::nextSample);
   }
 
   @Test
   public void testSampleCompositeP() {
     SequenceCompositeSampler r = new SequenceCompositeSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+    r = new SequenceCompositeSampler(42);
     validateWithP(r::nextSample);
   }
 
@@ -63,17 +91,23 @@ public class SequenceSamplerLongTests {
   public void testSampleReservoirP() {
     SequenceReservoirSampler r = new SequenceReservoirSampler(new SplittableRandom(42));
     validateWithP(r::nextSample);
+    r = new SequenceReservoirSampler(42);
+    validateWithP(r::nextSample);
   }
 
   @Test
   public void testSamplePoolP() {
     SequencePoolSampler r = new SequencePoolSampler(new SplittableRandom(42));
     validateWithP(r::nextSample);
+    r = new SequencePoolSampler(42);
+    validateWithP(r::nextSample);
   }
 
   @Test
   public void testSampleInsertionP() {
     SequenceInsertionSampler r = new SequenceInsertionSampler(new SplittableRandom(42));
+    validateWithP(r::nextSample);
+    r = new SequenceInsertionSampler(42);
     validateWithP(r::nextSample);
   }
 

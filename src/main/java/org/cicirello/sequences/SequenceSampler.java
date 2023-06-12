@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -22,6 +22,7 @@
 package org.cicirello.sequences;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 import org.cicirello.math.rand.RandomVariates;
 
 /**
@@ -151,9 +152,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default int[] nextSample(int[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  int[] nextSample(int[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -164,9 +163,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default long[] nextSample(long[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  long[] nextSample(long[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -177,9 +174,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default short[] nextSample(short[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  short[] nextSample(short[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -190,9 +185,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default byte[] nextSample(byte[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  byte[] nextSample(byte[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -203,9 +196,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default double[] nextSample(double[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  double[] nextSample(double[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -216,9 +207,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default float[] nextSample(float[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  float[] nextSample(float[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -229,9 +218,7 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default char[] nextSample(char[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
-  }
+  char[] nextSample(char[] source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source String with a specified
@@ -242,9 +229,7 @@ public interface SequenceSampler {
    *     source.length() * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default char[] nextSample(String source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length(), p), null);
-  }
+  char[] nextSample(String source, double p);
 
   /**
    * Generates a random sample, without replacement, from a given source array with a specified
@@ -256,8 +241,44 @@ public interface SequenceSampler {
    *     source.length * p.
    * @return An array containing the sample, whose sample size is simply the length of the array.
    */
-  default <T> T[] nextSample(T[] source, double p) {
-    return nextSample(source, RandomVariates.nextBinomial(source.length, p), null);
+  <T> T[] nextSample(T[] source, double p);
+
+  /**
+   * Gets an instance of the default SequenceSampler with a default source of randomness. The
+   * default is currently {@link SequenceCompositeSampler}, but this may change in future releases
+   * without notice, so no assumptions should be made concerning the specific SequenceSampler
+   * returned by this method.
+   *
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault() {
+    return new SequenceCompositeSampler();
+  }
+
+  /**
+   * Gets an instance of the default SequenceSampler given a specified source of randomness. The
+   * default is currently {@link SequenceCompositeSampler}, but this may change in future releases
+   * without notice, so no assumptions should be made concerning the specific SequenceSampler
+   * returned by this method.
+   *
+   * @param r The source of randomness.
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault(RandomGenerator r) {
+    return new SequenceCompositeSampler(r);
+  }
+
+  /**
+   * Gets an instance of the default SequenceSampler with a seed specified for the internal random
+   * number generator. The default is currently {@link SequenceCompositeSampler}, but this may
+   * change in future releases without notice, so no assumptions should be made concerning the
+   * specific SequenceSampler returned by this method.
+   *
+   * @param seed The seed for the random number generator
+   * @return an instance of the default SequenceSampler
+   */
+  public static SequenceSampler getDefault(long seed) {
+    return new SequenceCompositeSampler(seed);
   }
 
   /**

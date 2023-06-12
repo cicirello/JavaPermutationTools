@@ -9,19 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Breaking Changes**: Due to breaking changes, the next release will be a major release (see the Removed section below for details). Timing of that major release will likely be in the Fall of 2023 to coincide with the planned transition to Java 21 upon its release.
 
 ### Added
+* SequenceSampler.getDefault() method for creating an instance of the default implementation of SequenceSampler.
+* SequenceSampler.getDefault(RandomGenerator) method for creating an instance of the default implementation of SequenceSampler from a given source of randomness.
+* SequenceSampler.getDefault(seed) method for creating an instance of the default implementation of SequenceSampler, specifying a seed for the random number generator.
+* Seeded constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
+* Default constructors added to SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 
 ### Changed
 * Refactored to improve code quality and to perform minor optimizations of the following classes:
   * org.cicirello.permutations.distance.EditDistance
   * org.cicirello.sequences.distance.EditDistance
   * org.cicirello.sequences.distance.EditDistanceDouble
+* Refactored to improve code quality and to optimize SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 
 ### Deprecated
 
 ### Removed
 * Removed the previously deprecated (in v5.1.0) constructor `org.cicirello.sequences.distance.EditDistance(double, double, double)`. To compute edit distance with double-valued costs for arrays and other sequences, use the existing `EditDistanceDouble` class instead. This does not impact the class with the same name that computes edit distance for permutations (i.e., the `org.cicirello.permutations.distance.EditDistance` class still accepts doubles for the costs).
+* Removed default method implementations in SequenceSampler interface (all interface methods now implemented in the implementing classes).
 
 ### Fixed
+* Classes implementing SequenceSampler interface: methods with probability p of sampling an element fixed to always use specified randomness source (previously incorrectly used default randomness source on some calls).
 
 ### Dependencies
 * Bump rho-mu from 3.1.0 to 3.1.1
