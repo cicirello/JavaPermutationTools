@@ -68,6 +68,13 @@ execute `mvn package -Pcoverage` at the root of the repository to
 enable a Maven profile that executes JaCoCo during the test 
 phase. The JaCoCo report will also be found in the target directory.
 
+To run all static analysis tools (i.e., SpotBugs, refactor-first),
+execute `mvn package -Panalysis` to enable a Maven profile that executes
+the various static analysis tools that we are using. Note: to examine
+the SpotBugs report after the build, run `mvn spotbugs:gui -Panalysis`.
+
+To run all of the above: `mvn package -P "analysis,coverage"`.
+
 ## Example Programs
 
 There are several example programs available in a separate 

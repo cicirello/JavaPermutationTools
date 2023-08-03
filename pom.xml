@@ -151,7 +151,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>refactor</id>
+			<id>analysis</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -167,6 +167,19 @@
 								<phase>test</phase>
 								<goals>
 									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+						<version>4.7.2.1</version>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>spotbugs</goal>
 								</goals>
 							</execution>
 						</executions>

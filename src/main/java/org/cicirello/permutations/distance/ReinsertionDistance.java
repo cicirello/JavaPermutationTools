@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -116,7 +116,7 @@ public final class ReinsertionDistance implements NormalizedPermutationDistanceM
 
   private int binSearch(int[] array, int value, int low, int high) {
     if (high == low) return low;
-    final int mid = (high + low) >> 1;
+    final int mid = (high + low) >>> 1;
     if (value <= array[mid] && value > array[mid - 1]) {
       return mid;
     } else if (value > array[mid]) {
