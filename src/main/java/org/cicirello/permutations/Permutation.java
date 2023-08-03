@@ -42,7 +42,7 @@ import org.cicirello.util.Copyable;
 public final class Permutation
     implements Serializable, Iterable<Permutation>, Copyable<Permutation> {
 
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * Raw permutation, which should consist of a permutation of the integers in [0,
@@ -50,18 +50,18 @@ public final class Permutation
    */
   private final int[] permutation;
 
-  /*
-   * Class caches the hashCode the first time hashCode() is called
-   * to avoid cost of recomputing in applications that rely on HashSets or HashMaps
-   * of Permutations, etc with heavy use of the hashCode.
+  /**
+   * Cache the hashCode the first time hashCode() is called to avoid cost of recomputing in
+   * applications that rely on HashSets or HashMaps of Permutations, etc with heavy use of the
+   * hashCode.
    */
-  private transient int hashCode;
+  private int hashCode;
 
-  /*
-   * Flag for validating/invalidating cache of hashCode. All methods
-   * that change state of Permutation must invalidate the cache.
+  /**
+   * Flag for validating/invalidating cache of hashCode. All methods that change state of
+   * Permutation must invalidate the cache.
    */
-  private transient boolean hashCodeIsCached;
+  private boolean hashCodeIsCached;
 
   /**
    * Initializes a random permutation of n integers. Uses {@link ThreadLocalRandom} as the source of
