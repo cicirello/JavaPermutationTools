@@ -1,0 +1,6 @@
+<FindBugsFilter>
+  <!-- Random number generation is not a security application in this library -->
+  <Match>
+    <Bug pattern="PREDICTABLE_RANDOM" />
+  </Match>
+</FindBugsFilter>
