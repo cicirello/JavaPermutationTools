@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools - A Java library for computation on permutations.
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * JavaPermutationTools is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -28,7 +28,7 @@ import org.cicirello.permutations.Permutation;
  *
  * <p>Interchange distance is computed efficiently by counting the number of permutation cycles
  * between the permutations. A permutation cycle of length k is transformed into k fixed points with
- * k − 1 swaps (a fixed point is a cycle of length 1).
+ * k - 1 swaps (a fixed point is a cycle of length 1).
  *
  * <p>Runtime: O(n), where n is the permutation length.
  *
