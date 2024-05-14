@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -51,7 +51,7 @@ import java.util.List;
  *
  * <p>Wagner and Fischer's String Edit Distance was introduced in:<br>
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM,
- * vol. 21, no. 1, pp. 168–173, January 1974.
+ * vol. 21, no. 1, pp. 168-173, January 1974.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
@@ -71,12 +71,31 @@ public class EditDistance implements SequenceDistanceMeasurer {
    * @throws IllegalArgumentException if any of the costs are negative.
    */
   public EditDistance(int insertCost, int deleteCost, int changeCost) {
-    if (insertCost < 0 || deleteCost < 0 || changeCost < 0) {
-      throw new IllegalArgumentException("Costs must be non-negative.");
-    }
+    this(insertCost, deleteCost, changeCost, validateCosts(insertCost, deleteCost, changeCost));
+  }
+
+  /*
+   * Prevent finalizer attack with private constructor, and validation/exception occuring
+   * in the static validateCosts method. This should prevent a partially instantiated object
+   * if exception is thrown. Note that secure will only ever be true, as an exception will
+   * be thrown before here if they are not.
+   */
+  private EditDistance(int insertCost, int deleteCost, int changeCost, boolean secure) {
     this.insertCost = insertCost;
     this.deleteCost = deleteCost;
     this.changeCost = changeCost;
+  }
+
+  /*
+   * Prevent finalizer attack with private constructor, and validation/exception occuring
+   * in the static validateCosts method. This should prevent a partially instantiated object
+   * if exception is thrown.
+   */
+  private static boolean validateCosts(int insertCost, int deleteCost, int changeCost) {
+    if (insertCost < 0 || deleteCost < 0 || changeCost < 0) {
+      throw new IllegalArgumentException("Costs must be non-negative.");
+    }
+    return true;
   }
 
   @Override
