@@ -51,7 +51,7 @@ import java.util.List;
  *
  * <p>Wagner and Fischer's String Edit Distance was introduced in:<br>
  * R. A. Wagner and M. J. Fischer, "The string-to-string correction problem," Journal of the ACM,
- * vol. 21, no. 1, pp. 168–173, January 1974.
+ * vol. 21, no. 1, pp. 168-173, January 1974.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
