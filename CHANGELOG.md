@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed potential integer overflow error in ReinsertionDistance
 * Fixed transient fields in Permutation that shouldn't be transient
 * Classes implementing SequenceSampler interface: methods with probability p of sampling an element fixed to always use specified randomness source (previously incorrectly used default randomness source on some calls).
+* Fixed potential finalizer vulnerability in org.cicirello.sequences.distance.EditDistance, detected by SpotBugs analysis. 
 
 ### Dependencies
 * Bump rho-mu from 3.1.0 to 3.2.0
