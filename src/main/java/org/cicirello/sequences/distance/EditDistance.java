@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -71,12 +71,31 @@ public class EditDistance implements SequenceDistanceMeasurer {
    * @throws IllegalArgumentException if any of the costs are negative.
    */
   public EditDistance(int insertCost, int deleteCost, int changeCost) {
-    if (insertCost < 0 || deleteCost < 0 || changeCost < 0) {
-      throw new IllegalArgumentException("Costs must be non-negative.");
-    }
+    this(insertCost, deleteCost, changeCost, validateCosts(insertCost, deleteCost, changeCost));
+  }
+
+  /*
+   * Prevent finalizer attack with private constructor, and validation/exception occuring
+   * in the static validateCosts method. This should prevent a partially instantiated object
+   * if exception is thrown. Note that secure will only ever be true, as an exception will
+   * be thrown before here if they are not.
+   */
+  private EditDistance(int insertCost, int deleteCost, int changeCost, boolean secure) {
     this.insertCost = insertCost;
     this.deleteCost = deleteCost;
     this.changeCost = changeCost;
+  }
+
+  /*
+   * Prevent finalizer attack with private constructor, and validation/exception occuring
+   * in the static validateCosts method. This should prevent a partially instantiated object
+   * if exception is thrown.
+   */
+  private static boolean validateCosts(int insertCost, int deleteCost, int changeCost) {
+    if (insertCost < 0 || deleteCost < 0 || changeCost < 0) {
+      throw new IllegalArgumentException("Costs must be non-negative.");
+    }
+    return true;
   }
 
   @Override
