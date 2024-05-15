@@ -36,12 +36,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed potential finalizer vulnerability in org.cicirello.sequences.distance.EditDistance, detected by SpotBugs analysis. 
 
 ### Dependencies
-* Bump rho-mu from 3.1.0 to 3.2.0
+* Bump rho-mu from 3.1.0 to 4.0.0
 * Bump org.cicirello:core from 2.5.0 to 2.7.0
 
 ### CI/CD
 * Integrated SpotBugs static analysis into build process.
 * Integrated Find Security Bugs static analysis into build process.
+* Discontinued publication of a `jar-with-dependencies` (BREAKING CHANGE only if you were using the fat jar).
 
 ### Other
 
