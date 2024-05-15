@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -497,8 +497,9 @@ public final class Permutation
   public void scramble(RandomGenerator r, boolean guaranteeDifferent) {
     if (guaranteeDifferent) {
       boolean changed = false;
-      for (int i = permutation.length - 1; i > 1; i--) {
-        int j = RandomIndexer.nextInt(i + 1, r);
+      for (int j = permutation.length; j > 2; ) {
+        int i = RandomIndexer.nextInt(j, r);
+        j--;
         if (i != j) {
           internalSwap(i, j);
           changed = true;
@@ -515,7 +516,8 @@ public final class Permutation
 
   /**
    * Randomly shuffles a segment. Uses {@link ThreadLocalRandom} as the source of efficient random
-   * number generation.
+   * number generation. As long as two different indexes are passed to this method, it is guaranteed
+   * to change the permutation.
    *
    * @param i endpoint of the segment (precondition: 0 &le; i &lt; length())
    * @param j endpoint of the segment (precondition: 0 &le; j &lt; length())
@@ -527,7 +529,8 @@ public final class Permutation
   }
 
   /**
-   * Randomly shuffles a segment.
+   * Randomly shuffles a segment. As long as two different indexes are passed to this method, it is
+   * guaranteed to change the permutation.
    *
    * @param i endpoint of the segment (precondition: 0 &le; i &lt; length())
    * @param j endpoint of the segment (precondition: 0 &le; j &lt; length())
@@ -574,8 +577,9 @@ public final class Permutation
   public void scramble(int[] indexes, RandomGenerator r) {
     if (indexes.length > 1) {
       boolean changed = false;
-      for (int j = indexes.length - 1; j > 1; j--) {
-        int i = RandomIndexer.nextInt(j + 1, r);
+      for (int j = indexes.length; j > 2; ) {
+        int i = RandomIndexer.nextInt(j, r);
+        j--;
         if (i != j) {
           internalSwap(indexes[i], indexes[j]);
           changed = true;
@@ -603,10 +607,10 @@ public final class Permutation
   }
 
   /**
-   * Retrieves the i'th integer of the permutation.
+   * Retrieves the i-th integer of the permutation.
    *
    * @param i the index of the integer to retrieve. (precondition: 0 &le; i &lt; length())
-   * @return the integer in the i'th position.
+   * @return the integer in the i-th position.
    * @throws ArrayIndexOutOfBoundsException if i is negative, or if i is greater than or equal to
    *     length()
    */
