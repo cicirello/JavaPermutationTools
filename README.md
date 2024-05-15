@@ -2,7 +2,7 @@
 
 [![JavaPermutationTools - A Java library for computation on permutations and sequences](https://jpt.cicirello.org/images/jpt640.png)](#javapermutationtools-jpt-a-java-library-for-computation-on-permutations-and-sequences)
 
-Copyright (C) 2018-2023 [Vincent A. Cicirello](https://www.cicirello.org/).
+Copyright (C) 2018-2024 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://jpt.cicirello.org/
 
