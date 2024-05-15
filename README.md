@@ -154,12 +154,10 @@ and (2) add the following to the repositories section of your pom.xml:
 
 If you don't use a dependency manager that supports importing from Maven Central,
 or if you simply prefer to download manually, prebuilt jars are also attached to 
-each [GitHub Release](https://github.com/cicirello/JavaPermutationTools).
-
-In addition to the regular jar of the library, we also regularly publish a
-`jar-with-dependencies`. The `jar-with-dependencies` does not contain any module 
-declarations (unlike the regular jar file which does). Therefore, the 
-`jar-with-dependencies` should be used on the classpath. 
+each [GitHub Release](https://github.com/cicirello/JavaPermutationTools). If you
+manually download jar files, make sure you also get the relevant versions of the
+dependencies. The simplest way to do this is to import from Maven Central, which
+will obtain the relevant dependencies automatically.
 
 ## License
 
