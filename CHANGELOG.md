@@ -4,9 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-06-10
+## [Unreleased] - 2024-07-25
 
-**Breaking Changes**: Due to breaking changes, the next release will be a major release (see the Removed section below for details). Timing of that major release will likely be in the Fall of 2024 to coincide with the planned transition to Java 21.
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [6.0.0] - 2024-07-25
 
 ### Added
 * SequenceSampler.getDefault() method for creating an instance of the default implementation of SequenceSampler.
@@ -22,8 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * org.cicirello.sequences.distance.EditDistanceDouble
 * Refactored to improve code quality and to optimize SequenceReservoirSampler, SequencePoolSampler, SequenceInsertionSampler, SequenceCompositeSampler.
 * Minor optimizations to Permutation.scramble() methods.
-
-### Deprecated
 
 ### Removed
 * Removed the previously deprecated (in v5.1.0) constructor `org.cicirello.sequences.distance.EditDistance(double, double, double)`. To compute edit distance with double-valued costs for arrays and other sequences, use the existing `EditDistanceDouble` class instead. This does not impact the class with the same name that computes edit distance for permutations (i.e., the `org.cicirello.permutations.distance.EditDistance` class still accepts doubles for the costs).
@@ -43,8 +58,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Integrated SpotBugs static analysis into build process.
 * Integrated Find Security Bugs static analysis into build process.
 * Discontinued publication of a `jar-with-dependencies` (BREAKING CHANGE only if you were using the fat jar).
-
-### Other
 
 
 ## [5.1.0] - 2023-05-30
