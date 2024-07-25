@@ -39,9 +39,9 @@ and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
-| 4.w.x to 5.y.z | Java 17+ |
+| 4.w.x to 6.y.z | Java 17+ |
 | 3.x.y | Java 11+ |
-| 1.x.y to 2.x.y | Java 8+ |
+| 1.w.x to 2.y.z | Java 8+ |
 
 The jar files of the library are released via Maven Central, GitHub Packages, 
 and GitHub Releases.
