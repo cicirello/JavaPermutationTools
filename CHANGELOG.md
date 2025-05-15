@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Dependencies
 * Bump org.cicirello:rho-mu from 4.1.0 to 4.2.0
+* Bump org.cicirello:core from 2.7.0 to 2.7.1
 
 ### Other
 * Migrated deployment from the old OSSRH to the new Central.
