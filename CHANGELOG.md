@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [6.0.1] - 2025-05-15
 
 ### Dependencies
-* Bump org.cicirello:rho-mu from 4.1.0 to 4.2.0
+* Bump org.cicirello:rho-mu from 4.1.0 to 4.2.1
 * Bump org.cicirello:core from 2.7.0 to 2.7.1
 
 ### Other
