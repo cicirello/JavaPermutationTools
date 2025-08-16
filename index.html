@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html amp lang=en itemscope itemtype="http://schema.org/WebPage" itemref="logo">
+<html lang=en itemscope itemtype="http://schema.org/WebPage" itemref="logo">
 <head>
 <meta charset=utf-8>
 <link rel="canonical" href="https://jpt.cicirello.org/">
@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
 <meta name="title" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; script-src 'sha384-i9On6a8pULeN0XD9l3J0gZMnvbggxt4HiEpfuxzePuYS3uDQJ/7mbPyYPfqe/wSg' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; style-src https://*.doubleclick.net https://*.googlesyndication.com https://fonts.googleapis.com 'unsafe-inline'; font-src fonts.gstatic.com;">
 <meta itemprop="name" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
 <meta name="description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
 <meta itemprop="description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
@@ -19,15 +20,16 @@
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
 <meta property="og:description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
-<style amp-custom>
+<style>
 header, nav, footer, article, aside, section { display: block; }
 footer { clear: both; }
 body { background-color: #f6f0bb; font-family: Arial, Helvetica, sans-serif; }
 #siteheader, aside, footer { background-color: #bfd9bf; }
 #siteheader, aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin: 10px; padding: 10px; }
+img.respimg { max-width: 100%; height: auto; }
 h1, h2, h3, h4, h5, h6, strong { color: #862d2d; }
-h2, h3, div.sponsor-badges { text-align:center; }
-div.sponsor-badges amp-img { margin-top: 8px; }
+h1, h2, h3, div.sponsor-badges, div.center { text-align:center; }
+div.sponsor-badges img { margin-top: 8px; }
 a { color: #005500; }
 a:visited { color:#862d2d; }
 #toggle { position: absolute; left: -100vw; display: none; }
@@ -47,101 +49,47 @@ article li { margin-bottom: 8px; margin-top: 8px; }
 section li { margin-bottom: 16px; }
 section ul { margin-bottom: 32px; }
 #copyright { text-align: center; color: #862d2d; }
-#logo, #backup-logo, h1 {max-width: 1280px;}
 h1 {margin: 10px auto; padding: 10px;}
-amp-img.contain img { object-fit: contain; }
 .badge-height { position: relative; width: 100%; height: 20px;}
+.footer-link { padding: 0 10px 0 10px; }
 @media screen and (min-width:601px){
 #menu-icon { display: none; }
 nav div a:not(.active) { display: block; }
 }
 </style>
-<style amp-boilerplate>
-  body {
-	-webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	-moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	-ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-  }
-  @-webkit-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-moz-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-ms-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-o-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-</style>
-<noscript><style amp-boilerplate>
-	body {
-	  -webkit-animation: none;
-	  -moz-animation: none;
-	  -ms-animation: none;
-	  animation: none;
-	}
-  </style></noscript>
-<script async src="https://cdn.ampproject.org/v0.js"></script>
+<script async src="https://www.cicirello.org/js/dynamic_loader.min.js" integrity="sha384-i9On6a8pULeN0XD9l3J0gZMnvbggxt4HiEpfuxzePuYS3uDQJ/7mbPyYPfqe/wSg" crossorigin="anonymous"></script>
 </head>
 <body>
 <header itemprop="hasPart" itemscope itemtype="https://schema.org/WPHeader" id="siteheader">
 <div itemscope>
 <h1>
 <a href=".">
-<amp-img id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject" 
-  src="images/jpt.webp" 
-  alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
-  width="1280" 
-  height="640" 
-  layout="responsive"
+<picture id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject">
+<source
+  type="image/webp"
   srcset="images/jpt.webp 1280w,
           images/jpt960.webp 960w,
           images/jpt640.webp 640w,
-		  images/jpt320.webp 320w">
-  <amp-img id="backup-logo"  
-    fallback
+		  images/jpt320.webp 320w"
+  sizes="(width <= 320px) 320px, 
+         (width <= 640px) 640px, 
+		 (width <= 960px) 960px, 
+		 1280px">
+  <img 
     src="images/jpt.png" 
     alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
     width="1280" 
     height="640" 
-    layout="responsive"
+    class="respimg"
     srcset="images/jpt.png 1280w,
 	        images/jpt960.png 960w,
             images/jpt640.png 640w,
-		    images/jpt320.png 320w">
-  </amp-img>
-</amp-img>
+		    images/jpt320.png 320w"
+	sizes="(width <= 320px) 320px, 
+         (width <= 640px) 640px, 
+		 (width <= 960px) 960px, 
+		 1280px">
+</picture>
 </a>
 </h1>
 <nav>
@@ -154,12 +102,13 @@ nav div a:not(.active) { display: block; }
 <div><a href="https://github.com/cicirello/jpt-examples">Example Programs</a></div>
 <div><a href="https://github.com/cicirello/JavaPermutationTools/issues">Issue Tracker</a></div>
 <div><a href="https://github.com/cicirello/JavaPermutationTools/blob/master/CHANGELOG.md">ChangeLog</a></div>
+<div><a href="https://www.cicirello.org/">Author</a></div>
 </nav>
 </div>
 <div class="sponsor-badges">
-<a href="https://github.com/sponsors/cicirello"><amp-img src="/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28">GitHub Sponsors</amp-img></a>
-<a href="https://liberapay.com/cicirello"><amp-img src="/images/Liberapay.svg" alt="Liberapay" width="119" height="28">Sponsor on Liberapay</amp-img></a>
-<a href="https://ko-fi.com/cicirello"><amp-img src="/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28">Sponsor on Ko-Fi</amp-img></a>
+<a href="https://github.com/sponsors/cicirello"><img src="images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
+<a href="https://liberapay.com/cicirello"><img src="images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
+<a href="https://ko-fi.com/cicirello"><img src="images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a>
 </div>
 </header>
 <article itemprop="mainEntity" itemscope itemtype="http://schema.org/SoftwareSourceCode">
@@ -194,7 +143,7 @@ A. Cicirello</span></a>.</p>
 </section>
 <section>
 <h3>How to Cite</h3>
-<div class="badge-height"><a href="https://doi.org/10.21105/joss.00950"><amp-img class="contain" layout="fill" alt="https://doi.org/10.21105/joss.00950" src="https://joss.theoj.org/papers/10.21105/joss.00950/status.svg"></amp-img></a></div>
+<div class="center"><a href="https://doi.org/10.21105/joss.00950"><img alt="https://doi.org/10.21105/joss.00950" src="https://joss.theoj.org/papers/10.21105/joss.00950/status.svg" height="20" width="168"></a></div>
 <p>If you use JPT in your research, please cite the following article which describes the library:</p>
 <ul>
 <li>Vincent A. Cicirello. 
@@ -291,7 +240,7 @@ of permutations.</li>
 </section>
 <section>
 <h3>Importing from Maven Central</h3>
-<div class="badge-height"><a href="https://central.sonatype.com/artifact/org.cicirello/jpt/"><amp-img class="contain" layout="fill" alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven"></amp-img></a></div>
+<div class="center badge-height"><a href="https://central.sonatype.com/artifact/org.cicirello/jpt/"><img alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/jpt.svg?label=Maven%20Central&logo=apachemaven"></a></div>
 <p>To import JPT from the Maven Central repository (if your build tool is
 Maven), add the following to the dependencies section of 
 your &ldquo;pom.xml&rdquo; (for other build tools, see the tool's documentation
