@@ -8,10 +8,8 @@
 <meta name="title" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta itemprop="name" content="JavaPermutationTools - A Java library for computation on permutations and sequences">
-<meta name="description" content="The JPT library includes a variety of 
-permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
-<meta itemprop="description" content="The JPT library includes a variety of 
-permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
+<meta name="description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
+<meta itemprop="description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
 <title>JavaPermutationTools - A Java library for computation on permutations and sequences</title>
 <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
 <meta property="og:type" content="website">
@@ -20,8 +18,7 @@ permutation distance metrics as well as distance metrics on sequences (i.e., Str
 <meta property="og:image" content="https://jpt.cicirello.org/images/jpt.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
-<meta property="og:description" content="The JavaPermutationTools (JPT) library includes a variety of 
-permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, and other ordered data types).">
+<meta property="og:description" content="The JavaPermutationTools (JPT) library includes an efficient object-oriented implementation of Permutations, as well as a variety of permutation distance metrics, distance metrics on sequences (i.e., Strings, arrays, and other ordered data types), and implementations of algorithms for randomly sampling from arrays.">
 <style amp-custom>
 header, nav, footer, article, aside, section { display: block; }
 footer { clear: both; }
@@ -171,9 +168,12 @@ nav div a:not(.active) { display: block; }
 <h3>Overview</h3>
 <p itemprop="description"><span itemprop="name">JavaPermutationTools</span> (JPT) is a <span itemprop="programmingLanguage">Java</span> 
 library for representing and generating permutations and sequences, as well as performing 
-computation on permutations and sequences. This includes implementations of a variety of 
-permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, 
-and other ordered data types).</p>
+computation on permutations and sequences. JPT's Permutation class is an efficient object-oriented implementation
+of a permutation, and includes a variety of methods for manipulating the permutation (e.g., swapping elements, 
+reversing, scrambling, among others), and also supports iterating over permutations. The JPT library also includes 
+implementations of a variety of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, arrays, 
+and other ordered data types). Additionally, JPT includes implementations of several algorithms for random sampling
+from arrays.</p>
 <p>The <a href="https://github.com/cicirello/JavaPermutationTools" itemprop="codeRepository">JPT source 
 code repository</a> is hosted on GitHub; and is licensed under 
 the <a itemprop="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU 
@@ -201,6 +201,92 @@ A. Cicirello</span></a>.</p>
 <a href="https://www.cicirello.org/publications/cicirello2018joss.html">JavaPermutationTools: A Java Library of Permutation Distance Metrics</a>.
 <i>Journal of Open Source Software</i>, 3(31):950, November 2018.
 <a href="https://www.cicirello.org/publications/cicirello2018joss.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2018joss.bib">[BIB]</a> <a href="https://doi.org/10.21105/joss.00950">[DOI]</a></li>
+</ul>
+</section>
+<section>
+<h3>Permutation Distance Measures</h3>
+<p>The permutation distance measures include the following:</p>
+<p><strong>Edit distances:</strong> Edit distance measures, where an edit distance is the minimum number of edit operations necessary
+to transform one permutation into the other:</p>
+<ul>
+<li>block interchange distance: minimum number of block (i.e., contiguous sequence of elements) swaps necessary to transform
+one permutation into the other</li>
+<li>cycle edit distance: minimum number of non-singleton permutation cycles necessary to transform
+one permutation into the other</li>
+<li>edit distance: Wagner and Fischer's (1974) string edit distance adapted to permutations, including
+edit operations of element deletions, element insertions, and element changes, and with configurable costs
+for the three edit operations</li>
+<li>interchange distance: minimum number of swaps necessary to transform one permutation into the other</li>
+<li>Kendall tau distance: minimum number of adjacent swaps necessary to transform one permutation into the other,
+also known as bubble sort distance</li>
+<li>reinsertion distance: minimum number of removal/reinsertion operations necessary to transform one permutation into the other</li>
+</ul>
+<p><strong>Edge-based distances:</strong> Distance measures when the permutations represent a sequence of 
+edges (e.g., when adjacent permutation elements correspond to edges):</p>
+<ul>
+<li>acyclic edge distance: the number of edges that are not in common</li>
+<li>cyclic edge distance: the number of edges that are not in common, treating the permutation as a cycle
+such that there is an edge from the last element to the first</li>
+<li>r-type distance: the number of directed edges that are not in common</li>
+<li>cyclic r-type distance: the number of directed edges that are not in common, treating the permutation as a cycle
+such that there is an edge from the last element to the first</li>
+</ul>
+<p><strong>Other distances:</strong> Distance measures based on some permutation concept or property:</p>
+<ul>
+<li>exact match distance: Hamming distance applied to permutations (e.g., the number of positions containing different elements)</li>
+<li>cycle distance: count of the number of non-singleton permutation cycles between a pair of permutations</li>
+<li>k-cycle distance: count of the number of non-singleton permutation cycles of length at most k</li>
+<li>deviation distance: sum of the positional deviations of the permutation elements</li>
+<li>normalized deviation distance (Ronald, 1998): deviation distance normalized by dividing by 1 (proposed by S Ronald at IEEE CEC in 1998)</li>
+<li>normalized deviation distance (Sevaux and Sorensen, 2005): deviation distance normalized, such that the distance is between 0 and 1 (proposed by Sevaux and Sorensen at MIC-2005)</li>
+<li>Lee distance: Lee distance (1958) is the sum of the minimum of the left-positional and right-positional deviations
+of the elements (e.g., treats permutation as a cycle, such that an element's deviation is the minimum of its displacement to 
+the left or right)</li>
+<li>squared deviation distance: sum of the squares of the positional deviations of the permutation elements</li>
+<li>weighted Kendall tau distance: Liu and Han's (2006) weighted version of Kendall tau distance</li>
+</ul>
+</section>
+<section>
+<h3>Sequence Distance Measures</h3>
+<p>JPT also includes a variety of string distance measures that can be used to measure the
+distance between a pair of strings or between a pair of arrays of various types. The sequence
+distance measures all support computing the distance between pairs of arrays of any one
+primitive type, the distance between pairs of arrays of objects, the distance between pairs
+of lists, and the distance between pairs of String objects. The distance measures for
+sequences include the following:</p>
+<ul>
+<li>edit distance: Wagner and Fischer's (1974) string edit distance, including
+edit operations of element deletions, element insertions, and element changes, and with configurable costs</li>
+<li>exact match distance: an adaptation of Hamming distance to non-binary strings, such that the
+distance is the number of sequence positions containing different elements</li>
+<li>Kendall tau sequence distance: implementation of Kendall tau sequence distance (Cicirello, 2020)</li>
+<li>longest common subsequence distance: an edit distance where the edit operations are deletions and insertions 
+(i.e., no replacements or changes), and where the cost of an edit operation is simply 1</li>
+</ul>
+</section>
+<section>
+<h3>Dependencies</h3>
+<p>The JavaPermutationTools has minimal dependencies, all of which are our own
+libraries, and these include the following.</p>
+<ul>
+<li><a href="https://rho-mu.cicirello.org/">&rho;&mu;</a>: The &rho;&mu; library is
+focused on efficient randomization. It provides highly optimized random sampling algorithm
+implementations, and replaces some of the functionality of Java's built-in random
+number generators with faster options.</li>
+<li><a href="https://core.cicirello.org/">org.cicirello.core</a>: The org.cicirello.core
+library provides implementations of core data structures and algorithms that are used
+across multiple of our projects.</li>
+</ul>
+</section>
+<section>
+<h3>Dependent Libraries</h3>
+<p>The following libraries depend upon JavaPermutationTools:</p>
+<ul>
+<li><a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a>: The Chips-n-Salsa
+Java library is a library for evolutionary computation, stochastic search, and related 
+metaheuristics. Among its features is support for optimization problems over the space
+of permutations. Thus, it uses JPT's Permutation class as an efficient representation
+of permutations.</li>
 </ul>
 </section>
 <section>
@@ -274,13 +360,6 @@ present time, this includes running:
 </ul></li>
 </ul>
 </section>
-<section>
-<h3>Dependent Libraries</h3>
-<p>The following libraries depend upon JavaPermutationTools:</p>
-<ul>
-<li><a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a></li>
-</ul>
-</section>
 <section class="publist">
 <h3>Related Publications</h3>
 <p>The following papers, many of which are related to fitness landscape analysis, have either used this library, or contributed to it in 
@@ -327,8 +406,12 @@ In <i>Proceedings of the Twenty-Sixth International Florida Artificial Intellige
 </section>
 </article>
 <footer>
-<small><a rel="nofollow" href="https://www.cicirello.org/e/">Contact</a></small>
-<div id="copyright"><small>Copyright &copy; 2005-<span itemprop="copyrightYear">2024</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
+<p><small>
+<a class="footer-link" href="https://www.cicirello.org/e/">Contact</a>
+<strong>&#x25C6;</strong>
+<a class="footer-link" href="https://www.cicirello.org/policy/privacy/">Privacy Policy</a>
+</small></p>
+<div id="copyright"><small>Copyright &copy; 2005-<span itemprop="copyrightYear">2025</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
 </footer>
 </body>
 </html>
