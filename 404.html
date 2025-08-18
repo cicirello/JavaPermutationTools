@@ -58,19 +58,29 @@ nav div a:not(.active) { display: block; }
 <a href="/">
 <picture>
   <source id="logo"
+    type="image/webp"
     srcset="images/jpt.webp 1280w,
           images/jpt960.webp 960w,
           images/jpt640.webp 640w,
-		  images/jpt320.webp 320w">
+		  images/jpt320.webp 320w"
+	sizes="(width <= 320px) 320px, 
+         (width <= 640px) 640px, 
+		 (width <= 960px) 960px, 
+		 1280px">
   <img id="backup-logo" 
     src="images/jpt.png" 
     alt="JavaPermutationTools - A Java library for computation on permutations and sequences" 
     width="1280" 
     height="640" 
+	class="respimg"
     srcset="images/jpt.png 1280w,
 	        images/jpt960.png 960w,
             images/jpt640.png 640w,
-		    images/jpt320.png 320w">
+		    images/jpt320.png 320w"
+	sizes="(width <= 320px) 320px, 
+         (width <= 640px) 640px, 
+		 (width <= 960px) 960px, 
+		 1280px">
 </picture>
 </a>
 </h2>
