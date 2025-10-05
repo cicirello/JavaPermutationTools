@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2025 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with JavaPermutationTools.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.cicirello.sequences.distance;
+package org.cicirello.sequences.distance.internal;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import java.util.List;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-interface KendallTauRelabeler {
+public interface KendallTauRelabeler {
 
   /**
    * Relabels the elements of the sequence to integers from 0 to k where there are k+1 distinct

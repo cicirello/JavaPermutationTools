@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2018-2025 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -152,37 +152,6 @@ public class KendallTauSequenceDistanceTests extends InternalTestHelpersKendallT
     s1.add("b");
     s2.add("a");
     thrown = assertThrows(IllegalArgumentException.class, () -> d.distance(s1, s2));
-  }
-
-  @Test
-  public void testKendallTauSequenceDistance_HashTableBaseClass() {
-    class TestHT extends RelabelByHashing.BaseHT {
-      TestHT(int min) {
-        super(32, min);
-      }
-    }
-    for (int n = 1; n <= 32; n *= 2) {
-      TestHT ht = new TestHT(n);
-      assertEquals(n, ht.minSize);
-      assertEquals(n - 1, ht.mask);
-    }
-    TestHT ht = new TestHT(3);
-    assertEquals(4, ht.minSize);
-    for (int n = 5; n < 8; n++) {
-      ht = new TestHT(n);
-      assertEquals(8, ht.minSize);
-      assertEquals(7, ht.mask);
-    }
-    for (int n = 9; n < 16; n++) {
-      ht = new TestHT(n);
-      assertEquals(16, ht.minSize);
-      assertEquals(15, ht.mask);
-    }
-    for (int n = 17; n <= 64; n++) {
-      ht = new TestHT(n);
-      assertEquals(32, ht.minSize);
-      assertEquals(31, ht.mask);
-    }
   }
 
   @Test
