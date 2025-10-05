@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2025 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -23,6 +23,9 @@ package org.cicirello.sequences.distance;
 
 import java.util.Arrays;
 import java.util.List;
+import org.cicirello.sequences.distance.internal.KendallTauRelabeler;
+import org.cicirello.sequences.distance.internal.RelabelByHashing;
+import org.cicirello.sequences.distance.internal.RelabelBySorting;
 
 /**
  * Kendall Tau Sequence Distance is the minimum number of adjacent swaps necessary to transform one
