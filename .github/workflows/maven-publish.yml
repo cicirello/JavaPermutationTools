@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-java@v5
       with:
         distribution: 'adopt'
-        java-version: '17'
+        java-version: '21'
         server-id: central 
         server-username: MAVEN_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN
@@ -47,7 +47,7 @@ jobs:
       uses: actions/setup-java@v5
       with:
         distribution: 'adopt'
-        java-version: '17'
+        java-version: '21'
         server-id: github 
 
     - name: Publish to GitHub Packages Apache Maven

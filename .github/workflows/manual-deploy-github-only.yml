@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-java@v5
       with:
         distribution: 'adopt'
-        java-version: '17'
+        java-version: '21'
         server-id: github
 
     - name: Build with Maven
