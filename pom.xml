@@ -6,7 +6,7 @@
  
 	<groupId>org.cicirello</groupId>
 	<artifactId>jpt</artifactId>
-	<version>6-SNAPSHOT</version>
+	<version>7-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>JavaPermutationTools</name>
@@ -30,7 +30,7 @@
 			<distribution>repo</distribution>
 			<comments>
 			JavaPermutationTools (JPT): A library for computation on permutations and sequences.
-			Copyright (C) 2005-2025 Vincent A. Cicirello.
+			Copyright (C) 2005-2026 Vincent A. Cicirello.
 
 			JavaPermutationTools is free software: you can redistribute it and/or modify
 			it under the terms of the GNU General Public License as published by
@@ -219,7 +219,7 @@
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.release>25</maven.compiler.release>
 	</properties>
   
 	<build>
@@ -229,7 +229,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.15.0</version>
 				<configuration>
-					<release>17</release>
+					<release>25</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -270,7 +270,7 @@
 						<link>https://rho-mu.cicirello.org/api</link>
 						<link>https://core.cicirello.org/api</link>
 					</links>
-					<bottom><![CDATA[Copyright &copy; 2005-2025 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+					<bottom><![CDATA[Copyright &copy; 2005-2026 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
 			</plugin>
 			<plugin>
