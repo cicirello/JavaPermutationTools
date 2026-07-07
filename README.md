@@ -2,7 +2,7 @@
 
 [![JavaPermutationTools - A Java library for computation on permutations and sequences](https://jpt.cicirello.org/images/jpt640.png)](#javapermutationtools-jpt-a-java-library-for-computation-on-permutations-and-sequences)
 
-Copyright (C) 2018-2024 [Vincent A. Cicirello](https://www.cicirello.org/).
+Copyright (C) 2018-2026 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://jpt.cicirello.org/
 
@@ -32,13 +32,14 @@ computation on permutations and sequences. It includes implementations of a vari
 of permutation distance metrics as well as distance metrics on sequences (i.e., Strings, 
 arrays, and other ordered data types). 
 
-## Java 17+
+## Java 25+
 
-We currently support Java 17+. See the following table for mapping between library version
+We currently support Java 25+. See the following table for mapping between library version
 and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
+| 7.x.y | Java 25+ |
 | 4.w.x to 6.y.z | Java 17+ |
 | 3.x.y | Java 11+ |
 | 1.w.x to 2.y.z | Java 8+ |
@@ -123,14 +124,14 @@ module your.module.name.here {
 
 ## Importing the Library from Maven Central
 
-Add this to the dependencies section of your pom.xml, replacing the version number 
-with the version you want to use.
+Add this to the dependencies section of your pom.xml, replacing the `x.y.z` with the
+version number of the version that you want to use.
 
 ```XML
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>jpt</artifactId>
-  <version>5.0.0</version>
+  <version>x.y.z</version>
 </dependency>
 ```
 
