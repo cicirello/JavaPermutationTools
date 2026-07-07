@@ -21,6 +21,8 @@ __BREAKING CHANGES: Minimum supported Java is Java 25. Next version will be 7.0.
 
 ### Dependencies
 * Minimum supported Java bumped to Java 25 (breaking change).
+* Bump org.cicirello:rho-mu from 4.2.1 to 5.0.1 (breaking change).
+* Bump org.cicirello:core from 2.7.1 to 3.0.0 (breaking change).
 
 ### CI/CD
 
