@@ -6,8 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-07-07
 
-__BREAKING CHANGES: Minimum supported Java is Java 25. Next version will be 7.0.0.__
-
 ### Added
 
 ### Changed
@@ -17,16 +15,23 @@ __BREAKING CHANGES: Minimum supported Java is Java 25. Next version will be 7.0.
 ### Removed
 
 ### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [7.0.0] - 2026-07-07
+
+### Fixed
 * Refactored the internal classes associated with the hash-table implementation of Kendall Tau Sequence Distance, which were identified by RefactorFirst as highly-coupled.
 
 ### Dependencies
 * Minimum supported Java bumped to Java 25 (breaking change).
 * Bump org.cicirello:rho-mu from 4.2.1 to 5.0.1 (breaking change).
 * Bump org.cicirello:core from 2.7.1 to 3.0.0 (breaking change).
-
-### CI/CD
-
-### Other
 
 
 ## [6.0.1] - 2025-05-15
