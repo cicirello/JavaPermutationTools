@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -917,15 +917,10 @@ public final class Permutation
    */
   @Override
   public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null) return false;
-    if (!(other instanceof Permutation)) return false;
-    Permutation o = (Permutation) other;
-    if (permutation.length != o.permutation.length) return false;
-    for (int i = 0; i < permutation.length; i++) {
-      if (permutation[i] != o.permutation[i]) return false;
+    if (other instanceof Permutation o) {
+      return Arrays.equals(permutation, o.permutation);
     }
-    return true;
+    return false;
   }
 
   /**
