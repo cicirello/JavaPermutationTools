@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Refactored Permutation.equals() method (non-breaking).
+* Refactored target array allocation in the various SequenceSampler implementations (non-breaking).
 
 ### Deprecated
 
