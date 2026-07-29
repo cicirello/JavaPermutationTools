@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -222,7 +222,8 @@ public final class SequenceInsertionSampler implements SequenceSampler {
   @Override
   public <T> T[] nextSample(T[] source, int k, T[] target) {
     SequenceSamplerUtils.validateK(k, source.length);
-    target = SequenceSamplerUtils.allocateIfNecessary(source, k, target);
+    target =
+        SequenceSamplerUtils.allocateIfNecessary(source.getClass().getComponentType(), k, target);
     int[] indexes = r.sampleInsertion(source.length, k, null);
     for (int i = 0; i < k; i++) {
       target[i] = source[indexes[i]];
@@ -595,7 +596,8 @@ public final class SequenceInsertionSampler implements SequenceSampler {
    */
   public static <T> T[] sample(T[] source, int k, T[] target, RandomGenerator r) {
     SequenceSamplerUtils.validateK(k, source.length);
-    target = SequenceSamplerUtils.allocateIfNecessary(source, k, target);
+    target =
+        SequenceSamplerUtils.allocateIfNecessary(source.getClass().getComponentType(), k, target);
     int[] indexes = RandomSampler.sampleInsertion(source.length, k, null, r);
     for (int i = 0; i < k; i++) {
       target[i] = source[indexes[i]];

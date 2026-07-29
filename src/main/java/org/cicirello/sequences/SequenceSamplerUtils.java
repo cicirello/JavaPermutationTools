@@ -1,6 +1,6 @@
 /*
  * JavaPermutationTools: A Java library for computation on permutations and sequences
- * Copyright 2005-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2005-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of JavaPermutationTools (https://jpt.cicirello.org/).
  *
@@ -42,11 +42,9 @@ class SequenceSamplerUtils {
   }
 
   @SuppressWarnings("unchecked")
-  static <T> T[] allocateIfNecessary(T[] source, int k, T[] target) {
-    if (target == null) {
-      target = (T[]) Array.newInstance(source.getClass().getComponentType(), k);
-    } else if (target.length < k) {
-      target = (T[]) Array.newInstance(target.getClass().getComponentType(), k);
+  static <T> T[] allocateIfNecessary(Class<?> componentType, int k, T[] target) {
+    if (target == null || target.length < k) {
+      return (T[]) Array.newInstance(componentType, k);
     }
     return target;
   }
